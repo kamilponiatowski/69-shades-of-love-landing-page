@@ -36,7 +36,9 @@ export const translations = {
       duckLogoAria: "Click for a duck joke",
       collapsePdfSection: "Collapse PDF section",
       expandPdfSection: "Expand PDF section",
-      dedication: "For my Muszka with love"
+      dedication: "For my Muszka with love",
+      motivationalTitle: "Keep Going!",
+      motivationalDescription: "You're making great progress on your self-care journey! Every small step counts. Keep taking care of yourself!"
     },
     pl: {
       mainTitle: "69 Odcieni Miłości",
@@ -69,7 +71,9 @@ export const translations = {
       duckLogoAria: "Kliknij, aby usłyszeć żart o kaczce",
       collapsePdfSection: "Zwiń sekcję PDF",
       expandPdfSection: "Rozwiń sekcję PDF",
-      dedication: "Dla mojej Muszki z miłością"
+      dedication: "Dla mojej Muszki z miłością",
+      motivationalTitle: "Tak trzymaj!",
+      motivationalDescription: "Robisz świetne postępy w swojej podróży dbania o siebie! Każdy mały krok się liczy. Kontynuuj dbanie o siebie!"
     }
   };
   

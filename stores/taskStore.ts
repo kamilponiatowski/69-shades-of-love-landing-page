@@ -60,12 +60,18 @@ export const useTaskStore = defineStore('tasks', () => {
   function toggleTaskCompletion(categoryType: Category['type'], taskIndex: number): void {
     const category = categories.value.find(cat => cat.type === categoryType);
     if (category && taskIndex >= 0 && taskIndex < category.tasks.length) {
-      category.tasks[taskIndex].completed = !category.tasks[taskIndex].completed;
-      lastCompletedTask.value = {
-        categoryType,
-        taskIndex,
-        completed: category.tasks[taskIndex].completed
-      };
+      const wasCompleted = category.tasks[taskIndex].completed;
+      category.tasks[taskIndex].completed = !wasCompleted;
+      
+      // Save last task if done
+      if (!wasCompleted) { 
+        lastCompletedTask.value = {
+          categoryType,
+          taskIndex,
+          completed: true
+        };
+      }
+      
       saveData();
     }
   }

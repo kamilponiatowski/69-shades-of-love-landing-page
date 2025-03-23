@@ -93,15 +93,23 @@ export function useAnimation(heartContainer: MaybeRef<HTMLElement | null>) {
     }
   };
 
+  // Licznik ukończonych zadań dla animacji serduszek
+  const completedTaskCounter = ref<number>(0);
+
   /**
    * Pokazuje animację przy ukończeniu zadania
    * @param taskType - Typ ukończonego zadania
    */
   const showCompletionAnimation = (taskType: Category['type']): void => {
-    // Pokaż animację losowo, aby uniknąć przytłoczenia użytkownika
-    const container = unref(heartContainer);
-    if (Math.random() > 0.7 && container) {
-      triggerHeartAnimation(taskType);
+    // Inkrementuj licznik zadań i pokaż animację co 3 zadania
+    completedTaskCounter.value = (completedTaskCounter.value + 1) % 3;
+    
+    // Pokaż animację co 3 zadania (gdy licznik wraca do 0)
+    if (completedTaskCounter.value === 0) {
+      const container = unref(heartContainer);
+      if (container) {
+        triggerHeartAnimation(taskType);
+      }
     }
   };
 

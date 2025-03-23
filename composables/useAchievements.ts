@@ -32,11 +32,29 @@ export function useAchievements() {
   const rewardTitle = ref<string>('');
   const rewardDescription = ref<string>('');
   
+  // Licznik dla popupów motywacyjnych
+  const taskCompletionCounter = ref<number>(0);
+  const lastCompletedCount = ref<number>(0);
+  
   /**
    * Sprawdza czy użytkownik osiągnął jakieś kamienie milowe
    * Pokazuje powiadomienie o osiągnięciu, jeśli kamień milowy został osiągnięty
    */
   const checkAchievements = (completedCount: number): void => {
+    // Sprawdź, czy nowe zadanie zostało ukończone
+    if (completedCount > lastCompletedCount.value) {
+      // Zliczaj ukończone zadania
+      taskCompletionCounter.value += (completedCount - lastCompletedCount.value);
+      
+      // Pokaż motywacyjny popup co 5 ukończonych zadań
+      if (taskCompletionCounter.value >= 5) {
+        showMotivationalPopup();
+        taskCompletionCounter.value = 0; // Reset licznika
+      }
+      
+      lastCompletedCount.value = completedCount;
+    }
+    
     const achievements: Achievement[] = [
       { threshold: 5, title: t('completionAchievement'), message: t('completionMessage', 5) },
       { threshold: 10, title: t('completionAchievement'), message: t('completionMessage', 10) },
@@ -62,6 +80,15 @@ export function useAchievements() {
         break;
       }
     }
+  };
+  
+  /**
+   * Pokazuje motywacyjny popup po ukończeniu określonej liczby zadań
+   */
+  const showMotivationalPopup = (): void => {
+    rewardTitle.value = t('motivationalTitle') || 'Great Progress!';
+    rewardDescription.value = t('motivationalDescription') || 'You\'re making excellent progress on your self-care journey. Keep up the amazing work!';
+    showReward.value = true;
   };
   
   /**

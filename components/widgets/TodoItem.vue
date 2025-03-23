@@ -18,6 +18,7 @@
 <script setup lang="ts">
 import { computed } from 'vue';
 import { useTaskStore, type Task, type Category } from '../../stores/taskStore';
+import { useAnimation } from '../../composables/useAnimation';
 
 // Props
 const props = defineProps<{
@@ -32,6 +33,9 @@ const emit = defineEmits(['change']);
 // Store
 const taskStore = useTaskStore();
 
+// Animation
+const { showCompletionAnimation } = useAnimation(null);
+
 // Computed
 const checkboxId = computed(() => {
   return `${props.categoryType}-task-${props.taskIndex}`;
@@ -39,7 +43,13 @@ const checkboxId = computed(() => {
 
 // Methods
 const toggleComplete = () => {
+  const wasCompleted = props.task.completed;
   taskStore.toggleTaskCompletion(props.categoryType, props.taskIndex);
+  
+  if (!wasCompleted) {
+    showCompletionAnimation(props.categoryType);
+  }
+  
   emit('change');
 };
 </script>

@@ -125,7 +125,7 @@ const { streakDays, checkStreak } = useStreak();
 
 // Animation utilities setup
 const heartContainer = ref<HTMLElement | null>(null);
-const { createConfetti, triggerHeartAnimation } = useAnimation(heartContainer);
+const { createConfetti, triggerHeartAnimation, showCompletionAnimation } = useAnimation(heartContainer);
 
 // Duck joke functionality
 const {
@@ -136,10 +136,16 @@ const {
 
 // Task update handler
 const handleTaskUpdate = (): void => {
-    taskStore.saveData();
-    checkAchievements(completedCount.value);
-    checkMilestones(taskStore.getCategoryProgress, triggerHeartAnimation);
-    checkStreak();
+  taskStore.saveData();
+  checkAchievements(completedCount.value);
+  checkMilestones(taskStore.getCategoryProgress, triggerHeartAnimation);
+  checkStreak();
+  
+  // Tutaj powinniśmy dodać wywołanie animacji serduszek
+  // Pobierz ostatnio ukończone zadanie z taskStore
+  if (taskStore.lastCompletedTask && taskStore.lastCompletedTask.completed) {
+    showCompletionAnimation(taskStore.lastCompletedTask.categoryType);
+  }
 };
 
 // ========== WATCHERS ==========

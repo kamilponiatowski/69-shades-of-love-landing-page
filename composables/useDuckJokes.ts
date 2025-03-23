@@ -31,8 +31,16 @@ export function useDuckJokes(duckJokes: DuckJokes, currentLanguage: Ref<Language
         const randomJoke = jokes[Math.floor(Math.random() * jokes.length)];
         currentDuckJoke.value = randomJoke;
         
-        // Show joke
-        showDuckJoke.value = true;
+        // Force reset visibility state if already showing
+        if (showDuckJoke.value) {
+            showDuckJoke.value = false;
+            setTimeout(() => {
+                showDuckJoke.value = true;
+            }, 10);
+        } else {
+            // Show joke
+            showDuckJoke.value = true;
+        }
         
         // Hide after 5 seconds
         setTimeout(() => {

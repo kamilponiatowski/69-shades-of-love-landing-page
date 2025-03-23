@@ -1,3 +1,4 @@
+// components/widgets/PdfDownload.vue
 <template>
     <div class="download-pdf-section">
       <h2 class="pdf-title">{{ t('pdfTitle') }}</h2>
@@ -20,13 +21,13 @@
         <i class="fas fa-chevron-down" aria-hidden="true"></i>
       </button>
       
-      <a :href="isUnlocked ? pdfLink : '#'" 
+      <a :href="isUnlocked ? pdfLinkDirect : '#'" 
         :class="['download-button', !isUnlocked ? 'locked' : '']"
         :download="isUnlocked"
         target="_blank"
         rel="noopener noreferrer"
         :aria-disabled="!isUnlocked"
-        @click.prevent="handleDownloadClick"
+        @click="handleDownloadClick"
       >
         <i class="fas" :class="isUnlocked ? 'fa-download' : 'fa-lock'" aria-hidden="true"></i>
         <span class="download-text">{{ isUnlocked ? t('downloadButton') : t('lockButton') }}</span>
@@ -66,6 +67,8 @@
   
   // Constants
   const pdfLink = "https://drive.google.com/file/d/1fPwsiyJxmMKKHA5ImRSDfjWk14NCnl-V/view?usp=drive_link";
+  // Bezpośredni link do pobierania PDF zamiast linka do Google Drive
+  const pdfLinkDirect = "https://drive.google.com/uc?export=download&id=1fPwsiyJxmMKKHA5ImRSDfjWk14NCnl-V";
   
   // Composables
   const { t } = useI18n();
@@ -79,10 +82,10 @@
     if (!props.isUnlocked) {
       event.preventDefault();
       // Opcjonalnie: wyświetl komunikat o konieczności wykonania zadań do odblokowania
+      return;
     }
+    
+    // Jeśli PDF jest odblokowany, pozwól na domyślną akcję przeglądarki (pobieranie)
+    // Nie zatrzymuj zdarzenia
   };
   </script>
-  
-  <style scoped>
-  /* Styl komponentu jest obsługiwany przez globalne CSS */
-  </style>
