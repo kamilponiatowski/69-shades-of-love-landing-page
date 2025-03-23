@@ -59,28 +59,28 @@ import { ref, computed, onMounted, watch, nextTick } from 'vue';
 import { storeToRefs } from 'pinia';
 
 // Stores
-import { useTaskStore } from '@/stores/taskStore';
+import { useTaskStore } from './stores/taskStore';
 
 // Composables
-import { useAchievements } from '@/composables/useAchievements';
-import { useStreak } from '@/composables/useStreak';
-import { useAnimation } from '@/composables/useAnimation';
-import { useDuckJokes } from '@/composables/useDuckJokes';
-import { useI18n } from '@/composables/useI18n';
+import { useAchievements } from './composables/useAchievements';
+import { useStreak } from './composables/useStreak';
+import { useAnimation } from './composables/useAnimation';
+import { useDuckJokes } from './composables/useDuckJokes';
+import { useI18n } from './composables/useI18n';
 
 // Constants
-import { duckJokes } from '@/constants/duckJokes';
+import { duckJokes } from './constants/duckJokes';
 
 // Components
-import Header from '@/components/layout/Header.vue';
-import Footer from '@/components/layout/Footer.vue';
-import AboutMe from '@/components/widgets/AboutMe.vue';
-import PdfDownload from '@/components/widgets/PdfDownload.vue';
-import ProgressBar from '@/components/widgets/ProgressBar.vue';
-import CategoryCard from '@/components/widgets/CategoryCard.vue';
-import DuckJoke from '@/components/widgets/DuckJoke.vue';
-import Achievement from '@/components/widgets/Achievement.vue';
-import RewardPopup from '@/components/widgets/RewardPopup.vue';
+import Header from './components/layout/Header.vue';
+import Footer from './components/layout/Footer.vue';
+import AboutMe from './components/widgets/AboutMe.vue';
+import PdfDownload from './components/widgets/PdfDownload.vue';
+import ProgressBar from './components/widgets/ProgressBar.vue';
+import CategoryCard from './components/widgets/CategoryCard.vue';
+import DuckJoke from './components/widgets/DuckJoke.vue';
+import Achievement from './components/widgets/Achievement.vue';
+import RewardPopup from './components/widgets/RewardPopup.vue';
 
 // Store
 const taskStore = useTaskStore();
@@ -175,8 +175,9 @@ onMounted(async () => {
         if (heartContainer.value) {
             const duckLogo = document.querySelector('.duck-logo');
             if (duckLogo) {
-                duckLogo.addEventListener('keydown', (e: KeyboardEvent) => {
-                    if (e.key === 'Enter' || e.key === ' ') {
+                duckLogo.addEventListener('keydown', (e: Event) => {
+                    const keyEvent = e as KeyboardEvent;
+                    if (keyEvent.key === 'Enter' || keyEvent.key === ' ') {
                         e.preventDefault();
                         tellDuckJoke();
                     }

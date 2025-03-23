@@ -1,8 +1,9 @@
 // @/composables/useI18n.ts
 import { ref, computed } from 'vue';
-import { translations } from '@/locales';
+import translations from '../locales'; // Poprawiona ścieżka importu
 
-export type TranslationKey = keyof typeof translations.en;
+// Używamy konkretnych stringów zamiast keyof, aby uniknąć problemów z typami
+export type TranslationKey = string;
 export type Language = 'en' | 'pl';
 
 /**
@@ -38,7 +39,7 @@ export function useI18n() {
     try {
       const savedLang = localStorage.getItem('preferredLanguage');
       if (savedLang && (savedLang === 'en' || savedLang === 'pl')) {
-        currentLanguage.value = savedLang;
+        currentLanguage.value = savedLang as Language;
       }
     } catch (error) {
       console.error('Nie można odczytać preferencji języka:', error);
@@ -54,7 +55,9 @@ export function useI18n() {
   const t = (key: TranslationKey, ...params: any[]): string => {
     try {
       // Pobierz tekst dla aktualnego języka lub jako fallback użyj angielskiego
-      let text: string = translations[currentLanguage.value]?.[key] || translations.en[key] || key;
+      const lang = currentLanguage.value;
+      const translationObj = translations[lang] || translations.en;
+      let text: string = (translationObj[key] as string) || key;
       
       // Podstaw parametry jeśli są dostępne
       if (params.length > 0) {

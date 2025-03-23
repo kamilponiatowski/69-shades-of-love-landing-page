@@ -19,8 +19,8 @@
 
 <script setup lang="ts">
 import { computed } from 'vue';
-import { useI18n } from '@/composables/useI18n';
-import { useTaskStore, type Category } from '@/stores/taskStore';
+import { useI18n } from '../../composables/useI18n';
+import { useTaskStore, type Category } from '../../stores/taskStore';
 import TodoItem from '@/components/widgets/TodoItem.vue';
 
 // Props

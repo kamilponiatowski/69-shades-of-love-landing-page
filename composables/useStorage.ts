@@ -1,6 +1,6 @@
 // @/composables/useStorage.ts
 import { ref, computed, onMounted } from 'vue';
-import type { Category } from '@/stores/taskStore';
+import type { Category } from '../stores/taskStore';
 
 interface LastCompletedTask {
     categoryType: Category['type'];

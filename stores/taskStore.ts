@@ -1,7 +1,7 @@
 // @/stores/taskStore.ts
 import { defineStore } from 'pinia';
 import { ref, computed } from 'vue';
-import { categories as initialCategories } from '@/constants/categories';
+import { categories as initialCategories } from '../constants/categories';
 
 // Definicje typów
 export interface Task {

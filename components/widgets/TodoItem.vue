@@ -17,7 +17,7 @@
 
 <script setup lang="ts">
 import { computed } from 'vue';
-import { useTaskStore, type Task, type Category } from '@/stores/taskStore';
+import { useTaskStore, type Task, type Category } from '../../stores/taskStore';
 
 // Props
 const props = defineProps<{

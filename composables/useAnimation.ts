@@ -1,6 +1,6 @@
 // @/composables/useAnimation.ts
 import { ref, Ref, MaybeRef, unref } from 'vue';
-import type { Category } from '@/stores/taskStore';
+import type { Category } from '../stores/taskStore';
 
 /**
  * Composable do obsługi animacji UI

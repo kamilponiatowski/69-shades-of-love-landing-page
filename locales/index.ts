@@ -71,4 +71,7 @@ export const translations = {
       expandPdfSection: "Rozwiń sekcję PDF",
       dedication: "Dla mojej Muszki z miłością"
     }
-}
+  };
+  
+  // Eksportuj domyślnie dla łatwiejszego importu
+  export default translations;

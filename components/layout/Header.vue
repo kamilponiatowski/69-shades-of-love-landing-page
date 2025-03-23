@@ -32,7 +32,7 @@
   </template>
   
   <script setup lang="ts">
-  import { useI18n } from '@/composables/useI18n';
+  import { useI18n } from '../../composables/useI18n';
   
   // Props
   defineProps({

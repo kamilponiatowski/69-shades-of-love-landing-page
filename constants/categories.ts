@@ -1,5 +1,5 @@
 // @/constants/categories.ts
-import type { Category } from '@/stores/taskStore';
+import type { Category } from '../stores/taskStore';
 
 /**
  * Self-care tasks data organized by categories

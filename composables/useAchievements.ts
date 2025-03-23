@@ -1,7 +1,7 @@
 // @/composables/useAchievements.ts
-import { ref } from 'vue';
+import { ref, Ref } from 'vue';
 import { useI18n } from './useI18n';
-import type { Category } from '@/stores/taskStore';
+import type { Category } from '../stores/taskStore';
 
 /**
  * Typy dla osiągnięć
@@ -36,18 +36,18 @@ export function useAchievements() {
    * Sprawdza czy użytkownik osiągnął jakieś kamienie milowe
    * Pokazuje powiadomienie o osiągnięciu, jeśli kamień milowy został osiągnięty
    */
-  const checkAchievements = (completedCount: number) => {
+  const checkAchievements = (completedCount: number): void => {
     const achievements: Achievement[] = [
-      { threshold: 5, title: t('completionAchievement', 5), message: t('completionMessage', 5) },
-      { threshold: 10, title: t('completionAchievement', 10), message: t('completionMessage', 10) },
-      { threshold: 25, title: t('completionAchievement', 25), message: t('completionMessage', 25) },
-      { threshold: 40, title: t('completionAchievement', 40), message: t('completionMessage', 40) },
-      { threshold: 69, title: t('completionAchievement', 69), message: t('completionMessage', 69) }
+      { threshold: 5, title: t('completionAchievement'), message: t('completionMessage', 5) },
+      { threshold: 10, title: t('completionAchievement'), message: t('completionMessage', 10) },
+      { threshold: 25, title: t('completionAchievement'), message: t('completionMessage', 25) },
+      { threshold: 40, title: t('completionAchievement'), message: t('completionMessage', 40) },
+      { threshold: 69, title: t('completionAchievement'), message: t('completionMessage', 69) }
     ];
 
     for (const achievement of achievements) {
       if (completedCount === achievement.threshold) {
-        achievementTitle.value = achievement.title;
+        achievementTitle.value = `${achievement.threshold} ${achievement.title}`;
         achievementMessage.value = achievement.message;
         showAchievement.value = true;
         
@@ -67,7 +67,7 @@ export function useAchievements() {
   /**
    * Pokazuje specjalną nagrodę za ukończenie wszystkich zadań
    */
-  const showSpecialReward = () => {
+  const showSpecialReward = (): void => {
     rewardTitle.value = t('specialRewardTitle');
     rewardDescription.value = t('specialRewardDescription');
     showReward.value = true;
@@ -76,7 +76,7 @@ export function useAchievements() {
   /**
    * Zamyka okno nagrody
    */
-  const closeReward = () => {
+  const closeReward = (): void => {
     showReward.value = false;
   };
   
@@ -88,7 +88,7 @@ export function useAchievements() {
   const checkMilestones = (
     getCategoryProgress: GetCategoryProgress, 
     triggerHeartAnimation: TriggerHeartAnimation
-  ) => {
+  ): void => {
     const categoryThreshold = 40; // 40% ukończenia dla dowolnej kategorii
     const categories: Category['type'][] = ['physical', 'mental', 'personal', 'relationship'];
     
