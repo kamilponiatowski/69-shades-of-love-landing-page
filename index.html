@@ -147,17 +147,10 @@
                 const pdfLink = "https://drive.google.com/file/d/1fPwsiyJxmMKKHA5ImRSDfjWk14NCnl-V/view?usp=drive_link";
 
                 const handleTaskUpdate = () => {
-                    const completedCategoryType = saveData();
-
-                    if (completedCategoryType) {
-                        checkAchievements();
-                        checkMilestones(getCategoryProgress, triggerHeartAnimation);
-                        checkStreak();
-
-                        if (Math.random() > 0.7) {
-                            triggerHeartAnimation(completedCategoryType);
-                        }
-                    }
+                    saveData();
+                    checkAchievements();
+                    checkMilestones(getCategoryProgress, triggerHeartAnimation);
+                    checkStreak();
                 };
 
                 // ========== WATCHERS ==========

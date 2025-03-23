@@ -41,7 +41,7 @@ export function useDuckJokes(duckJokes, currentLanguage) {
         try {
             // Create new audio object if not exists
             if (!duckAudio.value) {
-                duckAudio.value = new Audio("https://www.soundjay.com/animals/sounds/duck-quack-1.mp3");
+                duckAudio.value = new Audio("assets/duck-quack.mp3");
             }
             
             // Reset to beginning and play
@@ -54,7 +54,7 @@ export function useDuckJokes(duckJokes, currentLanguage) {
     
     // Initialize audio
     onMounted(() => {
-        duckAudio.value = new Audio("https://www.soundjay.com/animals/sounds/duck-quack-1.mp3");
+        duckAudio.value = new Audio("assets/duck-quack.mp3");
         duckAudio.value.preload = "auto";
     });
     

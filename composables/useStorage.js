@@ -72,24 +72,7 @@ export function useStorage(initialCategories) {
             lastCompletedTask: lastCompletedTask.value
         }));
         
-        // Get current completed count to compare
-        const newCompletedCount = categoriesData.value.reduce((total, category) => {
-            return total + category.tasks.filter(task => task.completed).length;
-        }, 0);
-        
-        // If a new task was completed, update lastCompletedTask
-        if (newCompletedCount > completedCount.value - 1) {
-            // Find the most recently completed task
-            for (const category of categoriesData.value) {
-                for (const task of category.tasks) {
-                    if (task.completed && JSON.stringify(task) !== JSON.stringify(lastCompletedTask.value)) {
-                        lastCompletedTask.value = {...task};
-                        return category.type;
-                    }
-                }
-            }
-        }
-
+        // Zwracamy null jako pusty rezultat - nie potrzebujemy identyfikatora kategorii
         return null;
     };
 
