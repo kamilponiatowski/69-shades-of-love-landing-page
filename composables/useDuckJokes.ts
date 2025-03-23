@@ -1,22 +1,28 @@
+// @/composables/useDuckJokes.ts
+import { ref, onMounted, Ref } from 'vue';
+import { Language } from './useI18n';
+
+interface DuckJokes {
+  [key: string]: string[];
+}
+
 /**
  * Duck joke functionality
  * Provides duck joke related methods and state
  * 
- * @param {Object} duckJokes - Object containing jokes in different languages
- * @param {Ref<string>} currentLanguage - Reference to current language
- * @returns {Object} Duck joke related methods and state
+ * @param duckJokes - Object containing jokes in different languages
+ * @param currentLanguage - Reference to current language
+ * @returns Duck joke related methods and state
  */
-import { ref, onMounted } from 'vue';
-
-export function useDuckJokes(duckJokes, currentLanguage) {
-    const showDuckJoke = ref(false);
-    const currentDuckJoke = ref('');
-    const duckAudio = ref(null);
+export function useDuckJokes(duckJokes: DuckJokes, currentLanguage: Ref<Language>) {
+    const showDuckJoke = ref<boolean>(false);
+    const currentDuckJoke = ref<string>('');
+    const duckAudio = ref<HTMLAudioElement | null>(null);
     
     /**
      * Shows a random duck joke
      */
-    const tellDuckJoke = () => {
+    const tellDuckJoke = (): void => {
         // Play duck sound
         playDuckSound();
         
@@ -37,7 +43,7 @@ export function useDuckJokes(duckJokes, currentLanguage) {
     /**
      * Plays duck quack sound
      */
-    const playDuckSound = () => {
+    const playDuckSound = (): void => {
         try {
             // Create new audio object if not exists
             if (!duckAudio.value) {

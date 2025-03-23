@@ -1,22 +1,23 @@
+// @/composables/useStreak.ts
+import { ref, onMounted } from 'vue';
+
 /**
  * Streak tracking composable
  * Keeps track of consecutive days of activity
  * 
- * @returns {Object} Streak related methods and state
+ * @returns Streak related methods and state
  */
-import { ref, onMounted } from 'vue';
-
 export function useStreak() {
     // Streak tracking state
-    const streakDays = ref(0);
-    const lastCheckDate = ref('');
+    const streakDays = ref<number>(0);
+    const lastCheckDate = ref<string>('');
     
     /**
      * Checks and updates the streak count
      * Increments streak if user visited on consecutive days
      * Resets streak if user missed a day
      */
-    const checkStreak = () => {
+    const checkStreak = (): void => {
         const today = new Date().toDateString();
         
         if (lastCheckDate.value && lastCheckDate.value !== today) {
@@ -48,7 +49,7 @@ export function useStreak() {
     /**
      * Loads streak data from localStorage
      */
-    const loadStreakData = () => {
+    const loadStreakData = (): void => {
         const savedStreak = localStorage.getItem('streakDays');
         if (savedStreak) {
             streakDays.value = parseInt(savedStreak);

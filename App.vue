@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <!-- Skip to content link for accessibility -->
-        <a href="#main-content" class="skip-link">Pomiń do głównej treści</a>
+        <a href="#main-content" class="skip-link">{{ t('skipToContent') }}</a>
       
         <Header 
             @tell-duck-joke="tellDuckJoke" 
@@ -54,17 +54,22 @@
     </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref, computed, onMounted, watch, nextTick } from 'vue';
 import { storeToRefs } from 'pinia';
 
-// Imports
+// Stores
 import { useTaskStore } from '@/stores/taskStore';
+
+// Composables
 import { useAchievements } from '@/composables/useAchievements';
 import { useStreak } from '@/composables/useStreak';
 import { useAnimation } from '@/composables/useAnimation';
 import { useDuckJokes } from '@/composables/useDuckJokes';
 import { useI18n } from '@/composables/useI18n';
+
+// Constants
+import { duckJokes } from '@/constants/duckJokes';
 
 // Components
 import Header from '@/components/layout/Header.vue';
@@ -87,20 +92,19 @@ const {
 } = storeToRefs(taskStore);
 
 // PDF section state
-const pdfSectionCollapsed = ref(false);
-const pdfLink = "https://drive.google.com/file/d/1fPwsiyJxmMKKHA5ImRSDfjWk14NCnl-V/view?usp=drive_link";
+const pdfSectionCollapsed = ref<boolean>(false);
 
 // Computed properties for PDF
-const tasksToUnlock = computed(() => {
+const tasksToUnlock = computed((): number => {
     return Math.ceil(totalTasks.value * 0.2) - completedCount.value;
 });
 
-const isUnlocked = computed(() => {
+const isUnlocked = computed((): boolean => {
     return progressPercentage.value >= 20;
 });
 
 // Translation
-const { t } = useI18n();
+const { t, currentLanguage } = useI18n();
 
 // Achievements setup
 const {
@@ -120,7 +124,7 @@ const {
 const { streakDays, checkStreak } = useStreak();
 
 // Animation utilities setup
-const heartContainer = ref(null);
+const heartContainer = ref<HTMLElement | null>(null);
 const { createConfetti, triggerHeartAnimation } = useAnimation(heartContainer);
 
 // Duck joke functionality
@@ -128,10 +132,10 @@ const {
     showDuckJoke,
     currentDuckJoke,
     tellDuckJoke
-} = useDuckJokes();
+} = useDuckJokes(duckJokes, currentLanguage);
 
 // Task update handler
-const handleTaskUpdate = () => {
+const handleTaskUpdate = (): void => {
     taskStore.saveData();
     checkAchievements(completedCount.value);
     checkMilestones(taskStore.getCategoryProgress, triggerHeartAnimation);
@@ -150,8 +154,8 @@ watch(completedCount, (newVal, oldVal) => {
                 showSpecialReward();
                 createConfetti();
             } else {
-                achievementTitle.value = `${milestone} kroków do samoakceptacji!`;
-                achievementMessage.value = `Ukończyłeś/aś ${milestone} zadań związanych z dbaniem o siebie. Tak trzymaj!`;
+                achievementTitle.value = `${milestone} ${t('completionAchievement', milestone)}`;
+                achievementMessage.value = t('completionMessage', milestone);
                 showAchievement.value = true;
 
                 setTimeout(() => {
@@ -166,12 +170,12 @@ watch(completedCount, (newVal, oldVal) => {
 onMounted(async () => {
     await taskStore.loadData();
     
-    // Set conatainer for animation
+    // Set container for animation
     nextTick(() => {
         if (heartContainer.value) {
             const duckLogo = document.querySelector('.duck-logo');
             if (duckLogo) {
-                duckLogo.addEventListener('keydown', (e) => {
+                duckLogo.addEventListener('keydown', (e: KeyboardEvent) => {
                     if (e.key === 'Enter' || e.key === ' ') {
                         e.preventDefault();
                         tellDuckJoke();

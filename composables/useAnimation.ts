@@ -15,7 +15,7 @@ export function useAnimation(heartContainer: MaybeRef<HTMLElement | null>) {
    * @param container - Element HTML kontenera
    * @param color - Kolor serca w formacie CSS
    */
-  const createHeart = (container: HTMLElement, color: string) => {
+  const createHeart = (container: HTMLElement, color: string): void => {
     if (!container) return;
 
     const heart = document.createElement('div');
@@ -46,7 +46,7 @@ export function useAnimation(heartContainer: MaybeRef<HTMLElement | null>) {
   /**
    * Tworzy animację konfetti do świętowania
    */
-  const createConfetti = () => {
+  const createConfetti = (): void => {
     const colors = ['#FF9F29', '#7ED957', '#FFD966', '#FF97B7', '#C41E3A'];
     const container = document.body;
 
@@ -73,11 +73,11 @@ export function useAnimation(heartContainer: MaybeRef<HTMLElement | null>) {
    * Wywołuje animację serca dla określonej kategorii
    * @param category - Typ kategorii
    */
-  const triggerHeartAnimation = (category: Category['type']) => {
+  const triggerHeartAnimation = (category: Category['type']): void => {
     const container = unref(heartContainer);
     if (!container) return;
     
-    let color;
+    let color: string;
     switch (category) {
       case 'physical': color = '#FF9F29'; break;
       case 'mental': color = '#7ED957'; break;
@@ -97,7 +97,7 @@ export function useAnimation(heartContainer: MaybeRef<HTMLElement | null>) {
    * Pokazuje animację przy ukończeniu zadania
    * @param taskType - Typ ukończonego zadania
    */
-  const showCompletionAnimation = (taskType: Category['type']) => {
+  const showCompletionAnimation = (taskType: Category['type']): void => {
     // Pokaż animację losowo, aby uniknąć przytłoczenia użytkownika
     const container = unref(heartContainer);
     if (Math.random() > 0.7 && container) {
