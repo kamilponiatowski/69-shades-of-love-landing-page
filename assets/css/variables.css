@@ -1,0 +1,14 @@
+/* ============ VARIABLES ============ */
+:root {
+    --physical-color: #FF9F29;
+    --mental-color: #7ED957;
+    --personal-color: #FFD966;
+    --relationship-color: #FF97B7;
+    --main-color: #C41E3A;
+    --background-color: #FFF0F5;
+    --text-color: #333;
+    --card-background: #fff;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --focus-outline: 3px solid #4070F4;
+    --accent-color: #8A2BE2;
+}

@@ -1,0 +1,193 @@
+/* ============ RESPONSIVE STYLES ============ */
+
+/* Tablet styles */
+@media (max-width: 1000px) {
+    .page-layout {
+        flex-direction: column;
+    }
+    
+    aside {
+        width: 100%;
+        order: -1; /* Move aside to the top on tablets */
+    }
+    
+    main {
+        width: 100%;
+    }
+    
+    .about-me-container, 
+    .download-pdf-section {
+        margin-bottom: 20px;
+    }
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+    header {
+        padding-top: 20px;
+    }
+    
+    .category-container {
+        grid-template-columns: 1fr;
+    }
+
+    .main-title {
+        font-size: 2rem;
+        margin-top: 10px;
+    }
+
+    .subtitle {
+        font-size: 1rem;
+    }
+    
+    .logo-container {
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+    
+    .duck-logo {
+        position: relative;
+        left: auto;
+        top: auto;
+        transform: none;
+        margin-bottom: 15px;
+    }
+    
+    .dedication {
+        margin-top: 5px;
+        font-size: 0.85rem;
+        padding: 2px 8px;
+    }
+    
+    aside {
+        order: -1;
+    }
+    
+    .about-me-container {
+        padding: 15px;
+    }
+    
+    .about-me-title {
+        font-size: 1.3rem;
+    }
+    
+    .about-me-content {
+        font-size: 0.95rem;
+    }
+    
+    .duck-pattern {
+        font-size: 3rem;
+    }
+    
+    /* Fixed duck logo for mobile */
+    .duck-logo {
+        position: fixed;
+        right: 20px;
+        bottom: 20px;
+        left: auto;
+        top: auto;
+        width: 50px;
+        height: 50px;
+        z-index: 1000;
+        background-color: white;
+        border-radius: 50%;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+        padding: 5px;
+    }
+    
+    .duck-logo:hover, 
+    .duck-logo:focus {
+        transform: scale(1.1);
+    }
+    
+    .duck-tooltip {
+        top: -40px;
+        left: 50%;
+        transform: translateX(-50%);
+        margin-left: 0;
+    }
+    
+    .duck-logo:hover .duck-tooltip, 
+    .duck-logo:focus .duck-tooltip {
+        opacity: 1;
+        visibility: visible;
+        top: -50px;
+    }
+    
+    /* Adjust achievement and reward popups */
+    .achievement-container {
+        left: 20px;
+        right: 20px;
+        max-width: calc(100% - 40px);
+    }
+    
+    .achievement {
+        width: 100%;
+        max-width: none;
+    }
+    
+    .reward-content {
+        width: 90%;
+        padding: 20px;
+    }
+    
+    /* Adjust progress section */
+    .category-progress {
+        flex-wrap: wrap;
+    }
+    
+    .category-progress-item {
+        width: 50%;
+        flex: none;
+        margin-bottom: 10px;
+    }
+}
+
+/* Small mobile styles */
+@media (max-width: 480px) {
+    body {
+        padding: 10px;
+    }
+    
+    .main-title {
+        font-size: 1.8rem;
+    }
+    
+    .category-header h2 {
+        font-size: 1.1rem;
+    }
+    
+    .progress-title h2 {
+        font-size: 1.3rem;
+    }
+    
+    .category-progress-item {
+        width: 100%;
+    }
+    
+    .todo-item {
+        padding: 10px;
+    }
+    
+    .todo-text {
+        font-size: 0.9rem;
+    }
+    
+    .todo-text .description {
+        font-size: 0.75rem;
+    }
+    
+    .download-button {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .reward-icon {
+        font-size: 2.5rem;
+    }
+    
+    .reward-title {
+        font-size: 1.3rem;
+    }
+}

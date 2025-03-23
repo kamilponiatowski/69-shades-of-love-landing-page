@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>69 Shades of Love - Self-Care Todo</title>
+    
+    <!-- SEO & Meta Tags -->
+    <meta name="description" content="Your personal self-care journey with 69 Shades of Love. Track daily self-care tasks and improve your physical, mental, personal, and relationship wellbeing.">
+    <meta name="keywords" content="self-care, personal development, mental health, physical wellbeing, relationship care, productivity, habit tracker">
+    <meta name="author" content="WTQ - What The Quack">
+    <meta property="og:title" content="69 Shades of Love - Self-Care Journey">
+    <meta property="og:description" content="Your personal self-care journey with 69 tasks to improve your wellbeing.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://tiptopjar.com/proDucktive/preview.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="69 Shades of Love - Self-Care Journey">
+    <meta name="twitter:description" content="Track your self-care journey with this beautiful interactive tool.">
+    
+    <!-- External Libraries -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    
+    <!-- CSS Styles -->
+    <link rel="stylesheet" href="assets/css/variables.css">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/animations.css">
+    <link rel="stylesheet" href="assets/css/layout.css">
+    <link rel="stylesheet" href="assets/css/responsive.css">
+</head>
+<body>
+    <div id="app" class="container">
+        <!-- Skip to content link for accessibility -->
+        <a href="#main-content" class="skip-link">Skip to main content</a>
+        
+        <!-- App content is loaded via Vue.js -->
+    </div>
+
+    <!-- JavaScript Modules -->
+    <script type="module" src="data/translations.js"></script>
+    <script type="module" src="data/categories.js"></script>
+    <script type="module" src="data/duckJokes.js"></script>
+    
+    <script type="module" src="composables/useTranslations.js"></script>
+    <script type="module" src="composables/useStorage.js"></script>
+    <script type="module" src="composables/useAchievements.js"></script>
+    <script type="module" src="composables/useStreak.js"></script>
+    <script type="module" src="composables/useAnimation.js"></script>
+    
+    <script type="module" src="components/Header.js"></script>
+    <script type="module" src="components/Footer.js"></script>
+    <script type="module" src="components/AboutMe.js"></script>
+    <script type="module" src="components/PdfDownload.js"></script>
+    <script type="module" src="components/ProgressBar.js"></script>
+    <script type="module" src="components/CategoryCard.js"></script>
+    <script type="module" src="components/TodoItem.js"></script>
+    <script type="module" src="components/DuckJoke.js"></script>
+    <script type="module" src="components/Achievement.js"></script>
+    <script type="module" src="components/RewardPopup.js"></script>
+    
+    <!-- Main App Script -->
+    <script type="module">
+        import { createApp, ref, computed, onMounted, watch } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js';
+        import { translations } from './data/translations.js';
+        import { categories } from './data/categories.js';
+        import { duckJokes } from './data/duckJokes.js';
+        
+        import { useTranslations } from './composables/useTranslations.js';
+        import { useStorage } from './composables/useStorage.js';
+        import { useAchievements } from './composables/useAchievements.js';
+        import { useStreak } from './composables/useStreak.js';
+        import { useAnimation } from './composables/useAnimation.js';
+        import { useDuckJokes } from './composables/useDuckJokes.js';
+        
+        import { Header } from './components/Header.js';
+        import { Footer } from './components/Footer.js';
+        import { AboutMe } from './components/AboutMe.js';
+        import { PdfDownload } from './components/PdfDownload.js';
+        import { ProgressBar } from './components/ProgressBar.js';
+        import { CategoryCard } from './components/CategoryCard.js';
+        import { TodoItem } from './components/TodoItem.js';
+        import { DuckJoke } from './components/DuckJoke.js';
+        import { Achievement } from './components/Achievement.js';
+        import { RewardPopup } from './components/RewardPopup.js';
+        
+        const app = createApp({
+            components: {
+                Header,
+                Footer,
+                AboutMe,
+                PdfDownload,
+                ProgressBar,
+                CategoryCard,
+                TodoItem,
+                DuckJoke,
+                Achievement,
+                RewardPopup
+            },
+            setup() {
+                // Translation setup
+                const { currentLanguage, translate } = useTranslations(translations);
+                
+                // Data storage setup
+                const { 
+                    categoriesData, 
+                    completedCount, 
+                    totalTasks, 
+                    progressPercentage, 
+                    saveData, 
+                    getCategoryCompletedCount, 
+                    getCategoryProgress 
+                } = useStorage(categories);
+                
+                // Achievements setup
+                const {
+                    showAchievement,
+                    achievementTitle,
+                    achievementMessage,
+                    checkAchievements,
+                    showReward,
+                    rewardTitle,
+                    rewardDescription,
+                    showSpecialReward
+                } = useAchievements(completedCount, totalTasks);
+                
+                // Streak tracking setup
+                const { streakDays, checkStreak } = useStreak();
+                
+                // Animation utilities setup
+                const { heartContainer, createHeart, createConfetti, triggerHeartAnimation } = useAnimation();
+                
+                // Duck joke functionality
+                const {
+                    showDuckJoke,
+                    currentDuckJoke,
+                    tellDuckJoke
+                } = useDuckJokes(duckJokes, currentLanguage);
+                
+                // PDF section state
+                const pdfSectionCollapsed = ref(false);
+                const pdfLink = "https://drive.google.com/file/d/1fPwsiyJxmMKKHA5ImRSDfjWk14NCnl-V/view?usp=drive_link";
+                
+                // ========== WATCHERS ==========
+                // Watch for completed task counts to show rewards
+                watch(completedCount, (newVal, oldVal) => {
+                    // Special milestones
+                    const milestones = [10, 25, 50, 69];
+                    
+                    for (const milestone of milestones) {
+                        if (oldVal < milestone && newVal >= milestone) {
+                            if (milestone === 69) {
+                                showSpecialReward();
+                                createConfetti();
+                            } else {
+                                achievementTitle.value = `${milestone} Steps to Self-Love!`;
+                                achievementMessage.value = `You've completed ${milestone} self-care activities. Keep going!`;
+                                showAchievement.value = true;
+                                
+                                setTimeout(() => {
+                                    showAchievement.value = false;
+                                }, 5000);
+                            }
+                        }
+                    }
+                });
+                
+                // ========== LIFECYCLE HOOKS ==========
+                onMounted(() => {
+                    heartContainer.value = document.querySelector('.heart-container');
+                    
+                    // Detect user language
+                    currentLanguage.value = navigator.language || navigator.userLanguage;
+                    currentLanguage.value = currentLanguage.value.startsWith('pl') ? 'pl' : 'en';
+                    
+                    // Make duck logo keyboard-accessible
+                    const duckLogo = document.querySelector('.duck-logo');
+                    if (duckLogo) {
+                        duckLogo.addEventListener('keydown', (e) => {
+                            if (e.key === 'Enter' || e.key === ' ') {
+                                e.preventDefault();
+                                tellDuckJoke();
+                            }
+                        });
+                    }
+                });
+                
+                return {
+                    // App data
+                    categoriesData,
+                    completedCount,
+                    totalTasks,
+                    progressPercentage,
+                    
+                    // Helper methods
+                    getCategoryCompletedCount,
+                    getCategoryProgress,
+                    saveData,
+                    
+                    // UI state
+                    showAchievement,
+                    achievementTitle,
+                    achievementMessage,
+                    streakDays,
+                    showReward,
+                    rewardTitle,
+                    rewardDescription,
+                    pdfSectionCollapsed,
+                    pdfLink,
+                    
+                    // Duck functionality
+                    showDuckJoke,
+                    currentDuckJoke,
+                    tellDuckJoke,
+                    
+                    // Translation
+                    currentLanguage,
+                    translate,
+                    
+                    // Template structure
+                    heartContainer
+                };
+            },
+            template: `
+                <Header 
+                    :translate="translate" 
+                    :streakDays="streakDays" 
+                    @tell-duck-joke="tellDuckJoke" 
+                />
+                
+                <DuckJoke 
+                    :showDuckJoke="showDuckJoke" 
+                    :currentDuckJoke="currentDuckJoke" 
+                />
+                
+                <div class="page-layout">
+                    <aside>
+                        <AboutMe :translate="translate" />
+                        
+                        <PdfDownload 
+                            :translate="translate"
+                            :progressPercentage="progressPercentage"
+                            :totalTasks="totalTasks"
+                            :completedCount="completedCount"
+                            :pdfLink="pdfLink"
+                            v-model:pdfSectionCollapsed="pdfSectionCollapsed"
+                        />
+                    </aside>
+                    
+                    <main id="main-content">
+                        <ProgressBar 
+                            :translate="translate"
+                            :completedCount="completedCount"
+                            :totalTasks="totalTasks"
+                            :progressPercentage="progressPercentage"
+                            :getCategoryProgress="getCategoryProgress"
+                        />
+                        
+                        <div class="category-container">
+                            <CategoryCard 
+                                v-for="(category, index) in categoriesData" 
+                                :key="index"
+                                :category="category"
+                                :translate="translate"
+                                :getCategoryCompletedCount="getCategoryCompletedCount"
+                                @task-updated="saveData"
+                            />
+                        </div>
+                    </main>
+                </div>
+                
+                <Achievement 
+                    :showAchievement="showAchievement"
+                    :achievementTitle="achievementTitle"
+                    :achievementMessage="achievementMessage"
+                />
+                
+                <div class="heart-container" ref="heartContainer" aria-hidden="true"></div>
+                
+                <RewardPopup
+                    :showReward="showReward"
+                    :rewardTitle="rewardTitle"
+                    :rewardDescription="rewardDescription"
+                    @close="showReward = false"
+                />
+                
+                <Footer :translate="translate" />
+            `
+        });
+        
+        app.mount('#app');
+    </script>
+</body>
+</html>

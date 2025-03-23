@@ -1,0 +1,135 @@
+/* ============ LAYOUT STYLES ============ */
+
+/* Main page layout */
+.page-layout {
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+main {
+    flex: 1;
+    min-width: 300px;
+}
+
+aside {
+    width: 350px;
+    min-width: 300px;
+}
+
+/* Sidebar section layout */
+.about-me-container,
+.download-pdf-section,
+.progress-container {
+    margin-bottom: 30px;
+}
+
+/* Grid layout for categories */
+.category-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+/* Flexbox layouts */
+.category-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.progress-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.category-progress {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.todo-item {
+    display: flex;
+    align-items: center;
+}
+
+/* Specific component layouts */
+.logo-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.streak-counter {
+    display: inline-flex;
+    align-items: center;
+}
+
+.achievement {
+    display: flex;
+    align-items: center;
+}
+
+.contact-link {
+    display: inline-flex;
+    align-items: center;
+}
+
+.support-button {
+    display: inline-flex;
+    align-items: center;
+}
+
+.download-button {
+    display: inline-flex;
+    align-items: center;
+}
+
+/* Positioning */
+.achievement-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.reward-animation {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Z-index layering */
+.skip-link {
+    z-index: 100;
+}
+
+.duck-logo {
+    z-index: 10;
+}
+
+.duck-tooltip {
+    z-index: 10;
+}
+
+.duck-joke-container {
+    z-index: 1000;
+}
+
+.heart-container {
+    z-index: 9;
+}
+
+.achievement-container {
+    z-index: 100;
+}
+
+.reward-animation {
+    z-index: 999;
+}
+
+.confetti {
+    z-index: -1;
+}

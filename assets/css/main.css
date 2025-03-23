@@ -1,0 +1,646 @@
+/* ============ BASE STYLES ============ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    min-height: 100vh;
+    padding: 20px;
+    line-height: 1.5;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Accessibility focus styles */
+a:focus, button:focus, input:focus, [tabindex]:focus {
+    outline: var(--focus-outline);
+    outline-offset: 2px;
+}
+
+/* Skip to content link for accessibility */
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: var(--main-color);
+    color: white;
+    padding: 8px;
+    z-index: 100;
+    transition: top 0.3s ease;
+}
+
+.skip-link:focus {
+    top: 0;
+}
+
+/* ============ HEADER STYLES ============ */
+header {
+    text-align: center;
+    margin-bottom: 30px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.logo-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 15px;
+    width: 100%;
+}
+
+.duck-logo {
+    width: 60px;
+    height: 60px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+}
+
+.duck-logo:hover, .duck-logo:focus {
+    transform: translateY(-50%) scale(1.1);
+}
+
+.duck-tooltip {
+    position: absolute;
+    top: 50%;
+    left: 100%;
+    transform: translateY(-50%);
+    background-color: white;
+    padding: 8px 12px;
+    border-radius: 15px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    font-weight: bold;
+    color: #8A2BE2;
+    pointer-events: none;
+    z-index: 10;
+    margin-left: 10px;
+}
+
+.duck-logo:hover .duck-tooltip,
+.duck-logo:focus .duck-tooltip {
+    opacity: 1;
+    visibility: visible;
+}
+
+.main-title {
+    color: var(--main-color);
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    position: relative;
+    display: inline-block;
+    text-align: center;
+}
+
+.main-title::before {
+    content: "";
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background-color: var(--main-color);
+    border-radius: 50%;
+    opacity: 0.1;
+    top: -10px;
+    left: -15px;
+    z-index: -1;
+}
+
+.subtitle {
+    color: #666;
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.dedication {
+    font-size: 0.95rem;
+    font-style: italic;
+    color: var(--accent-color);
+    margin-top: 5px;
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 30px;
+    background-color: rgba(138, 43, 226, 0.1);
+    position: relative;
+}
+
+.dedication::before {
+    content: "❤";
+    margin-right: 5px;
+    font-style: normal;
+}
+
+.dedication::after {
+    content: "❤";
+    margin-left: 5px;
+    font-style: normal;
+}
+
+.streak-counter {
+    background-color: white;
+    padding: 10px 15px;
+    border-radius: 20px;
+    display: inline-flex;
+    align-items: center;
+    box-shadow: 0 3px 10px var(--shadow-color);
+    margin-top: 10px;
+}
+
+.streak-flame {
+    color: #FF5722;
+    margin-right: 5px;
+    font-size: 1.2rem;
+}
+
+.streak-count {
+    font-weight: bold;
+    color: #333;
+}
+
+/* ============ DUCK JOKE STYLES ============ */
+.duck-joke-container {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    background-color: white;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    max-width: 300px;
+    z-index: 1000;
+    transform: translateY(150%);
+    transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    border-left: 5px solid #8A2BE2;
+}
+
+.duck-joke-container.show {
+    transform: translateY(0);
+}
+
+.duck-joke-text {
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    color: #8A2BE2;
+    font-weight: bold;
+    font-size: 1rem;
+    margin-bottom: 0;
+}
+
+/* ============ ABOUT ME STYLES ============ */
+.about-me-container {
+    background: linear-gradient(135deg, #8A2BE2 0%, #4B0082 100%);
+    border-radius: 15px;
+    padding: 25px;
+    margin-bottom: 30px;
+    color: white;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+.about-me-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.about-me-title img {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+}
+
+.about-me-content {
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.contact-info {
+    margin-bottom: 20px;
+}
+
+.contact-link {
+    display: inline-flex;
+    align-items: center;
+    color: rgba(255, 255, 255, 0.9);
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    padding: 6px 12px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 30px;
+}
+
+.contact-link i {
+    margin-right: 8px;
+    font-size: 0.9rem;
+}
+
+.contact-link:hover, .contact-link:focus {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;
+    transform: translateY(-2px);
+}
+
+.support-button {
+    background-color: #FFD304;
+    color: #333;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 50px;
+    font-weight: bold;
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+}
+
+.support-button:hover, .support-button:focus {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    background-color: #FFE44D;
+}
+
+.support-button i {
+    margin-right: 8px;
+}
+
+.duck-pattern {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    opacity: 0.1;
+    font-size: 6rem;
+    transform: rotate(15deg);
+}
+
+/* ============ PDF SECTION STYLES ============ */
+.download-pdf-section {
+    background-color: white;
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 30px;
+    position: relative;
+    text-align: center;
+    box-shadow: 0 5px 15px var(--shadow-color);
+}
+
+.pdf-section-toggle {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    color: #777;
+    transition: color 0.2s ease;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.pdf-section-toggle:hover, .pdf-section-toggle:focus {
+    color: var(--main-color);
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.pdf-content-collapsed {
+    height: 0;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    transition: all 0.4s ease;
+}
+
+.pdf-content {
+    transition: all 0.4s ease;
+    max-height: 500px;
+    overflow: hidden;
+}
+
+.download-button {
+    background-color: var(--main-color);
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 50px;
+    font-weight: bold;
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.download-button:hover, .download-button:focus {
+    background-color: #a01a30;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+.download-button i {
+    margin-right: 10px;
+}
+
+.download-button.locked {
+    background-color: #888;
+    cursor: not-allowed;
+}
+
+.download-info {
+    margin-top: 15px;
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.qr-code {
+    display: block;
+    width: 150px;
+    height: 150px;
+    margin: 20px auto;
+    background-color: white;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* ============ PROGRESS STYLES ============ */
+.progress-container {
+    margin-bottom: 30px;
+    background-color: white;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px var(--shadow-color);
+}
+
+.progress-title {
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.progress-title h2 {
+    color: var(--main-color);
+    font-size: 1.5rem;
+}
+
+.progress-stats {
+    color: #666;
+    font-weight: bold;
+}
+
+.progress-bar {
+    height: 10px;
+    background-color: #eee;
+    border-radius: 5px;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--physical-color), var(--mental-color), var(--personal-color), var(--relationship-color));
+    border-radius: 5px;
+    transition: width 0.5s ease;
+}
+
+.category-progress {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.category-progress-item {
+    text-align: center;
+    flex: 1;
+}
+
+.category-label {
+    font-size: 0.8rem;
+    color: #666;
+    margin-bottom: 5px;
+}
+
+.category-percentage {
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.physical-text {
+    color: var(--physical-color);
+}
+
+.mental-text {
+    color: var(--mental-color);
+}
+
+.personal-text {
+    color: var(--personal-color);
+}
+
+.relationship-text {
+    color: var(--relationship-color);
+}
+
+/* ============ CATEGORY CARD STYLES ============ */
+.category-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+.category {
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 20px var(--shadow-color);
+    background-color: var(--card-background);
+    transition: transform 0.3s ease;
+}
+
+.category:hover {
+    transform: translateY(-5px);
+}
+
+.category-header {
+    padding: 15px 20px;
+    color: white;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.category-header h2 {
+    font-size: 1.3rem;
+}
+
+.category-body {
+    padding: 15px;
+}
+
+.physical .category-header {
+    background-color: var(--physical-color);
+}
+
+.mental .category-header {
+    background-color: var(--mental-color);
+}
+
+.personal .category-header {
+    background-color: var(--personal-color);
+}
+
+.relationship .category-header {
+    background-color: var(--relationship-color);
+}
+
+/* ============ TODO ITEM STYLES ============ */
+.todo-item {
+    padding: 12px 15px;
+    margin-bottom: 10px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    position: relative;
+    overflow: hidden;
+}
+
+.todo-item:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.todo-item.completed {
+    background-color: rgba(240, 240, 240, 0.5);
+}
+
+.todo-item.completed .todo-text {
+    text-decoration: line-through;
+    color: #888;
+}
+
+.todo-checkbox {
+    appearance: none;
+    -webkit-appearance: none;
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    border: 2px solid #ddd;
+    margin-right: 15px;
+    position: relative;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.physical .todo-checkbox {
+    border-color: var(--physical-color);
+}
+
+.mental .todo-checkbox {
+    border-color: var(--mental-color);
+}
+
+.personal .todo-checkbox {
+    border-color: var(--personal-color);
+}
+
+.relationship .todo-checkbox {
+    border-color: var(--relationship-color);
+}
+
+.todo-checkbox:checked::before {
+    content: '✓';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 12px;
+    color: white;
+}
+
+.physical .todo-checkbox:checked {
+    background-color: var(--physical-color);
+}
+
+.mental .todo-checkbox:checked {
+    background-color: var(--mental-color);
+}
+
+.personal .todo-checkbox:checked {
+    background-color: var(--personal-color);
+}
+
+.relationship .todo-checkbox:checked {
+    background-color: var(--relationship-color);
+}
+
+.todo-text {
+    flex: 1;
+    font-size: 0.95rem;
+}
+
+.todo-text .description {
+    font-size: 0.8rem;
+    color: #888;
+    margin-top: 3px;
+}
+
+/* ============ FOOTER STYLES ============ */
+.footer {
+    text-align: center;
+    margin-top: 40px;
+    padding: 20px;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.footer .heart {
+    color: #8A2BE2;
+    font-size: 1.2rem;
+    margin: 0 5px;
+    animation: heartbeat 1.5s infinite;
+    display: inline-block;
+}
+
+.footer a {
+    color: #8A2BE2;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.footer a:hover, .footer a:focus {
+    color: #C41E3A;
+    text-decoration: underline;
+}
