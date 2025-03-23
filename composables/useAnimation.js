@@ -4,38 +4,35 @@
  * 
  * @returns {Object} Animation related methods and state
  */
-import { ref } from 'vue';
 
-export function useAnimation() {
-    // Reference to heart container element
-    const heartContainer = ref(null);
-    
+export function useAnimation(heartContainer) {
     /**
      * Creates a heart element with animation
      * 
-     * @param {string} color - CSS color for the heart
-     */
-    const createHeart = (color) => {
-        if (!heartContainer.value) return;
-        
+     * @param {HTMLElement} container - Container element for hearts
+     * @param {string} color - CSS color of the heart
+    */
+    const createHeart = (container, color) => {
+        if (!container) return;
+
         const heart = document.createElement('div');
         heart.className = 'heart';
         heart.style.backgroundColor = color;
-        
-        // Position at the bottom of the screen at random X coordinate
+
+        // Pozycja na dole ekranu w losowej pozycji X
         const x = Math.random() * window.innerWidth;
         heart.style.left = `${x}px`;
         heart.style.bottom = '0';
-        
-        // Add to container
-        heartContainer.value.appendChild(heart);
-        
-        // Add animate class after a small delay to trigger animation
+
+        // Dodaj do kontenera
+        container.appendChild(heart);
+
+        // Dodaj klasę animate po małym opóźnieniu, aby uruchomić animację
         setTimeout(() => {
             heart.classList.add('animate');
         }, 10);
-        
-        // Remove after animation completes
+
+        // Usuń po zakończeniu animacji
         setTimeout(() => {
             heart.remove();
         }, 4000);
@@ -46,16 +43,16 @@ export function useAnimation() {
      */
     const createConfetti = () => {
         const colors = ['#FF9F29', '#7ED957', '#FFD966', '#FF97B7', '#C41E3A'];
-        
+
         for (let i = 0; i < 50; i++) {
             setTimeout(() => {
                 const confetti = document.createElement('div');
                 confetti.className = 'confetti';
                 confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
                 confetti.style.left = `${Math.random() * window.innerWidth}px`;
-                
+
                 document.body.appendChild(confetti);
-                
+
                 // Remove after animation
                 setTimeout(() => {
                     confetti.remove();
@@ -63,13 +60,15 @@ export function useAnimation() {
             }, i * 50);
         }
     };
-    
+
     /**
      * Triggers heart animation for a specific category
      * 
      * @param {string} category - Category type identifier
      */
     const triggerHeartAnimation = (category) => {
+        if (!heartContainer || !heartContainer.value) return;
+        
         let color;
         switch (category) {
             case 'physical': color = '#FF9F29'; break;
@@ -81,11 +80,11 @@ export function useAnimation() {
 
         for (let i = 0; i < 5; i++) {
             setTimeout(() => {
-                createHeart(color);
+                createHeart(heartContainer.value, color);
             }, i * 300);
         }
     };
-    
+
     /**
      * Shows animation when task is completed
      * 
@@ -93,13 +92,12 @@ export function useAnimation() {
      */
     const showCompletionAnimation = (taskType) => {
         // Show animation randomly to avoid overwhelming the user
-        if (Math.random() > 0.7) {
+        if (Math.random() > 0.7 && heartContainer.value) {
             triggerHeartAnimation(taskType);
         }
     };
-    
+
     return {
-        heartContainer,
         createHeart,
         createConfetti,
         triggerHeartAnimation,

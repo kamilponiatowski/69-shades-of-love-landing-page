@@ -84,11 +84,13 @@ export function useStorage(initialCategories) {
                 for (const task of category.tasks) {
                     if (task.completed && JSON.stringify(task) !== JSON.stringify(lastCompletedTask.value)) {
                         lastCompletedTask.value = {...task};
-                        break;
+                        return category.type;
                     }
                 }
             }
         }
+
+        return null;
     };
 
     /**
