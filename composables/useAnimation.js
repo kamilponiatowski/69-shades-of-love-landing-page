@@ -1,106 +1,114 @@
+// @/composables/useAnimation.ts
+import { ref, Ref, MaybeRef, unref } from 'vue';
+import type { Category } from '@/stores/taskStore';
+
 /**
- * Animation composable
- * Handles UI animations like hearts and confetti
+ * Composable do obsługi animacji UI
+ * Zapewnia animacje serc i konfetti
  * 
- * @returns {Object} Animation related methods and state
+ * @param heartContainer - Referencja do kontenera animacji
+ * @returns Metody do tworzenia animacji
  */
+export function useAnimation(heartContainer: MaybeRef<HTMLElement | null>) {
+  /**
+   * Tworzy element serca z animacją
+   * @param container - Element HTML kontenera
+   * @param color - Kolor serca w formacie CSS
+   */
+  const createHeart = (container: HTMLElement, color: string) => {
+    if (!container) return;
 
-export function useAnimation(heartContainer) {
-    /**
-     * Creates a heart element with animation
-     * 
-     * @param {HTMLElement} container - Container element for hearts
-     * @param {string} color - CSS color of the heart
-    */
-    const createHeart = (container, color) => {
-        if (!container) return;
+    const heart = document.createElement('div');
+    heart.className = 'heart';
+    heart.style.backgroundColor = color;
 
-        const heart = document.createElement('div');
-        heart.className = 'heart';
-        heart.style.backgroundColor = color;
+    // Pozycja na dole ekranu w losowej pozycji X
+    const x = Math.random() * window.innerWidth;
+    heart.style.left = `${x}px`;
+    heart.style.bottom = '0';
 
-        // Pozycja na dole ekranu w losowej pozycji X
-        const x = Math.random() * window.innerWidth;
-        heart.style.left = `${x}px`;
-        heart.style.bottom = '0';
+    // Dodaj do kontenera
+    container.appendChild(heart);
 
-        // Dodaj do kontenera
-        container.appendChild(heart);
+    // Dodaj klasę animate po małym opóźnieniu, aby uruchomić animację
+    setTimeout(() => {
+      heart.classList.add('animate');
+    }, 10);
 
-        // Dodaj klasę animate po małym opóźnieniu, aby uruchomić animację
-        setTimeout(() => {
-            heart.classList.add('animate');
-        }, 10);
+    // Usuń po zakończeniu animacji
+    setTimeout(() => {
+      if (heart.parentNode === container) {
+        container.removeChild(heart);
+      }
+    }, 4000);
+  };
+
+  /**
+   * Tworzy animację konfetti do świętowania
+   */
+  const createConfetti = () => {
+    const colors = ['#FF9F29', '#7ED957', '#FFD966', '#FF97B7', '#C41E3A'];
+    const container = document.body;
+
+    for (let i = 0; i < 50; i++) {
+      setTimeout(() => {
+        const confetti = document.createElement('div');
+        confetti.className = 'confetti';
+        confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+        confetti.style.left = `${Math.random() * window.innerWidth}px`;
+
+        container.appendChild(confetti);
 
         // Usuń po zakończeniu animacji
         setTimeout(() => {
-            heart.remove();
-        }, 4000);
-    };
+          if (confetti.parentNode === container) {
+            container.removeChild(confetti);
+          }
+        }, 3000);
+      }, i * 50);
+    }
+  };
 
-    /**
-     * Creates confetti elements for celebration effect
-     */
-    const createConfetti = () => {
-        const colors = ['#FF9F29', '#7ED957', '#FFD966', '#FF97B7', '#C41E3A'];
+  /**
+   * Wywołuje animację serca dla określonej kategorii
+   * @param category - Typ kategorii
+   */
+  const triggerHeartAnimation = (category: Category['type']) => {
+    const container = unref(heartContainer);
+    if (!container) return;
+    
+    let color;
+    switch (category) {
+      case 'physical': color = '#FF9F29'; break;
+      case 'mental': color = '#7ED957'; break;
+      case 'personal': color = '#FFD966'; break;
+      case 'relationship': color = '#FF97B7'; break;
+      default: color = '#C41E3A';
+    }
 
-        for (let i = 0; i < 50; i++) {
-            setTimeout(() => {
-                const confetti = document.createElement('div');
-                confetti.className = 'confetti';
-                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-                confetti.style.left = `${Math.random() * window.innerWidth}px`;
+    for (let i = 0; i < 5; i++) {
+      setTimeout(() => {
+        createHeart(container, color);
+      }, i * 300);
+    }
+  };
 
-                document.body.appendChild(confetti);
+  /**
+   * Pokazuje animację przy ukończeniu zadania
+   * @param taskType - Typ ukończonego zadania
+   */
+  const showCompletionAnimation = (taskType: Category['type']) => {
+    // Pokaż animację losowo, aby uniknąć przytłoczenia użytkownika
+    const container = unref(heartContainer);
+    if (Math.random() > 0.7 && container) {
+      triggerHeartAnimation(taskType);
+    }
+  };
 
-                // Remove after animation
-                setTimeout(() => {
-                    confetti.remove();
-                }, 3000);
-            }, i * 50);
-        }
-    };
-
-    /**
-     * Triggers heart animation for a specific category
-     * 
-     * @param {string} category - Category type identifier
-     */
-    const triggerHeartAnimation = (category) => {
-        if (!heartContainer || !heartContainer.value) return;
-        
-        let color;
-        switch (category) {
-            case 'physical': color = '#FF9F29'; break;
-            case 'mental': color = '#7ED957'; break;
-            case 'personal': color = '#FFD966'; break;
-            case 'relationship': color = '#FF97B7'; break;
-            default: color = '#C41E3A';
-        }
-
-        for (let i = 0; i < 5; i++) {
-            setTimeout(() => {
-                createHeart(heartContainer.value, color);
-            }, i * 300);
-        }
-    };
-
-    /**
-     * Shows animation when task is completed
-     * 
-     * @param {string} taskType - Type of the completed task
-     */
-    const showCompletionAnimation = (taskType) => {
-        // Show animation randomly to avoid overwhelming the user
-        if (Math.random() > 0.7 && heartContainer.value) {
-            triggerHeartAnimation(taskType);
-        }
-    };
-
-    return {
-        createHeart,
-        createConfetti,
-        triggerHeartAnimation,
-        showCompletionAnimation
-    };
+  return {
+    createHeart,
+    createConfetti,
+    triggerHeartAnimation,
+    showCompletionAnimation
+  };
 }

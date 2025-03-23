@@ -67,12 +67,14 @@ export function useStorage(initialCategories) {
      * Also tracks the last completed task for animations
      */
     const saveData = () => {
+        // Zapisz do localStorage
         localStorage.setItem('selfCareData', JSON.stringify({
             categories: categoriesData.value,
             lastCompletedTask: lastCompletedTask.value
         }));
         
-        // Zwracamy null jako pusty rezultat - nie potrzebujemy identyfikatora kategorii
+        categoriesData.value = JSON.parse(JSON.stringify(categoriesData.value));
+        
         return null;
     };
 
