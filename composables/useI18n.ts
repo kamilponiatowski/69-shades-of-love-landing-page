@@ -1,6 +1,6 @@
 // @/composables/useI18n.ts
 import { ref, computed } from 'vue';
-import translations from '../locales'; // Poprawiona ścieżka importu
+import { translations } from '../locales'; // Poprawiona ścieżka importu
 
 // Używamy konkretnych stringów zamiast keyof, aby uniknąć problemów z typami
 export type TranslationKey = string;

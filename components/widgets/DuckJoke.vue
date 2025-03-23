@@ -1,20 +1,17 @@
 <template>
-    <footer class="footer" v-html="footerContent"></footer>
-  </template>
-  
-  <script setup lang="ts">
-  import { computed } from 'vue';
-  import { useI18n } from '../../composables/useI18n';
-  
-  // Composables
-  const { t } = useI18n();
-  
-  // Computed
-  const footerContent = computed(() => {
-    return t('footer');
-  });
-  </script>
-  
-  <style scoped>
-  /* Styl komponentu jest obsługiwany przez globalne CSS */
-  </style>
+  <div class="duck-joke-container" :class="{ show: showDuckJoke }" aria-live="polite" aria-atomic="true">
+    <p class="duck-joke-text">{{ joke }}</p>
+  </div>
+</template>
+
+<script setup lang="ts">
+// Props
+defineProps<{
+  joke: string;
+  showDuckJoke?: boolean;
+}>();
+</script>
+
+<style scoped>
+/* Styl komponentu jest obsługiwany przez globalne CSS */
+</style>

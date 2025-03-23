@@ -2,8 +2,9 @@ import { createApp } from 'vue';
 import { createPinia } from 'pinia';
 // @ts-ignore
 import piniaPluginPersistedstate from 'pinia-plugin-persistedstate';
-import App from '@/App.vue';
+import App from './App.vue';
 
+// Import CSS
 import './assets/css/variables.css';
 import './assets/css/main.css';
 import './assets/css/animations.css';
