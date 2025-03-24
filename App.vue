@@ -2,54 +2,36 @@
     <div class="container">
         <!-- Skip to content link for accessibility -->
         <a href="#main-content" class="skip-link">{{ t('skipToContent') }}</a>
-      
-        <Header 
-            @tell-duck-joke="tellDuckJoke" 
-        />
-      
-        <DuckJoke v-if="showDuckJoke" :joke="currentDuckJoke" />
-      
+
+        <Header @tell-duck-joke="tellDuckJoke" />
+
+        <DuckJoke :joke="currentDuckJoke" :show-duck-joke="showDuckJoke" />
+
         <div class="page-layout">
             <aside>
                 <AboutMe />
-              
-                <PdfDownload 
-                    :progress-percentage="progressPercentage"
-                    :tasks-to-unlock="tasksToUnlock"
-                    :is-unlocked="isUnlocked"
-                    v-model:pdf-section-collapsed="pdfSectionCollapsed"
-                />
+
+                <PdfDownload :progress-percentage="progressPercentage" :tasks-to-unlock="tasksToUnlock"
+                    :is-unlocked="isUnlocked" v-model:pdf-section-collapsed="pdfSectionCollapsed" />
             </aside>
-          
+
             <main id="main-content">
                 <ProgressBar />
-              
+
                 <div class="category-container">
-                    <CategoryCard 
-                        v-for="category in categories" 
-                        :key="category.type"
-                        :category="category"
-                        @task-updated="handleTaskUpdate"
-                    />
+                    <CategoryCard v-for="category in categories" :key="category.type" :category="category"
+                        @task-updated="handleTaskUpdate" />
                 </div>
             </main>
         </div>
-      
-        <Achievement 
-            v-if="showAchievement"
-            :title="achievementTitle"
-            :message="achievementMessage"
-        />
-      
+
+        <Achievement v-if="showAchievement" :show-achievement="showAchievement" :achievement-title="achievementTitle"
+            :achievement-message="achievementMessage" />
+
         <div class="heart-container" ref="heartContainer" aria-hidden="true"></div>
-      
-        <RewardPopup
-            v-if="showReward"
-            :title="rewardTitle"
-            :description="rewardDescription"
-            @close="closeReward"
-        />
-      
+
+        <RewardPopup v-if="showReward" :title="rewardTitle" :description="rewardDescription" @close="closeReward" />
+
         <Footer />
     </div>
 </template>
@@ -84,10 +66,10 @@ import RewardPopup from './components/widgets/RewardPopup.vue';
 
 // Store
 const taskStore = useTaskStore();
-const { 
-    categories, 
-    completedCount, 
-    totalTasks, 
+const {
+    categories,
+    completedCount,
+    totalTasks,
     progressPercentage
 } = storeToRefs(taskStore);
 
@@ -136,16 +118,16 @@ const {
 
 // Task update handler
 const handleTaskUpdate = (): void => {
-  taskStore.saveData();
-  checkAchievements(completedCount.value);
-  checkMilestones(taskStore.getCategoryProgress, triggerHeartAnimation);
-  checkStreak();
-  
-  // Tutaj powinniśmy dodać wywołanie animacji serduszek
-  // Pobierz ostatnio ukończone zadanie z taskStore
-  if (taskStore.lastCompletedTask && taskStore.lastCompletedTask.completed) {
-    showCompletionAnimation(taskStore.lastCompletedTask.categoryType);
-  }
+    taskStore.saveData();
+    checkAchievements(completedCount.value);
+    checkMilestones(taskStore.getCategoryProgress, triggerHeartAnimation);
+    checkStreak();
+
+    // Tutaj powinniśmy dodać wywołanie animacji serduszek
+    // Pobierz ostatnio ukończone zadanie z taskStore
+    if (taskStore.lastCompletedTask && taskStore.lastCompletedTask.completed) {
+        showCompletionAnimation(taskStore.lastCompletedTask.categoryType);
+    }
 };
 
 // ========== WATCHERS ==========
@@ -175,7 +157,7 @@ watch(completedCount, (newVal, oldVal) => {
 // ========== LIFECYCLE HOOKS ==========
 onMounted(async () => {
     await taskStore.loadData();
-    
+
     // Set container for animation
     nextTick(() => {
         if (heartContainer.value) {
