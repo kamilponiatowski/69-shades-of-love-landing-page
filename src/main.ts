@@ -11,6 +11,7 @@ import './assets/css/main.css';
 import './assets/css/animations.css';
 import './assets/css/layout.css';
 import './assets/css/responsive.css';
+import './assets/css/newsletter.css';
 
 // Create Pinia instance
 const pinia = createPinia();

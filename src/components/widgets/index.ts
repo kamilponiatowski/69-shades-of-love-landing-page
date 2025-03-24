@@ -7,3 +7,7 @@ export { default as PdfDownload } from './PdfDownload.vue';
 export { default as ProgressBar } from './ProgressBar.vue';
 export { default as RewardPopup } from './RewardPopup.vue';
 export { default as TodoItem } from './TodoItem.vue';
+export { default as NewsletterButton } from './NewsletterButton.vue';
+export { default as NewsletterFloatingButton } from './NewsletterFloatingButton.vue';
+export { default as NewsletterPopup } from './NewsletterPopup.vue';
+export { default as NewsletterReward } from './NewsletterReward.vue';

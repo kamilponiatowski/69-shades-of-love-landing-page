@@ -42,6 +42,26 @@ export const translations = {
     pdfUnlockedTitle: "🎊 Mind Map Unlocked! 🎊",
     pdfUnlockedDescription: "Amazing job! You've reached a significant milestone in your self-care journey. Your beautiful Mind Map PDF guide is now available to download. It contains valuable insights and tips to support your ongoing self-care practice. Enjoy this reward, you've earned it!",
     downloadPdfNow: "Go to Mind Map PDF section and download it now!",
+    newsletterBtnText: "Join Newsletter",
+    newsletterTitle: "Quack to your inbox!",
+    newsletterSubtitle: "Get weekly tips to build healthier habits and change your life!",
+    newsletterBenefitsTitle: "What you'll get:",
+    newsletterBenefitsList: [
+      "Ducktastic habit-building advice",
+      "Free mini-guides and resources",
+      "Early access to new features",
+      "Special discounts on premium content"
+    ],
+    newsletterEmailPlaceholder: "Your email address",
+    newsletterSubmitText: "Join the flock",
+    newsletterSubmitting: "Sending...",
+    newsletterSuccessTitle: "Hooray! You're in the flock! 🎉",
+    newsletterSuccessText: "Check your inbox soon for a special welcome gift!",
+    newsletterErrorTitle: "Oops! Something went wrong.",
+    newsletterErrorText: "Please try again later or contact us.",
+    newsletterRewardTitle: "You're Quack-tastic!",
+    newsletterRewardDescription: "Thank you for joining the Pro-Ducktive flock! We've sent a special gift to your email - a free mini-guide \"7 Quick Habits That Transform Your Day\"!",
+    newsletterRewardButton: "Got it!"
   },
   pl: {
     mainTitle: "69 Odcieni Miłości",
@@ -79,7 +99,27 @@ export const translations = {
     motivationalDescription: "Robisz świetne postępy w swojej podróży dbania o siebie! Każdy mały krok się liczy. Kontynuuj dbanie o siebie!",
     pdfUnlockedTitle: "🎊 Mapa Myśli Odblokowana! 🎊",
     pdfUnlockedDescription: "Wspaniała robota! Osiągnąłeś/aś ważny kamień milowy w swojej podróży samorozwoju. Twoja piękna Mapa Myśli w formacie PDF jest już dostępna do pobrania. Zawiera cenne wskazówki i porady wspierające Twoją praktykę dbania o siebie. Ciesz się tą nagrodą, zasłużyłeś/aś na nią!",
-    downloadPdfNow: "Idź do sekcji Mapa Myśli PDF i pobierz ją teraz!"
+    downloadPdfNow: "Idź do sekcji Mapa Myśli PDF i pobierz ją teraz!",
+    newsletterBtnText: "Dołącz do Newslettera",
+    newsletterTitle: "Kwak do Twojej skrzynki!",
+    newsletterSubtitle: "Otrzymuj cotygodniowe wskazówki, jak budować zdrowsze nawyki i zmienić swoje życie!",
+    newsletterBenefitsTitle: "Co otrzymasz:",
+    newsletterBenefitsList: [
+      "Kaczastyczne porady budowania nawyków",
+      "Darmowe mini-poradniki i materiały",
+      "Wczesny dostęp do nowych funkcji",
+      "Specjalne zniżki na treści premium"
+    ],
+    newsletterEmailPlaceholder: "Twój adres email",
+    newsletterSubmitText: "Dołącz do stada",
+    newsletterSubmitting: "Wysyłanie...",
+    newsletterSuccessTitle: "Hurra! Jesteś w stadzie! 🎉",
+    newsletterSuccessText: "Sprawdź swoją skrzynkę wkrótce po specjalny prezent powitalny!",
+    newsletterErrorTitle: "Ups! Coś poszło nie tak.",
+    newsletterErrorText: "Spróbuj ponownie później lub skontaktuj się z nami.",
+    newsletterRewardTitle: "Jesteś Kwa-ntastyczny!",
+    newsletterRewardDescription: "Dziękujemy za dołączenie do stada Pro-Ducktive! Wysłaliśmy specjalny prezent na Twój adres email - darmowy mini-poradnik \"7 szybkich nawyków, które transformują Twój dzień\"!",
+    newsletterRewardButton: "Rozumiem!"
   }
 };
 
