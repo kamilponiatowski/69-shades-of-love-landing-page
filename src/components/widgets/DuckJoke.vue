@@ -8,7 +8,7 @@
 // Props
 defineProps<{
   joke: string;
-  showDuckJoke?: boolean;
+  showDuckJoke: boolean;
 }>();
 </script>
 

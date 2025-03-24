@@ -25,8 +25,8 @@
   </template>
   
   <script setup lang="ts">
-  import { useI18n } from '../../composables/useI18n';
-  import { useTaskStore, type Category } from '../../stores/taskStore';
+  import { useI18n } from '../../../composables/useI18n';
+  import { useTaskStore, type Category } from '../../../stores/taskStore';
   import { computed } from 'vue';
   import { storeToRefs } from 'pinia';
   

@@ -3,6 +3,7 @@ import { createPinia } from 'pinia';
 // @ts-ignore
 import piniaPluginPersistedstate from 'pinia-plugin-persistedstate';
 import App from './App.vue';
+import router from './router';
 
 // Import CSS
 import './assets/css/variables.css';
@@ -20,6 +21,7 @@ const app = createApp(App);
 
 // Register plugins
 app.use(pinia);
+app.use(router);
 
 // Mount app
 app.mount('#app');
