@@ -36,9 +36,10 @@
     <!-- Newsletter Components -->
     <NewsletterFloatingButton @click="openNewsletterPopup" :isSubscribed="isSubscribed" />
 
-    <NewsletterPopup :show="showNewsletterPopup" :email="newsletterEmail" :show-success="showNewsletterSuccess"
-      :show-error="showNewsletterError" :is-submitting="isSubmittingNewsletter" @close="closeNewsletterPopup"
-      @submit="submitNewsletterForm" @update:email="newsletterEmail = $event" />
+    <NewsletterPopup :show="showNewsletterPopup" :email="newsletterEmail" :name="newsletterName"
+      :show-success="showNewsletterSuccess" :show-error="showNewsletterError" :is-submitting="isSubmittingNewsletter"
+      @close="closeNewsletterPopup" @submit="submitNewsletterForm" @update:email="newsletterEmail = $event"
+      @update:name="newsletterName = $event" />
 
     <NewsletterReward :show="showNewsletterReward" @close="closeNewsletterReward" />
 
@@ -128,6 +129,7 @@ const { createConfetti, triggerHeartAnimation, showCompletionAnimation } = useAn
 const {
   showNewsletterPopup,
   newsletterEmail,
+  newsletterName,
   showNewsletterSuccess,
   showNewsletterError,
   showNewsletterReward,

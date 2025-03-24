@@ -1,5 +1,6 @@
 // src/composables/useNewsletter.ts
 import { ref, onMounted } from 'vue';
+import { subscribeToNewsletter, checkNewsletterSubmissionComplete } from '@/utils/getResponseApi';
 
 /**
  * Newsletter composable
@@ -9,6 +10,7 @@ export function useNewsletter() {
     // State
     const showNewsletterPopup = ref<boolean>(false);
     const newsletterEmail = ref<string>('');
+    const newsletterName = ref<string>(''); // Dodane pole na imię
     const showNewsletterSuccess = ref<boolean>(false);
     const showNewsletterError = ref<boolean>(false);
     const showNewsletterReward = ref<boolean>(false);
@@ -26,6 +28,7 @@ export function useNewsletter() {
     const openNewsletterPopup = (): void => {
         // Reset form state
         newsletterEmail.value = '';
+        newsletterName.value = '';
         showNewsletterSuccess.value = false;
         showNewsletterError.value = false;
         
@@ -42,18 +45,20 @@ export function useNewsletter() {
     
     /**
      * Submits newsletter form
-     * Simulates API call to email service
+     * Sends data to GetResponse
      */
-    const submitNewsletterForm = (): void => {
+    const submitNewsletterForm = async (): Promise<void> => {
         if (!newsletterEmail.value || !newsletterEmail.value.includes('@')) {
             return;
         }
         
         isSubmittingNewsletter.value = true;
         
-        // Simulate API call to email service
-        setTimeout(() => {
-            isSubmittingNewsletter.value = false;
+        try {
+            // Submit to GetResponse with name and email
+            await subscribeToNewsletter(newsletterEmail.value, newsletterName.value);
+            
+            // Show success message
             showNewsletterSuccess.value = true;
             
             // Close popup after delay
@@ -76,7 +81,18 @@ export function useNewsletter() {
                     }
                 }, 500);
             }, 2000);
-        }, 1500);
+        } catch (error) {
+            // Show error message
+            showNewsletterError.value = true;
+            console.error('Newsletter subscription failed:', error);
+            
+            // Hide error after 5 seconds
+            setTimeout(() => {
+                showNewsletterError.value = false;
+            }, 5000);
+        } finally {
+            isSubmittingNewsletter.value = false;
+        }
     };
     
     /**
@@ -148,15 +164,35 @@ export function useNewsletter() {
         }
     };
     
+    /**
+     * Check for newsletter submission completion
+     * This handles the redirect back from GetResponse
+     */
+    const checkNewsletterRedirect = (): void => {
+        if (checkNewsletterSubmissionComplete()) {
+            // User has completed subscription via GetResponse
+            localStorage.setItem('newsletterSubscribed', 'true');
+            isSubscribed.value = true;
+            
+            // Show reward popup
+            setTimeout(() => {
+                showNewsletterReward.value = true;
+                createConfetti();
+            }, 1000);
+        }
+    };
+    
     // On component mount
     onMounted(() => {
         checkSubscriptionStatus();
         checkFirstTimeVisitor();
+        checkNewsletterRedirect();
     });
     
     return {
         showNewsletterPopup,
         newsletterEmail,
+        newsletterName,
         showNewsletterSuccess,
         showNewsletterError,
         showNewsletterReward,

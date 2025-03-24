@@ -5,13 +5,13 @@
         <h1 class="main-title">{{ t('mainTitle') }}</h1>
         <p class="subtitle">{{ t('subtitle') }}</p>
       </div>
-      
+
       <div class="content-section philosophy-section">
         <h2 class="section-title">{{ t('projectPhilosophyTitle') }}</h2>
         <p class="section-description">
           {{ t('projectPhilosophyDescription') }}
         </p>
-        
+
         <div class="wellbeing-areas">
           <div class="area-item physical-item">
             <div class="area-icon">💪</div>
@@ -43,7 +43,7 @@
           </div>
         </div>
       </div>
-      
+
       <div class="content-section features-section">
         <h2 class="section-title">{{ t('featuresTitle') }}</h2>
         <ul class="features-list">
@@ -69,34 +69,25 @@
           </li>
         </ul>
       </div>
-      
+
       <AboutMe @open-newsletter="openNewsletterPopup" />
-      
+
       <div class="navigation-links">
         <router-link to="/" class="back-link">
           <i class="fas fa-arrow-left"></i> {{ t('backToJourney') }}
         </router-link>
       </div>
     </main>
-    
+
     <Footer />
 
     <!-- Newsletter Components from HomeView -->
-    <NewsletterPopup 
-      :show="showNewsletterPopup" 
-      :email="newsletterEmail" 
-      :show-success="showNewsletterSuccess"
-      :show-error="showNewsletterError" 
-      :is-submitting="isSubmittingNewsletter" 
-      @close="closeNewsletterPopup"
-      @submit="submitNewsletterForm" 
-      @update:email="newsletterEmail = $event" 
-    />
+    <NewsletterPopup :show="showNewsletterPopup" :email="newsletterEmail" :name="newsletterName"
+      :show-success="showNewsletterSuccess" :show-error="showNewsletterError" :is-submitting="isSubmittingNewsletter"
+      @close="closeNewsletterPopup" @submit="submitNewsletterForm" @update:email="newsletterEmail = $event"
+      @update:name="newsletterName = $event" />
 
-    <NewsletterReward 
-      :show="showNewsletterReward" 
-      @close="closeNewsletterReward" 
-    />
+    <NewsletterReward :show="showNewsletterReward" @close="closeNewsletterReward" />
   </div>
 </template>
 
@@ -119,6 +110,7 @@ const router = useRouter();
 const {
   showNewsletterPopup,
   newsletterEmail,
+  newsletterName,
   showNewsletterSuccess,
   showNewsletterError,
   showNewsletterReward,
@@ -281,9 +273,10 @@ const navigateToHome = () => {
   letter-spacing: 1px;
 }
 
-.back-link:hover, 
+.back-link:hover,
 .back-link:focus {
-  background-color: #a01a30; /* ciemniejszy odcień głównego koloru */
+  background-color: #a01a30;
+  /* ciemniejszy odcień głównego koloru */
   transform: translateY(-3px);
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
