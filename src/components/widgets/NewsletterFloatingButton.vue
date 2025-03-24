@@ -1,7 +1,7 @@
 <template>
     <div 
       class="newsletter-float-button" 
-      :class="{ 'hidden': isHidden }"
+      v-if="!isSubscribed"
       @click="$emit('click')" 
       aria-label="Open newsletter subscription"
     >
@@ -12,7 +12,7 @@
   <script setup lang="ts">
   // Props
   defineProps<{
-    isHidden?: boolean;
+    isSubscribed: boolean;
   }>();
   
   // Emits

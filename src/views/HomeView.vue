@@ -34,7 +34,7 @@
       :reward-description="rewardDescription" @close="closeReward" />
 
     <!-- Newsletter Components -->
-    <NewsletterFloatingButton @click="openNewsletterPopup" :is-hidden="isSubscribed || false" />
+    <NewsletterFloatingButton @click="openNewsletterPopup" :isSubscribed="isSubscribed" />
 
     <NewsletterPopup :show="showNewsletterPopup" :email="newsletterEmail" :show-success="showNewsletterSuccess"
       :show-error="showNewsletterError" :is-submitting="isSubmittingNewsletter" @close="closeNewsletterPopup"
@@ -135,11 +135,13 @@ const {
   openNewsletterPopup,
   closeNewsletterPopup,
   submitNewsletterForm,
-  closeNewsletterReward
+  closeNewsletterReward,
+  isSubscribed
 } = useNewsletter();
 
-// Zmienne do śledzenia stanu odblokowania PDF
+// PDF unlock tracking
 const pdfUnlockTracked = ref<boolean>(false);
+const pdfUnlockShown = ref<boolean>(false);
 
 // Duck joke functionality
 const {
@@ -163,8 +165,11 @@ const handleTaskUpdate = (): void => {
 
 // Handle PDF unlocking event
 const handlePdfUnlocked = (): void => {
-  // Sprawdź, czy nagroda nie została już pokazana wcześniej
-  if (!pdfUnlockTracked.value) {
+  // Sprawdź, czy PDF nie był jeszcze odblokowany
+  const wasUnlockedBefore = localStorage.getItem('pdfUnlockedBefore') === 'true';
+
+  if (!wasUnlockedBefore) {
+    // Pokaż popup tylko przy pierwszym odblokowaniu
     showPdfUnlockedReward();
 
     // Wywołaj animację serc co 1 sekundę dla efektu "wow"
@@ -177,16 +182,32 @@ const handlePdfUnlocked = (): void => {
     // Opóźnij drugie konfetti dla dłuższego efektu
     setTimeout(() => createConfetti(), 1500);
 
-    pdfUnlockTracked.value = true;
+    // Oznacz PDF jako odblokowany
+    localStorage.setItem('pdfUnlockedBefore', 'true');
   }
 };
 
 // Check if PDF is already unlocked on component mount
 onMounted(async () => {
-  // Niestandardowy interwał do śledzenia pierwszego odblokowania PDF
-  // Jeśli PDF jest już odblokowany przy pierwszym ładowaniu
-  if (isUnlocked.value && !pdfUnlockTracked.value) {
+  await taskStore.loadData();
+
+  // Usuń stan pdfUnlockTracked, zastąp localStorage
+  const wasUnlockedBefore = localStorage.getItem('pdfUnlockedBefore') === 'true';
+  const isPdfUnlocked = progressPercentage.value >= 20;
+
+  // Dodaj ten warunek, aby zapobiec wielokrotnemu wyświetlaniu
+  if (isPdfUnlocked && !wasUnlockedBefore) {
+    localStorage.setItem('pdfUnlockedBefore', 'true');
+    showPdfUnlockedReward();
+  }
+  // Sprawdź stan PDF unlock w localStorage
+  const wasShown = localStorage.getItem('pdfUnlockShown') === 'true';
+
+  // Jeśli PDF jest już odblokowany i nie był jeszcze pokazany
+  if (isUnlocked.value && !wasShown) {
     pdfUnlockTracked.value = true;
+    pdfUnlockShown.value = true;
+    localStorage.setItem('pdfUnlockShown', 'true');
   }
 });
 

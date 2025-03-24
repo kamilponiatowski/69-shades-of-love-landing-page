@@ -9,8 +9,10 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/about',
     name: 'About',
-    // Example of another route
     component: () => import('@/views/AboutView.vue'),
+    meta: {
+      title: '69 Shades of Love - About'
+    }
   },
 ];
 

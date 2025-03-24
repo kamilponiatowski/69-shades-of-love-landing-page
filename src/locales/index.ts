@@ -11,6 +11,22 @@ export const translations = {
     aboutTitle: "WTQ - What The Quack!",
     aboutContent: "Hi there! I'm a digital duck paddling through the waters of creativity, crafting digital products, and sharing tools, knowledge, and value with awesome humans like you. If my quacking resonates with you, feel free to toss me some seeds of support – a coffee, some grains, or anything that keeps this duck afloat! 💚\n\nLet's make waves together – one quack at a time! 🌊✨",
     supportButton: "Support This Duck",
+    
+    // About page translations
+    projectPhilosophyTitle: "Project Philosophy",
+    projectPhilosophyDescription: "69 Shades of Love is a self-care journey designed to help you incorporate healthy habits into your daily routine. The application includes 69 carefully selected self-care tasks divided into four key areas of wellbeing:",
+    physicalDescription: "Taking care of your body",
+    mentalDescription: "Nurturing your mind and emotional health", 
+    personalDescription: "Finding happiness in simple pleasures",
+    relationshipDescription: "Strengthening connections with others",
+    featuresTitle: "Features",
+    feature1: "Progress tracking with visual indicators",
+    feature2: "Category-based organization of self-care tasks",
+    feature3: "Streak counter to maintain motivation",
+    feature4: "Achievement celebrations for milestones",
+    feature5: "Downloadable mind map PDF guide",
+    backToJourney: "Back to Self-Care Journey",
+    
     pdfTitle: "Mind Map PDF",
     downloadButton: "Download Mind Map PDF",
     lockButton: "Complete 20% to Unlock PDF",
@@ -42,6 +58,8 @@ export const translations = {
     pdfUnlockedTitle: "🎊 Mind Map Unlocked! 🎊",
     pdfUnlockedDescription: "Amazing job! You've reached a significant milestone in your self-care journey. Your beautiful Mind Map PDF guide is now available to download. It contains valuable insights and tips to support your ongoing self-care practice. Enjoy this reward, you've earned it!",
     downloadPdfNow: "Go to Mind Map PDF section and download it now!",
+
+    // Newsletter
     newsletterBtnText: "Join Newsletter",
     newsletterTitle: "Quack to your inbox!",
     newsletterSubtitle: "Get weekly tips to build healthier habits and change your life!",
@@ -69,6 +87,22 @@ export const translations = {
     aboutTitle: "WTQ - Co Za Kwak!",
     aboutContent: "Cześć! Jestem cyfrową kaczką pływającą w wodach kreatywności, tworzącą cyfrowe produkty i dzielącą się narzędziami, wiedzą i wartością z niesamowitymi ludźmi takimi jak Ty. Jeśli moje kwakanie rezonuje z Tobą, nie krępuj się rzucić mi kilka ziaren wsparcia - kawę, ziarno, lub cokolwiek, co utrzyma tę kaczkę na powierzchni! 💚\n\nTwórzmy fale razem - jeden kwak na raz! 🌊✨",
     supportButton: "Wesprzyj Tę Kaczkę",
+    
+    // Tłumaczenia strony About
+    projectPhilosophyTitle: "Filozofia Projektu",
+    projectPhilosophyDescription: "69 Odcieni Miłości to podróż dbania o siebie, zaprojektowana, aby pomóc Ci włączyć zdrowe nawyki do codziennej rutyny. Aplikacja zawiera 69 starannie wybranych zadań związanych z samopieką, podzielonych na cztery kluczowe obszary dobrostanu:",
+    physicalDescription: "Dbanie o ciało",
+    mentalDescription: "Pielęgnowanie umysłu i zdrowia emocjonalnego", 
+    personalDescription: "Znajdowanie radości w prostych przyjemnościach",
+    relationshipDescription: "Wzmacnianie więzi z innymi",
+    featuresTitle: "Funkcje",
+    feature1: "Śledzenie postępów za pomocą wizualnych wskaźników",
+    feature2: "Organizacja zadań w kategoriach",
+    feature3: "Licznik serii dla utrzymania motywacji",
+    feature4: "Świętowanie osiągnięć",
+    feature5: "Możliwość pobrania przewodnika PDF",
+    backToJourney: "Powrót do Podróży Samorozwoju",
+    
     pdfTitle: "Mapa Myśli PDF",
     downloadButton: "Pobierz Mapę Myśli PDF",
     lockButton: "Ukończ 20% aby odblokować PDF",
@@ -100,6 +134,8 @@ export const translations = {
     pdfUnlockedTitle: "🎊 Mapa Myśli Odblokowana! 🎊",
     pdfUnlockedDescription: "Wspaniała robota! Osiągnąłeś/aś ważny kamień milowy w swojej podróży samorozwoju. Twoja piękna Mapa Myśli w formacie PDF jest już dostępna do pobrania. Zawiera cenne wskazówki i porady wspierające Twoją praktykę dbania o siebie. Ciesz się tą nagrodą, zasłużyłeś/aś na nią!",
     downloadPdfNow: "Idź do sekcji Mapa Myśli PDF i pobierz ją teraz!",
+
+    // Newsletter
     newsletterBtnText: "Dołącz do Newslettera",
     newsletterTitle: "Kwak do Twojej skrzynki!",
     newsletterSubtitle: "Otrzymuj cotygodniowe wskazówki, jak budować zdrowsze nawyki i zmienić swoje życie!",
@@ -123,5 +159,4 @@ export const translations = {
   }
 };
 
-// Eksportuj domyślnie dla łatwiejszego importu
 export default translations;
