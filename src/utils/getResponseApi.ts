@@ -21,8 +21,12 @@ export function subscribeToNewsletter(email: string, name: string = ''): Promise
       // Generate unique submission ID to track completion
       const submissionId = `gr_sub_${Date.now()}`;
       
-      // Store submission ID in sessionStorage to track completion
-      sessionStorage.setItem(submissionId, 'pending');
+      // Store submission ID in localStorage to track across pages
+      try {
+        localStorage.setItem('newsletter_pending_submission', submissionId);
+      } catch (error) {
+        console.error('Error saving submission ID:', error);
+      }
       
       // Create form
       const form = document.createElement('form');
@@ -54,11 +58,11 @@ export function subscribeToNewsletter(email: string, name: string = ''): Promise
         form.appendChild(nameInput);
       }
       
-      // Add thank you page URL with submission ID in query params
+      // Add thank you page URL with submission ID in query params - redirecting to About page
       const thankYouPageInput = document.createElement('input');
       thankYouPageInput.type = 'hidden';
       thankYouPageInput.name = 'thankyou_url';
-      thankYouPageInput.value = `${window.location.origin}?newsletter_submitted=${submissionId}`;
+      thankYouPageInput.value = `${window.location.origin}/about?newsletter_submitted=${submissionId}`;
       form.appendChild(thankYouPageInput);
       
       // Add form to body and submit
@@ -84,6 +88,7 @@ export function subscribeToNewsletter(email: string, name: string = ''): Promise
 /**
  * Checks URL query parameters to see if a newsletter subscription was completed
  * This handles the redirect back from GetResponse's thank you page
+ * Works across different pages of the application
  * 
  * @returns Boolean indicating if a newsletter submission was just completed
  */
@@ -98,7 +103,12 @@ export function checkNewsletterSubmissionComplete(): boolean {
       url.searchParams.delete('newsletter_submitted');
       window.history.replaceState({}, document.title, url.toString());
       
-      return true;
+      // Get and clear the pending submission from localStorage
+      const pendingSubmission = localStorage.getItem('newsletter_pending_submission');
+      localStorage.removeItem('newsletter_pending_submission');
+      
+      // Check if the submission ID matches what we stored
+      return submissionId === pendingSubmission || !pendingSubmission;
     }
     
     return false;
