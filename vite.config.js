@@ -1,6 +1,7 @@
-// vite.config.ts
+// vite.config.js
 import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
+import path from 'path';
 import { fileURLToPath, URL } from 'node:url';
 import { visualizer } from 'rollup-plugin-visualizer';
 
@@ -13,42 +14,42 @@ export default defineConfig({
     vue(),
     // Plugin do analizy rozmiaru paczki
     visualizer({
-      template: 'treemap', // Szablon wizualizacji: treemap, sunburst, network
-      open: false, // Nie otwieraj raportu automatycznie po zbudowaniu
-      gzipSize: true, // Pokaż rozmiar po kompresji gzip
-      brotliSize: true, // Pokaż rozmiar po kompresji brotli
-      filename: 'stats.html' // Nazwa pliku wynikowego
+      template: 'treemap',
+      open: false,
+      gzipSize: true,
+      brotliSize: true,
+      filename: 'stats.html'
     })
   ],
   
   // Aliasy ścieżek dla importów
   resolve: {
     alias: {
-      '@': fileURLToPath(new URL('./src', import.meta.url))
+      '@': path.resolve(__dirname, './src')
     },
     extensions: [
+      '.mjs',
       '.js',
       '.ts',
+      '.jsx',
+      '.tsx',
+      '.json',
       '.vue'
     ]
   },
   
-  // Ścieżka bazowa dla wdrożenia
-  base: './',
+  // Ścieżka bazowa dla wdrożenia (zmieniona na '/' dla prawidłowego działania w dev)
+  base: '/',
   
   // Ustawienia serwera deweloperskiego
   server: {
     port: 3000,
     open: true,
-    // Dodaj proxy jeśli potrzebujesz połączenia z API
-    proxy: {
-      // '/api': {
-      //   target: 'http://api.example.com',
-      //   changeOrigin: true,
-      //   rewrite: (path) => path.replace(/^\/api/, '')
-      // }
-    }
+    host: true // Pozwala na dostęp z zewnątrz
   },
+  
+  // Poprawna konfiguracja dla plików statycznych i HTML
+  publicDir: 'public',
   
   // Opcje budowania
   build: {
@@ -57,42 +58,19 @@ export default defineConfig({
     minify: 'terser',
     terserOptions: {
       compress: {
-        drop_console: true, // Usuń console.log w produkcji
-        drop_debugger: true // Usuń instrukcje debugger w produkcji
+        drop_console: true,
+        drop_debugger: true
       }
     },
-    // Rozdziel kod na mniejsze kawałki dla lepszego ładowania
     rollupOptions: {
       output: {
         manualChunks: {
           'vue-vendor': ['vue'],
-          'pinia-vendor': ['pinia'],
-          // Dodaj więcej chunków w miarę potrzeb
+          'pinia-vendor': ['pinia']
         }
       }
     },
-    // Generuj manifesty dla lepszego śledzenia zasobów
     manifest: true,
-    // Sprawdź rozmiar zasobów i ostrzegaj, jeśli są za duże
-    chunkSizeWarningLimit: 500 // w kB
-  },
-  
-  // Ustawienia optymalizacji
-  optimizeDeps: {
-    include: [
-      'vue',
-      'pinia'
-      // Dodaj inne zależności, które powinny być prebudowane
-    ]
-  },
-  
-  // Konfiguracja CSS
-  css: {
-    devSourcemap: true, // Włącz mapy źródłowe dla CSS w trybie dev
-    postcss: {
-      plugins: [
-        // Tu można dodać pluginy PostCSS
-      ]
-    }
+    chunkSizeWarningLimit: 500
   }
 });
