@@ -55,7 +55,7 @@ export function useDuckJokes(duckJokes: DuckJokes, currentLanguage: Ref<Language
         try {
             // Create new audio object if not exists
             if (!duckAudio.value) {
-                duckAudio.value = new Audio("assets/duck-quack.mp3");
+                duckAudio.value = new Audio("assets/sounds/duck-quack.mp3");
             }
             
             // Reset to beginning and play
@@ -68,7 +68,7 @@ export function useDuckJokes(duckJokes: DuckJokes, currentLanguage: Ref<Language
     
     // Initialize audio
     onMounted(() => {
-        duckAudio.value = new Audio("assets/duck-quack.mp3");
+        duckAudio.value = new Audio("assets/sounds/duck-quack.mp3");
         duckAudio.value.preload = "auto";
     });
     

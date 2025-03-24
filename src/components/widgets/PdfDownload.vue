@@ -53,6 +53,7 @@
   
   <script setup lang="ts">
   import { useI18n } from '@/composables/useI18n';
+  import { watch, ref } from 'vue';
   
   // Props
   const props = defineProps<{
@@ -63,12 +64,15 @@
   }>();
   
   // Emits
-  const emit = defineEmits(['update:pdfSectionCollapsed']);
+  const emit = defineEmits(['update:pdfSectionCollapsed', 'pdf-unlocked']);
   
   // Constants
   const pdfLink = "https://drive.google.com/file/d/1fPwsiyJxmMKKHA5ImRSDfjWk14NCnl-V/view?usp=drive_link";
   // Bezpośredni link do pobierania PDF zamiast linka do Google Drive
   const pdfLinkDirect = "https://drive.google.com/uc?export=download&id=1fPwsiyJxmMKKHA5ImRSDfjWk14NCnl-V";
+  
+  // State
+  const wasLocked = ref(true);
   
   // Composables
   const { t } = useI18n();
@@ -88,4 +92,13 @@
     // Jeśli PDF jest odblokowany, pozwól na domyślną akcję przeglądarki (pobieranie)
     // Nie zatrzymuj zdarzenia
   };
+  
+  // Watch for PDF unlock moment
+  watch(() => props.isUnlocked, (newValue, oldValue) => {
+    // Only emit when changed from locked to unlocked
+    if (newValue && !oldValue && wasLocked.value) {
+      emit('pdf-unlocked');
+      wasLocked.value = false;
+    }
+  }, { immediate: true });
   </script>

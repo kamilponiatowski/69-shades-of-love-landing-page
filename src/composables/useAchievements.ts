@@ -4,7 +4,7 @@ import { useI18n } from './useI18n';
 import type { Category } from '../stores/taskStore';
 
 /**
- * Typy dla osiągnięć
+ * Types for achievements
  */
 interface Achievement {
   threshold: number;
@@ -16,40 +16,40 @@ type TriggerHeartAnimation = (categoryType: Category['type']) => void;
 type GetCategoryProgress = (type: Category['type']) => number;
 
 /**
- * Composable do obsługi osiągnięć i nagród
- * Zarządza powiadomieniami o osiągnięciach i specjalnymi nagrodami
+ * Composable for handling achievements and rewards
+ * Manages achievement notifications and special rewards
  */
 export function useAchievements() {
   const { t } = useI18n();
   
-  // Stan osiągnięć
+  // Achievement state
   const showAchievement = ref<boolean>(false);
   const achievementTitle = ref<string>('');
   const achievementMessage = ref<string>('');
   
-  // Stan nagrody
+  // Reward state
   const showReward = ref<boolean>(false);
   const rewardTitle = ref<string>('');
   const rewardDescription = ref<string>('');
   
-  // Licznik dla popupów motywacyjnych
+  // Counter for motivational popups
   const taskCompletionCounter = ref<number>(0);
   const lastCompletedCount = ref<number>(0);
   
   /**
-   * Sprawdza czy użytkownik osiągnął jakieś kamienie milowe
-   * Pokazuje powiadomienie o osiągnięciu, jeśli kamień milowy został osiągnięty
+   * Checks if user has reached any milestones
+   * Shows achievement notification if milestone is reached
    */
   const checkAchievements = (completedCount: number): void => {
-    // Sprawdź, czy nowe zadanie zostało ukończone
+    // Check if new task was completed
     if (completedCount > lastCompletedCount.value) {
-      // Zliczaj ukończone zadania
+      // Count completed tasks
       taskCompletionCounter.value += (completedCount - lastCompletedCount.value);
       
-      // Pokaż motywacyjny popup co 5 ukończonych zadań
+      // Show motivational popup every 5 completed tasks
       if (taskCompletionCounter.value >= 5) {
         showMotivationalPopup();
-        taskCompletionCounter.value = 0; // Reset licznika
+        taskCompletionCounter.value = 0; // Reset counter
       }
       
       lastCompletedCount.value = completedCount;
@@ -83,40 +83,59 @@ export function useAchievements() {
   };
   
   /**
-   * Pokazuje motywacyjny popup po ukończeniu określonej liczby zadań
+   * Shows motivational popup after completing a certain number of tasks
+   * This popup disappears automatically after a short time
    */
   const showMotivationalPopup = (): void => {
     rewardTitle.value = t('motivationalTitle') || 'Great Progress!';
     rewardDescription.value = t('motivationalDescription') || 'You\'re making excellent progress on your self-care journey. Keep up the amazing work!';
     showReward.value = true;
+    
+    // Automatically close after a short time, because it's just a motivational popup
+    setTimeout(() => {
+      showReward.value = false;
+    }, 5000);
   };
   
   /**
-   * Pokazuje specjalną nagrodę za ukończenie wszystkich zadań
+   * Shows special reward for completing all tasks
+   * This popup requires user interaction to disappear
    */
   const showSpecialReward = (): void => {
     rewardTitle.value = t('specialRewardTitle');
     rewardDescription.value = t('specialRewardDescription');
     showReward.value = true;
+    // No automatic closing - requires user interaction
+  };
+
+  /**
+   * Shows reward after unlocking PDF
+   * Requires user interaction to dismiss
+   */
+  const showPdfUnlockedReward = (): void => {
+    rewardTitle.value = t('pdfUnlockedTitle') || 'Mind Map Unlocked! 🎉';
+    rewardDescription.value = t('pdfUnlockedDescription') || 'Congratulations! You\'ve made amazing progress on your self-care journey. Your Mind Map PDF is now available. Download it to enhance your self-care practice!';
+    showReward.value = true;
+    // No automatic closing - user must close manually
   };
   
   /**
-   * Zamyka okno nagrody
+   * Closes reward window
    */
   const closeReward = (): void => {
     showReward.value = false;
   };
   
   /**
-   * Sprawdza kamienie milowe dla kategorii
-   * @param getCategoryProgress - Funkcja do pobierania postępu kategorii
-   * @param triggerHeartAnimation - Funkcja wywołująca animację serca
+   * Checks milestones for categories
+   * @param getCategoryProgress - Function to get category progress
+   * @param triggerHeartAnimation - Function to trigger heart animation
    */
   const checkMilestones = (
     getCategoryProgress: GetCategoryProgress, 
     triggerHeartAnimation: TriggerHeartAnimation
   ): void => {
-    const categoryThreshold = 40; // 40% ukończenia dla dowolnej kategorii
+    const categoryThreshold = 40; // 40% completion for any category
     const categories: Category['type'][] = ['physical', 'mental', 'personal', 'relationship'];
     
     for (const category of categories) {
@@ -136,6 +155,7 @@ export function useAchievements() {
     rewardTitle,
     rewardDescription,
     showSpecialReward,
+    showPdfUnlockedReward,
     closeReward,
     checkMilestones
   };
