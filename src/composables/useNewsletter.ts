@@ -1,5 +1,6 @@
 // src/composables/useNewsletter.ts
 import { ref, onMounted } from 'vue';
+import { useRouter } from 'vue-router';
 import { subscribeToNewsletter, checkNewsletterSubmissionComplete } from '@/utils/getResponseApi';
 
 /**
@@ -7,10 +8,13 @@ import { subscribeToNewsletter, checkNewsletterSubmissionComplete } from '@/util
  * Manages newsletter functionality including popup display and first-time visitor logic
  */
 export function useNewsletter() {
+    // Router
+    const router = useRouter();
+    
     // State
     const showNewsletterPopup = ref<boolean>(false);
     const newsletterEmail = ref<string>('');
-    const newsletterName = ref<string>(''); // Dodane pole na imię
+    const newsletterName = ref<string>(''); // Added name field
     const showNewsletterSuccess = ref<boolean>(false);
     const showNewsletterError = ref<boolean>(false);
     const showNewsletterReward = ref<boolean>(false);
@@ -44,6 +48,13 @@ export function useNewsletter() {
     };
     
     /**
+     * Navigates user to the gift page after successful subscription
+     */
+    const navigateToGiftPage = (): void => {
+        router.push('/gift');
+    };
+    
+    /**
      * Submits newsletter form
      * Sends data to GetResponse
      */
@@ -61,25 +72,20 @@ export function useNewsletter() {
             // Show success message
             showNewsletterSuccess.value = true;
             
+            // Store subscription status
+            try {
+                localStorage.setItem('newsletterSubscribed', 'true');
+                isSubscribed.value = true;
+            } catch (error) {
+                console.error('Error saving newsletter data:', error);
+            }
+            
             // Close popup after delay
             setTimeout(() => {
                 closeNewsletterPopup();
                 
-                // Show reward
-                setTimeout(() => {
-                    showNewsletterReward.value = true;
-                    
-                    // Create confetti animation
-                    createConfetti();
-                    
-                    // Set newsletter subscription flag in localStorage
-                    try {
-                        localStorage.setItem('newsletterSubscribed', 'true');
-                        isSubscribed.value = true;
-                    } catch (error) {
-                        console.error('Error saving newsletter data:', error);
-                    }
-                }, 500);
+                // Navigate to gift page instead of showing reward popup
+                navigateToGiftPage();
             }, 2000);
         } catch (error) {
             // Show error message
@@ -174,11 +180,8 @@ export function useNewsletter() {
             localStorage.setItem('newsletterSubscribed', 'true');
             isSubscribed.value = true;
             
-            // Show reward popup
-            setTimeout(() => {
-                showNewsletterReward.value = true;
-                createConfetti();
-            }, 1000);
+            // Navigate to gift page
+            navigateToGiftPage();
         }
     };
     
@@ -202,6 +205,7 @@ export function useNewsletter() {
         openNewsletterPopup,
         closeNewsletterPopup,
         submitNewsletterForm,
-        closeNewsletterReward
+        closeNewsletterReward,
+        navigateToGiftPage
     };
 }

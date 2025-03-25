@@ -17,9 +17,12 @@
 - **Category-Based Organization**: Tasks are grouped into meaningful categories
 - **Streak Counter**: Stay motivated by tracking consecutive days of self-care
 - **Achievements**: Celebrate milestones in your self-care journey
+- **Self-Care Insights**: Receive evidence-based tips and facts to enhance your wellbeing practices
 - **Offline Support**: Your progress is saved locally in your browser
 - **Responsive Design**: Works on desktops, tablets, and mobile devices
 - **PDF Mind Map**: Unlock a downloadable PDF guide after completing 20% of tasks
+- **Multilingual Support**: Available in English and Polish languages
+- **Newsletter Integration**: Optional subscription for additional resources
 
 ## 🚀 Getting Started
 
@@ -61,6 +64,9 @@
 
 - **Vue.js 3** - Progressive JavaScript framework
 - **Composition API** - For better code organization and reusability
+- **TypeScript** - For type safety and better developer experience
+- **Pinia** - State management with persistence support
+- **Vue Router** - For navigation between views
 - **Vite** - Next generation frontend tooling
 - **LocalStorage API** - For saving user progress
 - **CSS Custom Properties** - For theming and consistent styling
@@ -69,14 +75,33 @@
 
 ```
 69ShadesOfLove/
-├── index.html            # Main HTML entry point
-├── assets/               # Static assets
-│   ├── css/              # CSS styles
-│   └── images/           # Images and icons
-├── components/           # Vue components
-├── composables/          # Reusable composition functions
-└── data/                 # Application data
+├── public/                # Static files
+├── src/
+│   ├── assets/            # Static assets
+│   │   ├── css/           # CSS styles
+│   │   └── images/        # Images and icons
+│   ├── components/        # Vue components
+│   │   ├── layout/        # Layout components
+│   │   └── widgets/       # Feature-specific components
+│   ├── composables/       # Reusable composition functions
+│   ├── constants/         # Application data and constants
+│   ├── locales/           # Translations
+│   ├── router/            # Vue Router configuration
+│   ├── stores/            # Pinia stores
+│   ├── utils/             # Utility functions
+│   └── views/             # Page components
+├── tests/                 # Test files
+└── types/                 # Type definitions
 ```
+
+## 🌐 Internationalization
+
+The application supports multiple languages:
+
+- English (default)
+- Polish
+
+The language is automatically detected based on the user's browser settings and can be changed within the application.
 
 ## 🤝 Contributing
 

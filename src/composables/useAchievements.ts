@@ -2,6 +2,7 @@
 import { ref, Ref } from 'vue';
 import { useI18n } from './useI18n';
 import type { Category } from '../stores/taskStore';
+import { getRandomTipFromAnyCategory, getRandomTip } from '../constants/achievementTips';
 
 /**
  * Types for achievements
@@ -35,6 +36,37 @@ export function useAchievements() {
   // Counter for motivational popups
   const taskCompletionCounter = ref<number>(0);
   const lastCompletedCount = ref<number>(0);
+  
+  // Track the last shown tip category to avoid repetition
+  const lastTipCategory = ref<string>('');
+  
+  /**
+   * Gets a balanced tip based on rotating through categories
+   * @returns A tip from a category that hasn't been shown recently
+   */
+  const getBalancedTip = (): string => {
+    // List of categories
+    const categories = ['physical', 'mental', 'personal', 'relationship'];
+    
+    // Find next category to show (different from last one)
+    let nextCategory = '';
+    
+    if (!lastTipCategory.value || !categories.includes(lastTipCategory.value)) {
+      // If no last category or invalid, pick random
+      nextCategory = categories[Math.floor(Math.random() * categories.length)];
+    } else {
+      // Find next category in rotation
+      const currentIndex = categories.indexOf(lastTipCategory.value);
+      const nextIndex = (currentIndex + 1) % categories.length;
+      nextCategory = categories[nextIndex];
+    }
+    
+    // Remember this category as the last shown
+    lastTipCategory.value = nextCategory;
+    
+    // Get a random tip from this category
+    return getRandomTip(nextCategory);
+  };
   
   /**
    * Checks if user has reached any milestones
@@ -83,18 +115,21 @@ export function useAchievements() {
   };
   
   /**
-   * Shows motivational popup after completing a certain number of tasks
+   * Shows motivational popup with a helpful tip
    * This popup disappears automatically after a short time
    */
   const showMotivationalPopup = (): void => {
-    rewardTitle.value = t('motivationalTitle') || 'Great Progress!';
-    rewardDescription.value = t('motivationalDescription') || 'You\'re making excellent progress on your self-care journey. Keep up the amazing work!';
+    // Get a balanced tip that rotates through categories
+    const tip = getBalancedTip();
+    
+    rewardTitle.value = t('motivationalTitle') || 'Self-Care Insight';
+    rewardDescription.value = tip;
     showReward.value = true;
     
     // Automatically close after a short time, because it's just a motivational popup
     setTimeout(() => {
       showReward.value = false;
-    }, 5000);
+    }, 8000); // Increased time to allow reading the tip
   };
   
   /**

@@ -67,7 +67,53 @@
             <i class="fas fa-file-pdf"></i>
             {{ t('feature5') }}
           </li>
+          <li>
+            <i class="fas fa-lightbulb"></i>
+            {{ t('feature6') }}
+          </li>
         </ul>
+      </div>
+
+      <!-- New Self-Care Insights Feature Section -->
+      <div class="content-section insights-section">
+        <h2 class="section-title">{{ t('insightsFeatureTitle') }}</h2>
+        <p class="section-description">
+          {{ t('insightsFeatureDescription') }}
+        </p>
+        <div class="insights-points">
+          <div class="insight-item">
+            <div class="insight-icon physical-icon">
+              <i class="fas fa-running"></i>
+            </div>
+            <div class="insight-text">
+              {{ t('insightsPoint1') }}
+            </div>
+          </div>
+          <div class="insight-item">
+            <div class="insight-icon mental-icon">
+              <i class="fas fa-brain"></i>
+            </div>
+            <div class="insight-text">
+              {{ t('insightsPoint2') }}
+            </div>
+          </div>
+          <div class="insight-item">
+            <div class="insight-icon personal-icon">
+              <i class="fas fa-smile-beam"></i>
+            </div>
+            <div class="insight-text">
+              {{ t('insightsPoint3') }}
+            </div>
+          </div>
+          <div class="insight-item">
+            <div class="insight-icon relationship-icon">
+              <i class="fas fa-users"></i>
+            </div>
+            <div class="insight-text">
+              {{ t('insightsPoint4') }}
+            </div>
+          </div>
+        </div>
       </div>
 
       <AboutMe @open-newsletter="openNewsletterPopup" />
@@ -254,6 +300,64 @@ const navigateToHome = () => {
   text-align: center;
 }
 
+/* Insights Section Styles */
+.insights-section {
+  background-color: white;
+}
+
+.insights-points {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.insight-item {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  border-radius: 10px;
+  transition: transform 0.3s ease;
+}
+
+.insight-item:hover {
+  transform: translateY(-3px);
+}
+
+.insight-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 15px;
+  font-size: 1.4rem;
+  color: white;
+}
+
+.physical-icon {
+  background-color: var(--physical-color);
+}
+
+.mental-icon {
+  background-color: var(--mental-color);
+}
+
+.personal-icon {
+  background-color: var(--personal-color);
+}
+
+.relationship-icon {
+  background-color: var(--relationship-color);
+}
+
+.insight-text {
+  flex: 1;
+  font-size: 1.1rem;
+  color: #444;
+}
+
 .navigation-links {
   text-align: center;
   margin-top: 30px;
@@ -286,7 +390,8 @@ const navigateToHome = () => {
 }
 
 @media (max-width: 768px) {
-  .wellbeing-areas {
+  .wellbeing-areas,
+  .insights-points {
     grid-template-columns: 1fr;
   }
 

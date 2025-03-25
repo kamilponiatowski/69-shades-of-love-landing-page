@@ -1,19 +1,19 @@
 // @/composables/useAnimation.ts
-import { ref, Ref, MaybeRef, unref } from 'vue';
+import { ref, MaybeRef, unref } from 'vue';
 import type { Category } from '../stores/taskStore';
 
 /**
- * Composable do obsługi animacji UI
- * Zapewnia animacje serc i konfetti
+ * Animation composable for UI animations
+ * Provides heart and confetti animations
  * 
- * @param heartContainer - Referencja do kontenera animacji
- * @returns Metody do tworzenia animacji
+ * @param heartContainer - Reference to animation container
+ * @returns Animation methods
  */
 export function useAnimation(heartContainer: MaybeRef<HTMLElement | null>) {
   /**
-   * Tworzy element serca z animacją
-   * @param container - Element HTML kontenera
-   * @param color - Kolor serca w formacie CSS
+   * Creates a heart element with animation
+   * @param container - HTML container element
+   * @param color - Heart color in CSS format
    */
   const createHeart = (container: HTMLElement, color: string): void => {
     if (!container) return;
@@ -22,20 +22,20 @@ export function useAnimation(heartContainer: MaybeRef<HTMLElement | null>) {
     heart.className = 'heart';
     heart.style.backgroundColor = color;
 
-    // Pozycja na dole ekranu w losowej pozycji X
+    // Position at bottom of screen with random X position
     const x = Math.random() * window.innerWidth;
     heart.style.left = `${x}px`;
     heart.style.bottom = '0';
 
-    // Dodaj do kontenera
+    // Add to container
     container.appendChild(heart);
 
-    // Dodaj klasę animate po małym opóźnieniu, aby uruchomić animację
+    // Add animate class after small delay to trigger animation
     setTimeout(() => {
       heart.classList.add('animate');
     }, 10);
 
-    // Usuń po zakończeniu animacji
+    // Remove after animation completes
     setTimeout(() => {
       if (heart.parentNode === container) {
         container.removeChild(heart);
@@ -44,7 +44,7 @@ export function useAnimation(heartContainer: MaybeRef<HTMLElement | null>) {
   };
 
   /**
-   * Tworzy animację konfetti do świętowania
+   * Creates confetti animation for celebrations
    */
   const createConfetti = (): void => {
     const colors = ['#FF9F29', '#7ED957', '#FFD966', '#FF97B7', '#C41E3A'];
@@ -59,7 +59,7 @@ export function useAnimation(heartContainer: MaybeRef<HTMLElement | null>) {
 
         container.appendChild(confetti);
 
-        // Usuń po zakończeniu animacji
+        // Remove after animation completes
         setTimeout(() => {
           if (confetti.parentNode === container) {
             container.removeChild(confetti);
@@ -70,13 +70,14 @@ export function useAnimation(heartContainer: MaybeRef<HTMLElement | null>) {
   };
 
   /**
-   * Wywołuje animację serca dla określonej kategorii
-   * @param category - Typ kategorii
+   * Triggers heart animation for a specific category
+   * @param category - Category type
    */
   const triggerHeartAnimation = (category: Category['type']): void => {
     const container = unref(heartContainer);
     if (!container) return;
     
+    // Select color based on category
     let color: string;
     switch (category) {
       case 'physical': color = '#FF9F29'; break;
@@ -86,6 +87,7 @@ export function useAnimation(heartContainer: MaybeRef<HTMLElement | null>) {
       default: color = '#C41E3A';
     }
 
+    // Create multiple hearts with delay
     for (let i = 0; i < 5; i++) {
       setTimeout(() => {
         createHeart(container, color);
@@ -93,18 +95,18 @@ export function useAnimation(heartContainer: MaybeRef<HTMLElement | null>) {
     }
   };
 
-  // Licznik ukończonych zadań dla animacji serduszek
+  // Counter for completed tasks for heart animations
   const completedTaskCounter = ref<number>(0);
 
   /**
-   * Pokazuje animację przy ukończeniu zadania
-   * @param taskType - Typ ukończonego zadania
+   * Shows animation when a task is completed
+   * @param taskType - Type of completed task
    */
   const showCompletionAnimation = (taskType: Category['type']): void => {
-    // Inkrementuj licznik zadań i pokaż animację co 3 zadania
+    // Increment counter and show animation every 3 tasks
     completedTaskCounter.value = (completedTaskCounter.value + 1) % 3;
     
-    // Pokaż animację co 3 zadania (gdy licznik wraca do 0)
+    // Show animation when counter resets to 0 (every 3rd task)
     if (completedTaskCounter.value === 0) {
       const container = unref(heartContainer);
       if (container) {

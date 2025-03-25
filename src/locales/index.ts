@@ -1,10 +1,15 @@
 // @/locales/index.ts
+import type { TranslationObject } from '../composables/useI18n';
 
 /**
- * Tłumaczenia aplikacji
- * Zawiera ciągi tekstowe w języku angielskim i polskim
+ * Application translations
+ * Contains text strings in English and Polish
  */
-export const translations = {
+export interface Translations {
+  [key: string]: TranslationObject;
+}
+
+export const translations: Translations = {
   en: {
     mainTitle: "69 Shades of Love",
     subtitle: "Your Self-Care Journey",
@@ -25,6 +30,13 @@ export const translations = {
     feature3: "Streak counter to maintain motivation",
     feature4: "Achievement celebrations for milestones",
     feature5: "Downloadable mind map PDF guide",
+    feature6: "Self-Care Insights with science-based tips and facts",
+    insightsFeatureTitle: "Self-Care Insights",
+    insightsFeatureDescription: "The app provides educational and actionable science-based information about:",
+    insightsPoint1: "How to enhance physical wellbeing",
+    insightsPoint2: "Mental health improvement techniques",
+    insightsPoint3: "Personal joy development strategies",
+    insightsPoint4: "Relationship building insights",
     backToJourney: "Back to Self-Care Journey",
     
     pdfTitle: "Mind Map PDF",
@@ -53,7 +65,7 @@ export const translations = {
     collapsePdfSection: "Collapse PDF section",
     expandPdfSection: "Expand PDF section",
     dedication: "For my Muszka with love",
-    motivationalTitle: "Keep Going!",
+    motivationalTitle: "Self-Care Insight",
     motivationalDescription: "You're making great progress on your self-care journey! Every small step counts. Keep taking care of yourself!",
     pdfUnlockedTitle: "🎊 Mind Map Unlocked! 🎊",
     pdfUnlockedDescription: "Amazing job! You've reached a significant milestone in your self-care journey. Your beautiful Mind Map PDF guide is now available to download. It contains valuable insights and tips to support your ongoing self-care practice. Enjoy this reward, you've earned it!",
@@ -101,6 +113,13 @@ export const translations = {
     feature3: "Licznik serii dla utrzymania motywacji",
     feature4: "Świętowanie osiągnięć",
     feature5: "Możliwość pobrania przewodnika PDF",
+    feature6: "Wskazówki samorozwoju oparte na badaniach naukowych",
+    insightsFeatureTitle: "Wskazówki Samorozwoju",
+    insightsFeatureDescription: "Aplikacja dostarcza edukacyjne i praktyczne informacje oparte na badaniach naukowych dotyczące:",
+    insightsPoint1: "Jak poprawić dobrostan fizyczny",
+    insightsPoint2: "Techniki poprawy zdrowia psychicznego",
+    insightsPoint3: "Strategie rozwijania osobistej radości",
+    insightsPoint4: "Wskazówki budowania relacji",
     backToJourney: "Powrót do Podróży Samorozwoju",
     
     pdfTitle: "Mapa Myśli PDF",
@@ -129,7 +148,7 @@ export const translations = {
     collapsePdfSection: "Zwiń sekcję PDF",
     expandPdfSection: "Rozwiń sekcję PDF",
     dedication: "Dla mojej Muszki z miłością",
-    motivationalTitle: "Tak trzymaj!",
+    motivationalTitle: "Wskazówka Samorozwoju",
     motivationalDescription: "Robisz świetne postępy w swojej podróży dbania o siebie! Każdy mały krok się liczy. Kontynuuj dbanie o siebie!",
     pdfUnlockedTitle: "🎊 Mapa Myśli Odblokowana! 🎊",
     pdfUnlockedDescription: "Wspaniała robota! Osiągnąłeś/aś ważny kamień milowy w swojej podróży samorozwoju. Twoja piękna Mapa Myśli w formacie PDF jest już dostępna do pobrania. Zawiera cenne wskazówki i porady wspierające Twoją praktykę dbania o siebie. Ciesz się tą nagrodą, zasłużyłeś/aś na nią!",

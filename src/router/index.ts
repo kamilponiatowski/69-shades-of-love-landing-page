@@ -14,6 +14,14 @@ const routes: Array<RouteRecordRaw> = [
       title: '69 Shades of Love - About'
     }
   },
+  {
+    path: '/gift',
+    name: 'Gift',
+    component: () => import('@/views/GiftView.vue'),
+    meta: {
+      title: '7 Quick Habits - Your Free Gift'
+    }
+  },
 ];
 
 /**

@@ -1,6 +1,5 @@
 import { createApp } from 'vue';
 import { createPinia } from 'pinia';
-// @ts-ignore
 import piniaPluginPersistedstate from 'pinia-plugin-persistedstate';
 import App from './App.vue';
 import router from './router';
@@ -13,7 +12,7 @@ import './assets/css/layout.css';
 import './assets/css/responsive.css';
 import './assets/css/newsletter.css';
 
-// Create Pinia instance
+// Create and configure Pinia store
 const pinia = createPinia();
 pinia.use(piniaPluginPersistedstate);
 

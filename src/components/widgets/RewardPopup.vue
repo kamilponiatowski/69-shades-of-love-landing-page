@@ -45,15 +45,29 @@ const isPdfUnlock = computed(() => {
          props.rewardTitle.includes('Mapa Myśli');
 });
 
+const isSpecialReward = computed(() => {
+  return props.rewardTitle.includes('Champion') || 
+         props.rewardTitle.includes('Mistrz') ||
+         isPdfUnlock.value;
+});
+
 const iconClass = computed(() => {
+  // PDF unlocked icon
   if (isPdfUnlock.value) {
     return 'fa-file-pdf';
   }
   
+  // Special achievement icon
   if (props.rewardTitle.includes('Champion') || props.rewardTitle.includes('Mistrz')) {
     return 'fa-trophy';
   }
   
+  // Regular tip/insight icon
+  if (props.rewardTitle.includes('Insight') || props.rewardTitle.includes('Wskazówka')) {
+    return 'fa-lightbulb';
+  }
+  
+  // Default icon for other rewards
   return 'fa-crown';
 });
 
@@ -63,15 +77,13 @@ const pdfUnlockButtonText = t('downloadPdfNow') || 'Download PDF Now';
 
 // Methods
 const handleBackdropClick = (event: MouseEvent) => {
-  // Kliknięcie tła zamyka popup tylko jeśli to NIE jest osiągnięcie PDF lub specjalne osiągnięcie końcowe
-  if (!isPdfUnlock.value && 
-      !props.rewardTitle.includes('Champion') && 
-      !props.rewardTitle.includes('Mistrz')) {
+  // Only close popup by clicking background if it's not a special achievement
+  if (!isSpecialReward.value) {
     emit('close');
   }
 };
 </script>
 
 <style scoped>
-/* Styl komponentu jest obsługiwany przez globalne CSS */
+/* Style is handled by global CSS */
 </style>

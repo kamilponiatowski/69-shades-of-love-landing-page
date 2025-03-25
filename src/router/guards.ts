@@ -1,3 +1,4 @@
+// @/router/guards.ts
 import router from './index';
 
 /**
@@ -7,22 +8,15 @@ import router from './index';
 
 // Global before guard
 router.beforeEach((to, from, next) => {
-  // Example guard logic
-  // const isAuthenticated = store.getters.isAuthenticated;
-  // if (to.meta.requiresAuth && !isAuthenticated) {
-  //   next({ name: 'Login' });
-  // } else {
-  //   next();
-  // }
-  
-  // For now, just proceed with navigation
+  // Simply proceed with navigation for now
+  // You can add authentication or other checks here later
   next();
 });
 
 // Global after hook
-router.afterEach((to, from) => {
-  // Example: tracking page views
-  console.log(`Navigated from ${from.path} to ${to.path}`);
+router.afterEach(() => {
+  // Page view tracking or other post-navigation logic can be added here
+  // Removed console logs for production code
 });
 
 export default router;
