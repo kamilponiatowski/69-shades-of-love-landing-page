@@ -36,13 +36,13 @@ export const useTaskStore = defineStore('tasks', () => {
   const totalTasks = computed((): number => {
     return categories.value.reduce((total, category) => total + category.tasks.length, 0);
   });
-  
+
   const completedCount = computed((): number => {
     return categories.value.reduce((total, category) => {
       return total + category.tasks.filter(task => task.completed).length;
     }, 0);
   });
-  
+
   const progressPercentage = computed((): number => {
     return Math.round((completedCount.value / totalTasks.value) * 100) || 0;
   });
@@ -57,7 +57,7 @@ export const useTaskStore = defineStore('tasks', () => {
     const category = categories.value.find(cat => cat.type === type);
     return category ? category.tasks.filter(task => task.completed).length : 0;
   }
-  
+
   /**
    * Gets the progress percentage for a specific category
    * @param type - Category type identifier
@@ -66,12 +66,12 @@ export const useTaskStore = defineStore('tasks', () => {
   function getCategoryProgress(type: Category['type']): number {
     const category = categories.value.find(cat => cat.type === type);
     if (!category) return 0;
-    
+
     const completed = category.tasks.filter(task => task.completed).length;
     const total = category.tasks.length;
     return Math.round((completed / total) * 100) || 0;
   }
-  
+
   /**
    * Toggles the completion status of a specific task
    * @param categoryType - Category type
@@ -82,20 +82,20 @@ export const useTaskStore = defineStore('tasks', () => {
     if (category && taskIndex >= 0 && taskIndex < category.tasks.length) {
       const wasCompleted = category.tasks[taskIndex].completed;
       category.tasks[taskIndex].completed = !wasCompleted;
-      
+
       // Track last completed task for animations
-      if (!wasCompleted) { 
+      if (!wasCompleted) {
         lastCompletedTask.value = {
           categoryType,
           taskIndex,
           completed: true
         };
       }
-      
+
       saveData();
     }
   }
-  
+
   /**
    * Persists the current state to localStorage
    */
@@ -109,7 +109,7 @@ export const useTaskStore = defineStore('tasks', () => {
       console.error('Error saving data:', error);
     }
   }
-  
+
   /**
    * Loads saved state from localStorage
    * @returns Promise that resolves when data is loaded
@@ -143,7 +143,4 @@ export const useTaskStore = defineStore('tasks', () => {
     saveData,
     loadData
   };
-}, {
-  // Enable persistence with localStorage
-  persist: true
 });
