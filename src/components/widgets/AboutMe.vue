@@ -13,7 +13,7 @@
         <i class="fas fa-envelope" aria-hidden="true"></i> poniatowski.dev@gmail.com
       </a>
     </div>
-    <!-- Nowy kontener dla przycisków - lepsze wyrównanie -->
+    <!-- New container for buttons - better alignment -->
     <div class="about-me-buttons">
       <a href="https://tiptopjar.com/proDucktive" target="_blank" class="support-button" rel="noopener">
         <i class="fas fa-heart" aria-hidden="true"></i> <span class="support-text">{{ t('supportButton') }}</span>

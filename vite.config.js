@@ -6,13 +6,13 @@ import { fileURLToPath, URL } from 'node:url';
 import { visualizer } from 'rollup-plugin-visualizer';
 
 /**
- * Konfiguracja Vite
+ * Vite configuration
  * @see https://vitejs.dev/config/
  */
 export default defineConfig({
   plugins: [
     vue(),
-    // Plugin do analizy rozmiaru paczki
+    // Plugin for parcel size analysis
     visualizer({
       template: 'treemap',
       open: false,
@@ -22,7 +22,7 @@ export default defineConfig({
     })
   ],
   
-  // Aliasy ścieżek dla importów
+  // Path aliases for imports
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src')
@@ -38,20 +38,20 @@ export default defineConfig({
     ]
   },
   
-  // Ścieżka bazowa dla wdrożenia (zmieniona na '/' dla prawidłowego działania w dev)
+  // Base path for deployment (changed to '/' for proper development operation)
   base: '/',
   
-  // Ustawienia serwera deweloperskiego
+  // Development server settings
   server: {
     port: 3000,
     open: true,
-    host: true // Pozwala na dostęp z zewnątrz
+    host: true // Allow access from outside
   },
   
-  // Poprawna konfiguracja dla plików statycznych i HTML
+  // Fix configuration for static files and HTML
   publicDir: 'public',
   
-  // Opcje budowania
+  // Build options
   build: {
     outDir: 'dist',
     assetsDir: 'assets',

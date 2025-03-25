@@ -68,7 +68,7 @@
   
   // Constants
   const pdfLink = "https://drive.google.com/file/d/1fPwsiyJxmMKKHA5ImRSDfjWk14NCnl-V/view?usp=drive_link";
-  // Bezpośredni link do pobierania PDF zamiast linka do Google Drive
+  // Direct link to download PDF instead of link to Google Drive
   const pdfLinkDirect = "https://drive.google.com/uc?export=download&id=1fPwsiyJxmMKKHA5ImRSDfjWk14NCnl-V";
   
   // State
@@ -85,12 +85,12 @@
   const handleDownloadClick = (event: Event) => {
     if (!props.isUnlocked) {
       event.preventDefault();
-      // Opcjonalnie: wyświetl komunikat o konieczności wykonania zadań do odblokowania
+      // Optionally: display a message about the tasks to be unblocked
       return;
     }
     
-    // Jeśli PDF jest odblokowany, pozwól na domyślną akcję przeglądarki (pobieranie)
-    // Nie zatrzymuj zdarzenia
+    // If PDF is unlocked, allow default browser action (download)
+    // Do not stop the event
   };
   
   // Watch for PDF unlock moment

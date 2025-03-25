@@ -42,5 +42,5 @@
   </script>
   
   <style scoped>
-  /* Styl komponentu jest obsługiwany przez globalne CSS */
+  /* Component styles are handled by global CSS */
   </style>

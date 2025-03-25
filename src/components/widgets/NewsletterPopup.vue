@@ -21,7 +21,7 @@
       </div>
       
       <form class="newsletter-form" @submit.prevent="$emit('submit')">
-        <!-- Imię -->
+        <!-- Name -->
         <input 
           type="text" 
           class="newsletter-input" 
@@ -138,7 +138,7 @@ const { t } = useI18n();
   margin-right: 5px;
 }
 
-/* Style dla pola imienia */
+/* Styles for the name field */
 .newsletter-input:first-of-type {
   margin-bottom: 10px;
 }
