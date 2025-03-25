@@ -2,6 +2,8 @@
   <div class="container">
     <a href="#main-content" class="skip-link">{{ t("skipToContent") }}</a>
 
+    <ScrollDownButton />
+
     <Header @tell-duck-joke="tellDuckJoke" :streak-days="streakDays" />
 
     <DuckJoke :joke="currentDuckJoke" :show-duck-joke="showDuckJoke" />
@@ -80,6 +82,7 @@ import RewardPopup from '@/components/widgets/RewardPopup.vue';
 import NewsletterFloatingButton from '@/components/widgets/NewsletterFloatingButton.vue';
 import NewsletterPopup from '@/components/widgets/NewsletterPopup.vue';
 import NewsletterReward from '@/components/widgets/NewsletterReward.vue';
+import ScrollDownButton from '@/components/widgets/ScrollDownButton.vue';
 
 // Store
 const taskStore = useTaskStore();

@@ -1,5 +1,6 @@
 <template>
   <div class="container about-page">
+    <ScrollDownButton />
     <main class="about-content">
       <div class="about-header">
         <h1 class="main-title">{{ t('mainTitle') }}</h1>
@@ -149,6 +150,7 @@ import Footer from '@/components/layout/Footer.vue';
 import AboutMe from '@/components/widgets/AboutMe.vue';
 import NewsletterPopup from '@/components/widgets/NewsletterPopup.vue';
 import NewsletterReward from '@/components/widgets/NewsletterReward.vue';
+import ScrollDownButton from '@/components/widgets/ScrollDownButton.vue';
 
 // Composables
 const { t } = useI18n();

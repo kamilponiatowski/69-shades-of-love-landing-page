@@ -1,5 +1,6 @@
 <template>
     <div class="container gift-page">
+        <ScrollDownButton />
         <main class="gift-content">
             <div class="gift-header">
                 <h1 class="main-title">7 Quick Habits That Transform Your Day</h1>
@@ -364,6 +365,7 @@
 <script setup lang="ts">
 import { useRouter } from 'vue-router';
 import Footer from '@/components/layout/Footer.vue';
+import ScrollDownButton from '@/components/widgets/ScrollDownButton.vue';
 
 // Router
 const router = useRouter();
