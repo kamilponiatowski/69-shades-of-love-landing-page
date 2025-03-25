@@ -7,11 +7,11 @@
       @change="toggleComplete" 
       @click.stop
       :id="checkboxId"
-      :aria-label="`${task.title}: ${task.description}`"
+      :aria-label="`${translatedTitle}: ${translatedDescription}`"
     >
     <div class="todo-text">
-      <label :for="checkboxId">{{ task.title }}</label>
-      <div class="description">{{ task.description }}</div>
+      <label :for="checkboxId">{{ translatedTitle }}</label>
+      <div class="description">{{ translatedDescription }}</div>
     </div>
   </div>
 </template>
@@ -20,6 +20,7 @@
 import { computed } from 'vue';
 import { useTaskStore, type Task, type Category } from '@/stores/taskStore';
 import { useAnimation } from '@/composables/useAnimation';
+import { useI18n } from '@/composables/useI18n';
 import type { TaskChangeInfo } from '@/types';
 
 // Props
@@ -34,15 +35,29 @@ const emit = defineEmits<{
   (e: 'change', changeInfo: TaskChangeInfo): void
 }>();
 
-// Store
+// Store & Composables
 const taskStore = useTaskStore();
-
-// Animation
 const { showCompletionAnimation } = useAnimation(null);
+const { t } = useI18n();
 
 // Computed
 const checkboxId = computed(() => {
   return `${props.categoryType}-task-${props.taskIndex}`;
+});
+
+// Get translated task title and description
+const translatedTitle = computed(() => {
+  // Return hardcoded title if exists (for backwards compatibility)
+  if (props.task.title) return props.task.title;
+  // Otherwise translate using titleKey
+  return t(props.task.titleKey);
+});
+
+const translatedDescription = computed(() => {
+  // Return hardcoded description if exists (for backwards compatibility)
+  if (props.task.description) return props.task.description;
+  // Otherwise translate using descriptionKey
+  return t(props.task.descriptionKey);
 });
 
 // Methods

@@ -16,12 +16,12 @@ export const translations: Translations = {
     aboutTitle: "WTQ - What The Quack!",
     aboutContent: "Hi there! I'm a digital duck paddling through the waters of creativity, crafting digital products, and sharing tools, knowledge, and value with awesome humans like you. If my quacking resonates with you, feel free to toss me some seeds of support – a coffee, some grains, or anything that keeps this duck afloat! 💚\n\nLet's make waves together – one quack at a time! 🌊✨",
     supportButton: "Support This Duck",
-    
+
     // About page translations
     projectPhilosophyTitle: "Project Philosophy",
     projectPhilosophyDescription: "69 Shades of Love is a self-care journey designed to help you incorporate healthy habits into your daily routine. The application includes 69 carefully selected self-care tasks divided into four key areas of wellbeing:",
     physicalDescription: "Taking care of your body",
-    mentalDescription: "Nurturing your mind and emotional health", 
+    mentalDescription: "Nurturing your mind and emotional health",
     personalDescription: "Finding happiness in simple pleasures",
     relationshipDescription: "Strengthening connections with others",
     featuresTitle: "Features",
@@ -38,7 +38,7 @@ export const translations: Translations = {
     insightsPoint3: "Personal joy development strategies",
     insightsPoint4: "Relationship building insights",
     backToJourney: "Back to Self-Care Journey",
-    
+
     pdfTitle: "Mind Map PDF",
     downloadButton: "Download Mind Map PDF",
     lockButton: "Complete 20% to Unlock PDF",
@@ -55,11 +55,11 @@ export const translations: Translations = {
     personalHearts: "Personal Joy Hearts",
     relationshipHearts: "Relationship Hearts",
     skipToContent: "Skip to main content",
-    
+
     // Footer text parts
     footerStart: "Made with",
     footerMid: "| Feel free to quack at",
-    
+
     continue: "Continue Self-Care Journey",
     completionAchievement: "Steps to Self-Love!",
     completionMessage: "You've completed {0} self-care activities. Keep going!",
@@ -123,7 +123,7 @@ export const translations: Translations = {
     recommendedPodcasts: "Recommended Podcasts",
     onlineCourses: "Online Courses",
     inspiringQuotes: "Inspiring Quotes",
-    
+
     // QuotesView translations
     quotesPageTitle: "Pop Culture Wisdom",
     quotesPageSubtitle: "Geek-inspired quotes to transform into your best self",
@@ -147,7 +147,7 @@ export const translations: Translations = {
     trackerTitle: "21-Day Habit Building Challenge",
     trackerDescription: "Research shows it takes about 21 days to form a simple habit. Use this tracker to monitor your progress with these seven transformative habits. Remember, consistency is more important than perfection!",
     habitColumnHeader: "Habit",
-    
+
     // Habits short names for tracker
     habit1ShortName: "Morning Goals",
     habit2ShortName: "Meditation",
@@ -156,7 +156,7 @@ export const translations: Translations = {
     habit5ShortName: "Time Blocking",
     habit6ShortName: "Learn Something",
     habit7ShortName: "Evening Review",
-    
+
     // Habits details
     habit1Title: "Start Your Day with Clear Goals",
     habit1Description: "Begin each day by setting three most important goals. This will help you maintain focus and prioritize your tasks. Write them down in a notebook or app to keep them in sight.",
@@ -166,7 +166,7 @@ export const translations: Translations = {
     habit1Tool1: "Todoist",
     habit1Tool2: "Notion",
     habit1Tool3: "Bullet Journal",
-    
+
     habit2Title: "Morning Meditation",
     habit2Description: "Dedicate 5-10 minutes to morning meditation. This will help calm your mind, reduce stress, and improve focus throughout the day. You can use apps like Headspace or Calm.",
     habit2Tip1: "Start with just 2 minutes if you're new to meditation",
@@ -175,7 +175,7 @@ export const translations: Translations = {
     habit2Tool1: "Headspace",
     habit2Tool2: "Calm",
     habit2Tool3: "Insight Timer",
-    
+
     habit3Title: "Quick Morning Exercise",
     habit3Description: "Perform a short workout, such as 10-15 minutes of yoga or warm-up exercises. This will stimulate your body and mind for action.",
     habit3Tip1: "Prepare your workout clothes the night before to remove friction",
@@ -184,7 +184,7 @@ export const translations: Translations = {
     habit3Tool1: "Down Dog",
     habit3Tool2: "7 Minute Workout",
     habit3Tool3: "FitOn",
-    
+
     habit4Title: "Nutritious Breakfast",
     habit4Description: "Eat a nutritious breakfast that will provide you with energy for the entire morning. Avoid sweets and choose foods rich in protein and fiber.",
     habit4Tip1: "Prepare overnight oats or chia pudding the night before for a grab-and-go option",
@@ -193,7 +193,7 @@ export const translations: Translations = {
     habit4Tool1: "MyFitnessPal",
     habit4Tool2: "Mealime",
     habit4Tool3: "Yummly",
-    
+
     habit5Title: "Time-Blocked Schedule with Breaks",
     habit5Description: "Divide your day into smaller time blocks with regular breaks. This will help you avoid burnout and maintain productivity.",
     habit5Tip1: "Try the Pomodoro Technique: 25 minutes of focused work followed by a 5-minute break",
@@ -202,7 +202,7 @@ export const translations: Translations = {
     habit5Tool1: "Forest",
     habit5Tool2: "Focus@Will",
     habit5Tool3: "Toggl Track",
-    
+
     habit6Title: "Learn Something New",
     habit6Description: "Dedicate 15-30 minutes to learning something new. It could be a foreign language, a new skill, or an interesting book. Continuous growth is the key to success.",
     habit6Tip1: "Use \"learning triggers\" - attach learning to an existing habit (like during your commute)",
@@ -211,7 +211,7 @@ export const translations: Translations = {
     habit6Tool1: "Duolingo",
     habit6Tool2: "Skillshare",
     habit6Tool3: "Blinkist",
-    
+
     habit7Title: "Evening Review",
     habit7Description: "Before bed, review what you managed to achieve during the day. Write down your accomplishments and plan for tomorrow. This will help you maintain motivation and a sense of fulfillment.",
     habit7Tip1: "Practice gratitude by noting three good things that happened during the day",
@@ -220,26 +220,173 @@ export const translations: Translations = {
     habit7Tool1: "Day One",
     habit7Tool2: "Five Minute Journal",
     habit7Tool3: "Notion",
-    
+
     // Resources
     book1: "Atomic Habits by James Clear",
     book2: "Deep Work by Cal Newport",
     book3: "The Miracle Morning by Hal Elrod",
     book4: "Tiny Habits by BJ Fogg",
-    
+
     podcast1: "The Tim Ferriss Show",
     podcast2: "Optimal Living Daily",
     podcast3: "The Science of Success",
     podcast4: "The Habit Coach",
-    
+
     course1: "The Science of Well-Being (Yale/Coursera)",
     course2: "Learning How to Learn (Coursera)",
     course3: "A Life of Happiness and Fulfillment (Coursera)",
     course4: "Productivity Masterclass (Skillshare)",
-    
+
     quote1: "\"We are what we repeatedly do. Excellence, then, is not an act, but a habit.\" - Aristotle",
     quote2: "\"Habits are the compound interest of self-improvement.\" - James Clear",
-    quote3: "\"Your future is created by what you do today, not tomorrow.\" - Robert Kiyosaki"
+    quote3: "\"Your future is created by what you do today, not tomorrow.\" - Robert Kiyosaki",
+    // Tłumaczenia zadań w języku angielskim - dodaj do sekcji 'en' w pliku src/locales/index.ts
+
+    // PHYSICAL TASKS
+    task_physical_1_title: "Sleeping Beauty Mode",
+    task_physical_1_desc: "8hr minimum, no exceptions!",
+    task_physical_2_title: "Hydro Homie",
+    task_physical_2_desc: "Water before coffee, always",
+    task_physical_3_title: "Morning Wiggle",
+    task_physical_3_desc: "Stretching before scrolling",
+    task_physical_4_title: "Fuel, Not Feels",
+    task_physical_4_desc: "No emotional eating today",
+    task_physical_5_title: "Vitamin D-lightful",
+    task_physical_5_desc: "Catch some rays, even briefly",
+    task_physical_6_title: "Pretzel Person",
+    task_physical_6_desc: "Twist into yoga positions",
+    task_physical_7_title: "Phone-Free Feast",
+    task_physical_7_desc: "Taste your food, not your feed",
+    task_physical_8_title: "Body Check-In",
+    task_physical_8_desc: "\"How you doin'?\" but to yourself",
+    task_physical_9_title: "Spa Day at Home",
+    task_physical_9_desc: "Treat your body like a temple",
+    task_physical_10_title: "Step Master",
+    task_physical_10_desc: "Walk like your ex is watching",
+    task_physical_11_title: "Slouch Potato No More",
+    task_physical_11_desc: "Posture check, straighten up!",
+    task_physical_12_title: "Supplement Superhero",
+    task_physical_12_desc: "Pills & potions for peak performance",
+    task_physical_13_title: "Teeth TLC",
+    task_physical_13_desc: "Beyond the 2-minute brush",
+    task_physical_14_title: "Eye Candy Break",
+    task_physical_14_desc: "Rest those screen-strained peepers",
+    task_physical_15_title: "Chair Affair",
+    task_physical_15_desc: "Sit properly, future you will thank you",
+    task_physical_16_title: "Breath of Fresh Sanity",
+    task_physical_16_desc: "Inhale calm, exhale chaos",
+    task_physical_17_title: "Joint Juice",
+    task_physical_17_desc: "Move it or lose it, flexibility is sexy",
+    task_physical_18_title: "Ergo-no-more-pain",
+    task_physical_18_desc: "Adjust everything for comfort",
+    task_physical_19_title: "Morning Glory",
+    task_physical_19_desc: "First light face time (not the app)",
+    task_physical_20_title: "Voluntary Polar Plunge",
+    task_physical_20_desc: "Cold shower, hot results",
+
+    // MENTAL TASKS
+    task_mental_1_title: "Thought Vacation",
+    task_mental_1_desc: "Meditation without the hashtags",
+    task_mental_2_title: "Gratitude Attitude",
+    task_mental_2_desc: "Three things that don't suck today",
+    task_mental_3_title: "Digital Detox Time",
+    task_mental_3_desc: "Airplane mode for sanity",
+    task_mental_4_title: "Breath of Fresh Perspective",
+    task_mental_4_desc: "Deep breathing in 4-7-8",
+    task_mental_5_title: "Dear Diary Moment",
+    task_mental_5_desc: "Journal the day away",
+    task_mental_6_title: "Self Hype Squad",
+    task_mental_6_desc: "Be your own cheerleader",
+    task_mental_7_title: "Laugh Until It Hurts",
+    task_mental_7_desc: "Find something genuinely funny",
+    task_mental_8_title: "Brain Food",
+    task_mental_8_desc: "Reading that's not a social feed",
+    task_mental_9_title: "Mindful Munching",
+    task_mental_9_desc: "Taste every bite like a food critic",
+    task_mental_10_title: "Feelings Check-up",
+    task_mental_10_desc: "Emotional vital signs",
+    task_mental_11_title: "Thought Reframing",
+    task_mental_11_desc: "Plot twist: it's not a catastrophe",
+    task_mental_12_title: "Stress Exorcism",
+    task_mental_12_desc: "Banish tension from your body",
+    task_mental_13_title: "Silent Disco in Your Head",
+    task_mental_13_desc: "Quiet time, loud thoughts",
+    task_mental_14_title: "News Diet",
+    task_mental_14_desc: "Information intermittent fasting",
+    task_mental_15_title: "\"No\" Practice",
+    task_mental_15_desc: "Boundaries like you're a castle",
+    task_mental_16_title: "One Thing at a Time",
+    task_mental_16_desc: "Monotasking is the new multitasking",
+    task_mental_17_title: "Single-Focus Superpower",
+    task_mental_17_desc: "Attention without division",
+
+    // PERSONAL JOY TASKS
+    task_personal_1_title: "Bookworm Mode",
+    task_personal_1_desc: "Get lost in pages, not feeds",
+    task_personal_2_title: "Podcast & Chill",
+    task_personal_2_desc: "Learn while lounging",
+    task_personal_3_title: "Clean Slate",
+    task_personal_3_desc: "Your space reflects your mind",
+    task_personal_4_title: "Hobby Happy Hour",
+    task_personal_4_desc: "Do that thing you love",
+    task_personal_5_title: "Music Medicine",
+    task_personal_5_desc: "Playlist therapy session",
+    task_personal_6_title: "Nature's Therapy",
+    task_personal_6_desc: "Trees are cheaper than therapists",
+    task_personal_7_title: "Declutter Delight",
+    task_personal_7_desc: "One item must go today",
+    task_personal_8_title: "Create Don't Consume",
+    task_personal_8_desc: "Make something, anything",
+    task_personal_9_title: "Plant Parent Time",
+    task_personal_9_desc: "Green children need love too",
+    task_personal_10_title: "Tea Ceremony Solo",
+    task_personal_10_desc: "Mindful sipping moment",
+    task_personal_11_title: "Dance Like Nobody's Watching",
+    task_personal_11_desc: "Because they're not",
+    task_personal_12_title: "Chef's Special",
+    task_personal_12_desc: "Cook something that makes you proud",
+    task_personal_13_title: "Local Tourist",
+    task_personal_13_desc: "Explore your area with fresh eyes",
+    task_personal_14_title: "Date Yourself",
+    task_personal_14_desc: "Treat yourself how you deserve",
+    task_personal_15_title: "Inner Child Playtime",
+    task_personal_15_desc: "Silly is the new sophisticated",
+    task_personal_16_title: "Pet Therapy Session",
+    task_personal_16_desc: "Fur babies heal the soul",
+    task_personal_17_title: "Digital-Free Day",
+    task_personal_17_desc: "Like the 90s but with better hair",
+    task_personal_18_title: "Coffee Break Actually Taken",
+    task_personal_18_desc: "Savor, don't gulp",
+
+    // RELATIONSHIP TASKS
+    task_relationship_1_title: "Date Night Done Right",
+    task_relationship_1_desc: "No phones, all presence",
+    task_relationship_2_title: "Magic Fingers",
+    task_relationship_2_desc: "Massage exchange with extras",
+    task_relationship_3_title: "Future Fantasy",
+    task_relationship_3_desc: "Plan adventures together",
+    task_relationship_4_title: "Couple's Cardio",
+    task_relationship_4_desc: "Walk and talk without distractions",
+    task_relationship_5_title: "Soul-Deep Chat",
+    task_relationship_5_desc: "Beyond \"How was your day?\"",
+    task_relationship_6_title: "Gratitude Shower",
+    task_relationship_6_desc: "Appreciation list shared aloud",
+    task_relationship_7_title: "Skin-to-Skin Time",
+    task_relationship_7_desc: "Connect physically, whatever that means",
+    task_relationship_8_title: "Conflict Resolution",
+    task_relationship_8_desc: "Fight fair, finish strong",
+    task_relationship_9_title: "Cheerleader Mode",
+    task_relationship_9_desc: "Support their goals actively",
+    task_relationship_10_title: "Daily Touch Point",
+    task_relationship_10_desc: "Physical connection, even briefly",
+    task_relationship_11_title: "Verbal Validation",
+    task_relationship_11_desc: "Compliments that matter",
+    task_relationship_12_title: "Relationship First",
+    task_relationship_12_desc: "Prioritize partner over productivity",
+    task_relationship_13_title: "Morning Affection",
+    task_relationship_13_desc: "Kiss before phone check",
+    task_relationship_14_title: "Evening Reconnection",
+    task_relationship_14_desc: "Share your full attention"
   },
   pl: {
     mainTitle: "69 Odcieni Miłości",
@@ -247,12 +394,12 @@ export const translations: Translations = {
     aboutTitle: "WTQ - Co Za Kwak!",
     aboutContent: "Cześć! Jestem cyfrową kaczką pływającą w wodach kreatywności, tworzącą cyfrowe produkty i dzielącą się narzędziami, wiedzą i wartością z niesamowitymi ludźmi takimi jak Ty. Jeśli moje kwakanie rezonuje z Tobą, nie krępuj się rzucić mi kilka ziaren wsparcia - kawę, ziarno, lub cokolwiek, co utrzyma tę kaczkę na powierzchni! 💚\n\nTwórzmy fale razem - jeden kwak na raz! 🌊✨",
     supportButton: "Wesprzyj Tę Kaczkę",
-    
+
     // Tłumaczenia strony About
     projectPhilosophyTitle: "Filozofia Projektu",
     projectPhilosophyDescription: "69 Odcieni Miłości to podróż dbania o siebie, zaprojektowana, aby pomóc Ci włączyć zdrowe nawyki do codziennej rutyny. Aplikacja zawiera 69 starannie wybranych zadań związanych z samopieką, podzielonych na cztery kluczowe obszary dobrostanu:",
     physicalDescription: "Dbanie o ciało",
-    mentalDescription: "Pielęgnowanie umysłu i zdrowia emocjonalnego", 
+    mentalDescription: "Pielęgnowanie umysłu i zdrowia emocjonalnego",
     personalDescription: "Znajdowanie radości w prostych przyjemnościach",
     relationshipDescription: "Wzmacnianie więzi z innymi",
     featuresTitle: "Funkcje",
@@ -269,7 +416,7 @@ export const translations: Translations = {
     insightsPoint3: "Strategie rozwijania osobistej radości",
     insightsPoint4: "Wskazówki budowania relacji",
     backToJourney: "Powrót do Podróży Samorozwoju",
-    
+
     pdfTitle: "Mapa Myśli PDF",
     downloadButton: "Pobierz Mapę Myśli PDF",
     lockButton: "Ukończ 20% aby odblokować PDF",
@@ -286,11 +433,11 @@ export const translations: Translations = {
     personalHearts: "Serca Osobistej Radości",
     relationshipHearts: "Serca Relacji",
     skipToContent: "Pomiń do głównej treści",
-    
+
     // Cześć stopki
     footerStart: "Stworzone z",
     footerMid: "| Śmiało kwacz do",
-    
+
     continue: "Kontynuuj podróż samorozwoju",
     completionAchievement: "kroków do samoakceptacji!",
     completionMessage: "Ukończyłeś/aś {0} zadań związanych z dbaniem o siebie. Tak trzymaj!",
@@ -354,7 +501,7 @@ export const translations: Translations = {
     recommendedPodcasts: "Polecane Podcasty",
     onlineCourses: "Kursy Online",
     inspiringQuotes: "Inspirujące Cytaty",
-    
+
     // QuotesView translations
     quotesPageTitle: "Mądrość Popkultury",
     quotesPageSubtitle: "Inspirowane geekowymi produkcjami cytaty, które pomogą Ci stać się lepszą wersją siebie",
@@ -377,7 +524,7 @@ export const translations: Translations = {
     trackerTitle: "21-Dniowe Wyzwanie Budowania Nawyków",
     trackerDescription: "Badania pokazują, że potrzeba około 21 dni, aby utworzyć prosty nawyk. Używaj tego trackera do monitorowania postępów z siedmioma transformującymi nawykami. Pamiętaj, konsekwencja jest ważniejsza niż perfekcja!",
     habitColumnHeader: "Nawyk",
-    
+
     // Habits short names for tracker
     habit1ShortName: "Poranne Cele",
     habit2ShortName: "Medytacja",
@@ -386,7 +533,7 @@ export const translations: Translations = {
     habit5ShortName: "Bloki Czasowe",
     habit6ShortName: "Nauka",
     habit7ShortName: "Wieczorny Przegląd",
-    
+
     // Habits details
     habit1Title: "Zacznij Dzień z Jasnymi Celami",
     habit1Description: "Rozpocznij każdy dzień, ustalając trzy najważniejsze cele. Pomoże Ci to utrzymać koncentrację i ustalić priorytety zadań. Zapisz je w notatniku lub aplikacji, aby mieć je na widoku.",
@@ -396,7 +543,7 @@ export const translations: Translations = {
     habit1Tool1: "Todoist",
     habit1Tool2: "Notion",
     habit1Tool3: "Bullet Journal",
-    
+
     habit2Title: "Poranna Medytacja",
     habit2Description: "Poświęć 5-10 minut na poranną medytację. Pomoże to uspokoić umysł, zredukować stres i poprawić koncentrację przez cały dzień. Możesz używać aplikacji jak Headspace lub Calm.",
     habit2Tip1: "Zacznij od zaledwie 2 minut, jeśli jesteś nowy w medytacji",
@@ -405,7 +552,7 @@ export const translations: Translations = {
     habit2Tool1: "Headspace",
     habit2Tool2: "Calm",
     habit2Tool3: "Insight Timer",
-    
+
     habit3Title: "Szybkie Poranne Ćwiczenia",
     habit3Description: "Wykonaj krótki trening, np. 10-15 minut jogi lub ćwiczeń rozgrzewających. To pobudzi Twoje ciało i umysł do działania.",
     habit3Tip1: "Przygotuj ubrania treningowe wieczorem, aby usunąć przeszkody",
@@ -414,7 +561,7 @@ export const translations: Translations = {
     habit3Tool1: "Down Dog",
     habit3Tool2: "7 Minute Workout",
     habit3Tool3: "FitOn",
-    
+
     habit4Title: "Odżywcze Śniadanie",
     habit4Description: "Jedz odżywcze śniadanie, które zapewni Ci energię na cały poranek. Unikaj słodyczy i wybieraj pokarmy bogate w białko i błonnik.",
     habit4Tip1: "Przygotuj owsiankę overnight lub pudding chia wieczorem, aby mieć gotowe na wynos",
@@ -423,7 +570,7 @@ export const translations: Translations = {
     habit4Tool1: "MyFitnessPal",
     habit4Tool2: "Mealime",
     habit4Tool3: "Yummly",
-    
+
     habit5Title: "Harmonogram z Blokami Czasowymi i Przerwami",
     habit5Description: "Podziel swój dzień na mniejsze bloki czasowe z regularnymi przerwami. Pomoże to uniknąć wypalenia i utrzymać produktywność.",
     habit5Tip1: "Wypróbuj technikę Pomodoro: 25 minut skupionej pracy, po której następuje 5-minutowa przerwa",
@@ -432,7 +579,7 @@ export const translations: Translations = {
     habit5Tool1: "Forest",
     habit5Tool2: "Focus@Will",
     habit5Tool3: "Toggl Track",
-    
+
     habit6Title: "Naucz się Czegoś Nowego",
     habit6Description: "Poświęć 15-30 minut na naukę czegoś nowego. Może to być język obcy, nowa umiejętność lub interesująca książka. Ciągły rozwój to klucz do sukcesu.",
     habit6Tip1: "Używaj \"triggerów nauki\" - dołącz naukę do istniejącego nawyku (np. podczas dojazdu)",
@@ -441,7 +588,7 @@ export const translations: Translations = {
     habit6Tool1: "Duolingo",
     habit6Tool2: "Skillshare",
     habit6Tool3: "Blinkist",
-    
+
     habit7Title: "Wieczorny Przegląd",
     habit7Description: "Przed snem przejrzyj to, co udało Ci się osiągnąć w ciągu dnia. Zapisz swoje osiągnięcia i zaplanuj jutro. Pomoże to utrzymać motywację i poczucie spełnienia.",
     habit7Tip1: "Praktykuj wdzięczność, notując trzy dobre rzeczy, które wydarzyły się w ciągu dnia",
@@ -450,26 +597,173 @@ export const translations: Translations = {
     habit7Tool1: "Day One",
     habit7Tool2: "Five Minute Journal",
     habit7Tool3: "Notion",
-    
+
     // Resources
     book1: "Atomowe Nawyki - James Clear",
     book2: "Głęboka Praca - Cal Newport",
     book3: "Cudowny Poranek - Hal Elrod",
     book4: "Małe Nawyki - BJ Fogg",
-    
+
     podcast1: "The Tim Ferriss Show",
     podcast2: "Optimal Living Daily",
     podcast3: "The Science of Success",
     podcast4: "The Habit Coach",
-    
+
     course1: "Nauka o Dobrym Samopoczuciu (Yale/Coursera)",
     course2: "Nauka Jak Się Uczyć (Coursera)",
     course3: "Życie Pełne Szczęścia i Spełnienia (Coursera)",
     course4: "Mistrzowski Kurs Produktywności (Skillshare)",
-    
+
     quote1: "\"Jesteśmy tym, co regularnie robimy. Doskonałość nie jest więc aktem, lecz nawykiem.\" - Arystoteles",
     quote2: "\"Nawyki są procentem składanym samodoskonalenia.\" - James Clear",
-    quote3: "\"Twoja przyszłość jest tworzona przez to, co robisz dzisiaj, a nie jutro.\" - Robert Kiyosaki"
+    quote3: "\"Twoja przyszłość jest tworzona przez to, co robisz dzisiaj, a nie jutro.\" - Robert Kiyosaki",
+    // Tłumaczenia zadań w języku polskim - dodaj do sekcji 'pl' w pliku src/locales/index.ts
+
+    // PHYSICAL TASKS
+    task_physical_1_title: "Tryb Śpiącej Królewny",
+    task_physical_1_desc: "Minimum 8 godzin, bez wyjątków!",
+    task_physical_2_title: "Hydro Przyjaciel",
+    task_physical_2_desc: "Woda przed kawą, zawsze",
+    task_physical_3_title: "Poranne Wiercenie",
+    task_physical_3_desc: "Rozciąganie przed scrollowaniem",
+    task_physical_4_title: "Paliwo, nie Uczucia",
+    task_physical_4_desc: "Dziś bez jedzenia emocjonalnego",
+    task_physical_5_title: "Witamina D-oskonała",
+    task_physical_5_desc: "Złap trochę promieni, choćby na chwilę",
+    task_physical_6_title: "Precelek Pozycja",
+    task_physical_6_desc: "Wykręć się w pozycje jogi",
+    task_physical_7_title: "Uczta bez Telefonu",
+    task_physical_7_desc: "Smakuj jedzenie, nie fejsa",
+    task_physical_8_title: "Sprawdzenie Ciała",
+    task_physical_8_desc: "\"Jak się masz?\" - ale do siebie",
+    task_physical_9_title: "Domowe SPA",
+    task_physical_9_desc: "Traktuj swoje ciało jak świątynię",
+    task_physical_10_title: "Mistrz Kroków",
+    task_physical_10_desc: "Chodź jakby patrzył Twój eks",
+    task_physical_11_title: "Koniec z Garbem",
+    task_physical_11_desc: "Sprawdź postawę, wyprostuj się!",
+    task_physical_12_title: "Superbohater Suplementów",
+    task_physical_12_desc: "Pigułki i eliksiry dla najlepszej formy",
+    task_physical_13_title: "TLC dla Zębów",
+    task_physical_13_desc: "Więcej niż 2-minutowe szczotkowanie",
+    task_physical_14_title: "Przerwa dla Oczu",
+    task_physical_14_desc: "Daj odpocząć zmęczonym ekranem gałkom",
+    task_physical_15_title: "Romans z Krzesłem",
+    task_physical_15_desc: "Siedź poprawnie, przyszły Ty podziękuje",
+    task_physical_16_title: "Oddech Świeżego Rozsądku",
+    task_physical_16_desc: "Wdychaj spokój, wydychaj chaos",
+    task_physical_17_title: "Sok Stawowy",
+    task_physical_17_desc: "Ruszaj się lub strać, elastyczność jest sexy",
+    task_physical_18_title: "Ergo-no-więcej-bólu",
+    task_physical_18_desc: "Dostosuj wszystko dla komfortu",
+    task_physical_19_title: "Poranna Chwała",
+    task_physical_19_desc: "Poranne światło na twarz (nie apka)",
+    task_physical_20_title: "Dobrowolne Morsowanie",
+    task_physical_20_desc: "Zimny prysznic, gorące efekty",
+
+    // MENTAL TASKS
+    task_mental_1_title: "Wakacje dla Myśli",
+    task_mental_1_desc: "Medytacja bez hashtagów",
+    task_mental_2_title: "Postawa Wdzięczności",
+    task_mental_2_desc: "Trzy rzeczy, które dziś nie są do bani",
+    task_mental_3_title: "Cyfrowy Detoks",
+    task_mental_3_desc: "Tryb samolotowy dla zdrowia psychicznego",
+    task_mental_4_title: "Oddech Świeżej Perspektywy",
+    task_mental_4_desc: "Głębokie oddychanie 4-7-8",
+    task_mental_5_title: "Moment Drogi Pamiętniczku",
+    task_mental_5_desc: "Zapisz dzień w dzienniku",
+    task_mental_6_title: "Drużyna Samowsparcia",
+    task_mental_6_desc: "Bądź swoim własnym cheerleaderem",
+    task_mental_7_title: "Śmiech do Bólu",
+    task_mental_7_desc: "Znajdź coś naprawdę zabawnego",
+    task_mental_8_title: "Pokarm dla Mózgu",
+    task_mental_8_desc: "Czytanie, które nie jest feedem społecznościowym",
+    task_mental_9_title: "Uważne Jedzenie",
+    task_mental_9_desc: "Smakuj każdy kęs jak krytyk kulinarny",
+    task_mental_10_title: "Badanie Uczuć",
+    task_mental_10_desc: "Oznaki witalne emocji",
+    task_mental_11_title: "Przekształcanie Myśli",
+    task_mental_11_desc: "Zwrot akcji: to nie katastrofa",
+    task_mental_12_title: "Egzorcyzm Stresu",
+    task_mental_12_desc: "Wypędź napięcie z ciała",
+    task_mental_13_title: "Cicha Dyskoteka w Głowie",
+    task_mental_13_desc: "Cichy czas, głośne myśli",
+    task_mental_14_title: "Dieta Informacyjna",
+    task_mental_14_desc: "Przerywany post od wiadomości",
+    task_mental_15_title: "Praktyka \"Nie\"",
+    task_mental_15_desc: "Granice jakbyś był zamkiem",
+    task_mental_16_title: "Jedna Rzecz Naraz",
+    task_mental_16_desc: "Monotasking to nowy multitasking",
+    task_mental_17_title: "Supermoce Pojedynczego Skupienia",
+    task_mental_17_desc: "Uwaga bez podziału",
+
+    // PERSONAL JOY TASKS
+    task_personal_1_title: "Tryb Mola Książkowego",
+    task_personal_1_desc: "Zagub się w stronach, nie feedach",
+    task_personal_2_title: "Podcast i Chill",
+    task_personal_2_desc: "Ucz się odpoczywając",
+    task_personal_3_title: "Czysta Karta",
+    task_personal_3_desc: "Twoja przestrzeń odzwierciedla umysł",
+    task_personal_4_title: "Godzina Hobbystyczna",
+    task_personal_4_desc: "Rób to, co kochasz",
+    task_personal_5_title: "Muzyczna Medycyna",
+    task_personal_5_desc: "Sesja terapeutyczna z playlistą",
+    task_personal_6_title: "Terapia Natury",
+    task_personal_6_desc: "Drzewa są tańsze niż terapeuci",
+    task_personal_7_title: "Radość Odgracania",
+    task_personal_7_desc: "Jedna rzecz musi dziś odejść",
+    task_personal_8_title: "Twórz Zamiast Konsumować",
+    task_personal_8_desc: "Zrób cokolwiek, cokolwiek",
+    task_personal_9_title: "Czas Rodzica Roślin",
+    task_personal_9_desc: "Zielone dzieci też potrzebują miłości",
+    task_personal_10_title: "Ceremonia Herbaty Solo",
+    task_personal_10_desc: "Moment uważnego popijania",
+    task_personal_11_title: "Tańcz Jakby Nikt Nie Patrzył",
+    task_personal_11_desc: "Bo przecież nie patrzą",
+    task_personal_12_title: "Specjalność Szefa Kuchni",
+    task_personal_12_desc: "Ugotuj coś, z czego będziesz dumny",
+    task_personal_13_title: "Lokalny Turysta",
+    task_personal_13_desc: "Odkryj swoją okolicę świeżym spojrzeniem",
+    task_personal_14_title: "Randka z Samym Sobą",
+    task_personal_14_desc: "Traktuj siebie tak, jak na to zasługujesz",
+    task_personal_15_title: "Zabawa Wewnętrznego Dziecka",
+    task_personal_15_desc: "Głupkowatość to nowa wyrafinowanie",
+    task_personal_16_title: "Sesja Terapii Zwierzęcej",
+    task_personal_16_desc: "Futrzane dzieci leczą duszę",
+    task_personal_17_title: "Dzień bez Cyfryzacji",
+    task_personal_17_desc: "Jak lata 90-te, ale z lepszą fryzurą",
+    task_personal_18_title: "Faktycznie Wzięta Przerwa na Kawę",
+    task_personal_18_desc: "Smakuj, nie łykaj",
+
+    // RELATIONSHIP TASKS
+    task_relationship_1_title: "Randka Zrobiona Dobrze",
+    task_relationship_1_desc: "Bez telefonów, pełna obecność",
+    task_relationship_2_title: "Magiczne Palce",
+    task_relationship_2_desc: "Wymiana masażu z ekstrami",
+    task_relationship_3_title: "Fantazja o Przyszłości",
+    task_relationship_3_desc: "Planujcie przygody razem",
+    task_relationship_4_title: "Cardio dla Par",
+    task_relationship_4_desc: "Spacer i rozmowa bez zakłóceń",
+    task_relationship_5_title: "Głęboka Rozmowa",
+    task_relationship_5_desc: "Poza \"Jak minął dzień?\"",
+    task_relationship_6_title: "Prysznic Wdzięczności",
+    task_relationship_6_desc: "Lista doceniania wypowiedziana na głos",
+    task_relationship_7_title: "Czas Skóra-do-Skóry",
+    task_relationship_7_desc: "Połącz się fizycznie, cokolwiek to znaczy",
+    task_relationship_8_title: "Rozwiązanie Konfliktu",
+    task_relationship_8_desc: "Walcz fair, kończ mocno",
+    task_relationship_9_title: "Tryb Cheerleadera",
+    task_relationship_9_desc: "Aktywnie wspieraj ich cele",
+    task_relationship_10_title: "Codzienny Punkt Kontaktu",
+    task_relationship_10_desc: "Fizyczne połączenie, choćby krótkie",
+    task_relationship_11_title: "Werbalna Walidacja",
+    task_relationship_11_desc: "Komplementy, które mają znaczenie",
+    task_relationship_12_title: "Relacja na Pierwszym Miejscu",
+    task_relationship_12_desc: "Priorytetyzuj partnera nad produktywnością",
+    task_relationship_13_title: "Poranna Czułość",
+    task_relationship_13_desc: "Pocałunek przed sprawdzeniem telefonu",
+    task_relationship_14_title: "Wieczorne Połączenie",
+    task_relationship_14_desc: "Podaruj pełną uwagę"
   }
 };
 

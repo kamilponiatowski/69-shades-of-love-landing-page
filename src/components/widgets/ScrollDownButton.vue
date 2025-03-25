@@ -15,7 +15,7 @@
   
   // Refs
   const scrollBtn = ref<HTMLButtonElement | null>(null);
-  const showButton = ref<boolean>(true);
+  const showButton = ref<boolean>(false);
   
   // Function to scroll to bottom
   const scrollToBottom = () => {
@@ -25,17 +25,29 @@
     });
   };
   
-  // Function to check scroll position and hide button if near bottom
+  // Function to check scroll position and control button visibility
   const handleScroll = () => {
-    const scrollHeight = document.documentElement.scrollHeight;
-    const scrollTop = window.scrollY || document.documentElement.scrollTop;
-    const clientHeight = document.documentElement.clientHeight;
+    // Get header element
+    const header = document.querySelector('header');
     
-    // Hide button when user has scrolled more than 80% of the page
-    if (scrollTop + clientHeight > scrollHeight * 0.8) {
-      showButton.value = false;
-    } else {
-      showButton.value = true;
+    if (header) {
+      // Get header height and calculate threshold (half of header height)
+      const headerHeight = header.offsetHeight;
+      const threshold = headerHeight / 2;
+      
+      // Get current scroll position
+      const scrollTop = window.scrollY || document.documentElement.scrollTop;
+      
+      // Show button when scrolled past threshold
+      showButton.value = scrollTop >= threshold;
+      
+      // Additional logic: hide when near bottom (kept from original implementation)
+      const scrollHeight = document.documentElement.scrollHeight;
+      const clientHeight = document.documentElement.clientHeight;
+      
+      if (scrollTop + clientHeight > scrollHeight * 0.8) {
+        showButton.value = false;
+      }
     }
   };
   
@@ -54,7 +66,7 @@
   <style scoped>
   .scroll-down-button {
     position: fixed;
-    top: 88px;
+    top: 20px;
     right: 20px;
     width: 50px;
     height: 50px;
