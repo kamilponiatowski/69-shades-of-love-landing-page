@@ -84,6 +84,8 @@ import NewsletterPopup from '@/components/widgets/NewsletterPopup.vue';
 import NewsletterReward from '@/components/widgets/NewsletterReward.vue';
 import ScrollDownButton from '@/components/widgets/ScrollDownButton.vue';
 
+import type { TaskChangeInfo } from '@/types';
+
 // Store
 const taskStore = useTaskStore();
 const {
@@ -159,15 +161,23 @@ const {
 } = useDuckJokes(duckJokes, currentLanguage);
 
 // Task update handler
-const handleTaskUpdate = (): void => {
+const handleTaskUpdate = (changeInfo?: TaskChangeInfo): void => {
   taskStore.saveData();
-  checkAchievements(completedCount.value);
-  checkMilestones(taskStore.getCategoryProgress, triggerHeartAnimation);
+
+  // Check achievements only if the task has been selected (not unchecked)
+  if (!changeInfo || changeInfo.isNowCompleted) {
+    checkAchievements(completedCount.value);
+    checkMilestones(taskStore.getCategoryProgress, triggerHeartAnimation);
+  }
+
   checkStreak();
 
   // Check for last completed task for animations
   if (taskStore.lastCompletedTask && taskStore.lastCompletedTask.completed) {
-    showCompletionAnimation(taskStore.lastCompletedTask.categoryType);
+    const wasTaskCompleted = !changeInfo || changeInfo.isNowCompleted;
+    if (wasTaskCompleted) {
+      showCompletionAnimation(taskStore.lastCompletedTask.categoryType);
+    }
   }
 };
 

@@ -19,6 +19,7 @@
 import { computed } from 'vue';
 import { useTaskStore, type Task, type Category } from '@/stores/taskStore';
 import { useAnimation } from '@/composables/useAnimation';
+import type { TaskChangeInfo } from '@/types';
 
 // Props
 const props = defineProps<{
@@ -28,7 +29,9 @@ const props = defineProps<{
 }>();
 
 // Emits
-const emit = defineEmits(['change']);
+const emit = defineEmits<{
+  (e: 'change', changeInfo: TaskChangeInfo): void
+}>();
 
 // Store
 const taskStore = useTaskStore();
@@ -44,13 +47,20 @@ const checkboxId = computed(() => {
 // Methods
 const toggleComplete = () => {
   const wasCompleted = props.task.completed;
+  
+  // Update of task status in store
   taskStore.toggleTaskCompletion(props.categoryType, props.taskIndex);
   
+  // Show animation ONLY when task is selected (not when unselected)
   if (!wasCompleted) {
     showCompletionAnimation(props.categoryType);
   }
   
-  emit('change');
+  // Communicate the change with the previous and current state
+  emit('change', { 
+    wasCompleted, 
+    isNowCompleted: !wasCompleted 
+  });
 };
 </script>
 

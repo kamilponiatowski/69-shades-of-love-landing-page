@@ -3,6 +3,7 @@ import { ref, Ref } from 'vue';
 import { useI18n } from './useI18n';
 import type { Category } from '../stores/taskStore';
 import { getRandomTipFromAnyCategory, getRandomTip } from '../constants/achievementTips';
+import type { TaskChangeInfo } from '@/types';
 
 /**
  * Types for achievements

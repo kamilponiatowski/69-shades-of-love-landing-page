@@ -22,6 +22,7 @@ import { computed } from 'vue';
 import { useI18n } from '@/composables/useI18n';
 import { useTaskStore, type Category } from '@/stores/taskStore';
 import TodoItem from './TodoItem.vue';
+import type { TaskChangeInfo } from '@/types';
 
 // Props
 const props = defineProps<{
@@ -29,7 +30,9 @@ const props = defineProps<{
 }>();
 
 // Emits
-const emit = defineEmits(['task-updated']);
+const emit = defineEmits<{
+  (e: 'task-updated', changeInfo: TaskChangeInfo): void
+}>();
 
 // Composables
 const { t } = useI18n();
@@ -41,8 +44,8 @@ const completedCount = computed(() => {
 });
 
 // Methods
-const onTaskUpdated = () => {
-  emit('task-updated');
+const onTaskUpdated = (changeInfo: TaskChangeInfo) => {
+  emit('task-updated', changeInfo);
 };
 </script>
 
