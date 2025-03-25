@@ -2,30 +2,27 @@
     <div class="container gift-page">
         <ScrollDownButton />
         <main class="gift-content">
-            <Header customTitle="7 Quick Habits That Transform Your Day"
-                customSubtitle="Your exclusive guide to building better routines" />
+            <Header :customTitle="t('giftPageTitle')"
+                :customSubtitle="t('giftPageSubtitle')" />
 
             <div class="content-section intro-section">
-                <h2 class="section-title">Welcome to Your Free Gift!</h2>
+                <h2 class="section-title">{{ t('welcomeTitle') }}</h2>
                 <p class="section-description">
-                    Thank you for joining our newsletter! We've prepared this exclusive guide to help you
-                    enhance your daily routines with science-backed habits that can transform your productivity,
-                    wellbeing, and overall satisfaction with life. These seven powerful habits can be implemented
-                    immediately and require minimal time investment for maximum benefit.
+                    {{ t('welcomeDescription') }}
                 </p>
 
                 <div class="download-options no-print">
                     <button @click="printFullGuide" class="download-button">
-                        <i class="fas fa-file-pdf"></i> Download as PDF
+                        <i class="fas fa-file-pdf"></i> {{ t('downloadPdfButton') }}
                     </button>
                     <button @click="printHabitTracker" class="download-button">
-                        <i class="fas fa-print"></i> Printable Tracker
+                        <i class="fas fa-print"></i> {{ t('printTrackerButton') }}
                     </button>
                 </div>
             </div>
 
             <div class="content-section habits-section">
-                <h2 class="section-title">Daily Habits for Transformation</h2>
+                <h2 class="section-title">{{ t('habitsTitle') }}</h2>
 
                 <div class="habit-container">
                     <!-- Habit 1 -->
@@ -33,24 +30,23 @@
                         <div class="habit-number">1</div>
                         <div class="habit-content">
                             <h3 class="habit-title">
-                                <i class="fas fa-bullseye"></i> Start Your Day with Clear Goals
+                                <i class="fas fa-bullseye"></i> {{ t('habit1Title') }}
                             </h3>
                             <p class="habit-description">
-                                Begin each day by setting three most important goals. This will help you maintain focus
-                                and prioritize your tasks. Write them down in a notebook or app to keep them in sight.
+                                {{ t('habit1Description') }}
                             </p>
                             <div class="habit-tips">
-                                <h4>Implementation Tips:</h4>
+                                <h4>{{ t('implementationTips') }}</h4>
                                 <ul>
-                                    <li>Set your goals the night before for a more focused morning</li>
-                                    <li>Use the "MITs" (Most Important Tasks) approach to identify your priorities</li>
-                                    <li>Connect each goal to your bigger life vision for added motivation</li>
+                                    <li>{{ t('habit1Tip1') }}</li>
+                                    <li>{{ t('habit1Tip2') }}</li>
+                                    <li>{{ t('habit1Tip3') }}</li>
                                 </ul>
                             </div>
                             <div class="habit-tools">
-                                <span class="tool-tag">Todoist</span>
-                                <span class="tool-tag">Notion</span>
-                                <span class="tool-tag">Bullet Journal</span>
+                                <span class="tool-tag">{{ t('habit1Tool1') }}</span>
+                                <span class="tool-tag">{{ t('habit1Tool2') }}</span>
+                                <span class="tool-tag">{{ t('habit1Tool3') }}</span>
                             </div>
                         </div>
                     </div>
@@ -60,27 +56,23 @@
                         <div class="habit-number">2</div>
                         <div class="habit-content">
                             <h3 class="habit-title">
-                                <i class="fas fa-brain"></i> Morning Meditation
+                                <i class="fas fa-brain"></i> {{ t('habit2Title') }}
                             </h3>
                             <p class="habit-description">
-                                Dedicate 5-10 minutes to morning meditation. This will help calm your mind, reduce
-                                stress,
-                                and improve focus throughout the day. You can use apps like Headspace or Calm.
+                                {{ t('habit2Description') }}
                             </p>
                             <div class="habit-tips">
-                                <h4>Implementation Tips:</h4>
+                                <h4>{{ t('implementationTips') }}</h4>
                                 <ul>
-                                    <li>Start with just 2 minutes if you're new to meditation</li>
-                                    <li>Focus on your breath - count to four as you inhale, hold for four, exhale for
-                                        four</li>
-                                    <li>Try different techniques until you find what works for you (guided, silent,
-                                        mantra-based)</li>
+                                    <li>{{ t('habit2Tip1') }}</li>
+                                    <li>{{ t('habit2Tip2') }}</li>
+                                    <li>{{ t('habit2Tip3') }}</li>
                                 </ul>
                             </div>
                             <div class="habit-tools">
-                                <span class="tool-tag">Headspace</span>
-                                <span class="tool-tag">Calm</span>
-                                <span class="tool-tag">Insight Timer</span>
+                                <span class="tool-tag">{{ t('habit2Tool1') }}</span>
+                                <span class="tool-tag">{{ t('habit2Tool2') }}</span>
+                                <span class="tool-tag">{{ t('habit2Tool3') }}</span>
                             </div>
                         </div>
                     </div>
@@ -90,25 +82,23 @@
                         <div class="habit-number">3</div>
                         <div class="habit-content">
                             <h3 class="habit-title">
-                                <i class="fas fa-running"></i> Quick Morning Exercise
+                                <i class="fas fa-running"></i> {{ t('habit3Title') }}
                             </h3>
                             <p class="habit-description">
-                                Perform a short workout, such as 10-15 minutes of yoga or warm-up exercises.
-                                This will stimulate your body and mind for action.
+                                {{ t('habit3Description') }}
                             </p>
                             <div class="habit-tips">
-                                <h4>Implementation Tips:</h4>
+                                <h4>{{ t('implementationTips') }}</h4>
                                 <ul>
-                                    <li>Prepare your workout clothes the night before to remove friction</li>
-                                    <li>Create a "minimum viable workout" that takes just 5 minutes for low-energy days
-                                    </li>
-                                    <li>Combine with your favorite music or podcast to make it more enjoyable</li>
+                                    <li>{{ t('habit3Tip1') }}</li>
+                                    <li>{{ t('habit3Tip2') }}</li>
+                                    <li>{{ t('habit3Tip3') }}</li>
                                 </ul>
                             </div>
                             <div class="habit-tools">
-                                <span class="tool-tag">Down Dog</span>
-                                <span class="tool-tag">7 Minute Workout</span>
-                                <span class="tool-tag">FitOn</span>
+                                <span class="tool-tag">{{ t('habit3Tool1') }}</span>
+                                <span class="tool-tag">{{ t('habit3Tool2') }}</span>
+                                <span class="tool-tag">{{ t('habit3Tool3') }}</span>
                             </div>
                         </div>
                     </div>
@@ -118,25 +108,23 @@
                         <div class="habit-number">4</div>
                         <div class="habit-content">
                             <h3 class="habit-title">
-                                <i class="fas fa-apple-alt"></i> Nutritious Breakfast
+                                <i class="fas fa-apple-alt"></i> {{ t('habit4Title') }}
                             </h3>
                             <p class="habit-description">
-                                Eat a nutritious breakfast that will provide you with energy for the entire morning.
-                                Avoid sweets and choose foods rich in protein and fiber.
+                                {{ t('habit4Description') }}
                             </p>
                             <div class="habit-tips">
-                                <h4>Implementation Tips:</h4>
+                                <h4>{{ t('implementationTips') }}</h4>
                                 <ul>
-                                    <li>Prepare overnight oats or chia pudding the night before for a grab-and-go option
-                                    </li>
-                                    <li>Aim for a balance of protein, healthy fats, and complex carbohydrates</li>
-                                    <li>Stay hydrated - drink a full glass of water before your coffee or tea</li>
+                                    <li>{{ t('habit4Tip1') }}</li>
+                                    <li>{{ t('habit4Tip2') }}</li>
+                                    <li>{{ t('habit4Tip3') }}</li>
                                 </ul>
                             </div>
                             <div class="habit-tools">
-                                <span class="tool-tag">MyFitnessPal</span>
-                                <span class="tool-tag">Mealime</span>
-                                <span class="tool-tag">Yummly</span>
+                                <span class="tool-tag">{{ t('habit4Tool1') }}</span>
+                                <span class="tool-tag">{{ t('habit4Tool2') }}</span>
+                                <span class="tool-tag">{{ t('habit4Tool3') }}</span>
                             </div>
                         </div>
                     </div>
@@ -146,25 +134,23 @@
                         <div class="habit-number">5</div>
                         <div class="habit-content">
                             <h3 class="habit-title">
-                                <i class="fas fa-hourglass-half"></i> Time-Blocked Schedule with Breaks
+                                <i class="fas fa-hourglass-half"></i> {{ t('habit5Title') }}
                             </h3>
                             <p class="habit-description">
-                                Divide your day into smaller time blocks with regular breaks. This will help
-                                you avoid burnout and maintain productivity.
+                                {{ t('habit5Description') }}
                             </p>
                             <div class="habit-tips">
-                                <h4>Implementation Tips:</h4>
+                                <h4>{{ t('implementationTips') }}</h4>
                                 <ul>
-                                    <li>Try the Pomodoro Technique: 25 minutes of focused work followed by a 5-minute
-                                        break</li>
-                                    <li>Schedule your most challenging work during your peak energy hours</li>
-                                    <li>Include buffer time between tasks to accommodate unexpected interruptions</li>
+                                    <li>{{ t('habit5Tip1') }}</li>
+                                    <li>{{ t('habit5Tip2') }}</li>
+                                    <li>{{ t('habit5Tip3') }}</li>
                                 </ul>
                             </div>
                             <div class="habit-tools">
-                                <span class="tool-tag">Forest</span>
-                                <span class="tool-tag">Focus@Will</span>
-                                <span class="tool-tag">Toggl Track</span>
+                                <span class="tool-tag">{{ t('habit5Tool1') }}</span>
+                                <span class="tool-tag">{{ t('habit5Tool2') }}</span>
+                                <span class="tool-tag">{{ t('habit5Tool3') }}</span>
                             </div>
                         </div>
                     </div>
@@ -174,26 +160,23 @@
                         <div class="habit-number">6</div>
                         <div class="habit-content">
                             <h3 class="habit-title">
-                                <i class="fas fa-book"></i> Learn Something New
+                                <i class="fas fa-book"></i> {{ t('habit6Title') }}
                             </h3>
                             <p class="habit-description">
-                                Dedicate 15-30 minutes to learning something new. It could be a foreign language,
-                                a new skill, or an interesting book. Continuous growth is the key to success.
+                                {{ t('habit6Description') }}
                             </p>
                             <div class="habit-tips">
-                                <h4>Implementation Tips:</h4>
+                                <h4>{{ t('implementationTips') }}</h4>
                                 <ul>
-                                    <li>Use "learning triggers" - attach learning to an existing habit (like during your
-                                        commute)</li>
-                                    <li>Focus on application, not just consumption - try to use what you learn
-                                        immediately</li>
-                                    <li>Share what you're learning with others to reinforce your understanding</li>
+                                    <li>{{ t('habit6Tip1') }}</li>
+                                    <li>{{ t('habit6Tip2') }}</li>
+                                    <li>{{ t('habit6Tip3') }}</li>
                                 </ul>
                             </div>
                             <div class="habit-tools">
-                                <span class="tool-tag">Duolingo</span>
-                                <span class="tool-tag">Skillshare</span>
-                                <span class="tool-tag">Blinkist</span>
+                                <span class="tool-tag">{{ t('habit6Tool1') }}</span>
+                                <span class="tool-tag">{{ t('habit6Tool2') }}</span>
+                                <span class="tool-tag">{{ t('habit6Tool3') }}</span>
                             </div>
                         </div>
                     </div>
@@ -203,25 +186,23 @@
                         <div class="habit-number">7</div>
                         <div class="habit-content">
                             <h3 class="habit-title">
-                                <i class="fas fa-moon"></i> Evening Review
+                                <i class="fas fa-moon"></i> {{ t('habit7Title') }}
                             </h3>
                             <p class="habit-description">
-                                Before bed, review what you managed to achieve during the day. Write down your
-                                accomplishments and plan for tomorrow. This will help you maintain motivation
-                                and a sense of fulfillment.
+                                {{ t('habit7Description') }}
                             </p>
                             <div class="habit-tips">
-                                <h4>Implementation Tips:</h4>
+                                <h4>{{ t('implementationTips') }}</h4>
                                 <ul>
-                                    <li>Practice gratitude by noting three good things that happened during the day</li>
-                                    <li>Reflect on lessons learned - what went well and what could be improved</li>
-                                    <li>Prepare your environment for tomorrow's morning routine</li>
+                                    <li>{{ t('habit7Tip1') }}</li>
+                                    <li>{{ t('habit7Tip2') }}</li>
+                                    <li>{{ t('habit7Tip3') }}</li>
                                 </ul>
                             </div>
                             <div class="habit-tools">
-                                <span class="tool-tag">Day One</span>
-                                <span class="tool-tag">Five Minute Journal</span>
-                                <span class="tool-tag">Notion</span>
+                                <span class="tool-tag">{{ t('habit7Tool1') }}</span>
+                                <span class="tool-tag">{{ t('habit7Tool2') }}</span>
+                                <span class="tool-tag">{{ t('habit7Tool3') }}</span>
                             </div>
                         </div>
                     </div>
@@ -230,63 +211,61 @@
 
             <!-- Habit Tracker Section - hidden in full guide print -->
             <div id="habit-tracker-section" class="content-section tracker-section print-tracker-only-visible">
-                <h2 class="section-title">21-Day Habit Building Challenge</h2>
+                <h2 class="section-title">{{ t('trackerTitle') }}</h2>
                 <p class="section-description">
-                    Research shows it takes about 21 days to form a simple habit. Use this tracker to monitor
-                    your progress with these seven transformative habits. Remember, consistency is more important
-                    than perfection!
+                    {{ t('trackerDescription') }}
                 </p>
 
                 <div class="habit-tracker">
                     <div class="tracker-header">
-                        <div class="tracker-cell header-cell">Habit</div>
+                        <div class="tracker-cell header-cell">{{ t('habitColumnHeader') }}</div>
                         <div v-for="day in 21" :key="day" class="tracker-cell day-cell">{{ day }}</div>
                     </div>
 
                     <div class="tracker-row">
-                        <div class="tracker-cell habit-cell">Morning Goals</div>
+                        <div class="tracker-cell habit-cell">{{ t('habit1ShortName') }}</div>
                         <div v-for="day in 21" :key="day" class="tracker-cell checkbox-cell">
                             <div class="checkbox-placeholder"></div>
                         </div>
                     </div>
 
                     <div class="tracker-row">
-                        <div class="tracker-cell habit-cell">Meditation</div>
+                        <div class="tracker-cell habit-cell">{{ t('habit2ShortName') }}</div>
                         <div v-for="day in 21" :key="day" class="tracker-cell checkbox-cell">
                             <div class="checkbox-placeholder"></div>
                         </div>
                     </div>
 
                     <div class="tracker-row">
-                        <div class="tracker-cell habit-cell">Morning Exercise</div>
+                        <div class="tracker-cell habit-cell">{{ t('habit3ShortName') }}</div>
                         <div v-for="day in 21" :key="day" class="tracker-cell checkbox-cell">
                             <div class="checkbox-placeholder"></div>
                         </div>
                     </div>
 
                     <div class="tracker-row">
-                        <div class="tracker-cell habit-cell">Healthy Breakfast</div>
+                        <div class="tracker-cell habit-cell">{{ t('habit4ShortName') }}</div>
                         <div v-for="day in 21" :key="day" class="tracker-cell checkbox-cell">
                             <div class="checkbox-placeholder"></div>
                         </div>
                     </div>
 
                     <div class="tracker-row">
-                        <div class="tracker-cell habit-cell">Time Blocking</div>
+                        <div class="tracker-cell habit-cell">{{ t('habit5ShortName') }}</div>
                         <div v-for="day in 21" :key="day" class="tracker-cell checkbox-cell">
                             <div class="checkbox-placeholder"></div>
                         </div>
                     </div>
 
                     <div class="tracker-row">
-                        <div class="tracker-cell habit-cell">Learn Something</div>
+                        <div class="tracker-cell habit-cell">{{ t('habit6ShortName') }}</div>
                         <div v-for="day in 21" :key="day" class="tracker-cell checkbox-cell">
                             <div class="checkbox-placeholder"></div>
                         </div>
                     </div>
 
                     <div class="tracker-row">
-                        <div class="tracker-cell habit-cell">Evening Review</div>
+                        <div class="tracker-cell habit-cell">{{ t('habit7ShortName') }}</div>
                         <div v-for="day in 21" :key="day" class="tracker-cell checkbox-cell">
                             <div class="checkbox-placeholder"></div>
                         </div>
@@ -296,54 +275,52 @@
 
             <!-- Additional Resources Section -->
             <div class="content-section resources-section">
-                <h2 class="section-title">Additional Resources</h2>
+                <h2 class="section-title">{{ t('resourcesTitle') }}</h2>
                 <p class="section-description">
-                    Here are some carefully selected resources to help you deepen your understanding and mastery of
-                    these habits.
+                    {{ t('resourcesDescription') }}
                 </p>
 
                 <div class="resources-grid">
                     <div class="resource-card">
                         <div class="resource-icon"><i class="fas fa-book"></i></div>
-                        <h3>Recommended Books</h3>
+                        <h3>{{ t('recommendedBooks') }}</h3>
                         <ul>
-                            <li>Atomic Habits by James Clear</li>
-                            <li>Deep Work by Cal Newport</li>
-                            <li>The Miracle Morning by Hal Elrod</li>
-                            <li>Tiny Habits by BJ Fogg</li>
+                            <li>{{ t('book1') }}</li>
+                            <li>{{ t('book2') }}</li>
+                            <li>{{ t('book3') }}</li>
+                            <li>{{ t('book4') }}</li>
                         </ul>
                     </div>
 
                     <div class="resource-card">
                         <div class="resource-icon"><i class="fas fa-podcast"></i></div>
-                        <h3>Recommended Podcasts</h3>
+                        <h3>{{ t('recommendedPodcasts') }}</h3>
                         <ul>
-                            <li>The Tim Ferriss Show</li>
-                            <li>Optimal Living Daily</li>
-                            <li>The Science of Success</li>
-                            <li>The Habit Coach</li>
+                            <li>{{ t('podcast1') }}</li>
+                            <li>{{ t('podcast2') }}</li>
+                            <li>{{ t('podcast3') }}</li>
+                            <li>{{ t('podcast4') }}</li>
                         </ul>
                     </div>
 
                     <div class="resource-card">
                         <div class="resource-icon"><i class="fas fa-laptop"></i></div>
-                        <h3>Online Courses</h3>
+                        <h3>{{ t('onlineCourses') }}</h3>
                         <ul>
-                            <li>The Science of Well-Being (Yale/Coursera)</li>
-                            <li>Learning How to Learn (Coursera)</li>
-                            <li>A Life of Happiness and Fulfillment (Coursera)</li>
-                            <li>Productivity Masterclass (Skillshare)</li>
+                            <li>{{ t('course1') }}</li>
+                            <li>{{ t('course2') }}</li>
+                            <li>{{ t('course3') }}</li>
+                            <li>{{ t('course4') }}</li>
                         </ul>
                     </div>
 
                     <div class="resource-card">
                         <div class="resource-icon"><i class="fas fa-quote-right"></i></div>
-                        <h3>Inspiring Quotes</h3>
+                        <h3>{{ t('inspiringQuotes') }}</h3>
                         <ul>
-                            <li>"We are what we repeatedly do. Excellence, then, is not an act, but a habit." -
-                                Aristotle</li>
-                            <li>"Habits are the compound interest of self-improvement." - James Clear</li>
-                            <li>"Your future is created by what you do today, not tomorrow." - Robert Kiyosaki</li>
+                            <li>{{ t('quote1') }}</li>
+                            <li>{{ t('quote2') }}</li>
+                            <li>{{ t('quote3') }}</li>
                         </ul>
                     </div>
                 </div>
@@ -351,7 +328,7 @@
 
             <div class="navigation-links no-print">
                 <router-link to="/" class="back-link">
-                    <i class="fas fa-arrow-left"></i> Back to Self-Care Journey
+                    <i class="fas fa-arrow-left"></i> {{ t('backToJourney') }}
                 </router-link>
             </div>
         </main>
@@ -362,12 +339,16 @@
 
 <script setup lang="ts">
 import { useRouter } from 'vue-router';
+import { useI18n } from '@/composables/useI18n';
 import Header from '@/components/layout/Header.vue';
 import Footer from '@/components/layout/Footer.vue';
 import ScrollDownButton from '@/components/widgets/ScrollDownButton.vue';
 
 // Router
 const router = useRouter();
+
+// I18n
+const { t } = useI18n();
 
 // Print functions
 const printFullGuide = () => {

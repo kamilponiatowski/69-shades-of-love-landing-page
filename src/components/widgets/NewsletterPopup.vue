@@ -114,7 +114,7 @@ const updateName = (event: Event) => {
 // Get newsletter benefits list directly from translations
 const getNewsletterBenefits = () => {
   const { currentLanguage } = useI18n();
-  const lang = currentLanguage.value;
+  const lang = currentLanguage.value || 'en';
   
   // Get benefits list directly from translations object
   const benefitsList = translations[lang]?.newsletterBenefitsList || 

@@ -14,7 +14,7 @@ interface DuckJokes {
  * @param currentLanguage - Reference to current language
  * @returns Duck joke related methods and state
  */
-export function useDuckJokes(duckJokes: DuckJokes, currentLanguage: Ref<Language>) {
+export function useDuckJokes(duckJokes: DuckJokes, currentLanguage: Ref<Language | undefined>) {
     const showDuckJoke = ref<boolean>(false);
     const currentDuckJoke = ref<string>('');
     const duckAudio = ref<HTMLAudioElement | null>(null);
@@ -27,7 +27,9 @@ export function useDuckJokes(duckJokes: DuckJokes, currentLanguage: Ref<Language
         playDuckSound();
         
         // Select random joke based on current language
-        const jokes = duckJokes[currentLanguage.value] || duckJokes.en;
+        // Use English as fallback if currentLanguage is undefined
+        const lang = currentLanguage.value || 'en';
+        const jokes = duckJokes[lang] || duckJokes.en;
         const randomJoke = jokes[Math.floor(Math.random() * jokes.length)];
         currentDuckJoke.value = randomJoke;
         

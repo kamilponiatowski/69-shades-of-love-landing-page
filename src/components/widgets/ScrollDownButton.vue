@@ -54,7 +54,7 @@
   <style scoped>
   .scroll-down-button {
     position: fixed;
-    top: 20px;
+    top: 88px;
     right: 20px;
     width: 50px;
     height: 50px;

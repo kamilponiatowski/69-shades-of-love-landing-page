@@ -2,36 +2,39 @@
     <div class="container quotes-page">
         <ScrollDownButton />
         <main class="quotes-content">
-            <Header customTitle="Pop Culture Wisdom"
-                customSubtitle="Geek-inspired quotes to transform into your best self" />
+            <Header :customTitle="t('quotesPageTitle')"
+                :customSubtitle="t('quotesPageSubtitle')" />
 
             <div class="content-section intro-section">
-                <h2 class="section-title">Thank You For Joining Our Newsletter!</h2>
+                <h2 class="section-title">{{ t('quotesThankYouTitle') }}</h2>
                 <p class="section-description">
-                    As a special thank you, we've curated this collection of inspiring quotes from your favorite
-                    movies, TV shows, comics, and books. Let these words of wisdom from the geek universe guide your
-                    self-improvement journey!
+                    {{ t('quotesThankYouDescription') }}
                 </p>
                 <div class="intro-note">
                     <i class="fas fa-envelope"></i>
-                    <p>Check your inbox to confirm your email and get your free <strong>"7 Quick Habits That Transform
-                            Your Day"</strong> guide!</p>
+                    <p v-html="t('checkInboxMessage')"></p>
                 </div>
 
                 <div class="intro-note easter-egg-note">
                     <i class="fas fa-heart purple-heart"></i>
-                    <p>You're now part of our flock! You can always return to the main page by clicking the purple heart
-                        in the footer.</p>
+                    <p>{{ t('membershipNote') }}</p>
                 </div>
             </div>
 
             <div class="content-section quotes-section">
-                <h2 class="section-title">Words of Wisdom From Different Universes</h2>
+                <h2 class="section-title">{{ t('quotesWisdomTitle') }}</h2>
 
                 <div class="quotes-filter">
+                    <button 
+                        :class="['filter-button', { active: selectedCategory === 'all' }]"
+                        @click="selectedCategory = 'all'"
+                    >
+                        {{ t('allCategories') }}
+                    </button>
                     <button v-for="category in categories" :key="category"
                         :class="['filter-button', { active: selectedCategory === category }]"
-                        @click="selectedCategory = (selectedCategory === category) ? 'all' : category">
+                        @click="selectedCategory = (selectedCategory === category) ? 'all' : category"
+                    >
                         {{ category }}
                     </button>
                 </div>
@@ -59,10 +62,9 @@
             </div>
 
             <div class="content-section application-section">
-                <h2 class="section-title">Applying These Lessons</h2>
+                <h2 class="section-title">{{ t('applicationTitle') }}</h2>
                 <p class="section-description">
-                    Wisdom from fictional worlds can be surprisingly applicable to our own lives. Here are some ways
-                    to use these quotes in your self-improvement journey:
+                    {{ t('applicationDescription') }}
                 </p>
 
                 <div class="application-grid">
@@ -70,10 +72,9 @@
                         <div class="application-icon">
                             <i class="fas fa-bookmark"></i>
                         </div>
-                        <h3>Daily Reminders</h3>
+                        <h3>{{ t('dailyRemindersTitle') }}</h3>
                         <p>
-                            Choose your favorite quote and make it your phone wallpaper or place it somewhere you'll see
-                            each day as a reminder of your goals.
+                            {{ t('dailyRemindersDescription') }}
                         </p>
                     </div>
 
@@ -81,10 +82,9 @@
                         <div class="application-icon">
                             <i class="fas fa-journal-whills"></i>
                         </div>
-                        <h3>Reflection Journal</h3>
+                        <h3>{{ t('reflectionJournalTitle') }}</h3>
                         <p>
-                            Use these quotes as journaling prompts. Write about how the wisdom applies to challenges
-                            you're currently facing.
+                            {{ t('reflectionJournalDescription') }}
                         </p>
                     </div>
 
@@ -92,10 +92,9 @@
                         <div class="application-icon">
                             <i class="fas fa-users"></i>
                         </div>
-                        <h3>Share the Wisdom</h3>
+                        <h3>{{ t('shareWisdomTitle') }}</h3>
                         <p>
-                            Discuss these ideas with friends who appreciate the same stories. Different perspectives
-                            can reveal deeper meanings.
+                            {{ t('shareWisdomDescription') }}
                         </p>
                     </div>
 
@@ -103,10 +102,9 @@
                         <div class="application-icon">
                             <i class="fas fa-theater-masks"></i>
                         </div>
-                        <h3>Character Inspiration</h3>
+                        <h3>{{ t('characterInspirationTitle') }}</h3>
                         <p>
-                            When facing a difficult situation, ask yourself what your favorite character would do,
-                            using their journey as inspiration.
+                            {{ t('characterInspirationDescription') }}
                         </p>
                     </div>
                 </div>
@@ -114,7 +112,7 @@
 
             <div class="navigation-links">
                 <router-link to="/" class="back-link">
-                    <i class="fas fa-arrow-left"></i> Back to Self-Care Journey
+                    <i class="fas fa-arrow-left"></i> {{ t('backToJourney') }}
                 </router-link>
             </div>
         </main>
@@ -126,12 +124,16 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue';
 import { useRouter } from 'vue-router';
+import { useI18n } from '@/composables/useI18n';
 import Header from '@/components/layout/Header.vue';
 import Footer from '@/components/layout/Footer.vue';
 import ScrollDownButton from '@/components/widgets/ScrollDownButton.vue';
 
 // Router
 const router = useRouter();
+
+// I18n
+const { t } = useI18n();
 
 // Data structure for quotes
 interface Quote {

@@ -1,15 +1,30 @@
 // @/composables/useI18n.ts
-import { ref, computed } from 'vue';
+import { ref, computed, provide, inject, ComputedRef } from 'vue';
 import { translations } from '../locales';
 
 // Types
 export type TranslationKey = string;
 export type Language = 'en' | 'pl';
 
+// Symbol for provide/inject pattern
+export const I18N_KEY = Symbol('i18n');
+
 // Define a type for translation objects with string index signature
 export interface TranslationObject {
   [key: string]: string | string[];
 }
+
+export interface I18nInstance {
+  currentLanguage: ReturnType<typeof ref<Language>>;
+  t: (key: TranslationKey, ...params: any[]) => string;
+  getRawTranslation: (key: TranslationKey) => string | string[] | undefined;
+  setLanguage: (lang: Language) => void;
+  loadSavedLanguage: () => void;
+  availableLanguages: ComputedRef<Language[]>;
+}
+
+// Shared singleton instance
+let instance: I18nInstance | null = null;
 
 /**
  * Internationalization composable
@@ -17,7 +32,7 @@ export interface TranslationObject {
  * 
  * @returns Translation functions and language state
  */
-export function useI18n() {
+export function createI18n(): I18nInstance {
   /**
    * Detects browser language preference
    * @returns Detected language code ('en' or 'pl')
@@ -67,7 +82,7 @@ export function useI18n() {
   const getRawTranslation = (key: TranslationKey): string | string[] | undefined => {
     const lang = currentLanguage.value;
     const translationObj = translations[lang] as TranslationObject || 
-                           translations.en as TranslationObject;
+                         translations.en as TranslationObject;
     
     return translationObj[key];
   };
@@ -109,9 +124,13 @@ export function useI18n() {
   };
 
   // Available languages for UI language switcher
-  const availableLanguages = computed<Language[]>(() => 
-    Object.keys(translations) as Language[]
-  );
+  // Changed to explicitly type as ComputedRef<Language[]>
+  const availableLanguages: ComputedRef<Language[]> = computed(() => {
+    return Object.keys(translations) as Language[];
+  });
+
+  // Load saved language on initialization
+  loadSavedLanguage();
 
   return {
     currentLanguage,
@@ -121,4 +140,41 @@ export function useI18n() {
     loadSavedLanguage,
     availableLanguages
   };
+}
+
+/**
+ * Internationalization composable
+ * Uses singleton pattern to ensure the same instance is used across components
+ * 
+ * @returns Translation functions and language state
+ */
+export function useI18n(): I18nInstance {
+  // Try to get existing instance from provide/inject
+  const existingInstance = inject<I18nInstance | null>(I18N_KEY, null);
+  if (existingInstance) {
+    return existingInstance;
+  }
+
+  // Create or reuse singleton instance
+  if (!instance) {
+    instance = createI18n();
+  }
+
+  return instance;
+}
+
+/**
+ * Provides i18n instance to all child components
+ * Call this in your App.vue or main.ts
+ */
+export function provideI18n(): I18nInstance {
+  // Create or reuse singleton instance
+  if (!instance) {
+    instance = createI18n();
+  }
+
+  // Provide to all child components
+  provide(I18N_KEY, instance);
+
+  return instance;
 }

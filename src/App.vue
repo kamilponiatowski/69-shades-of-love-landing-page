@@ -1,7 +1,16 @@
 <template>
-    <router-view />
-  </template>
+  <router-view />
+</template>
   
-  <script setup lang="ts">
-  // App level setup - This can remain empty as router will manage view transitions
-  </script>
+<script setup lang="ts">
+import { onMounted } from 'vue';
+import { provideI18n } from './composables/useI18n';
+
+// Initialize and provide i18n to all components
+const i18n = provideI18n();
+
+// Load saved language preference on app start
+onMounted(() => {
+  i18n.loadSavedLanguage();
+});
+</script>

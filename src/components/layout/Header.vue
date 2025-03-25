@@ -9,6 +9,26 @@
       >
         <h1 class="main-title">{{ customTitle || t('mainTitle') }}</h1>
       </router-link>
+      
+      <!-- Language Switcher -->
+      <div class="language-switcher">
+        <button 
+          class="lang-btn" 
+          :class="{ active: currentLanguage === 'pl' }" 
+          @click="changeLanguage('pl')" 
+          aria-label="Zmień język na polski"
+        >
+          PL
+        </button>
+        <button 
+          class="lang-btn" 
+          :class="{ active: currentLanguage === 'en' }" 
+          @click="changeLanguage('en')" 
+          aria-label="Switch language to English"
+        >
+          EN
+        </button>
+      </div>
     </div>
     <p class="subtitle">{{ customSubtitle || t('subtitle') }}</p>
     <!-- Dedication for Muszka -->
@@ -50,7 +70,12 @@ defineProps({
 defineEmits(['tell-duck-joke']);
 
 // Composables
-const { t } = useI18n();
+const { t, currentLanguage, setLanguage } = useI18n();
+
+// Language switching function
+const changeLanguage = (lang: 'en' | 'pl') => {
+  setLanguage(lang);
+};
 </script>
 
 <style scoped>
@@ -68,5 +93,59 @@ const { t } = useI18n();
   outline: 3px solid var(--main-color);
   outline-offset: 4px;
   border-radius: 5px;
+}
+
+/* Language Switcher Styles */
+.logo-container {
+  position: relative;
+  width: 100%;
+}
+
+.language-switcher {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  display: flex;
+  gap: 5px;
+  border-radius: 20px;
+  background-color: rgba(255, 255, 255, 0.7);
+  padding: 3px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.lang-btn {
+  background: none;
+  border: none;
+  color: #666;
+  font-weight: bold;
+  font-size: 0.9rem;
+  padding: 5px 10px;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.lang-btn:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.lang-btn.active {
+  background-color: var(--main-color);
+  color: white;
+}
+
+/* Responsive styles for language switcher */
+@media (max-width: 768px) {
+  .language-switcher {
+    top: 0;
+    right: 0;
+    transform: none;
+  }
+  
+  .lang-btn {
+    padding: 4px 8px;
+    font-size: 0.8rem;
+  }
 }
 </style>

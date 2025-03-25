@@ -7,8 +7,8 @@
     {{ t('footerMid') }}
     <a href="mailto:poniatowski.dev@gmail.com">poniatowski.dev@gmail.com</a> Created with Kamil Poniatowski & 🥷🏻先生 Tim Polka-Nawioski 🙇
     <div class="footer-actions">
-      <button @click="resetAppData" class="reset-button" title="Reset całkowicie wyczyści postęp aplikacji">
-        <i class="fas fa-trash-alt"></i> Reset App
+      <button @click="resetAppData" class="reset-button" :title="t('resetConfirmMessage')">
+        <i class="fas fa-trash-alt"></i> {{ t('resetButtonText') }}
       </button>
     </div>
   </footer>
@@ -24,7 +24,7 @@ const router = useRouter();
 
 // Function to reset application data
 const resetAppData = () => {
-  if (confirm('Czy na pewno chcesz zresetować wszystkie dane aplikacji? Ta operacja jest nieodwracalna.')) {
+  if (confirm(t('resetConfirmMessage'))) {
     // List of keys to be deleted from localStorage
     const keysToRemove = [
       'selfCareData',
@@ -46,7 +46,7 @@ const resetAppData = () => {
       }
     });
     
-    alert('All data has been reset. The page will be refreshed.');
+    alert(t('resetSuccessMessage'));
     
     window.location.reload();
   }
