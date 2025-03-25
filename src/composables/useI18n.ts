@@ -1,4 +1,3 @@
-// @/composables/useI18n.ts
 import { ref, computed, provide, inject, ComputedRef } from 'vue';
 import { translations } from '../locales';
 
@@ -11,13 +10,21 @@ export const I18N_KEY = Symbol('i18n');
 
 // Define a type for translation objects with string index signature
 export interface TranslationObject {
-  [key: string]: string | string[];
+  [key: string]: string | string[] | Quote[] | Record<string, any>;
+}
+
+export interface Quote {
+  text: string;
+  source: string;
+  character: string;
+  universe: string;
+  category: string;
 }
 
 export interface I18nInstance {
   currentLanguage: ReturnType<typeof ref<Language>>;
   t: (key: TranslationKey, ...params: any[]) => string;
-  getRawTranslation: (key: TranslationKey) => string | string[] | undefined;
+  getRawTranslation: (key: TranslationKey) => string | string[] | Quote[] | undefined;
   setLanguage: (lang: Language) => void;
   loadSavedLanguage: () => void;
   availableLanguages: ComputedRef<Language[]>;
@@ -79,18 +86,31 @@ export function createI18n(): I18nInstance {
    * @param key - Translation key
    * @returns The raw translation value (can be string or string[])
    */
-  const getRawTranslation = (key: TranslationKey): string | string[] | undefined => {
+  const getRawTranslation = (key: TranslationKey): string | string[] | Quote[] | undefined => {
     const lang = currentLanguage.value;
     const translationObj = translations[lang] as TranslationObject || 
                          translations.en as TranslationObject;
     
-    return translationObj[key];
+    const value = translationObj[key];
+    
+    if (Array.isArray(value)) {
+      if (value.length > 0 && 'text' in value[0]) {
+        return value as Quote[];
+      }
+      return value as string[];
+    }
+    
+    if (typeof value === 'string') {
+      return value;
+    }
+    
+    return undefined;
   };
-
+  
   /**
    * Translates a key using the current language
    * Supports parameter replacement using {0}, {1}, etc. format
-   * Note: Arrays will be joined with commas
+   * Note: Arrays will be converted to JSON string
    * 
    * @param key - Translation key
    * @param params - Parameters to substitute in the translation
@@ -98,18 +118,17 @@ export function createI18n(): I18nInstance {
    */
   const t = (key: TranslationKey, ...params: any[]): string => {
     try {
-      // Get translation value or fallback to key itself
-      const value = getRawTranslation(key) || key;
+      const value = getRawTranslation(key);
       
-      // Convert arrays to string if needed
       let text: string;
       if (Array.isArray(value)) {
-        text = value.join(', ');
-      } else {
+        text = JSON.stringify(value);
+      } else if (typeof value === 'string') {
         text = value;
+      } else {
+        text = key;
       }
       
-      // Substitute parameters if available
       if (params.length > 0) {
         params.forEach((param, index) => {
           text = text.replace(`{${index}}`, String(param));

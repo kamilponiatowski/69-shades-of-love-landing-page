@@ -5,11 +5,8 @@ import type { TranslationObject } from '../composables/useI18n';
  * Application translations
  * Contains text strings in English and Polish
  */
-export interface Translations {
-  [key: string]: TranslationObject;
-}
 
-export const translations: Translations = {
+export const translations: TranslationObject = {
   en: {
     mainTitle: "69 Shades of Love",
     subtitle: "Your Self-Care Journey",
@@ -386,7 +383,233 @@ export const translations: Translations = {
     task_relationship_13_title: "Morning Affection",
     task_relationship_13_desc: "Kiss before phone check",
     task_relationship_14_title: "Evening Reconnection",
-    task_relationship_14_desc: "Share your full attention"
+    task_relationship_14_desc: "Share your full attention",
+    quotesList: JSON.stringify([
+      {
+        text: "With great power comes great responsibility.",
+        source: "Spider-Man",
+        character: "Uncle Ben",
+        universe: "Marvel",
+        category: "Resilience"
+      },
+      {
+        text: "Do or do not, there is no try.",
+        source: "Star Wars: The Empire Strikes Back",
+        character: "Yoda",
+        universe: "Star Wars",
+        category: "Motivation"
+      },
+      {
+        text: "It's not who I am underneath, but what I do that defines me.",
+        source: "Batman Begins",
+        character: "Batman",
+        universe: "DC Comics",
+        category: "Identity"
+      },
+      {
+        text: "All we have to decide is what to do with the time that is given to us.",
+        source: "The Lord of the Rings",
+        character: "Gandalf",
+        universe: "Middle-earth",
+        category: "Perspective"
+      },
+      {
+        text: "The hardest choices require the strongest wills.",
+        source: "Avengers: Infinity War",
+        character: "Thanos",
+        universe: "Marvel",
+        category: "Challenges"
+      },
+      {
+        text: "It is our choices that show what we truly are, far more than our abilities.",
+        source: "Harry Potter and the Chamber of Secrets",
+        character: "Albus Dumbledore",
+        universe: "Harry Potter",
+        category: "Identity"
+      },
+      {
+        text: "I can do this all day.",
+        source: "Captain America: Civil War",
+        character: "Steve Rogers",
+        universe: "Marvel",
+        category: "Resilience"
+      },
+      {
+        text: "The way I see it, if you want the rainbow, you gotta put up with the rain.",
+        source: "The Good Place",
+        character: "Dolly Parton (quoted by Eleanor)",
+        universe: "NBC",
+        category: "Perspective"
+      },
+      {
+        text: "Sometimes life is like this dark tunnel. You can't always see the light at the end of the tunnel, but if you just keep moving, you will come to a better place.",
+        source: "Avatar: The Last Airbender",
+        character: "Uncle Iroh",
+        universe: "Avatar",
+        category: "Resilience"
+      },
+      {
+        text: "A person is smart. People are dumb, panicky, dangerous animals.",
+        source: "Men in Black",
+        character: "Agent K",
+        universe: "MIB",
+        category: "Perspective"
+      },
+      {
+        text: "The real voyage of discovery consists not in seeking new landscapes, but in having new eyes.",
+        source: "Westworld",
+        character: "Dolores Abernathy",
+        universe: "HBO",
+        category: "Growth"
+      },
+      {
+        text: "Wubba lubba dub dub!",
+        source: "Rick and Morty",
+        character: "Rick Sanchez",
+        universe: "Adult Swim",
+        category: "Humor"
+      },
+      {
+        text: "The greatest teacher, failure is.",
+        source: "Star Wars: The Last Jedi",
+        character: "Yoda",
+        universe: "Star Wars",
+        category: "Growth"
+      },
+      {
+        text: "You're more than what you have become.",
+        source: "The Lion King",
+        character: "Mufasa",
+        universe: "Disney",
+        category: "Identity"
+      },
+      {
+        text: "I'm Mary Poppins, y'all!",
+        source: "Guardians of the Galaxy Vol. 2",
+        character: "Yondu",
+        universe: "Marvel",
+        category: "Humor"
+      },
+      {
+        text: "Sometimes it is the people who no one imagines anything of who do the things that no one can imagine.",
+        source: "The Imitation Game",
+        character: "Alan Turing",
+        universe: "Historical",
+        category: "Motivation"
+      },
+      {
+        text: "This is the way.",
+        source: "The Mandalorian",
+        character: "Din Djarin",
+        universe: "Star Wars",
+        category: "Identity"
+      },
+      {
+        text: "The future is worth it. All the pain. All the tears. The future is worth the fight.",
+        source: "Babylon 5",
+        character: "Cmdr. Susan Ivanova",
+        universe: "B5",
+        category: "Resilience"
+      },
+      {
+        text: "That's the thing about chaos, it's fair.",
+        source: "Joker",
+        character: "Arthur Fleck",
+        universe: "DC Comics",
+        category: "Perspective"
+      },
+      {
+        text: "Inside of us, there are two wolves. One is evil. The other is good. The one that wins is the one you feed.",
+        source: "The Walking Dead",
+        character: "Morgan Jones",
+        universe: "AMC",
+        category: "Growth"
+      },
+      {
+        text: "I know what it's like to lose. To feel so desperately that you're right, yet to fail nonetheless.",
+        source: "Avengers: Infinity War",
+        character: "Thanos",
+        universe: "Marvel",
+        category: "Challenges"
+      },
+      {
+        text: "It's what you do right now that makes a difference.",
+        source: "Black Panther",
+        character: "T'Challa",
+        universe: "Marvel",
+        category: "Motivation"
+      },
+      {
+        text: "You are who you choose to be.",
+        source: "The Iron Giant",
+        character: "The Iron Giant",
+        universe: "Animation",
+        category: "Identity"
+      },
+      {
+        text: "Inside everyone is a person they are trying to hide.",
+        source: "Hazbin Hotel",
+        character: "Charlie",
+        universe: "Adult Animation",
+        category: "Identity"
+      },
+      {
+        text: "The Dude abides.",
+        source: "The Big Lebowski",
+        character: "The Dude",
+        universe: "Coen Brothers",
+        category: "Perspective"
+      },
+      {
+        text: "Life finds a way.",
+        source: "Jurassic Park",
+        character: "Dr. Ian Malcolm",
+        universe: "Jurassic Park",
+        category: "Resilience"
+      },
+      {
+        text: "I find your lack of faith disturbing.",
+        source: "Star Wars: A New Hope",
+        character: "Darth Vader",
+        universe: "Star Wars",
+        category: "Motivation"
+      },
+      {
+        text: "I'm going to make him an offer he can't refuse.",
+        source: "The Godfather",
+        character: "Don Vito Corleone",
+        universe: "Mob Films",
+        category: "Challenges"
+      },
+      {
+        text: "I need my paddles!",
+        source: "Pulp Fiction",
+        character: "Vincent Vega",
+        universe: "Tarantino",
+        category: "Humor"
+      },
+      {
+        text: "The ability to speak does not make you intelligent.",
+        source: "Star Wars: The Phantom Menace",
+        character: "Qui-Gon Jinn",
+        universe: "Star Wars",
+        category: "Perspective"
+      },
+      {
+        text: "I will not say: do not weep; for not all tears are an evil.",
+        source: "The Return of the King",
+        character: "Gandalf",
+        universe: "Middle-earth",
+        category: "Emotions"
+      },
+      {
+        text: "I'm going to find my crew. I'm going to be King of the Pirates!",
+        source: "One Piece",
+        character: "Monkey D. Luffy",
+        universe: "Anime",
+        category: "Motivation"
+      }
+    ])
   },
   pl: {
     mainTitle: "69 Odcieni Miłości",
@@ -460,7 +683,7 @@ export const translations: Translations = {
     newsletterBenefitsTitle: "Co otrzymasz:",
     newsletterBenefitsList: [
       "Darmowy prezent: poradnik '7 szybkich nawyków, które transformują Twój dzień' (tuż po potwierdzeniu e-mail'a)",
-      "Mądrość z Pop-kultury - Cycacy z geekowych produkcji, które pomogą Ci zobaczyć świat z nowej perspektywy",
+      "Mądrość z Pop-Kultury - Cycacy z geekowych produkcji, które pomogą Ci zobaczyć świat z nowej perspektywy",
       "Kaczastyczne porady budowania nawyków",
       "Wczesny dostęp do nowych funkcji",
       "Specjalne zniżki na treści premium"
@@ -617,7 +840,6 @@ export const translations: Translations = {
     quote1: "\"Jesteśmy tym, co regularnie robimy. Doskonałość nie jest więc aktem, lecz nawykiem.\" - Arystoteles",
     quote2: "\"Nawyki są procentem składanym samodoskonalenia.\" - James Clear",
     quote3: "\"Twoja przyszłość jest tworzona przez to, co robisz dzisiaj, a nie jutro.\" - Robert Kiyosaki",
-    // Tłumaczenia zadań w języku polskim - dodaj do sekcji 'pl' w pliku src/locales/index.ts
 
     // PHYSICAL TASKS
     task_physical_1_title: "Tryb Śpiącej Królewny",
@@ -763,7 +985,233 @@ export const translations: Translations = {
     task_relationship_13_title: "Poranna Czułość",
     task_relationship_13_desc: "Pocałunek przed sprawdzeniem telefonu",
     task_relationship_14_title: "Wieczorne Połączenie",
-    task_relationship_14_desc: "Podaruj pełną uwagę"
+    task_relationship_14_desc: "Podaruj pełną uwagę",
+    quotesList: JSON.stringify([
+      {
+        text: "Z wielką mocą przychodzi wielka odpowiedzialność.",
+        source: "Spider-Man",
+        character: "Wujek Ben",
+        universe: "Marvel",
+        category: "Resilience"
+      },
+      {
+        text: "Zrób albo nie zrób, nie ma próbowania.",
+        source: "Gwiezdne Wojny: Imperium kontratakuje",
+        character: "Yoda",
+        universe: "Gwiezdne Wojny",
+        category: "Motivation"
+      },
+      {
+        text: "Nie to, kim jestem w środku, ale to, co robię, definiuje mnie.",
+        source: "Batman - Początek",
+        character: "Batman",
+        universe: "Komiksy DC",
+        category: "Identity"
+      },
+      {
+        text: "Musimy zdecydować, co zrobić z czasem, który nam został dany.",
+        source: "Władca Pierścieni",
+        character: "Gandalf",
+        universe: "Śródziemie",
+        category: "Perspective"
+      },
+      {
+        text: "Najtrudniejsze wybory wymagają najsilniejszej woli.",
+        source: "Avengers: Wojna Nieskończoności",
+        character: "Thanos",
+        universe: "Marvel",
+        category: "Challenges"
+      },
+      {
+        text: "Nasze wybory pokazują, kim naprawdę jesteśmy, o wiele bardziej niż nasze zdolności.",
+        source: "Harry Potter i Komnata Tajemnic",
+        character: "Albus Dumbledore",
+        universe: "Harry Potter",
+        category: "Identity"
+      },
+      {
+        text: "Mogę to robić cały dzień.",
+        source: "Kapitan Ameryka: Wojna bohaterów",
+        character: "Steve Rogers",
+        universe: "Marvel",
+        category: "Resilience"
+      },
+      {
+        text: "Jeśli chcesz tęczy, musisz znieść deszcz.",
+        source: "The Good Place",
+        character: "Dolly Parton (cytowana przez Eleanor)",
+        universe: "NBC",
+        category: "Perspective"
+      },
+      {
+        text: "Życie jest jak ciemny tunel. Nie zawsze widzisz światło na końcu tunelu, ale jeśli się nie zatrzymasz, dojdziesz do lepszego miejsca.",
+        source: "Avatar: Legenda Aanga",
+        character: "Wujek Iroh",
+        universe: "Avatar",
+        category: "Resilience"
+      },
+      {
+        text: "Jednostka jest inteligentna. Ludzie są głupi, nerwowi i niebezpieczni.",
+        source: "Faceci w czerni",
+        character: "Agent K",
+        universe: "MIB",
+        category: "Perspective"
+      },
+      {
+        text: "Prawdziwa podróż odkrywania polega nie na poszukiwaniu nowych krajobrazów, ale na posiadaniu nowych oczu.",
+        source: "Westworld",
+        character: "Dolores Abernathy",
+        universe: "HBO",
+        category: "Growth"
+      },
+      {
+        text: "Wubba lubba dub dub!",
+        source: "Rick i Morty",
+        character: "Rick Sanchez",
+        universe: "Adult Swim",
+        category: "Humor"
+      },
+      {
+        text: "Największym nauczycielem - porażka jest.",
+        source: "Gwiezdne Wojny: Ostatni Jedi",
+        character: "Yoda",
+        universe: "Gwiezdne Wojny",
+        category: "Growth"
+      },
+      {
+        text: "Jesteś kimś więcej, niż się stałeś.",
+        source: "Król Lew",
+        character: "Mufasa",
+        universe: "Disney",
+        category: "Identity"
+      },
+      {
+        text: "Jestem Mary Poppins, do diabła!",
+        source: "Strażnicy Galaktyki vol. 2",
+        character: "Yondu",
+        universe: "Marvel",
+        category: "Humor"
+      },
+      {
+        text: "Czasem to są ludzie, o których nikt nie wyobraża sobie czegokolwiek, którzy robią rzeczy, które nikt nie może sobie wyobrazić.",
+        source: "Gra w imię",
+        character: "Alan Turing",
+        universe: "Historyczny",
+        category: "Motivation"
+      },
+      {
+        text: "Taka jest droga.",
+        source: "Mandalorianin",
+        character: "Din Djarin",
+        universe: "Gwiezdne Wojny",
+        category: "Identity"
+      },
+      {
+        text: "Przyszłość jest tego warta. Cały ból. Wszystkie łzy. Przyszłość jest warta walki.",
+        source: "Babilon 5",
+        character: "Dow. Susan Ivanova",
+        universe: "B5",
+        category: "Resilience"
+      },
+      {
+        text: "To jest właśnie w chaosie - jest sprawiedliwy.",
+        source: "Joker",
+        character: "Arthur Fleck",
+        universe: "Komiksy DC",
+        category: "Perspective"
+      },
+      {
+        text: "W nas są dwie wilki. Jeden zły, drugi dobry. Ten, którego karmisz, zwycięża.",
+        source: "The Walking Dead",
+        character: "Morgan Jones",
+        universe: "AMC",
+        category: "Growth"
+      },
+      {
+        text: "Wiem, jak to jest przegrywać. Być tak bardzo przekonanym, że ma się rację, a mimo to ponieść porażkę.",
+        source: "Avengers: Wojna Nieskończoności",
+        character: "Thanos",
+        universe: "Marvel",
+        category: "Challenges"
+      },
+      {
+        text: "To, co robisz teraz, ma znaczenie.",
+        source: "Czarna Pantera",
+        character: "T'Challa",
+        universe: "Marvel",
+        category: "Motivation"
+      },
+      {
+        text: "Jesteś tym, kim sam wybierzesz, aby być.",
+        source: "Gigant z żelaza",
+        character: "Gigant z żelaza",
+        universe: "Animacja",
+        category: "Identity"
+      },
+      {
+        text: "W każdym jest osoba, którą próbuje ukryć.",
+        source: "Hazbin Hotel",
+        character: "Charlie",
+        universe: "Animacja dla dorosłych",
+        category: "Identity"
+      },
+      {
+        text: "Facet trwa.",
+        source: "Big Lebowski",
+        character: "Wielki Lebowski",
+        universe: "Bracia Coen",
+        category: "Perspective"
+      },
+      {
+        text: "Życie znajdzie sposób.",
+        source: "Park Jurajski",
+        character: "Dr Ian Malcolm",
+        universe: "Park Jurajski",
+        category: "Resilience"
+      },
+      {
+        text: "Twój brak wiary mnie niepokoi.",
+        source: "Gwiezdne Wojny: Nowa nadzieja",
+        character: "Darth Vader",
+        universe: "Gwiezdne Wojny",
+        category: "Motivation"
+      },
+      {
+        text: "Zamierzam złożyć mu propozycję, której nie będzie mógł odrzucić.",
+        source: "Ojciec chrzestny",
+        character: "Don Vito Corleone",
+        universe: "Filmy mafijne",
+        category: "Challenges"
+      },
+      {
+        text: "Potrzebuję moich wioseł!",
+        source: "Pulp Fiction",
+        character: "Vincent Vega",
+        universe: "Tarantino",
+        category: "Humor"
+      },
+      {
+        text: "Umiejętność mówienia nie czyni cię inteligentnym.",
+        source: "Gwiezdne Wojny: Mroczne widmo",
+        character: "Qui-Gon Jinn",
+        universe: "Gwiezdne Wojny",
+        category: "Perspective"
+      },
+      {
+        text: "Nie powiem: nie płaczcie; bo nie wszystkie łzy są złe.",
+        source: "Powrót króla",
+        character: "Gandalf",
+        universe: "Śródziemie",
+        category: "Emotions"
+      },
+      {
+        text: "Znajdę swoją drużynę. Zostanę Królem Piratów!",
+        source: "One Piece",
+        character: "Monkey D. Luffy",
+        universe: "Anime",
+        category: "Motivation"
+      }
+    ])
   }
 };
 

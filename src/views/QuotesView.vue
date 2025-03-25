@@ -124,269 +124,46 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue';
 import { useRouter } from 'vue-router';
-import { useI18n } from '@/composables/useI18n';
+import { Quote, useI18n } from '@/composables/useI18n';
 import Header from '@/components/layout/Header.vue';
 import Footer from '@/components/layout/Footer.vue';
 import ScrollDownButton from '@/components/widgets/ScrollDownButton.vue';
 
-// Router
 const router = useRouter();
-
-// I18n
 const { t } = useI18n();
 
-// Data structure for quotes
-interface Quote {
-    text: string;
-    source: string;
-    character: string;
-    universe: string;
-    category: string;
-}
-
-// Collection of quotes
-const quotes: Quote[] = [
-    {
-        text: "With great power comes great responsibility.",
-        source: "Spider-Man",
-        character: "Uncle Ben",
-        universe: "Marvel",
-        category: "Resilience"
-    },
-    {
-        text: "Do or do not, there is no try.",
-        source: "Star Wars: The Empire Strikes Back",
-        character: "Yoda",
-        universe: "Star Wars",
-        category: "Motivation"
-    },
-    {
-        text: "It's not who I am underneath, but what I do that defines me.",
-        source: "Batman Begins",
-        character: "Batman",
-        universe: "DC Comics",
-        category: "Identity"
-    },
-    {
-        text: "All we have to decide is what to do with the time that is given to us.",
-        source: "The Lord of the Rings",
-        character: "Gandalf",
-        universe: "Middle-earth",
-        category: "Perspective"
-    },
-    {
-        text: "The hardest choices require the strongest wills.",
-        source: "Avengers: Infinity War",
-        character: "Thanos",
-        universe: "Marvel",
-        category: "Challenges"
-    },
-    {
-        text: "It is our choices that show what we truly are, far more than our abilities.",
-        source: "Harry Potter and the Chamber of Secrets",
-        character: "Albus Dumbledore",
-        universe: "Harry Potter",
-        category: "Identity"
-    },
-    {
-        text: "I can do this all day.",
-        source: "Captain America: Civil War",
-        character: "Steve Rogers",
-        universe: "Marvel",
-        category: "Resilience"
-    },
-    {
-        text: "The way I see it, if you want the rainbow, you gotta put up with the rain.",
-        source: "The Good Place",
-        character: "Dolly Parton (quoted by Eleanor)",
-        universe: "NBC",
-        category: "Perspective"
-    },
-    {
-        text: "Sometimes life is like this dark tunnel. You can't always see the light at the end of the tunnel, but if you just keep moving, you will come to a better place.",
-        source: "Avatar: The Last Airbender",
-        character: "Uncle Iroh",
-        universe: "Avatar",
-        category: "Resilience"
-    },
-    {
-        text: "A person is smart. People are dumb, panicky, dangerous animals.",
-        source: "Men in Black",
-        character: "Agent K",
-        universe: "MIB",
-        category: "Perspective"
-    },
-    {
-        text: "The real voyage of discovery consists not in seeking new landscapes, but in having new eyes.",
-        source: "Westworld",
-        character: "Dolores Abernathy",
-        universe: "HBO",
-        category: "Growth"
-    },
-    {
-        text: "Wubba lubba dub dub!",
-        source: "Rick and Morty",
-        character: "Rick Sanchez",
-        universe: "Adult Swim",
-        category: "Humor"
-    },
-    {
-        text: "The greatest teacher, failure is.",
-        source: "Star Wars: The Last Jedi",
-        character: "Yoda",
-        universe: "Star Wars",
-        category: "Growth"
-    },
-    {
-        text: "You're more than what you have become.",
-        source: "The Lion King",
-        character: "Mufasa",
-        universe: "Disney",
-        category: "Identity"
-    },
-    {
-        text: "I'm Mary Poppins, y'all!",
-        source: "Guardians of the Galaxy Vol. 2",
-        character: "Yondu",
-        universe: "Marvel",
-        category: "Humor"
-    },
-    {
-        text: "Sometimes it is the people who no one imagines anything of who do the things that no one can imagine.",
-        source: "The Imitation Game",
-        character: "Alan Turing",
-        universe: "Historical",
-        category: "Motivation"
-    },
-    {
-        text: "This is the way.",
-        source: "The Mandalorian",
-        character: "Din Djarin",
-        universe: "Star Wars",
-        category: "Identity"
-    },
-    {
-        text: "The future is worth it. All the pain. All the tears. The future is worth the fight.",
-        source: "Babylon 5",
-        character: "Cmdr. Susan Ivanova",
-        universe: "B5",
-        category: "Resilience"
-    },
-    {
-        text: "That's the thing about chaos, it's fair.",
-        source: "Joker",
-        character: "Arthur Fleck",
-        universe: "DC Comics",
-        category: "Perspective"
-    },
-    {
-        text: "Inside of us, there are two wolves. One is evil. The other is good. The one that wins is the one you feed.",
-        source: "The Walking Dead",
-        character: "Morgan Jones",
-        universe: "AMC",
-        category: "Growth"
-    },
-    {
-        text: "I know what it's like to lose. To feel so desperately that you're right, yet to fail nonetheless.",
-        source: "Avengers: Infinity War",
-        character: "Thanos",
-        universe: "Marvel",
-        category: "Challenges"
-    },
-    {
-        text: "It's what you do right now that makes a difference.",
-        source: "Black Panther",
-        character: "T'Challa",
-        universe: "Marvel",
-        category: "Motivation"
-    },
-    {
-        text: "You are who you choose to be.",
-        source: "The Iron Giant",
-        character: "The Iron Giant",
-        universe: "Animation",
-        category: "Identity"
-    },
-    {
-        text: "Inside everyone is a person they are trying to hide.",
-        source: "Hazbin Hotel",
-        character: "Charlie",
-        universe: "Adult Animation",
-        category: "Identity"
-    },
-    {
-        text: "The Dude abides.",
-        source: "The Big Lebowski",
-        character: "The Dude",
-        universe: "Coen Brothers",
-        category: "Perspective"
-    },
-    {
-        text: "Life finds a way.",
-        source: "Jurassic Park",
-        character: "Dr. Ian Malcolm",
-        universe: "Jurassic Park",
-        category: "Resilience"
-    },
-    {
-        text: "I find your lack of faith disturbing.",
-        source: "Star Wars: A New Hope",
-        character: "Darth Vader",
-        universe: "Star Wars",
-        category: "Motivation"
-    },
-    {
-        text: "I'm going to make him an offer he can't refuse.",
-        source: "The Godfather",
-        character: "Don Vito Corleone",
-        universe: "Mob Films",
-        category: "Challenges"
-    },
-    {
-        text: "I need my paddles!",
-        source: "Pulp Fiction",
-        character: "Vincent Vega",
-        universe: "Tarantino",
-        category: "Humor"
-    },
-    {
-        text: "The ability to speak does not make you intelligent.",
-        source: "Star Wars: The Phantom Menace",
-        character: "Qui-Gon Jinn",
-        universe: "Star Wars",
-        category: "Perspective"
-    },
-    {
-        text: "I will not say: do not weep; for not all tears are an evil.",
-        source: "The Return of the King",
-        character: "Gandalf",
-        universe: "Middle-earth",
-        category: "Emotions"
-    },
-    {
-        text: "I'm going to find my crew. I'm going to be King of the Pirates!",
-        source: "One Piece",
-        character: "Monkey D. Luffy",
-        universe: "Anime",
-        category: "Motivation"
+const quotes = computed(() => {
+    const { t } = useI18n();
+    try {
+        const rawQuotes = t('quotesList');
+        console.dir(rawQuotes)
+        
+        if (typeof rawQuotes === 'string') {
+            const parsedQuotes = JSON.parse(rawQuotes);
+            return Array.isArray(parsedQuotes) ? parsedQuotes : [];
+        }
+        
+        return Array.isArray(rawQuotes) ? rawQuotes : [];
+    } catch (error) {
+        console.error('Error parsing quotes:', error);
+        return [];
     }
-];
+});
 
-// State
 const selectedCategory = ref('all');
 
 // Extract unique categories
 const categories = computed(() => {
-    const uniqueCategories = new Set(quotes.map(quote => quote.category));
+    const uniqueCategories = new Set(quotes.value.map(quote => quote.category));
     return Array.from(uniqueCategories).sort();
 });
 
 // Filter quotes based on selected category
 const filteredQuotes = computed(() => {
     if (selectedCategory.value === 'all') {
-        return quotes;
+        return quotes.value;
     }
-    return quotes.filter(quote => quote.category === selectedCategory.value);
+    return quotes.value.filter(quote => quote.category === selectedCategory.value);
 });
 
 // Helper function to get icon for category
