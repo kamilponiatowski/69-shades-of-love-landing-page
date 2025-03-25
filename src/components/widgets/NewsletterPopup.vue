@@ -14,7 +14,7 @@
           <i class="fas fa-check-circle"></i> {{ t('newsletterBenefitsTitle') }}
         </div>
         <ul class="newsletter-benefits-list">
-          <li v-for="(benefit, index) in getNewsletterBenefits()" :key="index" 
+          <li v-for="(benefit, index) in benefitsList" :key="index" 
               :class="{ 
                 'highlight-benefit': index === 0,
                 'highlight-benefit pop-culture': index === 1 
@@ -68,9 +68,8 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch } from 'vue';
+import { ref, watch, computed } from 'vue';
 import { useI18n } from '@/composables/useI18n';
-import { translations } from '@/locales';
 
 // Props
 const props = defineProps<{
@@ -88,6 +87,34 @@ const emit = defineEmits(['close', 'submit', 'update:email', 'update:name']);
 // State
 const emailValue = ref(props.email);
 const nameValue = ref(props.name || '');
+
+// Composables
+const { t, currentLanguage } = useI18n();
+
+// Pobierz tłumaczenia bezpośrednio za pomocą funkcji t()
+const benefitsList = computed(() => {
+  // Pobieramy string z pełną listą benefitów, a następnie dzielimy go na tablicę
+  // W ten sposób obchodzimy problem typowania
+  const rawValue = t('newsletterBenefitsList');
+  
+  if (typeof rawValue === 'string') {
+    try {
+      // Próbujemy najpierw sparsować jako JSON
+      return JSON.parse(rawValue);
+    } catch (e) {
+      // Jeśli nie jest to poprawny JSON, zwracamy tablicę z pojedynczym stringiem
+      return [rawValue];
+    }
+  }
+  
+  // Jeśli wartość już jest tablicą, zwracamy ją
+  if (Array.isArray(rawValue)) {
+    return rawValue;
+  }
+  
+  // Domyślnie zwracamy pustą tablicę
+  return [];
+});
 
 // Watch for prop changes
 watch(() => props.email, (newValue) => {
@@ -110,22 +137,6 @@ const updateName = (event: Event) => {
   const target = event.target as HTMLInputElement;
   emit('update:name', target.value);
 };
-
-// Get newsletter benefits list directly from translations
-const getNewsletterBenefits = () => {
-  const { currentLanguage } = useI18n();
-  const lang = currentLanguage.value || 'en';
-  
-  // Get benefits list directly from translations object
-  const benefitsList = translations[lang]?.newsletterBenefitsList || 
-                       translations['en']?.newsletterBenefitsList || [];
-  
-  // Return it as array
-  return Array.isArray(benefitsList) ? benefitsList : [benefitsList];
-};
-
-// Composables
-const { t } = useI18n();
 </script>
 
 <style scoped>

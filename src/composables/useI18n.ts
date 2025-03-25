@@ -94,7 +94,8 @@ export function createI18n(): I18nInstance {
     const value = translationObj[key];
     
     if (Array.isArray(value)) {
-      if (value.length > 0 && 'text' in value[0]) {
+      // A safer check - first to see if it is an object, then to see if it has a ‘text’ property
+      if (value.length > 0 && typeof value[0] === 'object' && value[0] !== null && 'text' in value[0]) {
         return value as Quote[];
       }
       return value as string[];
@@ -103,7 +104,7 @@ export function createI18n(): I18nInstance {
     if (typeof value === 'string') {
       return value;
     }
-    
+
     return undefined;
   };
   
