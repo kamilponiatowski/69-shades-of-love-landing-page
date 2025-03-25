@@ -15,7 +15,10 @@
     </div>
     <!-- New container for buttons - better alignment -->
     <div class="about-me-buttons">
-      <a href="https://tiptopjar.com/proDucktive" target="_blank" class="support-button" rel="noopener">
+      <a href="https://tiptopjar.com/proDucktive" target="_blank" 
+         class="support-button" 
+         :class="{'shake-animation': isShaking}"
+         rel="noopener">
         <i class="fas fa-heart" aria-hidden="true"></i> <span class="support-text">{{ t('supportButton') }}</span>
       </a>
       <NewsletterButton @click="$emit('open-newsletter')" :isSubscribed="isSubscribed" />
@@ -24,7 +27,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue';
+import { computed, ref, onMounted, onBeforeUnmount } from 'vue';
 import { useI18n } from '@/composables/useI18n';
 import NewsletterButton from './NewsletterButton.vue';
 
@@ -42,8 +45,86 @@ const { t } = useI18n();
 // Emits
 defineEmits(['open-newsletter']);
 
+// Animation state
+const isShaking = ref(false);
+let shakeTimer: ReturnType<typeof setTimeout> | null = null;
+let shakeInterval: ReturnType<typeof setInterval> | null = null;
+
 // Computed
 const formattedAboutContent = computed(() => {
   return t('aboutContent').replace('\\n\\n', '<br><br>');
 });
+
+// Function to trigger shake animation
+const triggerShake = () => {
+  isShaking.value = true;
+  
+  // Stop shaking after 1.5 seconds
+  if (shakeTimer) clearTimeout(shakeTimer);
+  shakeTimer = setTimeout(() => {
+    isShaking.value = false;
+  }, 1500);
+};
+
+// Lifecycle hooks
+onMounted(() => {
+  // First animation after 5 seconds
+  setTimeout(() => {
+    triggerShake();
+  }, 5000);
+  
+  // Set interval for periodic animations - every 45 seconds
+  shakeInterval = setInterval(() => {
+    triggerShake();
+  }, 45000);
+});
+
+onBeforeUnmount(() => {
+  // Clean up timers
+  if (shakeTimer) clearTimeout(shakeTimer);
+  if (shakeInterval) clearInterval(shakeInterval);
+});
 </script>
+
+<style scoped>
+/* Shake animation - rotate on X axis slightly */
+@keyframes gentle-shake {
+  0%, 100% { 
+    transform: rotate(0deg); 
+  }
+  10% { 
+    transform: rotate(-1deg); 
+  }
+  20% { 
+    transform: rotate(1deg); 
+  }
+  30% { 
+    transform: rotate(-1deg); 
+  }
+  40% { 
+    transform: rotate(1deg); 
+  }
+  50% { 
+    transform: rotate(-0.5deg); 
+  }
+  60% { 
+    transform: rotate(0.5deg); 
+  }
+  70% { 
+    transform: rotate(-0.5deg); 
+  }
+  80% { 
+    transform: rotate(0.5deg); 
+  }
+  90% { 
+    transform: rotate(-0.25deg); 
+  }
+}
+
+.shake-animation {
+  animation: gentle-shake 1.5s cubic-bezier(.36,.07,.19,.97) both;
+  transform-origin: center bottom;
+}
+
+/* Existing styles remain the same */
+</style>
