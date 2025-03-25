@@ -17,6 +17,11 @@
             <i class="fas fa-envelope"></i>
             <p>Check your inbox to confirm your email and get your free <strong>"7 Quick Habits That Transform Your Day"</strong> guide!</p>
           </div>
+          
+          <div class="intro-note easter-egg-note">
+            <i class="fas fa-heart purple-heart"></i>
+            <p>You're now part of our flock! You can always return to the main page by clicking the purple heart in the footer.</p>
+          </div>
         </div>
   
         <div class="content-section quotes-section">
@@ -492,6 +497,19 @@
   
   .intro-note strong {
     color: var(--accent-color);
+  }
+  
+  /* Easter egg note styling */
+  .easter-egg-note {
+    margin-top: 15px;
+    background-color: rgba(138, 43, 226, 0.1);
+    border: 1px dashed var(--accent-color);
+  }
+  
+  .purple-heart {
+    color: var(--accent-color);
+    font-size: 1.5rem;
+    animation: heartbeat 1.5s infinite;
   }
   
   /* Quotes filter */

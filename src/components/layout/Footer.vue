@@ -1,6 +1,10 @@
 <template>
   <footer class="footer">
-    {{ t('footerStart') }} <span class="heart">💜</span> {{ t('footerMid') }} 
+    {{ t('footerStart') }} 
+    <router-link to="/quotes" class="heart-link" aria-label="Easter egg: go to quotes page">
+      <span class="heart">💜</span>
+    </router-link> 
+    {{ t('footerMid') }} 
     <a href="mailto:poniatowski.dev@gmail.com">poniatowski.dev@gmail.com</a>
   </footer>
 </template>
@@ -13,5 +17,24 @@ const { t } = useI18n();
 </script>
   
 <style scoped>
-/* Component styles are handled by global CSS */
+.heart-link {
+  text-decoration: none;
+  cursor: pointer;
+  position: relative;
+  display: inline-block;
+}
+
+.heart-link:hover .heart {
+  transform: scale(1.2);
+}
+
+.heart-link:focus {
+  outline: var(--focus-outline);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.heart-link:focus .heart {
+  transform: scale(1.2);
+}
 </style>

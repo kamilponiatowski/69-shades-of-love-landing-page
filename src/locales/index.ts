@@ -97,7 +97,8 @@ export const translations: Translations = {
     newsletterRewardTitle: "You're Quack-tastic!",
     newsletterRewardDescription: "Thank you for joining the Pro-Ducktive flock! We've sent a special gift to your email - a free mini-guide \"7 Quick Habits That Transform Your Day\"!",
     newsletterRewardButton: "Got it!",
-    newsletterRewardHighlight: "Your '7 Quick Habits That Transform Your Day' guide will be sent to your email after confirming your subscription!"
+    newsletterRewardHighlight: "Your '7 Quick Habits That Transform Your Day' guide will be sent to your email after confirming your subscription!",
+    newsletterMemberNote: "You're now part of our flock! You can always return here by clicking the purple heart in the footer.",
   },
   pl: {
     mainTitle: "69 Odcieni Miłości",
@@ -186,7 +187,8 @@ export const translations: Translations = {
     newsletterRewardTitle: "Jesteś Kwa-ntastyczny!",
     newsletterRewardDescription: "Dziękujemy za dołączenie do stada Pro-Ducktive! Wysłaliśmy specjalny prezent na Twój adres email - darmowy mini-poradnik \"7 szybkich nawyków, które transformują Twój dzień\"!",
     newsletterRewardButton: "Rozumiem!",
-    newsletterRewardHighlight: "Twój poradnik '7 szybkich nawyków, które transformują Twój dzień' zostanie wysłany na Twój email po potwierdzeniu subskrypcji!"
+    newsletterRewardHighlight: "Twój poradnik '7 szybkich nawyków, które transformują Twój dzień' zostanie wysłany na Twój email po potwierdzeniu subskrypcji!",
+    newsletterMemberNote: "Jesteś już częścią naszego stada! Możesz zawsze powrócić tutaj klikając fioletowe serce w stopce."
   }
 };
 
