@@ -4,8 +4,8 @@
     <router-link to="/quotes" class="heart-link" aria-label="Easter egg: go to quotes page">
       <span class="heart">💜</span>
     </router-link> 
-    {{ t('footerMid') }} 
-    <a href="mailto:poniatowski.dev@gmail.com">poniatowski.dev@gmail.com</a>
+    {{ t('footerMid') }}
+    <a href="mailto:poniatowski.dev@gmail.com">poniatowski.dev@gmail.com</a> Created with Kamil Poniatowski & ⛩️先生 Tim Polka-Nawioski 🙇
   </footer>
 </template>
   
