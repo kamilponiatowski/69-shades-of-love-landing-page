@@ -1,10 +1,11 @@
 <template>
-  <div :class="['todo-item', {completed: task.completed}]">
+  <div :class="['todo-item', {completed: task.completed}]" @click="handleItemClick">
     <input 
       type="checkbox" 
       class="todo-checkbox" 
       :checked="task.completed"
       @change="toggleComplete" 
+      @click.stop
       :id="checkboxId"
       :aria-label="`${task.title}: ${task.description}`"
     >
@@ -62,8 +63,17 @@ const toggleComplete = () => {
     isNowCompleted: !wasCompleted 
   });
 };
+
+// Handle click on the entire task item
+const handleItemClick = (event: MouseEvent) => {
+  // Call the same toggle function
+  toggleComplete();
+};
 </script>
 
 <style scoped>
 /* Component styles are handled by global CSS */
+.todo-item {
+  cursor: pointer; /* Add pointer cursor to indicate clickability */
+}
 </style>
