@@ -67,9 +67,9 @@
   const emit = defineEmits(['update:pdfSectionCollapsed', 'pdf-unlocked']);
   
   // Constants
-  const pdfLink = "https://drive.google.com/file/d/1fPwsiyJxmMKKHA5ImRSDfjWk14NCnl-V/view?usp=drive_link";
+  const pdfLink = "https://drive.google.com/file/d/1S3CJpPErS32TricQWptR04D7eRDSHyyS/view?usp=sharing";
   // Direct link to download PDF instead of link to Google Drive
-  const pdfLinkDirect = "https://drive.google.com/uc?export=download&id=1fPwsiyJxmMKKHA5ImRSDfjWk14NCnl-V";
+  const pdfLinkDirect = "https://drive.google.com/uc?export=download&id=1S3CJpPErS32TricQWptR04D7eRDSHyyS";
   
   // State
   const wasLocked = ref(true);
