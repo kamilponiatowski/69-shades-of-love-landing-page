@@ -230,7 +230,7 @@
             </div>
 
             <!-- Habit Tracker Section - hidden in full guide print -->
-            <div id="habit-tracker-section" class="content-section tracker-section no-print-in-full-guide">
+            <div id="habit-tracker-section" class="content-section tracker-section print-tracker-only-visible">
                 <h2 class="section-title">21-Day Habit Building Challenge</h2>
                 <p class="section-description">
                     Research shows it takes about 21 days to form a simple habit. Use this tracker to monitor
@@ -372,6 +372,7 @@ const router = useRouter();
 const printFullGuide = () => {
     // Add a class to the body to trigger the print styles
     document.body.classList.add('print-full-guide');
+    document.body.classList.remove('print-tracker-only');
 
     // Open print dialog
     window.print();
@@ -383,15 +384,96 @@ const printFullGuide = () => {
 };
 
 const printHabitTracker = () => {
-    // Add a class to the body to trigger the print styles for tracker only
+    // Create and add dynamic style with better print formatting for landscape mode
+    const printStyle = document.createElement('style');
+    printStyle.id = 'print-landscape-style';
+    printStyle.innerHTML = `
+        @page { 
+            size: landscape !important; 
+            margin: 0.5cm 0.5cm 0.2cm 0.5cm !important; /* Reduced bottom margin even more */
+        }
+        
+        /* More compact layout for printing */
+        body.print-tracker-only {
+            padding: 0 !important;
+            margin: 0 !important;
+        }
+        
+        /* Smaller header with reduced margins */
+        body.print-tracker-only .gift-header {
+            margin-bottom: 5px !important;
+        }
+        
+        body.print-tracker-only .main-title {
+            font-size: 1.3rem !important;
+            margin-bottom: 2px !important;
+        }
+        
+        body.print-tracker-only .subtitle {
+            font-size: 0.8rem !important;
+            margin-bottom: 5px !important;
+        }
+        
+        /* Further optimize tracker section */
+        body.print-tracker-only .tracker-section {
+            padding: 5px !important;
+            margin: 0 !important;
+        }
+        
+        /* Scale and optimize tracker */
+        body.print-tracker-only .habit-tracker {
+            transform-origin: top left;
+            transform: scale(0.92); /* Slightly more aggressive scaling */
+            margin-top: 5px !important;
+        }
+        
+        /* Smaller title and description */
+        body.print-tracker-only .section-title {
+            font-size: 1.2rem !important;
+            margin-bottom: 2px !important;
+            padding-bottom: 2px !important;
+        }
+        
+        body.print-tracker-only .section-description {
+            font-size: 0.8rem !important;
+            margin-bottom: 5px !important;
+            line-height: 1.2 !important;
+        }
+        
+        /* More compact cells */
+        body.print-tracker-only .day-cell,
+        body.print-tracker-only .checkbox-cell {
+            width: 28px !important;
+            min-width: 28px !important;
+            padding: 3px 2px !important;
+        }
+        
+        body.print-tracker-only .habit-cell,
+        body.print-tracker-only .header-cell {
+            width: 130px !important;
+            min-width: 130px !important;
+            padding: 3px 5px !important;
+        }
+        
+        /* Smaller checkboxes */
+        body.print-tracker-only .checkbox-placeholder {
+            width: 13px !important;
+            height: 13px !important;
+        }
+    `;
+    document.head.appendChild(printStyle);
+    
+    // Add print-tracker-only class and remove conflicting class
     document.body.classList.add('print-tracker-only');
+    document.body.classList.remove('print-full-guide');
 
     // Open print dialog
     window.print();
 
-    // Remove class after printing is done
+    // Clean up after printing
     setTimeout(() => {
         document.body.classList.remove('print-tracker-only');
+        document.head.removeChild(printStyle);
     }, 1000);
 };
 </script>
@@ -593,39 +675,68 @@ const printHabitTracker = () => {
     color: #555;
 }
 
-/* Habit tracker */
+/* Ensure tracker stays together with fixed layout */
 .habit-tracker {
     margin-top: 30px;
     border: 1px solid #eee;
     border-radius: 8px;
     overflow-x: auto;
+    table-layout: fixed;
+    /* Add this to force consistent column widths */
+    width: 100%;
 }
 
 .tracker-header,
 .tracker-row {
     display: flex;
+    flex-wrap: nowrap;
+    /* Prevent wrapping */
 }
 
+/* Tracker cell styles */
 .tracker-cell {
     padding: 10px;
     min-width: 30px;
     text-align: center;
     border: 1px solid #eee;
+    box-sizing: border-box;
+    /* Ensure padding is included in width calculation */
 }
 
+/* Header and habit name cells */
 .header-cell,
 .habit-cell {
     background-color: #f8f8f8;
     font-weight: bold;
     min-width: 140px;
-    /* Set same width for both header-cell and habit-cell */
+    width: 140px;
+    /* Fixed width for consistent alignment */
     text-align: left;
 }
 
+/* Tracker header & rows styles - fix alignment */
+.day-cell {
+    width: 40px;
+    /* Same fixed width as checkbox cells */
+    min-width: 40px;
+    /* Ensure minimum width matches */
+    box-sizing: border-box;
+    /* Include padding in width */
+    padding: 8px 5px;
+    /* Reduced padding for better fit */
+}
+
+/* Checkbox cells */
 .checkbox-cell {
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 40px;
+    /* Fixed width for consistent grid alignment */
+    min-width: 40px;
+    /* Ensure minimum width matches */
+    box-sizing: border-box;
+    /* Include padding in width */
 }
 
 .checkbox-placeholder {
@@ -716,6 +827,12 @@ const printHabitTracker = () => {
     margin-right: 10px;
 }
 
+/* By default hide the habit tracker in normal view */
+.print-tracker-only-visible {
+    display: block;
+    /* Make sure it's visible by default in normal view */
+}
+
 /* Responsive */
 @media (max-width: 768px) {
     .gift-content {
@@ -746,117 +863,118 @@ const printHabitTracker = () => {
 
 /* Print styles */
 @media print {
-  /* Define page layout for different print modes */
-  @page {
-    margin: 1cm;
-  }
-  
-  /* Special landscape orientation for tracker-only mode */
-  @page tracker {
-    size: landscape;
-  }
-  
-  body.print-tracker-only {
-    page: tracker;
-  }
 
-  .gift-page {
-    background-color: white;
-  }
-  
-  .content-section {
-    box-shadow: none;
-    transform: none !important;
-    break-inside: avoid;
-    page-break-inside: avoid;
-    margin-bottom: 20px;
-    border: 1px solid #ddd;
-  }
-  
-  .content-section:hover {
-    transform: none;
-  }
-  
-  .habit-card {
-    box-shadow: none;
-    break-inside: avoid;
-    page-break-inside: avoid;
-    margin-bottom: 15px;
-    border: 1px solid #eee;
-  }
-  
-  .habit-card:hover {
-    transform: none;
-    box-shadow: none;
-  }
-  
-  .resource-card {
-    box-shadow: none;
-    transform: none !important;
-    border: 1px solid #eee;
-  }
-  
-  .resource-card:hover {
-    transform: none;
-    box-shadow: none;
-  }
-  
-  .no-print {
-    display: none !important;
-  }
-  
-  /* Hide tracker section in full guide print */
-  body.print-full-guide .no-print-in-full-guide {
-    display: none !important;
-  }
-  
-  .gift-header {
-    margin-bottom: 20px;
-  }
-  
-  /* Ensure tracker fits on print */
-  .habit-tracker {
-    overflow: visible;
-    width: 100%;
-    border: 1px solid #000;
-  }
-  
-  .tracker-cell {
-    border: 1px solid #999;
-  }
-  
-  /* Tracker-only print mode */
-  body.print-tracker-only .content-section:not(.tracker-section),
-  body.print-tracker-only .gift-header {
-    display: none;
-  }
-  
-  body.print-tracker-only .tracker-section {
-    page-break-before: avoid;
-    margin-top: 20px;
-    width: 100%;
-    height: 100%;
-  }
-  
-  body.print-tracker-only .habit-tracker {
-    width: 100%;
-    max-width: none;
-    transform: scale(0.95);
-    transform-origin: top left;
-  }
-  
-  body.print-full-guide .content-section {
-    page-break-inside: avoid;
-  }
-  
-  /* Adjust habit container for printing */
-  .habit-container {
-    gap: 15px;
-  }
-  
-  /* Make sure each habit starts on a new page if needed */
-  .habit-card {
-    page-break-inside: avoid;
-  }
+    /* Define page layout for different print modes */
+    @page {
+        margin: 1cm;
+    }
+
+    body.print-tracker-only {
+        page: tracker;
+    }
+
+    .gift-page {
+        background-color: white;
+    }
+
+    .content-section {
+        box-shadow: none;
+        transform: none !important;
+        break-inside: avoid;
+        page-break-inside: avoid;
+        margin-bottom: 20px;
+        border: 1px solid #ddd;
+    }
+
+    .content-section:hover {
+        transform: none;
+    }
+
+    .habit-card {
+        box-shadow: none;
+        break-inside: avoid;
+        page-break-inside: avoid;
+        margin-bottom: 15px;
+        border: 1px solid #eee;
+    }
+
+    .habit-card:hover {
+        transform: none;
+        box-shadow: none;
+    }
+
+    .resource-card {
+        box-shadow: none;
+        transform: none !important;
+        border: 1px solid #eee;
+    }
+
+    .resource-card:hover {
+        transform: none;
+        box-shadow: none;
+    }
+
+    /* Hide elements with no-print class in any print mode */
+    .no-print {
+        display: none !important;
+    }
+
+    /* When printing full guide, hide the tracker section */
+    body.print-full-guide .print-tracker-only-visible {
+        display: none !important;
+    }
+
+    /* When printing tracker only, show only the tracker section */
+    body.print-tracker-only .content-section:not(.tracker-section) {
+        display: none !important;
+    }
+
+    body.print-tracker-only .gift-header {
+        display: block !important;
+        /* Keep the header in tracker mode */
+        margin-bottom: 20px;
+    }
+
+    body.print-tracker-only .tracker-section {
+        display: block !important;
+        page-break-before: avoid;
+        margin-top: 20px;
+        width: 100%;
+    }
+
+    body.print-tracker-only .habit-tracker {
+        width: 100%;
+        max-width: none;
+    }
+
+    /* Ensure tracker fits on page properly */
+    body.print-tracker-only .habit-tracker {
+        overflow: visible;
+        width: 100%;
+        border: 1px solid #000;
+    }
+
+    body.print-tracker-only .tracker-cell {
+        border: 1px solid #999;
+    }
+
+    /* Make checkboxes more visible when printed */
+    body.print-tracker-only .checkbox-placeholder {
+        border: 2px solid #000;
+        width: 15px;
+        height: 15px;
+    }
+
+    /* Give more spacing for printing */
+    body.print-tracker-only .tracker-section {
+        padding: 0;
+        margin: 0;
+        width: 100%;
+    }
+
+    body.print-tracker-only .tracker-header,
+    body.print-tracker-only .tracker-row {
+        page-break-inside: avoid;
+    }
 }
 </style>
