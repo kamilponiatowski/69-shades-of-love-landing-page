@@ -47,17 +47,25 @@ const checkboxId = computed(() => {
 
 // Get translated task title and description
 const translatedTitle = computed(() => {
-  // Return hardcoded title if exists (for backwards compatibility)
-  if (props.task.title) return props.task.title;
-  // Otherwise translate using titleKey
-  return t(props.task.titleKey);
+  // Check if the task has a titleKey property
+  if (props.task.titleKey) {
+    return t(props.task.titleKey);
+  }
+  
+  // Generate a key based on category and task index if not provided
+  const generatedKey = `task_${props.categoryType}_${props.taskIndex + 1}_title`;
+  return t(generatedKey);
 });
 
 const translatedDescription = computed(() => {
-  // Return hardcoded description if exists (for backwards compatibility)
-  if (props.task.description) return props.task.description;
-  // Otherwise translate using descriptionKey
-  return t(props.task.descriptionKey);
+  // Check if the task has a descriptionKey property
+  if (props.task.descriptionKey) {
+    return t(props.task.descriptionKey);
+  }
+  
+  // Generate a key based on category and task index if not provided
+  const generatedKey = `task_${props.categoryType}_${props.taskIndex + 1}_desc`;
+  return t(generatedKey);
 });
 
 // Methods

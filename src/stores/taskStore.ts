@@ -5,8 +5,10 @@ import { categories as initialCategories } from '@/constants/categories';
 
 // Type definitions
 export interface Task {
-  title: string;
-  description: string;
+  title?: string;  // Optional - for backward compatibility
+  description?: string;  // Optional - for backward compatibility
+  titleKey?: string;  // Key for i18n translations
+  descriptionKey?: string;  // Key for i18n translations
   completed: boolean;
 }
 
