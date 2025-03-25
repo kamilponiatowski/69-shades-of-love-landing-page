@@ -31,19 +31,21 @@
     <div class="heart-container" ref="heartContainer" aria-hidden="true"></div>
 
     <RewardPopup v-if="showReward" :show-reward="showReward" :reward-title="rewardTitle"
-      :reward-description="rewardDescription" @close="closeReward" />
+      :reward-description="rewardDescription" :category="rewardCategory"
+      @close="closeReward"
+      />
 
-    <!-- Newsletter Components -->
-    <NewsletterFloatingButton @click="openNewsletterPopup" :isSubscribed="isSubscribed" />
+      <!-- Newsletter Components -->
+      <NewsletterFloatingButton @click="openNewsletterPopup" :isSubscribed="isSubscribed" />
 
-    <NewsletterPopup :show="showNewsletterPopup" :email="newsletterEmail" :name="newsletterName"
-      :show-success="showNewsletterSuccess" :show-error="showNewsletterError" :is-submitting="isSubmittingNewsletter"
-      @close="closeNewsletterPopup" @submit="submitNewsletterForm" @update:email="newsletterEmail = $event"
-      @update:name="newsletterName = $event" />
+      <NewsletterPopup :show="showNewsletterPopup" :email="newsletterEmail" :name="newsletterName"
+        :show-success="showNewsletterSuccess" :show-error="showNewsletterError" :is-submitting="isSubmittingNewsletter"
+        @close="closeNewsletterPopup" @submit="submitNewsletterForm" @update:email="newsletterEmail = $event"
+        @update:name="newsletterName = $event" />
 
-    <NewsletterReward :show="showNewsletterReward" @close="closeNewsletterReward" />
+      <NewsletterReward :show="showNewsletterReward" @close="closeNewsletterReward" />
 
-    <Footer />
+      <Footer />
   </div>
 </template>
 
@@ -112,6 +114,7 @@ const {
   showReward,
   rewardTitle,
   rewardDescription,
+  rewardCategory,
   showSpecialReward,
   showPdfUnlockedReward,
   closeReward,
@@ -167,24 +170,24 @@ const handleTaskUpdate = (): void => {
 
 // Handle PDF unlocking event
 const handlePdfUnlocked = (): void => {
-  // Sprawdź, czy PDF nie był jeszcze odblokowany
+  // Check that the PDF has not yet been unlocked
   const wasUnlockedBefore = localStorage.getItem('pdfUnlockedBefore') === 'true';
 
   if (!wasUnlockedBefore) {
-    // Pokaż popup tylko przy pierwszym odblokowaniu
+    // Show popup only on first unlock
     showPdfUnlockedReward();
 
-    // Wywołaj animację serc co 1 sekundę dla efektu "wow"
+    // Invoke heart animation every 1 second for a ‘wow’ effect
     triggerHeartAnimation('personal');
     setTimeout(() => triggerHeartAnimation('mental'), 1000);
     setTimeout(() => triggerHeartAnimation('physical'), 2000);
 
-    createConfetti(); // Dodaj efekt konfetti dla większego "wow"
+    createConfetti(); // Add a confetti effect for more ‘wow’
 
-    // Opóźnij drugie konfetti dla dłuższego efektu
+    // Delay the second confetti for a longer effect
     setTimeout(() => createConfetti(), 1500);
 
-    // Oznacz PDF jako odblokowany
+    // Mark PDF as unlocked
     localStorage.setItem('pdfUnlockedBefore', 'true');
   }
 };
@@ -193,19 +196,19 @@ const handlePdfUnlocked = (): void => {
 onMounted(async () => {
   await taskStore.loadData();
 
-  // Usuń stan pdfUnlockTracked, zastąp localStorage
+  // Delete state pdfUnlockTracked, replace localStorage
   const wasUnlockedBefore = localStorage.getItem('pdfUnlockedBefore') === 'true';
   const isPdfUnlocked = progressPercentage.value >= 20;
 
-  // Dodaj ten warunek, aby zapobiec wielokrotnemu wyświetlaniu
+  // Add this condition to prevent multiple displays
   if (isPdfUnlocked && !wasUnlockedBefore) {
     localStorage.setItem('pdfUnlockedBefore', 'true');
     showPdfUnlockedReward();
   }
-  // Sprawdź stan PDF unlock w localStorage
+  // Check the status of the PDF unlock in the localStorage
   const wasShown = localStorage.getItem('pdfUnlockShown') === 'true';
 
-  // Jeśli PDF jest już odblokowany i nie był jeszcze pokazany
+  // If the PDF is already unlocked and has not yet been shown
   if (isUnlocked.value && !wasShown) {
     pdfUnlockTracked.value = true;
     pdfUnlockShown.value = true;

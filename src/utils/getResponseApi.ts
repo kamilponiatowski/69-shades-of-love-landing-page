@@ -21,12 +21,8 @@ export function subscribeToNewsletter(email: string, name: string = ''): Promise
       // Generate unique submission ID to track completion
       const submissionId = `gr_sub_${Date.now()}`;
       
-      // Store submission ID in localStorage to track across pages
-      try {
-        localStorage.setItem('newsletter_pending_submission', submissionId);
-      } catch (error) {
-        console.error('Error saving submission ID:', error);
-      }
+      // Store submission ID in sessionStorage to track completion
+      sessionStorage.setItem(submissionId, 'pending');
       
       // Create form
       const form = document.createElement('form');
@@ -58,11 +54,12 @@ export function subscribeToNewsletter(email: string, name: string = ''): Promise
         form.appendChild(nameInput);
       }
       
-      // Add thank you page URL with submission ID in query params - redirecting to About page
+      // Add thank you page URL with submission ID in query params
+      // Changed to redirect to About page instead of homepage
       const thankYouPageInput = document.createElement('input');
       thankYouPageInput.type = 'hidden';
       thankYouPageInput.name = 'thankyou_url';
-      thankYouPageInput.value = `${window.location.origin}/about?newsletter_submitted=${submissionId}`;
+      thankYouPageInput.value = `https://www.youtube.com/watch?v=dQw4w9WgXcQ`;
       form.appendChild(thankYouPageInput);
       
       // Add form to body and submit

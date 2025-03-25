@@ -24,12 +24,25 @@
 import { useI18n } from '@/composables/useI18n';
 import { computed } from 'vue';
 
-// Props
-const props = defineProps<{
-  showReward: boolean;
-  rewardTitle: string;
-  rewardDescription: string;
-}>();
+// Props with proper TypeScript definitions and defaults
+const props = defineProps({
+  showReward: {
+    type: Boolean,
+    required: true
+  },
+  rewardTitle: {
+    type: String,
+    default: ''
+  },
+  rewardDescription: {
+    type: String,
+    default: ''
+  },
+  category: { 
+    type: String,
+    default: ''
+  }
+});
 
 // Emits
 const emit = defineEmits<{
@@ -41,29 +54,48 @@ const { t } = useI18n();
 
 // Computed
 const isPdfUnlock = computed(() => {
-  return props.rewardTitle.includes('Mind Map') || 
-         props.rewardTitle.includes('Mapa Myśli');
+  const title = props.rewardTitle || '';
+  return title.includes('Mind Map') || title.includes('Mapa Myśli');
 });
 
 const isSpecialReward = computed(() => {
-  return props.rewardTitle.includes('Champion') || 
-         props.rewardTitle.includes('Mistrz') ||
+  const title = props.rewardTitle || '';
+  return title.includes('Champion') || 
+         title.includes('Mistrz') ||
          isPdfUnlock.value;
 });
 
 const iconClass = computed(() => {
+  // Category-specific icons - check if category is provided
+  if (props.category) {
+    switch (props.category) {
+      case 'physical':
+        return 'fa-running';
+      case 'mental':
+        return 'fa-brain';
+      case 'personal':
+        return 'fa-smile-beam';
+      case 'relationship':
+        return 'fa-users';
+      default:
+        // No match, continue with other checks
+        break;
+    }
+  }
+  
   // PDF unlocked icon
   if (isPdfUnlock.value) {
     return 'fa-file-pdf';
   }
   
   // Special achievement icon
-  if (props.rewardTitle.includes('Champion') || props.rewardTitle.includes('Mistrz')) {
+  const title = props.rewardTitle || '';
+  if (title.includes('Champion') || title.includes('Mistrz')) {
     return 'fa-trophy';
   }
   
   // Regular tip/insight icon
-  if (props.rewardTitle.includes('Insight') || props.rewardTitle.includes('Wskazówka')) {
+  if (title.includes('Insight') || title.includes('Wskazówka')) {
     return 'fa-lightbulb';
   }
   

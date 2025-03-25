@@ -72,11 +72,12 @@ export const translations: Translations = {
     downloadPdfNow: "Go to Mind Map PDF section and download it now!",
 
     // Newsletter
-    newsletterBtnText: "Join Newsletter",
+    newsletterBtnText: "Get Free Habits Guide",
     newsletterTitle: "Quack to your inbox!",
     newsletterSubtitle: "Get weekly tips to build healthier habits and change your life!",
     newsletterBenefitsTitle: "What you'll get:",
     newsletterBenefitsList: [
+      "Free gift: '7 Quick Habits That Transform Your Day' guide (after e-mail confirmation)",
       "Ducktastic habit-building advice",
       "Free mini-guides and resources",
       "Early access to new features",
@@ -86,12 +87,13 @@ export const translations: Translations = {
     newsletterSubmitText: "Join the flock",
     newsletterSubmitting: "Sending...",
     newsletterSuccessTitle: "Hooray! You're in the flock! 🎉",
-    newsletterSuccessText: "Check your inbox soon for a special welcome gift!",
+    newsletterSuccessText: "Check your inbox to confirm your email and get your free '7 Quick Habits' guide!",
     newsletterErrorTitle: "Oops! Something went wrong.",
     newsletterErrorText: "Please try again later or contact us.",
     newsletterRewardTitle: "You're Quack-tastic!",
     newsletterRewardDescription: "Thank you for joining the Pro-Ducktive flock! We've sent a special gift to your email - a free mini-guide \"7 Quick Habits That Transform Your Day\"!",
-    newsletterRewardButton: "Got it!"
+    newsletterRewardButton: "Got it!",
+    newsletterRewardHighlight: "Your '7 Quick Habits That Transform Your Day' guide will be sent to your email after confirming your subscription!"
   },
   pl: {
     mainTitle: "69 Odcieni Miłości",
@@ -155,11 +157,12 @@ export const translations: Translations = {
     downloadPdfNow: "Idź do sekcji Mapa Myśli PDF i pobierz ją teraz!",
 
     // Newsletter
-    newsletterBtnText: "Dołącz do Newslettera",
+    newsletterBtnText: "Odbierz Darmowy Poradnik",
     newsletterTitle: "Kwak do Twojej skrzynki!",
     newsletterSubtitle: "Otrzymuj cotygodniowe wskazówki, jak budować zdrowsze nawyki i zmienić swoje życie!",
     newsletterBenefitsTitle: "Co otrzymasz:",
     newsletterBenefitsList: [
+      "Darmowy prezent: poradnik '7 szybkich nawyków, które transformują Twój dzień' (tuż po potwierdzeniu e-mail'a)",
       "Kaczastyczne porady budowania nawyków",
       "Darmowe mini-poradniki i materiały",
       "Wczesny dostęp do nowych funkcji",
@@ -169,12 +172,13 @@ export const translations: Translations = {
     newsletterSubmitText: "Dołącz do stada",
     newsletterSubmitting: "Wysyłanie...",
     newsletterSuccessTitle: "Hurra! Jesteś w stadzie! 🎉",
-    newsletterSuccessText: "Sprawdź swoją skrzynkę wkrótce po specjalny prezent powitalny!",
+    newsletterSuccessText: "Sprawdź swoją skrzynkę, aby potwierdzić email i otrzymać darmowy poradnik '7 szybkich nawyków'!",
     newsletterErrorTitle: "Ups! Coś poszło nie tak.",
     newsletterErrorText: "Spróbuj ponownie później lub skontaktuj się z nami.",
     newsletterRewardTitle: "Jesteś Kwa-ntastyczny!",
     newsletterRewardDescription: "Dziękujemy za dołączenie do stada Pro-Ducktive! Wysłaliśmy specjalny prezent na Twój adres email - darmowy mini-poradnik \"7 szybkich nawyków, które transformują Twój dzień\"!",
-    newsletterRewardButton: "Rozumiem!"
+    newsletterRewardButton: "Rozumiem!",
+    newsletterRewardHighlight: "Twój poradnik '7 szybkich nawyków, które transformują Twój dzień' zostanie wysłany na Twój email po potwierdzeniu subskrypcji!"
   }
 };
 

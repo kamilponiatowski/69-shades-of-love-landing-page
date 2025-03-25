@@ -50,8 +50,8 @@ export function useNewsletter() {
     /**
      * Navigates user to the gift page after successful subscription
      */
-    const navigateToGiftPage = (): void => {
-        router.push('/gift');
+    const navigateToQuotesPage = (): void => {
+        router.push('/quotes');
     };
     
     /**
@@ -85,7 +85,7 @@ export function useNewsletter() {
                 closeNewsletterPopup();
                 
                 // Navigate to gift page instead of showing reward popup
-                navigateToGiftPage();
+                navigateToQuotesPage();
             }, 2000);
         } catch (error) {
             // Show error message
@@ -181,7 +181,7 @@ export function useNewsletter() {
             isSubscribed.value = true;
             
             // Navigate to gift page
-            navigateToGiftPage();
+            navigateToQuotesPage();
         }
     };
     
@@ -206,6 +206,6 @@ export function useNewsletter() {
         closeNewsletterPopup,
         submitNewsletterForm,
         closeNewsletterReward,
-        navigateToGiftPage
+        navigateToQuotesPage
     };
 }

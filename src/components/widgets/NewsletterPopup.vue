@@ -14,7 +14,7 @@
           <i class="fas fa-check-circle"></i> {{ t('newsletterBenefitsTitle') }}
         </div>
         <ul class="newsletter-benefits-list">
-          <li v-for="(benefit, index) in getNewsletterBenefits()" :key="index">
+          <li v-for="(benefit, index) in getNewsletterBenefits()" :key="index" :class="{ 'highlight-benefit': index === 0 }">
             {{ benefit }}
           </li>
         </ul>
@@ -25,7 +25,7 @@
         <input 
           type="text" 
           class="newsletter-input" 
-          placeholder="Twoje imię (opcjonalnie)" 
+          placeholder="Your Name (optional, but nice to meet you 💜)" 
           v-model="nameValue"
           @input="updateName"
         >
@@ -141,5 +141,16 @@ const { t } = useI18n();
 /* Styles for the name field */
 .newsletter-input:first-of-type {
   margin-bottom: 10px;
+}
+
+/* Gift newsletter */
+.highlight-benefit {
+  font-weight: bold;
+  color: #FFD304;
+  margin-bottom: 10px !important;
+}
+
+.highlight-benefit::before {
+  content: "🎁" !important;
 }
 </style>

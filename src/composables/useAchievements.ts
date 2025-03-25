@@ -32,6 +32,7 @@ export function useAchievements() {
   const showReward = ref<boolean>(false);
   const rewardTitle = ref<string>('');
   const rewardDescription = ref<string>('');
+  const rewardCategory = ref<string>('');
   
   // Counter for motivational popups
   const taskCompletionCounter = ref<number>(0);
@@ -119,11 +120,13 @@ export function useAchievements() {
    * This popup disappears automatically after a short time
    */
   const showMotivationalPopup = (): void => {
+    const category = lastTipCategory.value;
     // Get a balanced tip that rotates through categories
     const tip = getBalancedTip();
     
     rewardTitle.value = t('motivationalTitle') || 'Self-Care Insight';
     rewardDescription.value = tip;
+    rewardCategory.value = category;
     showReward.value = true;
     
     // Automatically close after a short time, because it's just a motivational popup
@@ -189,6 +192,7 @@ export function useAchievements() {
     showReward,
     rewardTitle,
     rewardDescription,
+    rewardCategory,
     showSpecialReward,
     showPdfUnlockedReward,
     closeReward,

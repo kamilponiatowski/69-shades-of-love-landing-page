@@ -22,6 +22,14 @@ const routes: Array<RouteRecordRaw> = [
       title: '7 Quick Habits - Your Free Gift'
     }
   },
+  {
+    path: '/quotes',
+    name: 'Quotes',
+    component: () => import('@/views/QuotesView.vue'),
+    meta: {
+      title: 'Pop Culture Wisdom - Inspiration for Self-Improvement'
+    }
+  },
 ];
 
 /**
