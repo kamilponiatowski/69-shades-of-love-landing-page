@@ -14,7 +14,11 @@
           <i class="fas fa-check-circle"></i> {{ t('newsletterBenefitsTitle') }}
         </div>
         <ul class="newsletter-benefits-list">
-          <li v-for="(benefit, index) in getNewsletterBenefits()" :key="index" :class="{ 'highlight-benefit': index === 0 }">
+          <li v-for="(benefit, index) in getNewsletterBenefits()" :key="index" 
+              :class="{ 
+                'highlight-benefit': index === 0,
+                'highlight-benefit pop-culture': index === 1 
+              }">
             {{ benefit }}
           </li>
         </ul>
@@ -152,5 +156,10 @@ const { t } = useI18n();
 
 .highlight-benefit::before {
   content: "🎁" !important;
+}
+
+/* Pop Culture benefit with rocket icon */
+.highlight-benefit.pop-culture::before {
+  content: "🚀" !important;
 }
 </style>

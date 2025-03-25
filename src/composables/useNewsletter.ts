@@ -30,6 +30,13 @@ export function useNewsletter() {
      * Opens newsletter popup
      */
     const openNewsletterPopup = (): void => {
+        // Don't open popup if user is already subscribed
+        if (isSubscribed.value) {
+            // Navigate to quotes/gift page instead when already subscribed
+            navigateToQuotesPage();
+            return;
+        }
+        
         // Reset form state
         newsletterEmail.value = '';
         newsletterName.value = '';

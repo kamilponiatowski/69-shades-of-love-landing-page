@@ -8,7 +8,7 @@
 
     <div class="page-layout">
       <aside>
-        <AboutMe @open-newsletter="openNewsletterPopup" />
+        <AboutMe @open-newsletter="openNewsletterPopup" :isSubscribed="isSubscribed" />
 
         <PdfDownload :progress-percentage="progressPercentage" :tasks-to-unlock="tasksToUnlock"
           :is-unlocked="isUnlocked" v-model:pdf-section-collapsed="pdfSectionCollapsed"

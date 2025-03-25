@@ -82,7 +82,7 @@ export const translations: Translations = {
     newsletterBenefitsTitle: "What you'll get:",
     newsletterBenefitsList: [
       "Free gift: '7 Quick Habits That Transform Your Day' guide (after e-mail confirmation)",
-      "Pop Culture Wisdom - Quotes from geek productions to help you see the world from a new perspective 🚀",
+      "Pop Culture Wisdom - Quotes from geek productions to help you see the world from a new perspective",
       "Ducktastic habit-building advice",
       "Early access to new features",
       "Special discounts on premium content"
@@ -172,7 +172,7 @@ export const translations: Translations = {
     newsletterBenefitsTitle: "Co otrzymasz:",
     newsletterBenefitsList: [
       "Darmowy prezent: poradnik '7 szybkich nawyków, które transformują Twój dzień' (tuż po potwierdzeniu e-mail'a)",
-      "Mądrość z Pop-kultury - Cycacy z geekowych produkcji, które pomogą Ci zobaczyć świat z nowej perspektywy 🚀",
+      "Mądrość z Pop-kultury - Cycacy z geekowych produkcji, które pomogą Ci zobaczyć świat z nowej perspektywy",
       "Kaczastyczne porady budowania nawyków",
       "Wczesny dostęp do nowych funkcji",
       "Specjalne zniżki na treści premium"
