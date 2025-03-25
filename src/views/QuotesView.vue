@@ -2,10 +2,8 @@
     <div class="container quotes-page">
         <ScrollDownButton />
         <main class="quotes-content">
-            <div class="quotes-header">
-                <h1 class="main-title">Pop Culture Wisdom</h1>
-                <p class="subtitle">Geek-inspired quotes to transform into your best self</p>
-            </div>
+            <Header customTitle="Pop Culture Wisdom"
+                customSubtitle="Geek-inspired quotes to transform into your best self" />
 
             <div class="content-section intro-section">
                 <h2 class="section-title">Thank You For Joining Our Newsletter!</h2>
@@ -128,6 +126,7 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue';
 import { useRouter } from 'vue-router';
+import Header from '@/components/layout/Header.vue';
 import Footer from '@/components/layout/Footer.vue';
 import ScrollDownButton from '@/components/widgets/ScrollDownButton.vue';
 

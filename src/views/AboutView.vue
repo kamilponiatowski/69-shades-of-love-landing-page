@@ -2,11 +2,7 @@
   <div class="container about-page">
     <ScrollDownButton />
     <main class="about-content">
-      <div class="about-header">
-        <h1 class="main-title">{{ t('mainTitle') }}</h1>
-        <p class="subtitle">{{ t('subtitle') }}</p>
-      </div>
-
+      <Header />
       <div class="content-section philosophy-section">
         <h2 class="section-title">{{ t('projectPhilosophyTitle') }}</h2>
         <p class="section-description">
@@ -392,6 +388,7 @@ const navigateToHome = () => {
 }
 
 @media (max-width: 768px) {
+
   .wellbeing-areas,
   .insights-points {
     grid-template-columns: 1fr;

@@ -2,10 +2,8 @@
     <div class="container gift-page">
         <ScrollDownButton />
         <main class="gift-content">
-            <div class="gift-header">
-                <h1 class="main-title">7 Quick Habits That Transform Your Day</h1>
-                <p class="subtitle">Your exclusive guide to building better routines</p>
-            </div>
+            <Header customTitle="7 Quick Habits That Transform Your Day"
+                customSubtitle="Your exclusive guide to building better routines" />
 
             <div class="content-section intro-section">
                 <h2 class="section-title">Welcome to Your Free Gift!</h2>
@@ -364,6 +362,7 @@
 
 <script setup lang="ts">
 import { useRouter } from 'vue-router';
+import Header from '@/components/layout/Header.vue';
 import Footer from '@/components/layout/Footer.vue';
 import ScrollDownButton from '@/components/widgets/ScrollDownButton.vue';
 
@@ -464,7 +463,7 @@ const printHabitTracker = () => {
         }
     `;
     document.head.appendChild(printStyle);
-    
+
     // Add print-tracker-only class and remove conflicting class
     document.body.classList.add('print-tracker-only');
     document.body.classList.remove('print-full-guide');
