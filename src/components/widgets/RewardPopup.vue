@@ -109,10 +109,8 @@ const pdfUnlockButtonText = t('downloadPdfNow') || 'Download PDF Now';
 
 // Methods
 const handleBackdropClick = (event: MouseEvent) => {
-  // Only close popup by clicking background if it's not a special achievement
-  if (!isSpecialReward.value) {
-    emit('close');
-  }
+  // User can close all popups by clicking outside, as all now require explicit interaction
+  emit('close');
 };
 </script>
 

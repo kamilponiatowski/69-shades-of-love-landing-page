@@ -9,8 +9,8 @@
       <span class="about-content-text" v-html="formattedAboutContent"></span>
     </p>
     <div class="contact-info">
-      <a href="mailto:poniatowski.dev@gmail.com" class="contact-link" aria-label="Email the creator">
-        <i class="fas fa-envelope" aria-hidden="true"></i> poniatowski.dev@gmail.com
+      <a href="mailto:producktive@proton.me" class="contact-link" aria-label="Email the creator">
+        <i class="fas fa-envelope" aria-hidden="true"></i> producktive@proton.me
       </a>
     </div>
     <!-- New container for buttons - better alignment -->

@@ -55,7 +55,11 @@ export const translations: Translations = {
     personalHearts: "Personal Joy Hearts",
     relationshipHearts: "Relationship Hearts",
     skipToContent: "Skip to main content",
-    footer: "Made with <span class='heart'>💜</span> | Feel free to quack at <a href='mailto:poniatowski.dev@gmail.com'>poniatowski.dev@gmail.com</a>",
+    
+    // Footer text parts
+    footerStart: "Made with",
+    footerMid: "| Feel free to quack at",
+    
     continue: "Continue Self-Care Journey",
     completionAchievement: "Steps to Self-Love!",
     completionMessage: "You've completed {0} self-care activities. Keep going!",
@@ -78,8 +82,8 @@ export const translations: Translations = {
     newsletterBenefitsTitle: "What you'll get:",
     newsletterBenefitsList: [
       "Free gift: '7 Quick Habits That Transform Your Day' guide (after e-mail confirmation)",
+      "Pop Culture Wisdom - Quotes from geek productions to help you see the world from a new perspective 🚀",
       "Ducktastic habit-building advice",
-      "Free mini-guides and resources",
       "Early access to new features",
       "Special discounts on premium content"
     ],
@@ -140,7 +144,11 @@ export const translations: Translations = {
     personalHearts: "Serca Osobistej Radości",
     relationshipHearts: "Serca Relacji",
     skipToContent: "Pomiń do głównej treści",
-    footer: "Stworzone z <span class='heart'>💜</span> | Śmiało kwacz do <a href='mailto:poniatowski.dev@gmail.com'>poniatowski.dev@gmail.com</a>",
+    
+    // Cześć stopki
+    footerStart: "Stworzone z",
+    footerMid: "| Śmiało kwacz do",
+    
     continue: "Kontynuuj podróż samorozwoju",
     completionAchievement: "kroków do samoakceptacji!",
     completionMessage: "Ukończyłeś/aś {0} zadań związanych z dbaniem o siebie. Tak trzymaj!",
@@ -163,8 +171,8 @@ export const translations: Translations = {
     newsletterBenefitsTitle: "Co otrzymasz:",
     newsletterBenefitsList: [
       "Darmowy prezent: poradnik '7 szybkich nawyków, które transformują Twój dzień' (tuż po potwierdzeniu e-mail'a)",
+      "Mądrość z Pop-kultury - Cycacy z geekowych produkcji, które pomogą Ci zobaczyć świat z nowej perspektywy 🚀",
       "Kaczastyczne porady budowania nawyków",
-      "Darmowe mini-poradniki i materiały",
       "Wczesny dostęp do nowych funkcji",
       "Specjalne zniżki na treści premium"
     ],

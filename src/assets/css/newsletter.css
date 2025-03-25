@@ -250,16 +250,19 @@
     background-color: #8A2BE2;
     color: white;
     border: none;
-    padding: 10px 20px;
+    padding: 12px 20px;
     border-radius: 50px;
     font-weight: bold;
-    display: inline-flex;
+    display: flex;
     align-items: center;
+    justify-content: center;
     cursor: pointer;
     transition: all 0.3s ease;
-    margin-top: 10px;
-    margin-left: 10px;
     box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+    font-size: 1rem;
+    min-height: 42px;
+    width: 100%;
+    margin-top: 10px;
 }
 
 .newsletter-button:hover,
@@ -385,43 +388,75 @@
         height: 50px;
     }
 
-    .newsletter-button {
-        display: block;
-        width: 100%;
-        margin-top: 10px;
-        margin-left: 0;
-    }
-
-    /* Unified button widths in About Me section */
-    .about-me-buttons {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-        width: 100%;
-    }
-
-    .about-me-buttons .support-button,
-    .about-me-buttons .newsletter-button {
-        width: 100%;
-        justify-content: center;
-        margin-left: 0;
-        margin-top: 0;
-    }
-
-    /* Mobile responsive adjustments */
-    @media (min-width: 768px) {
-        .about-me-buttons {
-            flex-direction: row;
-        }
-
-        .about-me-buttons .support-button,
-        .about-me-buttons .newsletter-button {
-            flex: 1;
-        }
-    }
-
     /* Hide newsletter floating button when subscribed */
     .newsletter-float-button.hidden {
         display: none;
     }
+}
+
+/* Unifying the styles of all buttons */
+.about-me-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 15px;
+    width: 100%;
+}
+
+/* Buttons in About Me */
+.support-button {
+    background-color: #FFD304;
+    color: #333;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 50px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    min-height: 42px;
+    text-decoration: none;
+    font-size: 1rem;
+}
+
+.support-button:hover, 
+.support-button:focus {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    background-color: #FFE44D;
+}
+
+.support-button i, 
+.newsletter-button i, 
+.contact-link i {
+    margin-right: 8px;
+}
+
+.contact-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255, 255, 255, 0.9);
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    padding: 10px 12px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 30px;
+    border: none;
+    text-align: center;
+    width: 100%;
+    min-height: 38px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.contact-link:hover, 
+.contact-link:focus {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;
+    transform: translateY(-2px);
 }

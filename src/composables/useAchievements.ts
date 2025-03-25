@@ -117,7 +117,7 @@ export function useAchievements() {
   
   /**
    * Shows motivational popup with a helpful tip
-   * This popup disappears automatically after a short time
+   * This popup requires user interaction to close (modified)
    */
   const showMotivationalPopup = (): void => {
     const category = lastTipCategory.value;
@@ -129,10 +129,7 @@ export function useAchievements() {
     rewardCategory.value = category;
     showReward.value = true;
     
-    // Automatically close after a short time, because it's just a motivational popup
-    setTimeout(() => {
-      showReward.value = false;
-    }, 8000); // Increased time to allow reading the tip
+    // Removed auto-close timer to require user interaction
   };
   
   /**

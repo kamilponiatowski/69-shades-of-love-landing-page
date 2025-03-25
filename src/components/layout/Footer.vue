@@ -1,20 +1,17 @@
 <template>
-    <footer class="footer" v-html="footerContent"></footer>
-  </template>
+  <footer class="footer">
+    {{ t('footerStart') }} <span class="heart">💜</span> {{ t('footerMid') }} 
+    <a href="mailto:poniatowski.dev@gmail.com">poniatowski.dev@gmail.com</a>
+  </footer>
+</template>
   
-  <script setup lang="ts">
-  import { computed } from 'vue';
-  import { useI18n } from '../../composables/useI18n';
+<script setup lang="ts">
+import { useI18n } from '../../composables/useI18n';
+
+// Composables
+const { t } = useI18n();
+</script>
   
-  // Composables
-  const { t } = useI18n();
-  
-  // Computed
-  const footerContent = computed(() => {
-    return t('footer');
-  });
-  </script>
-  
-  <style scoped>
-  /* Styl komponentu jest obsługiwany przez globalne CSS */
-  </style>
+<style scoped>
+/* Component styles are handled by global CSS */
+</style>
