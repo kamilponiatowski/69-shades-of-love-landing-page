@@ -12,3 +12,4 @@ export { default as NewsletterFloatingButton } from './NewsletterFloatingButton.
 export { default as NewsletterPopup } from './NewsletterPopup.vue';
 export { default as NewsletterReward } from './NewsletterReward.vue';
 export { default as ScrollDownButton } from './ScrollDownButton.vue';
+export { default as ScrollTopButton } from './ScrollTopButton.vue';
