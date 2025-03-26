@@ -11,4 +11,34 @@
     --shadow-color: rgba(0, 0, 0, 0.1);
     --focus-outline: 3px solid #4070F4;
     --accent-color: #8A2BE2;
+
+    /* Enhanced animation durations for smoother transitions */
+    --transition-fast: 0.2s;
+    --transition-normal: 0.3s;
+    --transition-slow: 0.5s;
+    
+    /* Box shadow variables for consistent design */
+    --shadow-sm: 0 2px 5px rgba(0, 0, 0, 0.08);
+    --shadow-md: 0 5px 15px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.15);
+    
+    /* Border radius variables */
+    --radius-sm: 5px;
+    --radius-md: 10px;
+    --radius-lg: 15px;
+    --radius-full: 9999px;
+    
+    /* Enhanced gradient variables */
+    --gradient-primary: linear-gradient(135deg, var(--main-color), #a01a30);
+    --gradient-accent: linear-gradient(135deg, var(--accent-color), #6a11cb);
+    --gradient-success: linear-gradient(135deg, var(--mental-color), #4CAF50);
+    
+    /* Z-index organization for stacking context */
+    --z-index-base: 1;
+    --z-index-dropdown: 10;
+    --z-index-sticky: 20;
+    --z-index-fixed: 30;
+    --z-index-modal-backdrop: 40;
+    --z-index-modal: 50;
+    --z-index-tooltip: 60;
 }

@@ -1,7 +1,32 @@
 <template>
-  <header>
-    <div class="logo-container">
-      <DuckLogo :isHomePage="isHomePage" @tell-duck-joke="$emit('tell-duck-joke')" />
+  <header class="modern-header">
+    <div class="header-background"></div>
+    
+    <div class="corner-element top-corner">
+      <!-- Logo w lewym górnym rogu -->
+      <DuckLogo class="top-left-element" :isHomePage="isHomePage" @tell-duck-joke="$emit('tell-duck-joke')" />
+      
+      <!-- Przełącznik języka w prawym górnym rogu -->
+      <div class="language-switcher top-right-element" @click="toggleLanguage">
+        <button 
+          class="lang-btn" 
+          :class="{ active: currentLanguage === 'pl' }" 
+          aria-label="Zmień język na polski"
+        >
+          PL
+        </button>
+        <button 
+          class="lang-btn" 
+          :class="{ active: currentLanguage === 'en' }" 
+          aria-label="Switch language to English"
+        >
+          EN
+        </button>
+      </div>
+    </div>
+    
+    <!-- Centralna zawartość -->
+    <div class="central-content">
       <router-link 
         to="/about" 
         class="main-title-link"
@@ -10,40 +35,30 @@
         <h1 class="main-title">{{ customTitle || t('mainTitle') }}</h1>
       </router-link>
       
-      <!-- Language Switcher -->
-      <div class="language-switcher">
-        <button 
-          class="lang-btn" 
-          :class="{ active: currentLanguage === 'pl' }" 
-          @click="changeLanguage('pl')" 
-          aria-label="Zmień język na polski"
-        >
-          PL
-        </button>
-        <button 
-          class="lang-btn" 
-          :class="{ active: currentLanguage === 'en' }" 
-          @click="changeLanguage('en')" 
-          aria-label="Switch language to English"
-        >
-          EN
-        </button>
-      </div>
+      <p class="subtitle">{{ customSubtitle || t('subtitle') }}</p>
     </div>
-    <p class="subtitle">{{ customSubtitle || t('subtitle') }}</p>
-    <!-- Dedication for Muszka -->
-    <span class="dedication">{{ t('dedication') }}</span>
-    <div v-if="streakDays > 0" class="streak-counter" aria-live="polite">
-      <span class="streak-flame" aria-hidden="true">
-        <i class="fas fa-fire"></i>
-      </span>
-      <span class="streak-count">{{ t('streakDays', streakDays) }}</span>
+    
+    <div class="corner-element bottom-corner">
+      <!-- Dedykacja na dole po środku -->
+      <div class="dedication-badge bottom-center-element">
+        <span class="dedication-heart">💜</span>
+        {{ t('dedication') }}
+        <span class="dedication-heart">💜</span>
+      </div>
+      
+      <!-- Streak counter w prawym dolnym rogu -->
+      <div v-if="streakDays > 0" class="streak-counter bottom-right-element" aria-live="polite">
+        <span class="streak-flame" aria-hidden="true">
+          <i class="fas fa-fire"></i>
+        </span>
+        <span class="streak-count">{{ t('streakDays', streakDays) }}</span>
+      </div>
     </div>
   </header>
 </template>
 
 <script setup lang="ts">
-import { useI18n } from '@/composables/useI18n';
+import { useI18n, Language } from '@/composables/useI18n';
 import DuckLogo from '@/components/widgets/DuckLogo.vue';
 
 // Props
@@ -72,16 +87,127 @@ defineEmits(['tell-duck-joke']);
 // Composables
 const { t, currentLanguage, setLanguage } = useI18n();
 
-// Language switching function
-const changeLanguage = (lang: 'en' | 'pl') => {
-  setLanguage(lang);
+/**
+ * Toggle between available languages
+ * Switches between Polish and English
+ */
+const toggleLanguage = () => {
+  const newLang: Language = currentLanguage.value === 'pl' ? 'en' : 'pl';
+  setLanguage(newLang);
 };
 </script>
 
 <style scoped>
+/* Modern header design with pattern and gradient */
+.modern-header {
+  position: relative;
+  margin-bottom: 40px;
+  padding: 30px;
+  background: linear-gradient(120deg, rgba(196, 30, 58, 0.1), rgba(138, 43, 226, 0.1));
+  border-radius: 15px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  min-height: 240px; /* Zapewnia minimalną wysokość dla layoutu */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header-background {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23c41e3a' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+  opacity: 0.5;
+  z-index: 0;
+}
+
+/* Corner elements container for better alignment */
+.corner-element {
+  position: relative;
+  width: 100%;
+  z-index: 5;
+}
+
+.top-corner {
+  display: flex;
+  justify-content: space-between;
+  height: 40px;
+}
+
+.bottom-corner {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  height: 40px;
+}
+
+/* Positioning classes for the corner elements */
+.top-left-element {
+  position: relative;
+  z-index: 5;
+}
+
+.top-right-element {
+  position: relative;
+  z-index: 5;
+}
+
+.bottom-center-element {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 0;
+  z-index: 5;
+}
+
+.bottom-right-element {
+  position: relative;
+  z-index: 5;
+}
+
+/* Central content styling */
+.central-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 20px 0;
+  flex-grow: 1;
+}
+
 .main-title-link {
   text-decoration: none;
   color: inherit;
+  margin-bottom: 15px;
+}
+
+.main-title {
+  color: var(--main-color);
+  font-size: 2.8rem;
+  margin-bottom: 10px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: relative;
+  display: inline-block;
+}
+
+.main-title::after {
+  content: "";
+  position: absolute;
+  width: 70px;
+  height: 4px;
+  background: linear-gradient(90deg, var(--main-color), var(--accent-color));
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 2px;
 }
 
 .main-title-link:hover .main-title,
@@ -95,23 +221,77 @@ const changeLanguage = (lang: 'en' | 'pl') => {
   border-radius: 5px;
 }
 
-/* Language Switcher Styles */
-.logo-container {
-  position: relative;
-  width: 100%;
+.subtitle {
+  color: #555;
+  font-size: 1.3rem;
+  font-weight: 400;
 }
 
+/* Dedication badge styling with animation */
+.dedication-badge {
+  display: inline-block;
+  background-color: rgba(138, 43, 226, 0.1);
+  color: var(--accent-color);
+  padding: 8px 15px;
+  border-radius: 20px;
+  font-style: italic;
+  font-size: 0.95rem;
+  position: relative;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
+  border: 1px dashed rgba(138, 43, 226, 0.3);
+}
+
+.dedication-heart {
+  display: inline-block;
+  margin: 0 5px;
+  color: #C41E3A;
+  animation: heartbeat 1.5s infinite;
+}
+
+@keyframes heartbeat {
+  0% { transform: scale(1); }
+  5% { transform: scale(1.2); }
+  10% { transform: scale(1); }
+  15% { transform: scale(1.1); }
+  20% { transform: scale(1); }
+  100% { transform: scale(1); }
+}
+
+/* Streak counter enhanced styling */
+.streak-counter {
+  background: linear-gradient(135deg, #FF5722, #FF9800);
+  padding: 8px 15px;
+  border-radius: 30px;
+  display: inline-flex;
+  align-items: center;
+  box-shadow: 0 5px 15px rgba(255, 87, 34, 0.3);
+  color: white;
+  font-weight: bold;
+  height: 40px;
+}
+
+.streak-flame {
+  color: white;
+  margin-right: 10px;
+  font-size: 1.2rem;
+}
+
+.streak-count {
+  font-weight: bold;
+  color: white;
+}
+
+/* Language Switcher Styles */
 .language-switcher {
-  position: absolute;
-  top: 50%;
-  right: 0;
-  transform: translateY(-50%);
   display: flex;
-  gap: 5px;
+  gap: 2px;
   border-radius: 20px;
   background-color: rgba(255, 255, 255, 0.7);
-  padding: 3px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 2px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+  height: 40px;
+  align-items: center;
 }
 
 .lang-btn {
@@ -120,14 +300,12 @@ const changeLanguage = (lang: 'en' | 'pl') => {
   color: #666;
   font-weight: bold;
   font-size: 0.9rem;
-  padding: 5px 10px;
+  padding: 4px 10px;
   border-radius: 15px;
   cursor: pointer;
   transition: all 0.3s ease;
-}
-
-.lang-btn:hover {
-  background-color: rgba(0, 0, 0, 0.05);
+  pointer-events: none; /* Make button non-interactive as we handle clicks on parent */
+  height: 36px;
 }
 
 .lang-btn.active {
@@ -135,17 +313,83 @@ const changeLanguage = (lang: 'en' | 'pl') => {
   color: white;
 }
 
-/* Responsive styles for language switcher */
+/* Responsive styles */
 @media (max-width: 768px) {
-  .language-switcher {
-    top: 0;
-    right: 0;
+  .modern-header {
+    padding: 20px 15px;
+  }
+  
+  .main-title {
+    font-size: 2rem;
+    margin-top: 15px;
+  }
+  
+  .subtitle {
+    font-size: 1.1rem;
+  }
+  
+  .dedication-badge {
+    font-size: 0.85rem;
+    padding: 6px 12px;
+  }
+  
+  .bottom-corner {
+    flex-direction: column;
+    align-items: center;
+    height: auto;
+    margin-top: 15px;
+  }
+  
+  .bottom-center-element {
+    position: relative;
+    left: 0;
     transform: none;
+    margin-bottom: 15px;
+  }
+  
+  .bottom-right-element {
+    margin-top: 10px;
+  }
+}
+
+/* For smaller screens */
+@media (max-width: 480px) {
+  .modern-header {
+    padding: 15px 10px;
+    min-height: 200px;
+  }
+  
+  .main-title {
+    font-size: 1.7rem;
+  }
+  
+  .subtitle {
+    font-size: 1rem;
+  }
+
+  .dedication-badge {
+    font-size: 0.8rem;
+    padding: 5px 10px;
+  }
+  
+  .streak-counter {
+    padding: 6px 12px;
+    font-size: 0.9rem;
+    height: 34px;
+  }
+  
+  .streak-flame {
+    font-size: 1rem;
+  }
+  
+  .language-switcher {
+    height: 34px;
   }
   
   .lang-btn {
-    padding: 4px 8px;
     font-size: 0.8rem;
+    padding: 3px 8px;
+    height: 30px;
   }
 }
 </style>

@@ -13,7 +13,7 @@
         <i class="fas fa-envelope" aria-hidden="true"></i> producktive@proton.me
       </a>
     </div>
-    <!-- New container for buttons - better alignment -->
+    <!-- Actions container -->
     <div class="about-me-buttons">
       <a href="https://tiptopjar.com/proDucktive" target="_blank" 
          class="support-button" 
@@ -55,7 +55,10 @@ const formattedAboutContent = computed(() => {
   return t('aboutContent').replace('\\n\\n', '<br><br>');
 });
 
-// Function to trigger shake animation
+/**
+ * Triggers shake animation for support button
+ * Creates attention-grabbing effect
+ */
 const triggerShake = () => {
   isShaking.value = true;
   
@@ -87,38 +90,147 @@ onBeforeUnmount(() => {
 </script>
 
 <style scoped>
-/* Shake animation - rotate on X axis slightly */
+/* Enhanced modern look for About Me container */
+.about-me-container {
+  background: linear-gradient(135deg, #7B25D1 0%, #4B0082 100%);
+  border-radius: 15px;
+  padding: 30px;
+  margin-bottom: 30px;
+  color: white;
+  box-shadow: 0 10px 30px rgba(74, 20, 140, 0.3);
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.about-me-container:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px rgba(74, 20, 140, 0.4);
+}
+
+.about-me-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.about-me-title::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -8px;
+  width: 50px;
+  height: 3px;
+  background: linear-gradient(90deg, #FFD304, rgba(255, 255, 255, 0.7));
+  border-radius: 3px;
+}
+
+.about-me-title img {
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+.about-me-content {
+  line-height: 1.7;
+  margin-bottom: 25px;
+  font-size: 1.05rem;
+}
+
+.contact-info {
+  margin-bottom: 15px;
+}
+
+/* Contact link styling */
+.contact-link {
+  display: inline-flex;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.15);
+  color: rgba(255, 255, 255, 0.95);
+  text-decoration: none;
+  font-weight: 500;
+  padding: 8px 15px;
+  border-radius: 30px;
+  transition: all 0.3s ease;
+}
+
+.contact-link:hover, 
+.contact-link:focus {
+  background-color: rgba(255, 255, 255, 0.25);
+  color: white;
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.contact-link i {
+  margin-right: 8px;
+}
+
+/* Button container */
+.about-me-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 15px;
+  width: 100%;
+}
+
+/* Support button styling */
+.support-button {
+  background: linear-gradient(135deg, #FFD304, #FFA500);
+  color: #333;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 30px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  box-shadow: 0 5px 15px rgba(255, 211, 4, 0.3);
+  width: 100%;
+}
+
+.support-button:hover, 
+.support-button:focus {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(255, 211, 4, 0.4);
+  background: linear-gradient(135deg, #FFE44D, #FFB700);
+}
+
+.support-button i {
+  margin-right: 8px;
+}
+
+/* Duck pattern in background */
+.duck-pattern {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  opacity: 0.1;
+  font-size: 8rem;
+  transform: rotate(15deg);
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+}
+
+/* Shake animation for support button */
 @keyframes gentle-shake {
-  0%, 100% { 
-    transform: rotate(0deg); 
-  }
-  10% { 
-    transform: rotate(-1deg); 
-  }
-  20% { 
-    transform: rotate(1deg); 
-  }
-  30% { 
-    transform: rotate(-1deg); 
-  }
-  40% { 
-    transform: rotate(1deg); 
-  }
-  50% { 
-    transform: rotate(-0.5deg); 
-  }
-  60% { 
-    transform: rotate(0.5deg); 
-  }
-  70% { 
-    transform: rotate(-0.5deg); 
-  }
-  80% { 
-    transform: rotate(0.5deg); 
-  }
-  90% { 
-    transform: rotate(-0.25deg); 
-  }
+  0%, 100% { transform: rotate(0deg); }
+  10% { transform: rotate(-2deg); }
+  20% { transform: rotate(2deg); }
+  30% { transform: rotate(-2deg); }
+  40% { transform: rotate(2deg); }
+  50% { transform: rotate(-1deg); }
+  60% { transform: rotate(1deg); }
+  70% { transform: rotate(-0.5deg); }
+  80% { transform: rotate(0.5deg); }
+  90% { transform: rotate(-0.25deg); }
 }
 
 .shake-animation {
@@ -126,5 +238,22 @@ onBeforeUnmount(() => {
   transform-origin: center bottom;
 }
 
-/* Existing styles remain the same */
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .about-me-container {
+    padding: 20px;
+  }
+  
+  .about-me-title {
+    font-size: 1.3rem;
+  }
+  
+  .about-me-content {
+    font-size: 1rem;
+  }
+  
+  .duck-pattern {
+    font-size: 6rem;
+  }
+}
 </style>
