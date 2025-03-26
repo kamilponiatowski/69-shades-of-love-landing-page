@@ -1,6 +1,55 @@
 # 69 Shades of Love - Self-Care Todo
 
-![69 Shades of Love](https://tiptopjar.com/proDucktive/preview.jpg)
+## 🔗 Proof of Concept (PoC)
+**Check out the original Proof of Concept:** 
+[69 Shades of Love - PoC Version](https://make-habits-with-pro-ducktive.tiiny.site)
+
+This project is a full-featured evolution of the initial Proof of Concept, expanding on the core idea of a comprehensive self-care tracking application.
+
+## 🚀 Current Project Status
+
+**Version:** 1.1.0
+**Last Updated:** March 26, 2025
+**Status:** Active Development 🟢
+
+### 🔍 Recent Updates
+- Implemented internationalization (English & Polish)
+- Added comprehensive newsletter integration
+- Enhanced tracking and achievement system
+- Implemented responsive design for mobile devices
+- Developed PDF mind map unlock feature
+
+## 🚀 Upcoming Roadmap: The Future of Self-Care Innovation
+
+Imagine a self-care app that doesn't just track your progress, but revolutionizes how you approach personal growth. Our ambitious roadmap is set to transform 69 Shades of Love from a simple tracker into a comprehensive life optimization platform! 
+
+### 🌟 Vision Highlights
+
+**Personalization Superpowers** 🎯
+Transform the app into your ultimate personal development companion. Create custom tasks, design unique self-care profiles, and craft a journey that's 100% YOU.
+
+**Community & Connection** 🤝
+Turn self-care from a solo mission into a collaborative adventure. Connect with like-minded individuals, share achievements, and join group challenges that inspire and motivate.
+
+**Expert-Backed Content** 🧠
+Get ready for a treasure trove of wisdom! Seasonal challenges, specialized wellness paths, and mini-courses led by top experts will elevate your self-care game to professional levels.
+
+**Smart Insights & Gamification** 📊
+Dive deep into your personal growth with advanced analytics, intelligent recommendations, and an exciting progression system that makes self-improvement feel like an epic quest.
+
+**Seamless Tech Integration** 📱
+From native mobile apps with push notifications to synchronization across devices and integration with your favorite health and productivity tools, we're breaking down every barrier to consistent self-care.
+
+### 💡 Why Follow Our Journey?
+- Continuous innovation
+- User-driven development
+- Science-backed approaches
+- Fun, engaging experience
+- Real, meaningful personal growth
+
+## 🚧 Known Issues
+- Minor responsive design tweaks needed for extremely small screens
+- Occasional localstorage sync issues on older browsers
 
 ## 📝 Description
 
@@ -24,106 +73,63 @@
 - **Multilingual Support**: Available in English and Polish languages
 - **Newsletter Integration**: Optional subscription for additional resources
 
-## 🚀 Getting Started
+## 🤝 Contributing
+
+Contributions are welcome! Please check our [issues page](https://github.com/in-progress) for current tasks and discussions.
+
+### Ways to Contribute
+- Report bugs
+- Suggest new features
+- Improve documentation
+- Help with translations
+- Submit pull requests
+
+## 📦 Development
 
 ### Prerequisites
-
 - Node.js (v16+)
 - npm or yarn
 
-### Installation
+### Quick Start
+```bash
+# Clone the repository
+git clone https://github.com/yourusername/69-shades-of-love.git
 
-1. Clone the repository
-   ```
-   git clone https://github.com/yourusername/69-shades-of-love.git
-   cd 69-shades-of-love
-   ```
+# Navigate to project directory
+cd 69-shades-of-love
 
-2. Install dependencies
-   ```
-   npm install
-   # or
-   yarn install
-   ```
+# Install dependencies
+npm install
 
-3. Start the development server
-   ```
-   npm run dev
-   # or
-   yarn dev
-   ```
+# Run development server
+npm run dev
 
-4. Build for production
-   ```
-   npm run build
-   # or
-   yarn build
-   ```
+# Build for production
+npm run build
+```
 
 ## 🧰 Tech Stack
+- Vue.js 3
+- TypeScript
+- Pinia
+- Vue Router
+- Vite
+- i18n
+- LocalStorage API
 
-- **Vue.js 3** - Progressive JavaScript framework
-- **Composition API** - For better code organization and reusability
-- **TypeScript** - For type safety and better developer experience
-- **Pinia** - State management with persistence support
-- **Vue Router** - For navigation between views
-- **Vite** - Next generation frontend tooling
-- **LocalStorage API** - For saving user progress
-- **CSS Custom Properties** - For theming and consistent styling
-
-## 📂 Project Structure
-
-```
-69ShadesOfLove/
-├── public/                # Static files
-├── src/
-│   ├── assets/            # Static assets
-│   │   ├── css/           # CSS styles
-│   │   └── images/        # Images and icons
-│   ├── components/        # Vue components
-│   │   ├── layout/        # Layout components
-│   │   └── widgets/       # Feature-specific components
-│   ├── composables/       # Reusable composition functions
-│   ├── constants/         # Application data and constants
-│   ├── locales/           # Translations
-│   ├── router/            # Vue Router configuration
-│   ├── stores/            # Pinia stores
-│   ├── utils/             # Utility functions
-│   └── views/             # Page components
-├── tests/                 # Test files
-└── types/                 # Type definitions
-```
-
-## 🌐 Internationalization
-
-The application supports multiple languages:
-
-- English (default)
-- Polish
-
-The language is automatically detected based on the user's browser settings and can be changed within the application.
-
-## 🤝 Contributing
-
-Contributions, issues, and feature requests are welcome! Feel free to check the [issues page](https://github.com/yourusername/69-shades-of-love/issues).
-
-## 📄 License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
-
-## 👏 Acknowledgments
-
-- Created with ❤️ by WTQ - What The Quack
-- Special thanks to all contributors and supporters
-- Designed with focus on mental health and wellbeing
-
-## 🦆 Support
+## 💖 Support the Project
 
 If you find this project useful, consider supporting the developer:
-
 - [Buy Me A Coffee](https://tiptopjar.com/proDucktive)
 - Email: poniatowski.dev@gmail.com
 
+## 📄 License
+MIT License
+
+## 🦆 About WTQ (What The Quack)
+
+Created with passion by a team that believes in continuous self-improvement and adding a bit of humor to serious topics. We're on a mission to make personal development accessible, fun, and meaningful.
+
 ---
 
-Made with 💜 | Feel free to quack at poniatowski.dev@gmail.com
+Made with 💜 by ProDucktive  and with the scientific expertise of Tim Polka-Nawioski | Feel free to quack at poniatowski.dev@gmail.com or producktive@proton.me
