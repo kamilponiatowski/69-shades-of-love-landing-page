@@ -10,6 +10,7 @@ import './assets/css/animations.css';
 import './assets/css/layout.css';
 import './assets/css/responsive.css';
 import './assets/css/newsletter.css';
+import './assets/css/content-sections.css';
 
 // Create and configure Pinia store
 const pinia = createPinia();
