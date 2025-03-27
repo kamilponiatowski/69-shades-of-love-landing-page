@@ -39,10 +39,10 @@ const emit = defineEmits(['close']);
 const { t } = useI18n();
 const router = useRouter();
 
-// Redirect to Quotes page on close
+// Redirect to quotes page after newsletter signup
 const handleClose = () => {
   emit('close');
-  // Navigate to the Pop Culture Wisdom page
+  // Navigate to quotes page after newsletter completion
   router.push('/quotes');
 };
 </script>

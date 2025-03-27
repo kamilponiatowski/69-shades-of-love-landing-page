@@ -27,7 +27,7 @@ const router = useRouter();
 const handleClick = () => {
   if (props.isSubscribed) {
     // If user is already subscribed, redirect to gift page
-    router.push('/quotes');
+    router.push('/gift');
   } else {
     // If not subscribed, show newsletter popup
     emit('click');
