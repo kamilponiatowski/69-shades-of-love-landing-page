@@ -6,7 +6,7 @@
       <div class="footer-message">
         {{ t('footerStart') }} 
         <router-link to="/quotes" class="heart-link" aria-label="Easter egg: go to quotes page">
-          <span class="heart">💜</span>
+          <span class="heart animate-heartbeat">💜</span>
         </router-link> 
         {{ t('footerMid') }}
         <a href="mailto:poniatowski.dev@gmail.com">poniatowski.dev@gmail.com</a> 
@@ -200,16 +200,6 @@ const resetAppData = () => {
 
 .reset-button i {
   font-size: 0.9rem;
-}
-
-/* Heartbeat animation */
-@keyframes heartbeat {
-  0% { transform: scale(1); }
-  5% { transform: scale(1.2); }
-  10% { transform: scale(1); }
-  15% { transform: scale(1.1); }
-  20% { transform: scale(1); }
-  100% { transform: scale(1); }
 }
 
 /* Responsive styles */

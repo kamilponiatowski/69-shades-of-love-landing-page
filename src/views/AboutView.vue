@@ -1,5 +1,3 @@
-// src/views/AboutView.vue - zmodyfikowany plik z ujednoliconym nagłówkiem i layoutem
-
 <template>
   <div class="container">
     <a href="#main-content" class="skip-link">{{ t("skipToContent") }}</a>

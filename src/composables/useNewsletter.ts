@@ -55,7 +55,7 @@ export function useNewsletter() {
     };
     
     /**
-     * Navigates user to the gift page after successful subscription
+     * Navigates user to the gift page
      */
     const navigateToQuotesPage = (): void => {
         router.push('/quotes');
@@ -91,8 +91,11 @@ export function useNewsletter() {
             setTimeout(() => {
                 closeNewsletterPopup();
                 
-                // Navigate to gift page instead of showing reward popup
-                navigateToQuotesPage();
+                // Show the reward popup instead of immediately navigating
+                showNewsletterReward.value = true;
+                
+                // Add confetti effect for celebration
+                createConfetti();
             }, 2000);
         } catch (error) {
             // Show error message
@@ -110,16 +113,18 @@ export function useNewsletter() {
     
     /**
      * Closes newsletter reward popup
+     * Navigation to Quotes page is now handled by the component
      */
     const closeNewsletterReward = (): void => {
         showNewsletterReward.value = false;
+        // Navigation is now handled in the component
     };
     
     /**
      * Creates confetti animation for newsletter subscription
      */
     const createConfetti = (): void => {
-        const colors = ['#FF9F29', '#7ED957', '#FFD966', '#FF97B7', '#C41E3A'];
+        const colors = ['#FF9F29', '#7ED957', '#FFD966', '#FF97B7', '#C41E3A', '#8A2BE2'];
         
         for (let i = 0; i < 50; i++) {
             setTimeout(() => {
@@ -187,8 +192,9 @@ export function useNewsletter() {
             localStorage.setItem('newsletterSubscribed', 'true');
             isSubscribed.value = true;
             
-            // Navigate to gift page
-            navigateToQuotesPage();
+            // Show reward popup instead of navigating immediately
+            showNewsletterReward.value = true;
+            createConfetti();
         }
     };
     
@@ -213,6 +219,7 @@ export function useNewsletter() {
         closeNewsletterPopup,
         submitNewsletterForm,
         closeNewsletterReward,
-        navigateToQuotesPage
+        navigateToQuotesPage,
+        createConfetti
     };
 }

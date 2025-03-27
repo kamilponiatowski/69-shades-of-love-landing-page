@@ -10,7 +10,7 @@ module.exports = {
       ecmaVersion: 'latest'
     },
     rules: {
-      // Podstawowe zasady
+      // Basic principles
       'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
       'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
       'no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],

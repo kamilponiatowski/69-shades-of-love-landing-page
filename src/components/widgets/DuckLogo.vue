@@ -2,7 +2,7 @@
     <router-link v-if="!isHomePage" to="/" class="duck-logo" tabindex="0" role="link"
         :aria-label="t('duckLogoHomeAria')">
         <img src="@/assets/images/duck-logo.svg" alt="logo - Quack!!" aria-hidden="true">
-        <div class="quick-diagonal-shine"></div>
+        <div class="diagonal-shine"></div>
         <span class="duck-tooltip">What The Quack?</span>
     </router-link>
     <div v-else class="duck-logo" @click="$emit('tell-duck-joke')" tabindex="0" role="button"
@@ -54,7 +54,7 @@ const { t } = useI18n();
     z-index: 1;
 }
 
-/* Szybki diagonalny przebłysk */
+/* Rapid diagonal flash */
 .quick-diagonal-shine {
     position: absolute;
     top: 0;
@@ -72,22 +72,6 @@ const { t } = useI18n();
     animation: quick-shine 6s infinite;
     z-index: 2;
     pointer-events: none;
-}
-
-@keyframes quick-shine {
-
-    0%,
-    80% {
-        transform: translateX(-150%) translateY(-150%);
-    }
-
-    90% {
-        transform: translateX(150%) translateY(150%);
-    }
-
-    100% {
-        transform: translateX(150%) translateY(150%);
-    }
 }
 
 .duck-tooltip {
