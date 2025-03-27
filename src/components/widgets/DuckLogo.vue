@@ -8,7 +8,7 @@
     <div v-else class="duck-logo" @click="$emit('tell-duck-joke')" tabindex="0" role="button"
         :aria-label="t('duckLogoAria')">
         <img src="@/assets/images/duck-logo.svg" alt="logo - Quack!!" aria-hidden="true">
-        <div class="quick-diagonal-shine"></div>
+        <div class="diagonal-shine"></div>
         <span class="duck-tooltip">What The Quack?</span>
     </div>
 </template>
@@ -52,26 +52,6 @@ const { t } = useI18n();
     left: 4px;
     display: block;
     z-index: 1;
-}
-
-/* Rapid diagonal flash */
-.quick-diagonal-shine {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg,
-            transparent 0%,
-            transparent 35%,
-            rgba(255, 255, 255, 0.9) 45%,
-            rgba(255, 255, 255, 0.9) 55%,
-            transparent 65%,
-            transparent 100%);
-    transform: translateX(-150%) translateY(-150%);
-    animation: quick-shine 6s infinite;
-    z-index: 2;
-    pointer-events: none;
 }
 
 .duck-tooltip {

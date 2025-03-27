@@ -41,7 +41,7 @@
         <p class="download-info" v-if="!isUnlocked">
           <span class="download-info-text">{{ t('downloadInfoLocked', tasksToUnlock) }}</span>
           
-          <!-- Pasek postępu - podobny do głównego komponentu ProgressBar -->
+          <!-- Progress bar - similar to main ProgressBar component -->
           <div class="unlock-progress-container">
             <div class="progress-stats">{{ progressPercentage }}%</div>
             <div class="unlock-progress-bar" 
@@ -93,7 +93,7 @@ const wasLocked = ref(true);
 
 // Computed value for progress bar width, specifically for unlocking progress
 const unlockPercentage = computed(() => {
-  // PDF jest odblokowany przy 20%, więc skalujemy postęp do 0-100% bazując na 0-20%
+  // PDF is unlocked at 20%, so we scale the progress to 0-100% based on 0-20%
   return Math.min(100, (props.progressPercentage / 20) * 100);
 });
 
@@ -163,7 +163,7 @@ watch(() => props.isUnlocked, (newValue, oldValue) => {
   z-index: 1;
 }
 
-/* Header styling */
+/* Header styling with flexbox instead of float */
 .pdf-header {
   display: flex;
   justify-content: space-between;
@@ -321,7 +321,7 @@ watch(() => props.isUnlocked, (newValue, oldValue) => {
   padding: 3px 10px;
   border-radius: 15px;
   display: inline-block;
-  float: right;
+  /* Removed float: right and added flexbox in container */
 }
 
 /* Progress bar styling - modeled after main progress bar */

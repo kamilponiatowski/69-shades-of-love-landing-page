@@ -1,6 +1,5 @@
 <template>
   <button class="newsletter-button animate-float" @click="handleClick">
-    <span class="button-shine"></span>
     <i class="fas fa-gift"></i> <span>{{ t('newsletterBtnText') }}</span>
   </button>
 </template>
