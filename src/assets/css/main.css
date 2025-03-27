@@ -12,6 +12,7 @@ body {
     min-height: 100vh;
     padding: 20px;
     line-height: 1.5;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .container {
@@ -81,7 +82,7 @@ header {
     top: 50%;
     left: 100%;
     transform: translateY(-50%);
-    background-color: white;
+    background-color: var(--tooltip-background);
     padding: 8px 12px;
     border-radius: 15px;
     box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
@@ -90,7 +91,7 @@ header {
     transition: all 0.3s ease;
     white-space: nowrap;
     font-weight: bold;
-    color: #8A2BE2;
+    color: var(--tooltip-text-color);
     pointer-events: none;
     z-index: 10;
     margin-left: 10px;
@@ -125,7 +126,7 @@ header {
 }
 
 .subtitle {
-    color: #666;
+    color: var(--secondary-text-color);
     font-size: 1.2rem;
     margin-bottom: 20px;
     text-align: center;
@@ -156,7 +157,7 @@ header {
 }
 
 .streak-counter {
-    background-color: white;
+    background-color: var(--card-background);
     padding: 10px 15px;
     border-radius: 20px;
     display: inline-flex;
@@ -173,7 +174,7 @@ header {
 
 .streak-count {
     font-weight: bold;
-    color: #333;
+    color: var(--text-color);
 }
 
 /* ============ DUCK JOKE STYLES ============ */
@@ -181,7 +182,7 @@ header {
     position: fixed;
     bottom: 20px;
     left: 20px;
-    background-color: white;
+    background-color: var(--card-background);
     padding: 15px;
     border-radius: 10px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
@@ -298,13 +299,14 @@ header {
 
 /* ============ PDF SECTION STYLES ============ */
 .download-pdf-section {
-    background-color: white;
+    background-color: var(--card-background);
     border-radius: 15px;
     padding: 20px;
     margin-bottom: 30px;
     position: relative;
     text-align: center;
     box-shadow: 0 5px 15px var(--shadow-color);
+    transition: background-color 0.3s ease;
 }
 
 .pdf-section-toggle {
@@ -315,7 +317,7 @@ header {
     border: none;
     font-size: 1.2rem;
     cursor: pointer;
-    color: #777;
+    color: var(--secondary-text-color);
     transition: color 0.2s ease;
     width: 40px;
     height: 40px;
@@ -376,7 +378,7 @@ header {
 
 .download-info {
     margin-top: 15px;
-    color: #666;
+    color: var(--secondary-text-color);
     font-size: 0.9rem;
 }
 
@@ -394,10 +396,11 @@ header {
 /* ============ PROGRESS STYLES ============ */
 .progress-container {
     margin-bottom: 30px;
-    background-color: white;
+    background-color: var(--card-background);
     padding: 20px;
     border-radius: 15px;
     box-shadow: 0 5px 15px var(--shadow-color);
+    transition: background-color 0.3s ease;
 }
 
 .progress-title {
@@ -413,13 +416,13 @@ header {
 }
 
 .progress-stats {
-    color: #666;
+    color: var(--secondary-text-color);
     font-weight: bold;
 }
 
 .progress-bar {
     height: 10px;
-    background-color: #eee;
+    background-color: var(--progress-background);
     border-radius: 5px;
     overflow: hidden;
     margin-bottom: 10px;
@@ -445,7 +448,7 @@ header {
 
 .category-label {
     font-size: 0.8rem;
-    color: #666;
+    color: var(--secondary-text-color);
     margin-bottom: 5px;
 }
 
@@ -483,7 +486,7 @@ header {
     overflow: hidden;
     box-shadow: 0 10px 20px var(--shadow-color);
     background-color: var(--card-background);
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, background-color 0.3s ease;
 }
 
 .category:hover {
@@ -537,17 +540,34 @@ header {
     overflow: hidden;
 }
 
+.dark-mode .todo-item {
+    background-color: rgba(60, 60, 80, 0.6);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
 .todo-item:hover {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.dark-mode .todo-item:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .todo-item.completed {
     background-color: rgba(240, 240, 240, 0.5);
 }
 
+.dark-mode .todo-item.completed {
+    background-color: rgba(40, 40, 60, 0.5);
+}
+
 .todo-item.completed .todo-text {
     text-decoration: line-through;
     color: #888;
+}
+
+.dark-mode .todo-item.completed .todo-text {
+    color: #aaa;
 }
 
 .todo-checkbox {
@@ -561,6 +581,10 @@ header {
     position: relative;
     cursor: pointer;
     transition: all 0.2s ease;
+}
+
+.dark-mode .todo-checkbox {
+    border-color: #555;
 }
 
 .physical .todo-checkbox {
@@ -610,10 +634,18 @@ header {
     font-size: 0.95rem;
 }
 
+.dark-mode .todo-text {
+    color: #e6e6e6;
+}
+
 .todo-text .description {
     font-size: 0.8rem;
     color: #888;
     margin-top: 3px;
+}
+
+.dark-mode .todo-text .description {
+    color: #aaa;
 }
 
 /* ============ FOOTER STYLES ============ */
@@ -621,8 +653,8 @@ header {
     text-align: center;
     margin-top: 40px;
     padding: 20px;
-    border-top: 1px solid rgba(0, 0, 0, 0.1);
-    color: #666;
+    border-top: 1px solid var(--border-color);
+    color: var(--secondary-text-color);
     font-size: 0.9rem;
 }
 
@@ -643,4 +675,58 @@ header {
 .footer a:hover, .footer a:focus {
     color: #C41E3A;
     text-decoration: underline;
+}
+
+/* Dark mode specific overrides */
+.dark-mode {
+    color-scheme: dark;
+}
+
+.dark-mode a {
+    color: #bb86fc; /* Purple hue that fits with dark mode */
+}
+
+.dark-mode a:hover,
+.dark-mode a:focus {
+    color: #e2b7ff;
+}
+
+.dark-mode input,
+.dark-mode textarea,
+.dark-mode select,
+.dark-mode button {
+    background-color: var(--input-background);
+    color: var(--text-color);
+    border-color: var(--input-border-color);
+}
+
+.dark-mode .main-title {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.dark-mode .streakBadge {
+    background-color: rgba(255, 87, 34, 0.2);
+}
+
+/* Enhanced animation for transitions between light and dark mode */
+.todo-item,
+.category,
+.progress-container,
+.download-pdf-section,
+.achievement-container,
+.duck-joke-container,
+.reward-content,
+header,
+footer,
+button,
+input,
+.streak-counter,
+.main-title,
+.subtitle {
+    transition: 
+        background-color 0.3s ease,
+        background 0.3s ease,
+        color 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
 }

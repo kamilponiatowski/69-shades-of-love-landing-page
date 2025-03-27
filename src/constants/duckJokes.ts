@@ -18,15 +18,15 @@ export const duckJokes = {
         "What happens when ducks fly upside down? They QUACK up!"
     ],
     pl: [
-        "Jak się nazywa kaczka, która kradnie? ZŁODZIEJSKA KACZKA!",
-        "Dlaczego kaczka przeszła przez drogę? Żeby udowodnić, że nie jest kurczakiem!",
-        "Jak nazywa się kaczka dobra z matematyki? KALKU-KWAK!",
-        "Jak kaczka płaci rachunki? DZIOBEM!",
-        "Co kaczki lubią jeść do zupy? KRAKRA-KERSY!",
-        "Co powiedziała kaczka, kupując szminkę? Nałóż ją na mój DZIÓB!",
-        "Dlaczego kaczki nie opowiadają żartów podczas lotu? Bo by się ZAKWAKAŁY!",
-        "Co ma dziób, ale nigdy nie płaci? KACZKA!",
-        "Jak poznać, że kaczka kupuje samochód? Ciągle pyta o PIE-RZASTY!",
-        "Co się dzieje, gdy kaczki latają do góry nogami? ZAKWAKUJĄ SIĘ!"
+        "Dlaczego kaczka nie płaci za Netflix? Bo korzysta z KWA-konta!",
+        "Jaką piosenkę śpiewają kaczki na imprezach? KWA KWA dance z zającem!",
+        "Co mówi kaczka, gdy widzi promocję w Żabce? KWAkurde, trzeba brać!",
+        "Jak się nazywa kaczka, która wykonuje makijaż? KWA-smetyczka!",
+        "Jaki jest ulubiony serial kaczek? KWAmieni z tarasów!",
+        "Jak nazywa się zakład fotograficzny dla kaczek? FOTOKWA!",
+        "Co robi kaczka w siłowni? Ćwiczy KWADRAKI!",
+        "Czym dojeżdża kaczka do pracy? KWAdracyklem!",
+        "Jaki napój najbardziej lubią kaczki? Sprite z KWAszoną cytryną!",
+        "Jak się nazywa kaczka influencerka? KWAdratowa babeczka!"
     ]
 };

@@ -49,7 +49,8 @@ const resetAppData = () => {
       'hasVisitedBefore',
       'preferredLanguage',
       'pdfUnlockedBefore',
-      'pdfUnlockShown'
+      'pdfUnlockShown',
+      'darkMode' // Add darkMode to keys to be removed
     ];
     
     // Delete all data from localStorage
@@ -74,7 +75,7 @@ const resetAppData = () => {
   position: relative;
   margin-top: 40px;
   padding: 30px;
-  background: linear-gradient(120deg, rgba(196, 30, 58, 0.1), rgba(138, 43, 226, 0.1));
+  background: var(--section-background);
   border-radius: 15px;
   box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.05);
   overflow: hidden;
@@ -83,6 +84,7 @@ const resetAppData = () => {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  transition: background 0.3s ease, box-shadow 0.3s ease;
 }
 
 /* Background pattern matching the header */
@@ -112,14 +114,14 @@ const resetAppData = () => {
 
 /* Footer message style */
 .footer-message {
-  color: #666;
+  color: var(--secondary-text-color);
   font-size: 0.95rem;
   line-height: 1.6;
   margin-bottom: 5px;
 }
 
 .footer-credits {
-  color: #888;
+  color: var(--secondary-text-color);
   font-size: 0.85rem;
   font-style: italic;
 }
@@ -178,8 +180,8 @@ const resetAppData = () => {
 
 .reset-button {
   background-color: transparent;
-  color: #888;
-  border: 1px solid #aaa;
+  color: var(--secondary-text-color);
+  border: 1px solid var(--border-color);
   border-radius: 20px;
   padding: 6px 15px;
   font-size: 0.85rem;
@@ -200,6 +202,16 @@ const resetAppData = () => {
 
 .reset-button i {
   font-size: 0.9rem;
+}
+
+/* Animation for heartbeat */
+@keyframes heartbeat {
+  0% { transform: scale(1); }
+  5% { transform: scale(1.2); }
+  10% { transform: scale(1); }
+  15% { transform: scale(1.1); }
+  20% { transform: scale(1); }
+  100% { transform: scale(1); }
 }
 
 /* Responsive styles */

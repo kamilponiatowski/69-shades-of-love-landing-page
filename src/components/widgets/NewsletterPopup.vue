@@ -9,69 +9,57 @@
         <i class="fas fa-envelope"></i> <span>{{ t('newsletterTitle') }}</span>
       </div>
       <div class="newsletter-subtitle">{{ t('newsletterSubtitle') }}</div>
-      
+
       <div class="newsletter-benefits">
         <div class="newsletter-benefits-title">
           <i class="fas fa-check-circle"></i> {{ t('newsletterBenefitsTitle') }}
         </div>
         <ul class="newsletter-benefits-list">
-          <li v-for="(benefit, index) in benefitsList" :key="index" 
-              :class="{ 
-                'highlight-benefit': index === 0,
-                'highlight-benefit pop-culture': index === 1 
-              }">
+          <li v-for="(benefit, index) in benefitsList" :key="index" :class="{
+            'highlight-benefit': index === 0,
+            'highlight-benefit pop-culture': index === 1
+          }">
             {{ benefit }}
           </li>
         </ul>
       </div>
-      
+
       <!-- Pop Culture Wisdom Access Highlight -->
       <div class="pop-culture-section animate-glow">
         <i class="fas fa-theater-masks"></i>
         <div class="pop-culture-text">
-          <h3>Pop Culture Wisdom Collection</h3>
-          <p>Subscribe to unlock our exclusive collection of inspiring quotes from your favorite movies, TV shows, comics, and books!</p>
+          <h3>{{ t('popCultureTitle') }}</h3>
+          <p>{{ t('popCultureDescription') }}</p>
         </div>
       </div>
-      
+
       <form class="newsletter-form" @submit.prevent="$emit('submit')">
         <!-- Name -->
-        <input 
-          type="text" 
-          class="newsletter-input" 
-          placeholder="Your Name (optional, but nice to meet you 💜)" 
-          v-model="nameValue"
-          @input="updateName"
-        >
-        
+        <input type="text" class="newsletter-input" placeholder="Your Name (optional, but nice to meet you 💜)"
+          v-model="nameValue" @input="updateName">
+
         <!-- Email -->
-        <input 
-          type="email" 
-          class="newsletter-input" 
-          :placeholder="t('newsletterEmailPlaceholder')" 
-          required
-          v-model="emailValue"
-          @input="updateEmail"
-        >
-        
+        <input type="email" class="newsletter-input" :placeholder="t('newsletterEmailPlaceholder')" required
+          v-model="emailValue" @input="updateEmail">
+
         <button type="submit" class="newsletter-submit animate-float" :disabled="isSubmitting">
           <span class="button-shine"></span>
-          <i class="fas" :class="isSubmitting ? 'fa-spinner fa-spin' : 'fa-paper-plane'"></i> 
+          <i class="fas" :class="isSubmitting ? 'fa-spinner fa-spin' : 'fa-paper-plane'"></i>
           <span>{{ isSubmitting ? t('newsletterSubmitting') : t('newsletterSubmitText') }}</span>
         </button>
       </form>
-      
+
       <div class="newsletter-success animate-fade-in" :class="{ show: showSuccess }">
-        <strong>{{ t('newsletterSuccessTitle') }}</strong> 
+        <strong>{{ t('newsletterSuccessTitle') }}</strong>
         {{ t('newsletterSuccessText') }}
         <p class="newsletter-redirect-notice" v-if="showSuccess">
-          <i class="fas fa-info-circle"></i> 
+          <i class="fas fa-info-circle"></i>
           Formularz zostanie otwarty w nowej karcie. Po zapisaniu prosimy o powrót do tej strony.
         </p>
       </div>
-      
+
       <div class="newsletter-error animate-fade-in" :class="{ show: showError }">
-        <strong>{{ t('newsletterErrorTitle') }}</strong> 
+        <strong>{{ t('newsletterErrorTitle') }}</strong>
         {{ t('newsletterErrorText') }}
       </div>
     </div>
@@ -107,7 +95,7 @@ const benefitsList = computed(() => {
   // Pobieramy string z pełną listą benefitów, a następnie dzielimy go na tablicę
   // W ten sposób obchodzimy problem typowania
   const rawValue = t('newsletterBenefitsList');
-  
+
   if (typeof rawValue === 'string') {
     try {
       // Próbujemy najpierw sparsować jako JSON
@@ -117,12 +105,12 @@ const benefitsList = computed(() => {
       return [rawValue];
     }
   }
-  
+
   // Jeśli wartość już jest tablicą, zwracamy ją
   if (Array.isArray(rawValue)) {
     return rawValue;
   }
-  
+
   // Domyślnie zwracamy pustą tablicę
   return [];
 });
@@ -229,7 +217,7 @@ const updateName = (event: Event) => {
   align-items: center;
   cursor: pointer;
   transition: all 0.3s ease;
-  z-index: 1;
+  z-index: 10;
 }
 
 .newsletter-close:hover,
@@ -418,6 +406,7 @@ const updateName = (event: Event) => {
   0% {
     box-shadow: 0 0 5px rgba(255, 211, 4, 0.3);
   }
+
   100% {
     box-shadow: 0 0 15px rgba(255, 211, 4, 0.6);
   }
@@ -480,21 +469,21 @@ const updateName = (event: Event) => {
     padding: 25px;
     width: 90%;
   }
-  
+
   .newsletter-title {
     font-size: 1.6rem;
   }
-  
+
   .newsletter-subtitle {
     font-size: 1rem;
   }
-  
+
   .pop-culture-section {
     flex-direction: column;
     align-items: center;
     text-align: center;
   }
-  
+
   .pop-culture-section i {
     margin-bottom: 10px;
   }
@@ -505,32 +494,32 @@ const updateName = (event: Event) => {
     padding: 20px;
     max-width: 95%;
   }
-  
+
   .newsletter-title {
     font-size: 1.4rem;
   }
-  
+
   .newsletter-submit {
     padding: 12px 15px;
   }
-  
+
   .newsletter-benefits-list li {
     padding-left: 22px;
     font-size: 0.9rem;
   }
-  
+
   .newsletter-benefits {
     padding: 15px;
   }
-  
+
   .pop-culture-text h3 {
     font-size: 1rem;
   }
-  
+
   .pop-culture-text p {
     font-size: 0.9rem;
   }
-  
+
   /* Ensure the close button is clearly visible on small screens */
   .newsletter-close {
     top: 10px;

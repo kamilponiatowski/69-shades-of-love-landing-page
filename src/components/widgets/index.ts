@@ -2,6 +2,7 @@
 export { default as AboutMe } from './AboutMe.vue';
 export { default as Achievement } from './Achievement.vue';
 export { default as CategoryCard } from './CategoryCard.vue';
+export { default as DarkModeToggle } from './DarkModeToggle.vue';  // Dodana nowa linia
 export { default as DuckJoke } from './DuckJoke.vue';
 export { default as PdfDownload } from './PdfDownload.vue';
 export { default as ProgressBar } from './ProgressBar.vue';

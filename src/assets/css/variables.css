@@ -1,5 +1,6 @@
 /* ============ VARIABLES ============ */
 :root {
+    /* Original light theme colors */
     --physical-color: #FF9F29;
     --mental-color: #7ED957;
     --personal-color: #FFD966;
@@ -11,6 +12,27 @@
     --shadow-color: rgba(0, 0, 0, 0.1);
     --focus-outline: 3px solid #4070F4;
     --accent-color: #8A2BE2;
+    
+    /* Button and component colors */
+    --btn-background: white;
+    --btn-text-color: #333;
+    --input-background: white;
+    --input-border-color: #ddd;
+    --card-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    
+    /* Header, footer and content background */
+    --section-background: linear-gradient(120deg, rgba(196, 30, 58, 0.1), rgba(138, 43, 226, 0.1));
+    --content-card-background: white;
+    --progress-background: rgba(255, 255, 255, 0.6);
+    --secondary-text-color: #666;
+    --border-color: rgba(0, 0, 0, 0.1);
+    --achievement-background: white;
+    
+    /* Tooltip and popup backgrounds */
+    --tooltip-background: white;
+    --tooltip-text-color: #8A2BE2;
+    --popup-background: white;
+    --popup-text-color: #333;
 
     /* Enhanced animation durations for smoother transitions */
     --transition-fast: 0.2s;
@@ -41,4 +63,45 @@
     --z-index-modal-backdrop: 40;
     --z-index-modal: 50;
     --z-index-tooltip: 60;
+}
+
+/* Dark mode theme - softer contrast */
+.dark-mode {
+    /* Softer, less contrasting background and text colors */
+    --background-color: #222236;
+    --text-color: #d0d0d0;
+    --card-background: #2a2a42;
+    --card-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    --shadow-color: rgba(0, 0, 0, 0.3);
+    
+    /* Button and component colors */
+    --btn-background: #353550;
+    --btn-text-color: #d0d0d0;
+    --input-background: #2a2a45;
+    --input-border-color: #444464;
+    
+    /* Header, footer and content background */
+    --section-background: linear-gradient(120deg, rgba(196, 30, 58, 0.08), rgba(138, 43, 226, 0.08));
+    --content-card-background: #2a2a42;
+    --progress-background: rgba(255, 255, 255, 0.08);
+    --secondary-text-color: #a0a0a0;
+    --border-color: rgba(255, 255, 255, 0.08);
+    --achievement-background: #2a2a42;
+    
+    /* Tooltip and popup backgrounds */
+    --tooltip-background: #353550;
+    --tooltip-text-color: #d8d8d8;
+    --popup-background: #2a2a42;
+    --popup-text-color: #d0d0d0;
+    
+    /* Enhance shadows for dark mode */
+    --shadow-sm: 0 2px 5px rgba(0, 0, 0, 0.2);
+    --shadow-md: 0 5px 15px rgba(0, 0, 0, 0.25);
+    --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.3);
+    
+    /* Softer shades of category colors */
+    --physical-color: #FFB04F;
+    --mental-color: #8FE169;
+    --personal-color: #FFDF7F;
+    --relationship-color: #FFACC2;
 }

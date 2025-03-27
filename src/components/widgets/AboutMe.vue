@@ -22,7 +22,7 @@
     <!-- Actions container with enhanced buttons -->
     <div class="about-me-buttons">
       <a href="https://tiptopjar.com/proDucktive" target="_blank" 
-         class="support-button" 
+         class="support-button animate-float" 
          :class="{'shake-animation': isShaking}"
          rel="noopener">
         <span class="button-shine"></span>
@@ -251,49 +251,6 @@ onBeforeUnmount(() => {
   transform: rotate(15deg);
   text-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
   z-index: 0;
-}
-
-/* Button shine effect */
-.button-shine {
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    90deg, 
-    rgba(255, 255, 255, 0) 0%, 
-    rgba(255, 255, 255, 0.4) 50%, 
-    rgba(255, 255, 255, 0) 100%
-  );
-  animation: button-shine 3s infinite;
-  pointer-events: none;
-}
-
-@keyframes button-shine {
-  0% {
-    left: -100%;
-  }
-  20% {
-    left: 100%;
-  }
-  100% {
-    left: 100%;
-  }
-}
-
-/* Shake animation for support button */
-@keyframes gentle-shake {
-  0%, 100% { transform: rotate(0deg); }
-  10% { transform: rotate(-2deg); }
-  20% { transform: rotate(2deg); }
-  30% { transform: rotate(-2deg); }
-  40% { transform: rotate(2deg); }
-  50% { transform: rotate(-1deg); }
-  60% { transform: rotate(1deg); }
-  70% { transform: rotate(-0.5deg); }
-  80% { transform: rotate(0.5deg); }
-  90% { transform: rotate(-0.25deg); }
 }
 
 .shake-animation {

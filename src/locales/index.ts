@@ -609,7 +609,11 @@ export const translations: TranslationObject = {
         universe: "Anime",
         category: "Motivation"
       }
-    ])
+    ]),
+    darkModeTooltip: "Switch to dark mode",
+    lightModeTooltip: "Switch to light mode",
+    popCultureTitle: "Pop Culture Wisdom Collection",
+    popCultureDescription: "Subscribe to unlock our exclusive collection of inspiring quotes from your favorite movies, TV shows, comics, and books!",
   },
   pl: {
     mainTitle: "69 Odcieni Miłości",
@@ -1211,8 +1215,12 @@ export const translations: TranslationObject = {
         universe: "Anime",
         category: "Motivation"
       }
-    ])
-  }
+    ]),
+    darkModeTooltip: "Przełącz na tryb ciemny",
+    lightModeTooltip: "Przełącz na tryb jasny",
+    popCultureTitle: "Kolekcja Mądrości Popkultury",
+popCultureDescription: "Zapisz się, aby odblokować naszą ekskluzywną kolekcję inspirujących cytatów z Twoich ulubionych filmów, seriali, komiksów i książek!"
+  },
 };
 
 export default translations;

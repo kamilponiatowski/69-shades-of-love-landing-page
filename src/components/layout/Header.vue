@@ -6,22 +6,28 @@
       <!-- Logo w lewym górnym rogu -->
       <DuckLogo class="top-left-element" :isHomePage="isHomePage" @tell-duck-joke="$emit('tell-duck-joke')" />
       
-      <!-- Przełącznik języka w prawym górnym rogu -->
-      <div class="language-switcher top-right-element" @click="toggleLanguage">
-        <button 
-          class="lang-btn" 
-          :class="{ active: currentLanguage === 'pl' }" 
-          aria-label="Zmień język na polski"
-        >
-          PL
-        </button>
-        <button 
-          class="lang-btn" 
-          :class="{ active: currentLanguage === 'en' }" 
-          aria-label="Switch language to English"
-        >
-          EN
-        </button>
+      <!-- Kontrolki w prawym górnym rogu: przełącznik trybu ciemnego i języka -->
+      <div class="top-right-controls">
+        <!-- Przełącznik trybu ciemnego -->
+        <DarkModeToggle />
+        
+        <!-- Przełącznik języka -->
+        <div class="language-switcher" @click="toggleLanguage">
+          <button 
+            class="lang-btn" 
+            :class="{ active: currentLanguage === 'pl' }" 
+            aria-label="Zmień język na polski"
+          >
+            PL
+          </button>
+          <button 
+            class="lang-btn" 
+            :class="{ active: currentLanguage === 'en' }" 
+            aria-label="Switch language to English"
+          >
+            EN
+          </button>
+        </div>
       </div>
     </div>
     
@@ -60,6 +66,7 @@
 <script setup lang="ts">
 import { useI18n, Language } from '@/composables/useI18n';
 import DuckLogo from '@/components/widgets/DuckLogo.vue';
+import DarkModeToggle from '@/components/widgets/DarkModeToggle.vue';
 
 // Props
 defineProps({
@@ -103,7 +110,7 @@ const toggleLanguage = () => {
   position: relative;
   margin-bottom: 40px;
   padding: 30px;
-  background: linear-gradient(120deg, rgba(196, 30, 58, 0.1), rgba(138, 43, 226, 0.1));
+  background: var(--section-background);
   border-radius: 15px;
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
   overflow: hidden;
@@ -112,6 +119,7 @@ const toggleLanguage = () => {
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
+  transition: background 0.3s ease, box-shadow 0.3s ease;
 }
 
 .header-background {
@@ -152,8 +160,11 @@ const toggleLanguage = () => {
   z-index: 5;
 }
 
-.top-right-element {
-  position: relative;
+/* New top right controls container for dark mode toggle and language switcher */
+.top-right-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
   z-index: 5;
 }
 
@@ -222,7 +233,7 @@ const toggleLanguage = () => {
 }
 
 .subtitle {
-  color: #555;
+  color: var(--secondary-text-color);
   font-size: 1.3rem;
   font-weight: 400;
 }
@@ -313,6 +324,15 @@ const toggleLanguage = () => {
   color: white;
 }
 
+/* Dark mode styles for language switcher */
+:global(.dark-mode) .language-switcher {
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+:global(.dark-mode) .lang-btn {
+  color: #ddd;
+}
+
 /* Responsive styles */
 @media (max-width: 768px) {
   .modern-header {
@@ -390,6 +410,13 @@ const toggleLanguage = () => {
     font-size: 0.8rem;
     padding: 3px 8px;
     height: 30px;
+  }
+
+  /* Adjust layout for mobile */
+  .top-right-controls {
+    flex-direction: column-reverse;
+    gap: 5px;
+    align-items: flex-end;
   }
 }
 </style>
