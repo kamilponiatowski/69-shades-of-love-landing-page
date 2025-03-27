@@ -1,6 +1,6 @@
 <template>
-  <div class="newsletter-popup" :class="{ show }" aria-modal="true" role="dialog">
-    <div class="newsletter-container">
+  <div class="newsletter-popup" :class="{ show }" @click="handleBackdropClick" aria-modal="true" role="dialog">
+    <div class="newsletter-container" @click.stop>
       <div class="newsletter-background"></div>
       <button class="newsletter-close" @click="$emit('close')" aria-label="Close newsletter popup">
         <i class="fas fa-times"></i>
@@ -137,6 +137,17 @@ watch(() => props.name, (newValue) => {
     nameValue.value = newValue;
   }
 });
+
+/**
+ * Handle click on backdrop (outside newsletter container)
+ * Closes the popup when user clicks outside the content area
+ */
+const handleBackdropClick = (event: MouseEvent) => {
+  // Only close if clicked on the backdrop and not on the content
+  if (event.target === event.currentTarget) {
+    emit('close');
+  }
+};
 
 // Methods
 const updateEmail = (event: Event) => {
@@ -518,6 +529,17 @@ const updateName = (event: Event) => {
   
   .pop-culture-text p {
     font-size: 0.9rem;
+  }
+  
+  /* Ensure the close button is clearly visible on small screens */
+  .newsletter-close {
+    top: 10px;
+    right: 10px;
+    width: 36px;
+    height: 36px;
+    font-size: 1.4rem;
+    background: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
   }
 }
 </style>
