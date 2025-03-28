@@ -48,20 +48,18 @@ const getCategoryProgress = (type: Category['type']) => {
 </script>
 
 <style scoped>
-/* Modern progress container with pattern and gradient, matching Header/Footer style */
+/* Modern progress container with enhanced responsiveness */
 .modern-progress-container {
   position: relative;
-  margin-bottom: 30px;
-  padding: 30px;
   background: linear-gradient(120deg, rgba(196, 30, 58, 0.1), rgba(138, 43, 226, 0.1));
   border-radius: 15px;
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
   overflow: hidden;
+  margin-bottom: 30px;
+  width: 100%; /* Ensure full width */
 }
 
-/* Background pattern matching header and footer */
 .progress-background {
-  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -72,13 +70,12 @@ const getCategoryProgress = (type: Category['type']) => {
   z-index: 0;
 }
 
-/* Progress content positioning on top of background */
 .progress-content {
   position: relative;
   z-index: 1;
+  padding: 25px;
 }
 
-/* Enhanced title styling with flex layout */
 .progress-title {
   display: flex;
   justify-content: space-between;
@@ -114,7 +111,6 @@ const getCategoryProgress = (type: Category['type']) => {
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
 }
 
-/* Enhanced progress bar with animation */
 .progress-bar {
   height: 14px;
   background-color: rgba(255, 255, 255, 0.6);
@@ -163,21 +159,18 @@ const getCategoryProgress = (type: Category['type']) => {
   }
 }
 
-/* Category progress items with improved styling */
 .category-progress {
   display: flex;
   justify-content: space-between;
-  margin-top: 20px;
+  padding: 15px;
   background-color: rgba(255, 255, 255, 0.5);
   border-radius: 10px;
-  padding: 15px;
   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
 }
 
 .category-progress-item {
   text-align: center;
   flex: 1;
-  padding: 0 10px;
   position: relative;
 }
 
@@ -201,8 +194,6 @@ const getCategoryProgress = (type: Category['type']) => {
 .category-percentage {
   font-weight: bold;
   font-size: 1.2rem;
-  display: inline-block;
-  position: relative;
   transition: transform 0.3s ease;
 }
 
@@ -210,42 +201,31 @@ const getCategoryProgress = (type: Category['type']) => {
   transform: scale(1.1);
 }
 
-/* Category specific text colors */
-.physical-text {
-  color: var(--physical-color);
-}
-
-.mental-text {
-  color: var(--mental-color);
-}
-
-.personal-text {
-  color: var(--personal-color);
-}
-
-.relationship-text {
-  color: var(--relationship-color);
-}
+/* Category-specific text colors */
+.physical-text { color: var(--physical-color); }
+.mental-text { color: var(--mental-color); }
+.personal-text { color: var(--personal-color); }
+.relationship-text { color: var(--relationship-color); }
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
-  .modern-progress-container {
+  .progress-content {
     padding: 20px 15px;
   }
   
   .progress-title {
     flex-direction: column;
     align-items: flex-start;
+    margin-bottom: 15px;
   }
   
   .progress-title h2 {
-    margin-bottom: 15px;
-    font-size: 1.3rem;
+    margin-bottom: 10px;
   }
   
   .progress-stats {
-    margin-bottom: 10px;
-    font-size: 1rem;
+    align-self: flex-start;
+    margin-top: 5px;
   }
   
   .category-progress {
@@ -255,38 +235,29 @@ const getCategoryProgress = (type: Category['type']) => {
   
   .category-progress-item {
     width: 50%;
-    flex: none;
     margin-bottom: 10px;
   }
   
   .category-progress-item:nth-child(odd)::after {
     display: none;
   }
-  
-  .category-progress-item:nth-child(1),
-  .category-progress-item:nth-child(2) {
-    margin-bottom: 15px;
-  }
 }
 
-/* For smaller screens */
 @media (max-width: 480px) {
-  .modern-progress-container {
-    padding: 15px;
+  .progress-content {
+    padding: 15px 10px;
   }
   
   .progress-title h2 {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
   }
   
   .progress-stats {
-    font-size: 0.9rem;
+    font-size: 0.95rem;
   }
   
   .category-progress-item {
     width: 100%;
-    flex: none;
-    margin-bottom: 10px;
   }
   
   .category-progress-item::after {

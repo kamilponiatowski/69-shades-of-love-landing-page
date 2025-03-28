@@ -305,4 +305,10 @@ const handleItemClick = (event: MouseEvent) => {
     font-size: 0.75rem;
   }
 }
+
+@media (max-width: 480px) {
+    .modern-todo-item {
+        padding: 10px 12px;
+    }
+}
 </style>

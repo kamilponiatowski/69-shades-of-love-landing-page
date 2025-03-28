@@ -271,6 +271,12 @@ const toggleLanguage = () => {
   background-color: var(--background-color);
 }
 
+@media (max-width: 768px) {
+    .container {
+        padding: 0;
+    }
+}
+
 .page-layout {
   display: flex;
   flex-direction: column;
@@ -285,58 +291,6 @@ const toggleLanguage = () => {
   max-width: 1000px;
   margin: 0 auto;
   width: 100%;
-}
-
-/* Content section styles - ujednolicone z headerem */
-.content-section {
-  position: relative;
-  margin-bottom: 30px;
-  padding: 30px;
-  background: var(--section-background);
-  border-radius: 15px;
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
-  overflow: hidden;
-  transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
-}
-
-/* Dodany pattern tła */
-.content-section::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23c41e3a' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
-  opacity: 0.5;
-  z-index: 0;
-}
-
-.content-section:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-}
-
-/* Pozycjonowanie zawartości nad tło */
-.content-section>* {
-  position: relative;
-  z-index: 1;
-}
-
-.section-title {
-  color: var(--accent-color);
-  border-bottom: 3px solid var(--accent-color);
-  padding-bottom: 10px;
-  margin-bottom: 20px;
-  font-size: 1.8rem;
-  position: relative;
-}
-
-.section-description {
-  font-size: 1.1rem;
-  line-height: 1.6;
-  color: var(--text-color);
-  margin-bottom: 20px;
 }
 
 /* Introduction section note styles */
@@ -663,36 +617,6 @@ const toggleLanguage = () => {
   z-index: 1;
 }
 
-/* Navigation */
-.navigation-links {
-  text-align: center;
-  margin-top: 40px;
-  margin-bottom: 50px;
-}
-
-.back-link {
-  display: inline-flex;
-  align-items: center;
-  color: white;
-  background: linear-gradient(135deg, var(--accent-color), #6a11cb);
-  text-decoration: none;
-  padding: 12px 25px;
-  border-radius: 30px;
-  transition: all 0.3s ease;
-  font-weight: bold;
-  box-shadow: 0 4px 15px rgba(138, 43, 226, 0.3);
-}
-
-.back-link:hover,
-.back-link:focus {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 20px rgba(138, 43, 226, 0.4);
-}
-
-.back-link i {
-  margin-right: 10px;
-}
-
 /* Heartbeat animation */
 @keyframes heartbeat {
   0% {
@@ -743,22 +667,10 @@ const toggleLanguage = () => {
     margin-right: 0;
     margin-bottom: 10px;
   }
-
-  .content-section {
-    padding: 20px;
-  }
-
-  .section-title {
-    font-size: 1.6rem;
-  }
 }
 
 /* Smaller screens - additional adjustments */
 @media (max-width: 480px) {
-  .section-title {
-    font-size: 1.5rem;
-  }
-
   .quotes-filter {
     justify-content: center;
   }

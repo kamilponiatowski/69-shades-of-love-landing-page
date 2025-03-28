@@ -1,30 +1,78 @@
 /* ============ LAYOUT STYLES ============ */
 
-/* Main page layout */
-.page-layout {
+/* Main page layout with improved spacing and responsiveness */
+
+body .page-layout {
     display: flex;
-    gap: 30px;
-    flex-wrap: wrap;
+    flex-direction: row;
 }
 
-main {
-    flex: 1;
-    min-width: 300px;
+.page-layout {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+    max-width: 1400px; /* Increased max-width for better layout */
+    margin: 0 auto;
+    padding: 0 20px; /* Added padding for edge spacing */
+    align-items: flex-start; /* Align items to the top */
+    gap: 30px; /* Space between aside and main */
 }
 
 aside {
     width: 350px;
-    min-width: 300px;
+    flex-shrink: 0; /* Prevent aside from shrinking */
 }
 
-/* Sidebar section layout */
+main {
+    flex-grow: 1; /* Allow main to take remaining space */
+    width: calc(100% - 380px); /* Adjust width to prevent overlap */
+    max-width: 900px; /* Limit main content width */
+}
+
+/* Responsive layout adjustments */
+@media (min-width: 1001px) {
+    .page-layout {
+        flex-direction: row; /* Ensure row layout from 1001px */
+        align-items: flex-start;
+    }
+    
+    aside {
+        width: 350px;
+        order: 1;
+    }
+    
+    main {
+        width: calc(100% - 380px);
+        order: 2;
+    }
+}
+
+/* Tablet and mobile styles */
+@media (max-width: 1000px) {
+    .page-layout {
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    aside {
+        width: 100%;
+        order: -1; /* Move aside to the top on tablets/mobile */
+    }
+    
+    main {
+        width: 100%;
+        max-width: none;
+    }
+}
+
+/* Rest of the existing styles remain the same */
 .about-me-container,
 .download-pdf-section,
 .progress-container {
     margin-bottom: 30px;
 }
 
-/* Grid layout for categories */
 .category-container {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -32,7 +80,7 @@ aside {
     margin-bottom: 40px;
 }
 
-/* Flexbox layouts */
+/* Additional flexbox and component styles */
 .category-header {
     display: flex;
     justify-content: space-between;
@@ -56,85 +104,30 @@ aside {
     align-items: center;
 }
 
-/* Specific component layouts */
-.logo-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.streak-counter {
-    display: inline-flex;
-    align-items: center;
-}
-
-.achievement {
+/* Remaining component-specific styles */
+.logo-container, .streak-counter, .achievement, 
+.contact-link, .support-button, .download-button,
+.achievement-icon, .reward-animation {
     display: flex;
     align-items: center;
 }
 
-.contact-link {
-    display: inline-flex;
-    align-items: center;
-}
-
-.support-button {
-    display: inline-flex;
-    align-items: center;
-}
-
-.download-button {
-    display: inline-flex;
-    align-items: center;
-}
-
-/* Positioning */
-.achievement-icon {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.reward-animation {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-/* Z-index layering */
-.skip-link {
-    z-index: 100;
-}
-
-.duck-logo {
-    z-index: 10;
-}
-
+/* Z-index and specific positioning */
+.skip-link { z-index: 100; }
+.duck-logo { z-index: 10; }
 .duck-logo img {
     margin-top: -15px;
     margin-left: -15px;
 }
+.duck-tooltip { z-index: 10; }
+.duck-joke-container { z-index: 1000; }
+.heart-container { z-index: 9; }
+.achievement-container { z-index: 100; }
+.reward-animation { z-index: 999; }
+.confetti { z-index: -1; }
 
-.duck-tooltip {
-    z-index: 10;
-}
-
-.duck-joke-container {
-    z-index: 1000;
-}
-
-.heart-container {
-    z-index: 9;
-}
-
-.achievement-container {
-    z-index: 100;
-}
-
-.reward-animation {
-    z-index: 999;
-}
-
-.confetti {
-    z-index: -1;
+@media (max-width: 768px) {
+    .page-layout {
+        padding: 0 10px; /* Zmniejszony padding */
+    }
 }

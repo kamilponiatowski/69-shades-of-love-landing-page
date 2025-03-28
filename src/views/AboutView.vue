@@ -211,6 +211,12 @@ const navigateToHome = () => {
   background-color: var(--background-color);
 }
 
+@media (max-width: 768px) {
+    .container {
+        padding: 0;
+    }
+}
+
 .page-layout {
   display: flex;
   flex-direction: column;
@@ -225,38 +231,6 @@ const navigateToHome = () => {
   max-width: 900px;
   margin: 0 auto;
   width: 100%;
-}
-
-/* Content sections */
-.content-section {
-  background-color: white;
-  border-radius: 15px;
-  padding: 30px;
-  margin-bottom: 30px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.content-section:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
-}
-
-.section-title {
-  color: var(--main-color);
-  border-bottom: 3px solid var(--main-color);
-  padding-bottom: 10px;
-  margin-bottom: 20px;
-  font-size: 1.8rem;
-  position: relative;
-  display: inline-block;
-}
-
-.section-description {
-  font-size: 1.1rem;
-  line-height: 1.6;
-  color: #333;
-  margin-bottom: 20px;
 }
 
 /* Well-being areas grid with enhanced visuals */
@@ -410,37 +384,6 @@ const navigateToHome = () => {
   line-height: 1.5;
 }
 
-/* Navigation links */
-.navigation-links {
-  text-align: center;
-  margin-top: 40px;
-  margin-bottom: 50px;
-}
-
-.back-link {
-  display: inline-flex;
-  align-items: center;
-  color: white;
-  background: linear-gradient(135deg, var(--main-color), #a01a30);
-  text-decoration: none;
-  padding: 12px 25px;
-  border-radius: 30px;
-  transition: all 0.3s ease;
-  font-weight: bold;
-  box-shadow: 0 5px 15px rgba(196, 30, 58, 0.25);
-}
-
-.back-link:hover,
-.back-link:focus {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 20px rgba(196, 30, 58, 0.3);
-  background: linear-gradient(135deg, #a01a30, var(--main-color));
-}
-
-.back-link i {
-  margin-right: 10px;
-}
-
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .wellbeing-areas,
@@ -450,21 +393,6 @@ const navigateToHome = () => {
 
   .page-layout {
     padding: 0 15px;
-  }
-  
-  .content-section {
-    padding: 20px;
-  }
-  
-  .section-title {
-    font-size: 1.6rem;
-  }
-}
-
-/* For smaller screens */
-@media (max-width: 480px) {
-  .section-title {
-    font-size: 1.5rem;
   }
 }
 </style>

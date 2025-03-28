@@ -26,6 +26,10 @@
     header {
         padding-top: 20px;
     }
+
+    .container {
+        padding: 0;
+    }
     
     .category-container {
         grid-template-columns: 1fr;

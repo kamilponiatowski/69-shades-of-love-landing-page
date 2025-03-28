@@ -421,7 +421,7 @@ const downloadPdf = () => {
       margin-bottom: 10px !important;
     }
     
-    body.print-full-guide .content-section {
+    body.print-full-guide content-section {
       padding: 15px !important;
       margin-bottom: 15px !important;
     }
@@ -436,7 +436,7 @@ const downloadPdf = () => {
   const link = document.createElement('a');
   link.href = '/assets/69_Shades_of_Self-Love.pdf';
   link.download = '69_Shades_of_Self-Love.pdf';
-  
+
   document.body.appendChild(link);
   link.click();
   document.body.removeChild(link);
@@ -555,6 +555,10 @@ const printHabitTracker = () => {
 </script>
 
 <style scoped>
+footer {
+  order: 99;
+}
+
 .gift-page {
   min-height: 100vh;
   display: flex;
@@ -568,35 +572,6 @@ const printHabitTracker = () => {
   max-width: 1000px;
   margin: 0 auto;
   width: 100%;
-}
-
-/* Content sections */
-.content-section {
-  background-color: white;
-  border-radius: 15px;
-  padding: 30px;
-  margin-bottom: 30px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease;
-}
-
-.content-section:hover {
-  transform: translateY(-5px);
-}
-
-.section-title {
-  color: var(--main-color);
-  border-bottom: 3px solid var(--main-color);
-  padding-bottom: 10px;
-  margin-bottom: 20px;
-  font-size: 1.8rem;
-}
-
-.section-description {
-  font-size: 1.1rem;
-  line-height: 1.6;
-  color: #333;
-  margin-bottom: 20px;
 }
 
 /* Download buttons */
@@ -857,38 +832,6 @@ const printHabitTracker = () => {
   color: #555;
 }
 
-/* Navigation */
-.navigation-links {
-  text-align: center;
-  margin-top: 30px;
-  margin-bottom: 50px;
-}
-
-.back-link {
-  display: inline-flex;
-  align-items: center;
-  color: white;
-  background-color: var(--main-color);
-  text-decoration: none;
-  padding: 12px 20px;
-  border-radius: 8px;
-  transition: all 0.3s ease;
-  font-weight: bold;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-
-.back-link:hover,
-.back-link:focus {
-  background-color: #a01a30;
-  transform: translateY(-3px);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-}
-
-.back-link i {
-  margin-right: 10px;
-}
-
 /* By default hide the habit tracker in normal view */
 .print-tracker-only-visible {
   display: block;
@@ -931,14 +874,6 @@ const printHabitTracker = () => {
   .resources-grid {
     grid-template-columns: 1fr;
   }
-
-  .content-section {
-    padding: 20px;
-  }
-
-  .section-title {
-    font-size: 1.6rem;
-  }
 }
 
 /* Dla mniejszych ekranów - dodatkowe poprawki */
@@ -967,10 +902,6 @@ const printHabitTracker = () => {
     margin: 15px auto 0;
     justify-content: center;
   }
-
-  .section-title {
-    font-size: 1.5rem;
-  }
 }
 
 /* Print styles */
@@ -987,19 +918,6 @@ const printHabitTracker = () => {
 
   .gift-page {
     background-color: white;
-  }
-
-  .content-section {
-    box-shadow: none;
-    transform: none !important;
-    break-inside: avoid;
-    page-break-inside: avoid;
-    margin-bottom: 20px;
-    border: 1px solid #ddd;
-  }
-
-  .content-section:hover {
-    transform: none;
   }
 
   .habit-card {

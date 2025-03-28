@@ -11,6 +11,7 @@ import './assets/css/layout.css';
 import './assets/css/responsive.css';
 import './assets/css/newsletter.css';
 import './assets/css/content-sections.css';
+import './assets/css/common-sections.css';
 
 // Create and configure Pinia store
 const pinia = createPinia();

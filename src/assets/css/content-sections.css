@@ -1,309 +1,301 @@
-/* ============ CONTENT SECTIONS STYLES ============ */
-
-/* Base content section styling that matches header/footer design */
+/* Common section styling for content blocks */
 .content-section {
-    position: relative;
-    margin-bottom: 30px;
-    padding: 30px;
-    background: linear-gradient(120deg, rgba(196, 30, 58, 0.1), rgba(138, 43, 226, 0.1));
-    border-radius: 15px;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
-    overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  margin-bottom: 30px;  /* Konsekwentny odstęp między sekcjami */
+  padding: 30px;
+  background-color: rgba(255, 255, 255, 0.95);  /* Jaśniejsze tło dla lepszej czytelności */
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);  /* Delikatniejszy cień dla nowoczesnego wyglądu */
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);  /* Płynniejsza animacja */
+  border: 1px solid rgba(0, 0, 0, 0.03);  /* Subtelna ramka dla lepszej separacji wizualnej */
+}
+
+/* Background pattern for sections - teraz z kółeczkami jak w quote-card */
+.content-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%238a2be2' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+  opacity: 0.5;
+  z-index: 0;
+}
+
+/* Hover effect - ulepszony dla lepszego UX */
+.content-section:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  border-color: rgba(0, 0, 0, 0.05);
+}
+
+/* Hover glow effect podobny do quote-card */
+.content-section:hover::after {
+  content: "";
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(138, 43, 226, 0.08) 0%, rgba(255, 255, 255, 0) 70%);
+  top: -50%;
+  left: -50%;
+  opacity: 0.8;
+  z-index: 0;
+}
+
+/* Zwiększenie widoczności tła po najechaniu */
+.content-section:hover::before {
+  opacity: 0.7; /* Odrobinę mniej intensywne dla lepszej czytelności */
+}
+
+/* Content positioning - upewniam się, że wszystko jest widoczne */
+.content-section > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Section title styling - poprawione spacing */
+.section-title {
+  color: var(--main-color);
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  padding-bottom: 12px; /* Więcej przestrzeni pod tytułem dla lepszej czytelności */
+  position: relative;
+  border-bottom: 3px solid var(--main-color);
+  font-weight: 600; /* Lepsza czytelność */
+  letter-spacing: 0.01em; /* Poprawia czytelność */
+}
+
+/* Alternative color for section title */
+.accent-color .section-title {
+  color: var(--accent-color);
+  border-bottom-color: var(--accent-color);
+}
+
+/* Section description - ulepszenia czytelności */
+.section-description {
+  font-size: 1.1rem;
+  line-height: 1.7; /* Zwiększony line-height dla lepszej czytelności */
+  color: var(--text-color);
+  margin-bottom: 25px; /* Więcej miejsca po opisie */
+  position: relative;
+  z-index: 1;
+  max-width: 100ch; /* Lepsza czytelność dla długich tekstów */
+}
+
+/* Common navigation links - lepsze marginy */
+.navigation-links {
+  text-align: center;
+  margin-top: 50px; /* Zwiększone dla lepszej separacji */
+  margin-bottom: 60px; /* Większy margines na dole dla lepszego wyglądu */
+}
+
+/* Ulepszony przycisk "wstecz" */
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  background: linear-gradient(135deg, var(--main-color), #a01a30);
+  text-decoration: none;
+  padding: 12px 28px; /* Szerszy przycisk */
+  border-radius: 30px;
+  transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1); /* Płynniejsza animacja */
+  font-weight: 600;
+  box-shadow: 0 4px 15px rgba(196, 30, 58, 0.2);
+  min-width: 180px; /* Minimalnej szerokości dla lepszego UX */
+  position: relative;
+  overflow: hidden;
+}
+
+/* Efekt połysku przycisku */
+.back-link::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -50%;
+  width: 150%;
+  height: 100%;
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.3) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: translateX(-100%) skewX(-15deg);
+  transition: transform 0.6s ease;
+}
+
+.back-link:hover::after {
+  transform: translateX(100%) skewX(-15deg);
+}
+
+.back-link:hover,
+.back-link:focus {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(196, 30, 58, 0.25);
+}
+
+.back-link i {
+  margin-right: 10px;
+  font-size: 0.9em; /* Lepsze proporcje ikon */
+}
+
+/* Accent color variation for links */
+.accent-back-link {
+  background: linear-gradient(135deg, var(--accent-color), #6a11cb);
+  box-shadow: 0 4px 15px rgba(138, 43, 226, 0.25);
+}
+
+.accent-back-link:hover,
+.accent-back-link:focus {
+  box-shadow: 0 8px 20px rgba(138, 43, 226, 0.35);
+}
+
+/* Common note styling - ulepszenia UX */
+.info-note {
+  display: flex;
+  align-items: flex-start; /* Lepsze wyrównanie dla dłuższych tekstów */
+  background-color: rgba(138, 43, 226, 0.08);
+  padding: 18px; /* Większy padding dla lepszej czytelności */
+  border-radius: 12px;
+  margin-top: 25px;
+  margin-bottom: 25px; /* Dodałem margines dolny */
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.03);
+  border-left: 4px solid var(--accent-color);
+}
+
+.info-note i {
+  font-size: 1.5rem;
+  color: var(--accent-color);
+  margin-right: 15px;
+  margin-top: 2px; /* Lepsze wyrównanie z tekstem */
+}
+
+.info-note p {
+  color: var(--text-color);
+  line-height: 1.6;
+  margin: 0;
+  flex: 1;
+}
+
+/* Common layout classes - ulepszenia responsywności */
+.page-layout {
+  display: flex;
+  flex-direction: column;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  padding: 0 25px; /* Więcej miejsca po bokach */
+}
+
+.container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--background-color);
+}
+
+/* Konsekwentne marginesy dla podsekcji */
+.subsection {
+  margin-bottom: 35px;
+}
+
+.subsection:last-child {
+  margin-bottom: 0;
+}
+
+/* Przestrzeń między elementami list */
+.content-section ul li,
+.content-section ol li {
+  margin-bottom: 10px;
+}
+
+.content-section ul li:last-child,
+.content-section ol li:last-child {
+  margin-bottom: 0;
+}
+
+/* Responsive styles - zapewnienie spójności na wszystkich urządzeniach */
+@media (max-width: 1024px) {
+  .content-section {
+    padding: 25px;
+  }
+}
+
+@media (max-width: 768px) {
+  .content-section {
+    padding: 20px;
+    margin-bottom: 25px; /* Mniejsza przerwa na mniejszych ekranach */
   }
   
-  /* Background pattern matching header and footer */
-  .content-section::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23c41e3a' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
-    opacity: 0.5;
-    z-index: 0;
-  }
-  
-  /* Hover effect */
-  .content-section:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  }
-  
-  /* Content positioning on top of background */
-  .content-section-inner {
-    position: relative;
-    z-index: 1;
-  }
-  
-  /* Section title styling, similar to ProgressBar component */
   .section-title {
-    position: relative;
-    color: var(--main-color);
-    font-size: 1.5rem;
-    margin-bottom: 20px;
+    font-size: 1.4rem;
     padding-bottom: 10px;
   }
   
-  /* Underline effect for section titles */
-  .section-title::after {
-    content: "";
-    position: absolute;
-    width: 40px;
-    height: 3px;
-    background: linear-gradient(90deg, var(--main-color), var(--accent-color));
-    bottom: 0;
-    left: 0;
-    border-radius: 2px;
-  }
-  
-  /* Section-specific variations */
-  
-  /* Light content section alternative */
-  .content-section-light {
-    background: white;
-  }
-  
-  .content-section-light::before {
-    opacity: 0.3;
-  }
-  
-  /* Success section variation */
-  .content-section-success {
-    background: linear-gradient(120deg, rgba(126, 217, 87, 0.1), rgba(92, 184, 92, 0.1));
-  }
-  
-  /* Info section variation */
-  .content-section-info {
-    background: linear-gradient(120deg, rgba(138, 43, 226, 0.1), rgba(106, 17, 203, 0.1));
-  }
-  
-  /* Variant with accent left border */
-  .content-section-bordered {
-    border-left: 4px solid var(--main-color);
-  }
-  
-  .content-section-bordered.content-section-success {
-    border-left-color: var(--mental-color);
-  }
-  
-  .content-section-bordered.content-section-info {
-    border-left-color: var(--accent-color);
-  }
-  
-  /* Grid container for content cards */
-  .content-cards-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 25px;
-    margin-bottom: 20px;
-  }
-  
-  /* Individual content card styling */
-  .content-card {
-    background-color: white;
-    border-radius: 12px;
-    padding: 20px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    height: 100%;
-  }
-  
-  .content-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-  }
-  
-  /* Horizontal layout items within sections */
-  .content-section-horizontal {
-    display: flex;
-    gap: 20px;
-    flex-wrap: wrap;
-  }
-  
-  .content-section-item {
-    flex: 1;
-    min-width: 250px;
-  }
-  
-  /* Tables within content sections */
-  .content-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 20px;
-  }
-  
-  .content-table th,
-  .content-table td {
-    padding: 12px 15px;
-    text-align: left;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  }
-  
-  .content-table th {
-    background-color: rgba(0, 0, 0, 0.05);
-    font-weight: bold;
-    color: var(--main-color);
-  }
-  
-  .content-table tr:hover {
-    background-color: rgba(0, 0, 0, 0.02);
-  }
-  
-  /* Lists within content sections */
-  .content-list {
-    list-style: none;
-    padding-left: 0;
-    margin-bottom: 20px;
-  }
-  
-  .content-list li {
-    padding: 10px 0;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-    position: relative;
-    padding-left: 25px;
-  }
-  
-  .content-list li:last-child {
-    border-bottom: none;
-  }
-  
-  .content-list li::before {
-    content: "•";
-    color: var(--main-color);
-    position: absolute;
-    left: 5px;
-    top: 10px;
-    font-size: 1.2rem;
-  }
-  
-  /* Collapsible section */
-  .content-section-collapsible {
-    position: relative;
-  }
-  
-  .collapse-toggle {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    background: none;
-    border: none;
-    font-size: 1.2rem;
-    color: #666;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    width: 30px;
-    height: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    z-index: 10;
-  }
-  
-  .collapse-toggle:hover {
-    background-color: rgba(0, 0, 0, 0.05);
-    color: var(--main-color);
-  }
-  
-  .collapsed-content {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.5s ease;
-  }
-  
-  .expanded-content {
-    max-height: 2000px; /* Arbitrary large value */
-    transition: max-height 0.5s ease;
-  }
-  
-  /* Section description with enhanced styling */
   .section-description {
-    font-size: 1.1rem;
-    line-height: 1.6;
-    color: #333;
+    font-size: 1rem;
     margin-bottom: 20px;
-    position: relative;
-    z-index: 1;
   }
   
-  /* Category-specific styling for content sections */
-  .physical-section {
-    border-left: 4px solid var(--physical-color);
+  .page-layout {
+    padding: 0 15px;
   }
   
-  .mental-section {
-    border-left: 4px solid var(--mental-color);
+  .info-note {
+    padding: 15px;
+    flex-direction: column;
+    text-align: left; /* Lepsza czytelność na małych ekranach */
+    align-items: flex-start;
   }
   
-  .personal-section {
-    border-left: 4px solid var(--personal-color);
+  .info-note i {
+    margin-right: 0;
+    margin-bottom: 10px;
   }
   
-  .relationship-section {
-    border-left: 4px solid var(--relationship-color);
+  .navigation-links {
+    margin-top: 40px;
+    margin-bottom: 50px;
   }
   
-  /* Enhanced box shadows for different section types */
-  .content-section-elevated {
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+  .back-link {
+    min-width: 160px;
+    padding: 10px 20px;
+  }
+}
+
+/* For smaller screens */
+@media (max-width: 480px) {
+  .content-section {
+    padding: 15px;
+    margin-bottom: 20px;
   }
   
-  /* Content section with accent background */
-  .content-section-accent {
-    background: linear-gradient(120deg, rgba(138, 43, 226, 0.15), rgba(106, 17, 203, 0.15));
+  .section-title {
+    font-size: 1.3rem;
+    padding-bottom: 8px;
   }
   
-  /* Content section with main color accent */
-  .content-section-primary {
-    background: linear-gradient(120deg, rgba(196, 30, 58, 0.15), rgba(160, 26, 48, 0.15));
+  .section-description {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 18px;
   }
   
-  /* Responsive adjustments */
-  @media (max-width: 768px) {
-    .content-section {
-      padding: 20px 15px;
-    }
-    
-    .section-title {
-      font-size: 1.3rem;
-    }
-    
-    .content-cards-grid {
-      grid-template-columns: 1fr;
-    }
-    
-    .content-section-horizontal {
-      flex-direction: column;
-    }
-    
-    .content-section-item {
-      width: 100%;
-    }
-  
-    .section-description {
-      font-size: 1rem;
-    }
+  .back-link {
+    min-width: 140px;
+    padding: 10px 15px;
+    font-size: 0.95rem;
   }
   
-  /* For smaller screens */
-  @media (max-width: 480px) {
-    .content-section {
-      padding: 15px;
-    }
-    
-    .section-title {
-      font-size: 1.2rem;
-    }
-    
-    .content-table th,
-    .content-table td {
-      padding: 8px 10px;
-      font-size: 0.9rem;
-    }
-  
-    .section-description {
-      font-size: 0.95rem;
-    }
+  .info-note {
+    padding: 12px;
+    margin-top: 20px;
+    margin-bottom: 20px;
   }
+}
