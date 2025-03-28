@@ -1,7 +1,7 @@
 // src/composables/useNewsletter.ts
 import { ref, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
-import { subscribeToNewsletter, checkNewsletterSubmissionComplete } from '@/utils/getResponseApi';
+import { subscribeWithFallback, checkNewsletterSubmissionComplete } from '@/utils/getResponseApi';
 
 /**
  * Newsletter composable
@@ -74,7 +74,7 @@ export function useNewsletter() {
         
         try {
             // Submit to GetResponse with name and email
-            await subscribeToNewsletter(newsletterEmail.value, newsletterName.value);
+            await subscribeWithFallback(newsletterEmail.value, newsletterName.value);
             
             // Show success message
             showNewsletterSuccess.value = true;
@@ -117,8 +117,8 @@ export function useNewsletter() {
      */
     const closeNewsletterReward = (): void => {
         showNewsletterReward.value = false;
-        // Navigation is now handled in the component
-    };
+        localStorage.setItem('newsletterRewardShown', 'true');
+      };
     
     /**
      * Creates confetti animation for newsletter subscription
@@ -187,16 +187,18 @@ export function useNewsletter() {
      * This handles the redirect back from GetResponse
      */
     const checkNewsletterRedirect = (): void => {
-        if (checkNewsletterSubmissionComplete()) {
-            // User has completed subscription via GetResponse
-            localStorage.setItem('newsletterSubscribed', 'true');
-            isSubscribed.value = true;
-            
-            // Show reward popup instead of navigating immediately
-            showNewsletterReward.value = true;
-            createConfetti();
+        const rewardShown = localStorage.getItem('newsletterRewardShown') === 'true';
+        
+        if (checkNewsletterSubmissionComplete() && !rewardShown) {
+          // User has completed subscription via GetResponse
+          localStorage.setItem('newsletterSubscribed', 'true');
+          isSubscribed.value = true;
+          
+          // Show reward popup instead of navigating immediately
+          showNewsletterReward.value = true;
+          createConfetti();
         }
-    };
+      };
     
     // On component mount
     onMounted(() => {

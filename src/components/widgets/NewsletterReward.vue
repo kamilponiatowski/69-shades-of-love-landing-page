@@ -41,13 +41,19 @@ const router = useRouter();
 
 // Redirect to quotes page after newsletter signup
 const handleClose = () => {
+  // First close the popup
   emit('close');
-  // Navigate to quotes page after newsletter completion
-  router.push('/quotes');
+  
+  // Then navigate to quotes page
+  // Use a slight delay to ensure popup is closed first
+  setTimeout(() => {
+    router.push('/quotes');
+  }, 100);
 };
 </script>
 
 <style scoped>
+/* Style nie zmieniają się, więc pozostają takie same */
 .newsletter-reward {
   position: fixed;
   top: 0;
