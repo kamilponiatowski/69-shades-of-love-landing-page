@@ -165,7 +165,7 @@ const toggleLanguage = () => {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  min-height: 69px;
+  min-height: 88px;
   gap: 10px;
   z-index: 5;
 }
