@@ -1,7 +1,7 @@
 // src/composables/useNewsletter.ts
 import { ref, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
-import { subscribeWithFallback, checkNewsletterSubmissionComplete } from '@/utils/getResponseApi';
+import { subscribeToNewsletter, checkNewsletterSubmissionComplete } from '@/utils/getResponseApi';
 
 /**
  * Newsletter composable
@@ -74,7 +74,7 @@ export function useNewsletter() {
         
         try {
             // Submit to GetResponse with name and email
-            await subscribeWithFallback(newsletterEmail.value, newsletterName.value);
+            await subscribeToNewsletter(newsletterEmail.value, newsletterName.value);
             
             // Show success message
             showNewsletterSuccess.value = true;

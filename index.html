@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>69 Shades of Love - Self-Care Todo</title>
-    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/assets/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="/assets/favicon.ico">
 
     <!-- SEO & Meta Tags -->
     <meta name="description"
@@ -25,17 +26,17 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <script type="text/javascript">
         // SPA routing script
-        (function(l) {
+        (function (l) {
             // Handling redirection from 404.html
-            if (l.search[1] === '/' ) {
-                var decoded = l.search.slice(1).split('&').map(function(s) { 
+            if (l.search[1] === '/') {
+                var decoded = l.search.slice(1).split('&').map(function (s) {
                     return s.replace(/~and~/g, '&')
                 }).join('?');
                 window.history.replaceState(null, null,
                     l.pathname.slice(0, -1) + decoded + l.hash
                 );
             }
-            
+
             // Deletes the ‘/?/’ part if it exists (from the 404.html redirect)
             var path = l.pathname;
             if (path.indexOf('/?/') > -1) {
