@@ -3,16 +3,16 @@ import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
-    name: 'Home',
-    component: () => import('@/views/HomeView.vue'),
-  },
-  {
-    path: '/about',
     name: 'About',
     component: () => import('@/views/AboutView.vue'),
     meta: {
       title: '69 Shades of Love - About'
     }
+  },
+  {
+    path: '/journal',
+    name: 'Journal',
+    component: () => import('@/views/HomeView.vue'),
   },
   {
     path: '/gift',

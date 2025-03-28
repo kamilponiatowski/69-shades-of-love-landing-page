@@ -4,7 +4,7 @@
 
     <ScrollDownButton />
 
-    <Header @tell-duck-joke="tellDuckJoke" :streak-days="streakDays" :isHomePage="true" />
+    <Header @tell-duck-joke="tellDuckJoke" :streak-days="streakDays" :isHomePage="true" :titleLinkTarget="'/'" />
 
     <DuckJoke :joke="currentDuckJoke" :show-duck-joke="showDuckJoke" />
 

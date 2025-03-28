@@ -188,15 +188,18 @@ export function useNewsletter() {
      */
     const checkNewsletterRedirect = (): void => {
         const rewardShown = localStorage.getItem('newsletterRewardShown') === 'true';
-        
-        if (checkNewsletterSubmissionComplete() && !rewardShown) {
+        const justSubscribed = checkNewsletterSubmissionComplete();
+
+        if (justSubscribed && !rewardShown) {
           // User has completed subscription via GetResponse
           localStorage.setItem('newsletterSubscribed', 'true');
           isSubscribed.value = true;
           
           // Show reward popup instead of navigating immediately
-          showNewsletterReward.value = true;
-          createConfetti();
+          if (router.currentRoute.value.path === '/quotes') {
+            showNewsletterReward.value = true;
+            createConfetti();
+          }
         }
       };
     

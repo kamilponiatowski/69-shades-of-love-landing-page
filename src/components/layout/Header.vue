@@ -3,12 +3,12 @@
     <div class="header-background"></div>
     
     <div class="corner-element top-corner">
-      <!-- Logo w lewym górnym rogu -->
+      <!-- Logo in upper left corner -->
       <DuckLogo class="top-left-element" :isHomePage="isHomePage" @tell-duck-joke="$emit('tell-duck-joke')" />
       
-      <!-- Kontrolki w prawym górnym rogu: przełącznik języka, a pod nim tryb ciemny -->
+      <!-- Controls in the top right corner: language switch, with dark mode underneath -->
       <div class="top-right-controls">
-        <!-- Przełącznik języka -->
+        <!-- Language switch -->
         <div class="language-switcher" @click="toggleLanguage">
           <button 
             class="lang-btn" 
@@ -26,15 +26,14 @@
           </button>
         </div>
         
-        <!-- Przełącznik trybu ciemnego -->
         <DarkModeToggle />
       </div>
     </div>
     
-    <!-- Centralna zawartość -->
+    <!-- Central content -->
     <div class="central-content">
       <router-link 
-        to="/about" 
+        to="/" 
         class="main-title-link"
         :aria-label="t('navigateAbout')"
       >
@@ -45,20 +44,31 @@
     </div>
     
     <div class="corner-element bottom-corner">
-      <!-- Dedykacja na dole po środku -->
+      <!-- Dedication at bottom centre -->
       <div class="dedication-badge bottom-center-element">
         <span class="dedication-heart">💜</span>
         {{ t('dedication') }}
         <span class="dedication-heart">💜</span>
       </div>
       
-      <!-- Streak counter w prawym dolnym rogu -->
-      <div v-if="streakDays > 0" class="streak-counter bottom-right-element" aria-live="polite">
+      <!-- Streak counter in bottom right corner -->
+      <div v-if="isHomePage" class="streak-counter bottom-right-element" aria-live="polite">
         <span class="streak-flame" aria-hidden="true">
           <i class="fas fa-fire"></i>
         </span>
         <span class="streak-count">{{ t('streakDays', streakDays) }}</span>
       </div>
+      <router-link 
+        v-else 
+        to="/journal" 
+        class="streak-counter bottom-right-element streak-redirect" 
+        aria-label="Go to Journal"
+      >
+        <span class="streak-flame" aria-hidden="true">
+          <i class="fas fa-arrow-right"></i>
+        </span>
+        <span class="streak-count">{{ t('goToJournal') }}</span>
+      </router-link>
     </div>
   </header>
 </template>
@@ -85,6 +95,10 @@ defineProps({
   customSubtitle: {
     type: String,
     default: ''
+  },
+  titleLinkTarget: {
+    type: [String, Boolean],
+    default: false
   }
 });
 
@@ -419,5 +433,24 @@ const toggleLanguage = () => {
     gap: 8px;
     align-items: flex-end;
   }
+}
+
+.streak-redirect {
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.streak-redirect:hover {
+  transform: translateX(5px);
+}
+
+.streak-redirect .streak-flame i {
+  transition: transform 0.3s ease;
+}
+
+.streak-redirect:hover .streak-flame i {
+  transform: translateX(3px);
 }
 </style>

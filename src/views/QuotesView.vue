@@ -119,7 +119,7 @@
 
         <!-- Navigation links -->
         <div class="navigation-links">
-          <router-link to="/" class="back-link">
+          <router-link to="/journal" class="back-link">
             <i class="fas fa-arrow-left"></i> {{ t('backToJourney') }}
           </router-link>
         </div>

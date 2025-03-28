@@ -614,6 +614,7 @@ export const translations: TranslationObject = {
     lightModeTooltip: "Switch to light mode",
     popCultureTitle: "Pop Culture Wisdom Collection",
     popCultureDescription: "Subscribe to unlock our exclusive collection of inspiring quotes from your favorite movies, TV shows, comics, and books!",
+    goToJournal: "Go to Journal"
   },
   pl: {
     mainTitle: "69 Odcieni Miłości",
@@ -1219,7 +1220,8 @@ export const translations: TranslationObject = {
     darkModeTooltip: "Przełącz na tryb ciemny",
     lightModeTooltip: "Przełącz na tryb jasny",
     popCultureTitle: "Kolekcja Mądrości Popkultury",
-popCultureDescription: "Zapisz się, aby odblokować naszą ekskluzywną kolekcję inspirujących cytatów z Twoich ulubionych filmów, seriali, komiksów i książek!"
+    popCultureDescription: "Zapisz się, aby odblokować naszą ekskluzywną kolekcję inspirujących cytatów z Twoich ulubionych filmów, seriali, komiksów i książek!",
+    goToJournal: "Przejdź do Dziennika"
   },
 };
 
