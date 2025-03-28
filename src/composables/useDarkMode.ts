@@ -48,6 +48,7 @@ function createDarkMode() {
 
   /**
    * Loads dark mode preference from localStorage or system preference
+   * Modified to default to light mode instead of system preference
    */
   const loadDarkModePreference = (): void => {
     try {
@@ -59,9 +60,8 @@ function createDarkMode() {
       } else if (savedMode === 'light') {
         isDarkMode.value = false;
       } else {
-        // If no saved preference, check system preference
-        const prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        isDarkMode.value = prefersDarkMode;
+        // If no saved preference, default to light mode instead of checking system preference
+        isDarkMode.value = false;
       }
       
       // Apply the dark mode immediately
@@ -79,8 +79,10 @@ function createDarkMode() {
     const handleChange = (e: MediaQueryListEvent) => {
       // Only update if user hasn't explicitly set a preference
       if (!localStorage.getItem('darkMode')) {
-        isDarkMode.value = e.matches;
-        updateDarkModeClass();
+        // Modified to ignore system preference by default
+        // Uncomment below line if you want to restore system preference behavior
+        // isDarkMode.value = e.matches;
+        // updateDarkModeClass();
       }
     };
     

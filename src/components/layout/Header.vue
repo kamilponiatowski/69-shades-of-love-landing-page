@@ -6,11 +6,8 @@
       <!-- Logo w lewym górnym rogu -->
       <DuckLogo class="top-left-element" :isHomePage="isHomePage" @tell-duck-joke="$emit('tell-duck-joke')" />
       
-      <!-- Kontrolki w prawym górnym rogu: przełącznik trybu ciemnego i języka -->
+      <!-- Kontrolki w prawym górnym rogu: przełącznik języka, a pod nim tryb ciemny -->
       <div class="top-right-controls">
-        <!-- Przełącznik trybu ciemnego -->
-        <DarkModeToggle />
-        
         <!-- Przełącznik języka -->
         <div class="language-switcher" @click="toggleLanguage">
           <button 
@@ -28,6 +25,9 @@
             EN
           </button>
         </div>
+        
+        <!-- Przełącznik trybu ciemnego -->
+        <DarkModeToggle />
       </div>
     </div>
     
@@ -163,7 +163,9 @@ const toggleLanguage = () => {
 /* New top right controls container for dark mode toggle and language switcher */
 .top-right-controls {
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  align-items: flex-end;
+  min-height: 69px;
   gap: 10px;
   z-index: 5;
 }
@@ -414,8 +416,7 @@ const toggleLanguage = () => {
 
   /* Adjust layout for mobile */
   .top-right-controls {
-    flex-direction: column-reverse;
-    gap: 5px;
+    gap: 8px;
     align-items: flex-end;
   }
 }
