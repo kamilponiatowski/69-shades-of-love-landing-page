@@ -22,6 +22,13 @@
 
                     <!-- Pop Culture Wisdom Access Highlight -->
                     <div class="pop-culture-section animate-glow">
+                        <div class="bubble-background">
+                            <div class="bubble bubble-1"></div>
+                            <div class="bubble bubble-2"></div>
+                            <div class="bubble bubble-3"></div>
+                            <div class="bubble bubble-4"></div>
+                            <div class="bubble bubble-5"></div>
+                        </div>
                         <i class="fas fa-theater-masks"></i>
                         <div class="pop-culture-text">
                             <h3>{{ t('popCultureTitle') }}</h3>
@@ -315,28 +322,108 @@ onMounted(() => {
     color: var(--accent-color);
 }
 
-/* Pop Culture Section */
+/* Pop Culture Section - Enhanced with purple gradient and bubbles */
 .pop-culture-section {
+    position: relative;
     display: flex;
     gap: 15px;
-    background-color: rgba(255, 255, 255, 0.15);
-    padding: 20px;
+    padding: 25px;
     border-radius: 15px;
     margin: 25px 0;
-    border-left: 4px solid #FFD304;
     position: relative;
     z-index: 1;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    background: linear-gradient(135deg, rgba(138, 43, 226, 0.85), rgba(106, 17, 203, 0.9));
+    box-shadow: 0 5px 20px rgba(106, 17, 203, 0.3);
+    overflow: hidden;
+    color: white;
     animation: glow 3s infinite alternate;
+}
+
+/* Bubble background for pop culture section */
+.bubble-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+    z-index: -1;
+}
+
+.bubble {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(1px);
+    animation: float 25s infinite ease-in-out;
+}
+
+.bubble-1 {
+    width: 60px;
+    height: 60px;
+    left: 10%;
+    top: 20%;
+    animation-delay: -2s;
+    opacity: 0.6;
+}
+
+.bubble-2 {
+    width: 80px;
+    height: 80px;
+    right: 15%;
+    bottom: 20%;
+    animation-delay: -5s;
+    opacity: 0.4;
+}
+
+.bubble-3 {
+    width: 40px;
+    height: 40px;
+    right: 30%;
+    top: 30%;
+    animation-delay: -7s;
+    opacity: 0.7;
+}
+
+.bubble-4 {
+    width: 120px;
+    height: 120px;
+    left: 25%;
+    bottom: -40px;
+    animation-delay: -15s;
+    opacity: 0.3;
+}
+
+.bubble-5 {
+    width: 50px;
+    height: 50px;
+    right: 5%;
+    top: 50%;
+    animation-delay: -10s;
+    opacity: 0.5;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0) translateX(0);
+    }
+    25% {
+        transform: translateY(-15px) translateX(10px);
+    }
+    50% {
+        transform: translateY(-25px) translateX(0);
+    }
+    75% {
+        transform: translateY(-10px) translateX(-10px);
+    }
 }
 
 @keyframes glow {
     0% {
-        box-shadow: 0 0 5px rgba(255, 211, 4, 0.3);
+        box-shadow: 0 0 10px rgba(138, 43, 226, 0.5);
     }
-
     100% {
-        box-shadow: 0 0 20px rgba(255, 211, 4, 0.6);
+        box-shadow: 0 0 25px rgba(138, 43, 226, 0.8);
     }
 }
 
@@ -344,18 +431,27 @@ onMounted(() => {
     font-size: 2.5rem;
     color: #FFD304;
     margin-top: 3px;
+    z-index: 2;
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.pop-culture-text {
+    position: relative;
+    z-index: 2;
 }
 
 .pop-culture-text h3 {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     margin-bottom: 8px;
     color: #FFD304;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .pop-culture-text p {
     font-size: 1rem;
     margin: 0;
     line-height: 1.6;
+    color: rgba(255, 255, 255, 0.9);
 }
 
 /* Embedded newsletter form styling */
@@ -477,7 +573,7 @@ onMounted(() => {
         flex-direction: column;
         align-items: center;
         text-align: center;
-        padding: 15px;
+        padding: 20px;
     }
 
     .pop-culture-section i {

@@ -78,8 +78,8 @@ export const translations: TranslationObject = {
     newsletterSubtitle: "Get weekly tips to build healthier habits and change your life!",
     newsletterBenefitsTitle: "What you'll get:",
     newsletterBenefitsList: [
-      "Free gift: '7 Quick Habits That Transform Your Day' guide (after e-mail confirmation)",
-      "Pop Culture Wisdom - Quotes from geek productions to help you see the world from a new perspective",
+      "Free gift: '7 Quick Habits That Transform Your Day' guide (after e-mail confirmation / in BETA version available under the gift collection button)",
+      "Pop Culture Wisdom - Quotes from geek productions to help you see the world from a new perspective (available immediately upon joining the flock)",
       "Ducktastic habit-building advice",
       "Early access to new features",
       "Special discounts on premium content"
@@ -614,7 +614,8 @@ export const translations: TranslationObject = {
     lightModeTooltip: "Switch to light mode",
     popCultureTitle: "Pop Culture Wisdom Collection",
     popCultureDescription: "Subscribe to unlock our exclusive collection of inspiring quotes from your favorite movies, TV shows, comics, and books!",
-    goToJournal: "Go to Journal"
+    goToJournal: "Go to Journal",
+    subscribe: "Subscribe Now"
   },
   pl: {
     mainTitle: "69 Odcieni Miłości",
@@ -687,8 +688,8 @@ export const translations: TranslationObject = {
     newsletterSubtitle: "Otrzymuj cotygodniowe wskazówki, jak budować zdrowsze nawyki i zmienić swoje życie!",
     newsletterBenefitsTitle: "Co otrzymasz:",
     newsletterBenefitsList: [
-      "Darmowy prezent: poradnik '7 szybkich nawyków, które transformują Twój dzień' (tuż po potwierdzeniu e-mail'a)",
-      "Mądrość z Pop-Kultury - Cycacy z geekowych produkcji, które pomogą Ci zobaczyć świat z nowej perspektywy",
+      "Darmowy prezent: poradnik '7 szybkich nawyków, które transformują Twój dzień' (tuż po potwierdzeniu e-mail'a / w wersji BETA dostępny pod przyciskiem odebrania prezentu)",
+      "Mądrość z Pop-Kultury - Cycacy z geekowych produkcji, które pomogą Ci zobaczyć świat z nowej perspektywy (dostępne od razu po dołączeniu do stada)",
       "Kaczastyczne porady budowania nawyków",
       "Wczesny dostęp do nowych funkcji",
       "Specjalne zniżki na treści premium"
@@ -1221,7 +1222,8 @@ export const translations: TranslationObject = {
     lightModeTooltip: "Przełącz na tryb jasny",
     popCultureTitle: "Kolekcja Mądrości Popkultury",
     popCultureDescription: "Zapisz się, aby odblokować naszą ekskluzywną kolekcję inspirujących cytatów z Twoich ulubionych filmów, seriali, komiksów i książek!",
-    goToJournal: "Przejdź do Dziennika"
+    goToJournal: "Przejdź do Dziennika",
+    subscribe: "Zapisz się teraz"
   },
 };
 

@@ -38,10 +38,10 @@
       </a>
       
       <div :class="pdfSectionCollapsed && isUnlocked ? 'pdf-details-collapsed' : 'pdf-details'">
-        <p class="download-info" v-if="!isUnlocked">
+        <div class="download-info" v-if="!isUnlocked">
           <span class="download-info-text">{{ t('downloadInfoLocked', tasksToUnlock) }}</span>
           
-          <!-- Progress bar - similar to main ProgressBar component -->
+          <!-- Progress bar - now outside of p tag -->
           <div class="unlock-progress-container">
             <div class="progress-stats">{{ progressPercentage }}%</div>
             <div class="unlock-progress-bar" 
@@ -52,10 +52,10 @@
               <div class="unlock-progress-fill" :style="{ width: `${unlockPercentage}%` }"></div>
             </div>
           </div>
-        </p>
-        <p class="download-info" v-else>
+        </div>
+        <div class="download-info" v-else>
           <span class="download-info-text">{{ t('downloadInfoUnlocked') }}</span>
-        </p>
+        </div>
         <img 
           v-if="isUnlocked" 
           class="qr-code" 

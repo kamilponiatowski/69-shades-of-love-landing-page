@@ -33,21 +33,23 @@
     <div class="heart-container" ref="heartContainer" aria-hidden="true"></div>
 
     <RewardPopup v-if="showReward" :show-reward="showReward" :reward-title="rewardTitle"
-      :reward-description="rewardDescription" :category="rewardCategory"
-      @close="closeReward"
-      />
+      :reward-description="rewardDescription" :category="rewardCategory" @close="closeReward" />
 
-      <!-- Newsletter Components -->
-      <NewsletterFloatingButton @click="openNewsletterPopup" :isSubscribed="isSubscribed" />
+    <!-- Newsletter Components -->
+    <NewsletterFloatingButton @click="openNewsletterPopup" :isSubscribed="isSubscribed" />
 
-      <NewsletterPopup :show="showNewsletterPopup" :email="newsletterEmail" :name="newsletterName"
-        :show-success="showNewsletterSuccess" :show-error="showNewsletterError" :is-submitting="isSubmittingNewsletter"
-        @close="closeNewsletterPopup" @submit="submitNewsletterForm" @update:email="newsletterEmail = $event"
-        @update:name="newsletterName = $event" />
+    <NewsletterPopup :show="showNewsletterPopup" :email="newsletterEmail" :name="newsletterName"
+      :show-success="showNewsletterSuccess" :show-error="showNewsletterError" :is-submitting="isSubmittingNewsletter"
+      @close="closeNewsletterPopup" @submit="submitNewsletterForm" @update:email="newsletterEmail = $event"
+      @update:name="newsletterName = $event" />
 
-      <NewsletterReward :show="showNewsletterReward" @close="closeNewsletterReward" />
+    <NewsletterReward :show="showNewsletterReward" @close="closeNewsletterReward" />
 
-      <Footer />
+    <Footer />
+
+    <!-- Mobile Newsletter Popup -->
+    <MobileNewsletterPopup v-if="isMobileDevice" :show="showMobilePopup" @close="closeMobilePopup"
+      @navigate="navigateToNewsletterPage" />
   </div>
 </template>
 
@@ -81,6 +83,7 @@ import Achievement from '@/components/widgets/Achievement.vue';
 import RewardPopup from '@/components/widgets/RewardPopup.vue';
 import NewsletterFloatingButton from '@/components/widgets/NewsletterFloatingButton.vue';
 import NewsletterPopup from '@/components/widgets/NewsletterPopup.vue';
+import MobileNewsletterPopup from '@/components/widgets/MobileNewsletterPopup.vue';
 import NewsletterReward from '@/components/widgets/NewsletterReward.vue';
 import ScrollDownButton from '@/components/widgets/ScrollDownButton.vue';
 
@@ -146,7 +149,11 @@ const {
   closeNewsletterPopup,
   submitNewsletterForm,
   closeNewsletterReward,
-  isSubscribed
+  isSubscribed,
+  showMobilePopup,
+  isMobileDevice,
+  closeMobilePopup,
+  navigateToNewsletterPage
 } = useNewsletter();
 
 // PDF unlock tracking

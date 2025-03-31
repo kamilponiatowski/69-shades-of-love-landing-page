@@ -13,6 +13,7 @@ export function useNewsletter() {
     
     // State
     const showNewsletterPopup = ref<boolean>(false);
+    const showMobilePopup = ref<boolean>(false);
     const newsletterEmail = ref<string>('');
     const newsletterName = ref<string>(''); // Added name field
     const showNewsletterSuccess = ref<boolean>(false);
@@ -40,7 +41,7 @@ export function useNewsletter() {
     };
     
     /**
-     * Opens newsletter popup or redirects to newsletter page on mobile
+     * Opens newsletter popup or shows mini popup on mobile
      */
     const openNewsletterPopup = (): void => {
         // Don't open popup if user is already subscribed
@@ -60,8 +61,8 @@ export function useNewsletter() {
         
         // Check if on mobile device
         if (isMobileDevice.value) {
-            // On mobile, redirect to newsletter page instead of showing popup
-            router.push('/newsletter');
+            // On mobile, show mini popup instead of redirecting
+            showMobilePopup.value = true;
             return;
         }
         
@@ -83,6 +84,21 @@ export function useNewsletter() {
     };
     
     /**
+     * Closes mobile popup
+     */
+    const closeMobilePopup = (): void => {
+        showMobilePopup.value = false;
+    };
+    
+    /**
+     * Navigates to newsletter page
+     */
+    const navigateToNewsletterPage = (): void => {
+        closeMobilePopup();
+        router.push('/newsletter');
+    };
+    
+    /**
      * Navigates user to the gift page
      */
     const navigateToQuotesPage = (): void => {
@@ -97,7 +113,7 @@ export function useNewsletter() {
             // If already subscribed, navigate to gift page
             router.push('/gift');
         } else {
-            // Open newsletter popup on desktop, navigate to newsletter page on mobile
+            // Open newsletter popup on desktop, show mini popup on mobile
             openNewsletterPopup();
         }
     };
@@ -128,7 +144,7 @@ export function useNewsletter() {
                 console.error('Error saving newsletter data:', error);
             }
             
-            // Close popup after delay
+            // Desktop behavior
             if (!isMobileDevice.value) {
                 setTimeout(() => {
                     closeNewsletterPopup();
@@ -140,7 +156,7 @@ export function useNewsletter() {
                     createConfetti();
                 }, 2000);
             } else {
-                // On mobile (newsletter page), show reward after delay
+                // Mobile behavior - on newsletter page, show reward after delay
                 setTimeout(() => {
                     // Show the reward popup 
                     showNewsletterReward.value = true;
@@ -229,24 +245,30 @@ export function useNewsletter() {
             // Set visited flag (always)
             localStorage.setItem('hasVisitedBefore', 'true');
             
-            // Show popup automatically for:
-            // 1. Not subscribed users
-            // 2. Not on mobile
-            // 3. Either first-time visitors OR users who haven't seen the popup yet
-            if (!isSubscribed.value && !isMobileDevice.value && 
-                (isFirstTimeVisitor.value || !hasSeenPopup.value)) {
+            // Show popup automatically for first-time visitors who haven't seen the popup yet
+            if (!isSubscribed.value && (isFirstTimeVisitor.value || !hasSeenPopup.value)) {
                 
                 // Show popup after 7 seconds for better UX
                 // This allows users to first see the content before showing them the popup
                 setTimeout(() => {
-                    if (!isSubscribed.value && !showNewsletterPopup.value) {
-                        openNewsletterPopup();
+                    if (!isSubscribed.value) {
+                        if (!isMobileDevice.value) {
+                            // On desktop, show normal popup
+                            if (!showNewsletterPopup.value) {
+                                showNewsletterPopup.value = true;
+                            }
+                        } else {
+                            // On mobile, show mini popup
+                            if (!showMobilePopup.value) {
+                                showMobilePopup.value = true;
+                            }
+                        }
+                        
+                        // Mark that we've shown the popup
+                        localStorage.setItem('hasSeenNewsletterPopup', 'true');
+                        hasSeenPopup.value = true;
                     }
                 }, 7000);
-                
-                // Mark that we've shown the popup
-                localStorage.setItem('hasSeenNewsletterPopup', 'true');
-                hasSeenPopup.value = true;
             }
         } catch (error) {
             console.error('Error checking first-time visitor:', error);
@@ -302,6 +324,7 @@ export function useNewsletter() {
     
     return {
         showNewsletterPopup,
+        showMobilePopup,
         newsletterEmail,
         newsletterName,
         showNewsletterSuccess,
@@ -313,6 +336,8 @@ export function useNewsletter() {
         isMobileDevice,
         openNewsletterPopup,
         closeNewsletterPopup,
+        closeMobilePopup,
+        navigateToNewsletterPage,
         submitNewsletterForm,
         closeNewsletterReward,
         navigateToQuotesPage,
