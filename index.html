@@ -24,27 +24,67 @@
 
     <!-- External Libraries -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    
+    <!-- Enhanced SPA Routing Script for GitHub Pages -->
     <script type="text/javascript">
-        // SPA routing script
-        (function (l) {
-            // Handling redirection from 404.html
-            if (l.search[1] === '/') {
-                var decoded = l.search.slice(1).split('&').map(function (s) {
-                    return s.replace(/~and~/g, '&')
-                }).join('?');
-                window.history.replaceState(null, null,
-                    l.pathname.slice(0, -1) + decoded + l.hash
-                );
+        (function() {
+            const l = window.location;
+            const repoName = '69-shades-of-love'; // GitHub repository name - change if different
+            
+            // Handle redirect from 404.html with search params that contain encoded path
+            if (l.search && l.search[1] === '/') {
+                try {
+                    // Decode the search params which may contain the original path and query
+                    const decoded = l.search.slice(1).split('&').map(function(s) {
+                        return s.replace(/~and~/g, '&');
+                    }).join('?');
+                    
+                    // Build the correct path preserving the original route
+                    const targetPath = l.pathname.endsWith('/') 
+                        ? l.pathname.slice(0, -1) + decoded
+                        : l.pathname + decoded;
+                    
+                    // Replace the current URL with the decoded path
+                    window.history.replaceState(null, null, targetPath + l.hash);
+                } catch (e) {
+                    console.error('Error handling SPA routing:', e);
+                }
             }
 
-            // Deletes the ‘/?/’ part if it exists (from the 404.html redirect)
-            var path = l.pathname;
-            if (path.indexOf('/?/') > -1) {
-                window.history.replaceState(null, null,
-                    path.replace('/?/', '/')
-                );
+            // Fix URLs from GitHub Pages format with /?/ to standard SPA format
+            if (l.pathname.includes('/?/')) {
+                try {
+                    const cleanPath = l.pathname.replace('/?/', '/');
+                    window.history.replaceState(null, null, cleanPath + l.search + l.hash);
+                } catch (e) {
+                    console.error('Error cleaning path:', e);
+                }
             }
-        }(window.location))
+            
+            // Handle direct access to SPA routes on GitHub Pages
+            // This converts /repo-name/route to /repo-name/#/route
+            if (l.pathname.indexOf(repoName) > -1 && !l.hash) {
+                const segments = l.pathname.split('/');
+                const repoIndex = segments.indexOf(repoName);
+                
+                // If we have path segments after the repo name and not already using hash routing
+                if (repoIndex >= 0 && segments.length > repoIndex + 1 && segments[repoIndex + 1]) {
+                    try {
+                        // Extract the route after the repo name
+                        const route = '/' + segments.slice(repoIndex + 1).join('/');
+                        
+                        // Construct base path up to repo name
+                        const basePath = segments.slice(0, repoIndex + 1).join('/');
+                        
+                        // Redirect to the hash-based route
+                        window.history.replaceState(null, null, 
+                            '/' + basePath + '/#' + route + l.search);
+                    } catch (e) {
+                        console.error('Error handling direct route access:', e);
+                    }
+                }
+            }
+        })();
     </script>
 </head>
 
