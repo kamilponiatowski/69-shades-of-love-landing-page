@@ -28,7 +28,7 @@
         <span class="button-shine"></span>
         <i class="fas fa-heart" aria-hidden="true"></i> <span class="support-text">{{ t('supportButton') }}</span>
       </a>
-      <NewsletterButton @click="$emit('open-newsletter')" :isSubscribed="isSubscribed" />
+      <NewsletterButton @click="handleNewsletterClick" :isSubscribed="isSubscribed" />
     </div>
   </div>
 </template>
@@ -37,20 +37,27 @@
 import { computed, ref, onMounted, onBeforeUnmount } from 'vue';
 import { useI18n } from '@/composables/useI18n';
 import NewsletterButton from './NewsletterButton.vue';
+import { useRouter } from 'vue-router';
 
 // Props
-defineProps({
+const props = defineProps({
   isSubscribed: {
     type: Boolean,
     default: false
   }
 });
 
+// Router
+const router = useRouter();
+
 // Composables
 const { t } = useI18n();
 
 // Emits
-defineEmits(['open-newsletter']);
+const emit = defineEmits(['open-newsletter']);
+
+// State
+const isMobile = ref(false);
 
 // Animation state
 const isShaking = ref<boolean>(false);
@@ -61,6 +68,37 @@ let shakeInterval: ReturnType<typeof setInterval> | null = null;
 const formattedAboutContent = computed(() => {
   return t('aboutContent').replace('\\n\\n', '<br><br>');
 });
+
+/**
+ * Checks if device is mobile
+ */
+const checkMobile = () => {
+  return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || 
+         window.innerWidth < 768;
+};
+
+/**
+ * Handles newsletter button click based on device type
+ */
+const handleNewsletterClick = () => {
+  if (props.isSubscribed) {
+    // If already subscribed, go to gift page
+    router.push('/gift');
+  } else if (isMobile.value) {
+    // On mobile, redirect to newsletter page
+    router.push('/newsletter');
+  } else {
+    // On desktop, emit event to show popup
+    emit('open-newsletter');
+  }
+};
+
+/**
+ * Updates mobile status on resize
+ */
+const updateMobileStatus = () => {
+  isMobile.value = checkMobile();
+};
 
 /**
  * Triggers shake animation for support button
@@ -78,6 +116,12 @@ const triggerShake = () => {
 
 // Lifecycle hooks
 onMounted(() => {
+  // Check if device is mobile
+  isMobile.value = checkMobile();
+  
+  // Add resize listener
+  window.addEventListener('resize', updateMobileStatus);
+  
   // First animation after 5 seconds
   setTimeout(() => {
     triggerShake();
@@ -93,6 +137,7 @@ onBeforeUnmount(() => {
   // Clean up timers
   if (shakeTimer) clearTimeout(shakeTimer);
   if (shakeInterval) clearInterval(shakeInterval);
+  window.removeEventListener('resize', updateMobileStatus);
 });
 </script>
 

@@ -25,9 +25,22 @@ export function useNewsletter() {
     
     // First-time visitor detection
     const isFirstTimeVisitor = ref<boolean>(false);
+    const hasSeenPopup = ref<boolean>(false);
+    
+    // Detect mobile device
+    const isMobileDevice = ref<boolean>(false);
     
     /**
-     * Opens newsletter popup
+     * Checks if the current device is a mobile device
+     * @returns True if the device is mobile
+     */
+    const checkMobileDevice = (): boolean => {
+        return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || 
+               window.innerWidth < 768;
+    };
+    
+    /**
+     * Opens newsletter popup or redirects to newsletter page on mobile
      */
     const openNewsletterPopup = (): void => {
         // Don't open popup if user is already subscribed
@@ -37,13 +50,28 @@ export function useNewsletter() {
             return;
         }
         
-        // Reset form state
+        // Mark that popup has been shown
+        try {
+            localStorage.setItem('hasSeenNewsletterPopup', 'true');
+            hasSeenPopup.value = true;
+        } catch (error) {
+            console.error('Error saving popup state:', error);
+        }
+        
+        // Check if on mobile device
+        if (isMobileDevice.value) {
+            // On mobile, redirect to newsletter page instead of showing popup
+            router.push('/newsletter');
+            return;
+        }
+        
+        // For desktop: Reset form state
         newsletterEmail.value = '';
         newsletterName.value = '';
         showNewsletterSuccess.value = false;
         showNewsletterError.value = false;
         
-        // Show popup
+        // Show popup (only on desktop)
         showNewsletterPopup.value = true;
     };
     
@@ -59,6 +87,19 @@ export function useNewsletter() {
      */
     const navigateToQuotesPage = (): void => {
         router.push('/quotes');
+    };
+    
+    /**
+     * Handles gift button click based on device type and subscription status
+     */
+    const handleGiftButtonClick = (): void => {
+        if (isSubscribed.value) {
+            // If already subscribed, navigate to gift page
+            router.push('/gift');
+        } else {
+            // Open newsletter popup on desktop, navigate to newsletter page on mobile
+            openNewsletterPopup();
+        }
     };
     
     /**
@@ -88,15 +129,26 @@ export function useNewsletter() {
             }
             
             // Close popup after delay
-            setTimeout(() => {
-                closeNewsletterPopup();
-                
-                // Show the reward popup instead of immediately navigating
-                showNewsletterReward.value = true;
-                
-                // Add confetti effect for celebration
-                createConfetti();
-            }, 2000);
+            if (!isMobileDevice.value) {
+                setTimeout(() => {
+                    closeNewsletterPopup();
+                    
+                    // Show the reward popup instead of immediately navigating
+                    showNewsletterReward.value = true;
+                    
+                    // Add confetti effect for celebration
+                    createConfetti();
+                }, 2000);
+            } else {
+                // On mobile (newsletter page), show reward after delay
+                setTimeout(() => {
+                    // Show the reward popup 
+                    showNewsletterReward.value = true;
+                    
+                    // Add confetti effect for celebration
+                    createConfetti();
+                }, 2000);
+            }
         } catch (error) {
             // Show error message
             showNewsletterError.value = true;
@@ -118,6 +170,11 @@ export function useNewsletter() {
     const closeNewsletterReward = (): void => {
         showNewsletterReward.value = false;
         localStorage.setItem('newsletterRewardShown', 'true');
+        
+        // Navigate to quotes page after closing reward on mobile view
+        if (isMobileDevice.value) {
+            router.push('/quotes');
+        }
       };
     
     /**
@@ -163,20 +220,34 @@ export function useNewsletter() {
     const checkFirstTimeVisitor = (): void => {
         try {
             const hasVisitedBefore = localStorage.getItem('hasVisitedBefore');
+            const hasSeenPopupBefore = localStorage.getItem('hasSeenNewsletterPopup');
             
-            if (!hasVisitedBefore && !isSubscribed.value) {
-                isFirstTimeVisitor.value = true;
+            // Check if the user is a first-time visitor
+            isFirstTimeVisitor.value = !hasVisitedBefore;
+            hasSeenPopup.value = hasSeenPopupBefore === 'true';
+            
+            // Set visited flag (always)
+            localStorage.setItem('hasVisitedBefore', 'true');
+            
+            // Show popup automatically for:
+            // 1. Not subscribed users
+            // 2. Not on mobile
+            // 3. Either first-time visitors OR users who haven't seen the popup yet
+            if (!isSubscribed.value && !isMobileDevice.value && 
+                (isFirstTimeVisitor.value || !hasSeenPopup.value)) {
                 
-                // Show popup for first-time visitors after 15 seconds
+                // Show popup after 7 seconds for better UX
+                // This allows users to first see the content before showing them the popup
                 setTimeout(() => {
-                    if (!isSubscribed.value) {
+                    if (!isSubscribed.value && !showNewsletterPopup.value) {
                         openNewsletterPopup();
                     }
-                }, 15000);
+                }, 7000);
+                
+                // Mark that we've shown the popup
+                localStorage.setItem('hasSeenNewsletterPopup', 'true');
+                hasSeenPopup.value = true;
             }
-            
-            // Set visited flag
-            localStorage.setItem('hasVisitedBefore', 'true');
         } catch (error) {
             console.error('Error checking first-time visitor:', error);
         }
@@ -196,18 +267,37 @@ export function useNewsletter() {
           isSubscribed.value = true;
           
           // Show reward popup instead of navigating immediately
-          if (router.currentRoute.value.path === '/quotes') {
+          if (router.currentRoute.value.path === '/quotes' || 
+              router.currentRoute.value.path === '/newsletter') {
             showNewsletterReward.value = true;
             createConfetti();
           }
         }
       };
     
+    /**
+     * Updates isMobile state on window resize
+     */
+    const updateDeviceStatus = (): void => {
+        isMobileDevice.value = checkMobileDevice();
+    };
+    
     // On component mount
     onMounted(() => {
+        // Check if device is mobile
+        isMobileDevice.value = checkMobileDevice();
+        
+        // Add resize listener
+        window.addEventListener('resize', updateDeviceStatus);
+        
         checkSubscriptionStatus();
         checkFirstTimeVisitor();
         checkNewsletterRedirect();
+        
+        // Return cleanup function
+        return () => {
+            window.removeEventListener('resize', updateDeviceStatus);
+        };
     });
     
     return {
@@ -220,11 +310,13 @@ export function useNewsletter() {
         isSubmittingNewsletter,
         isFirstTimeVisitor,
         isSubscribed,
+        isMobileDevice,
         openNewsletterPopup,
         closeNewsletterPopup,
         submitNewsletterForm,
         closeNewsletterReward,
         navigateToQuotesPage,
-        createConfetti
+        createConfetti,
+        handleGiftButtonClick
     };
 }

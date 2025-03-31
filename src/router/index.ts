@@ -30,6 +30,14 @@ const routes: Array<RouteRecordRaw> = [
       title: 'Pop Culture Wisdom - Inspiration for Self-Improvement'
     }
   },
+  {
+    path: '/newsletter',
+    name: 'Newsletter',
+    component: () => import('@/views/NewsletterView.vue'),
+    meta: {
+      title: 'Join Our Newsletter - 69 Shades of Love'
+    }
+  },
 ];
 
 /**

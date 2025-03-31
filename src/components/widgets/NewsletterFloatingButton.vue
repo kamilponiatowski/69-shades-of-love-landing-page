@@ -2,7 +2,7 @@
   <div 
     class="newsletter-float-button animate-float"
     v-if="!isSubscribed"
-    @click="$emit('click')" 
+    @click="handleClick" 
     aria-label="Open newsletter subscription"
   >
     <span class="diagonal-shine"></span>
@@ -11,13 +11,60 @@
 </template>
   
 <script setup lang="ts">
+import { useRouter } from 'vue-router';
+import { ref, onMounted } from 'vue';
+
 // Props
-defineProps<{
+const props = defineProps<{
   isSubscribed: boolean;
 }>();
 
 // Emits
-defineEmits(['click']);
+const emit = defineEmits(['click']);
+
+// Router
+const router = useRouter();
+
+// State
+const isMobile = ref(false);
+
+/**
+ * Checks if device is mobile
+ */
+const checkMobile = () => {
+  return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || 
+         window.innerWidth < 768;
+};
+
+/**
+ * Handles button click based on device type
+ */
+const handleClick = () => {
+  if (isMobile.value) {
+    // On mobile, navigate to newsletter page
+    router.push('/newsletter');
+  } else {
+    // On desktop, emit click event to show popup
+    emit('click');
+  }
+};
+
+/**
+ * Updates mobile status on resize
+ */
+const updateMobileStatus = () => {
+  isMobile.value = checkMobile();
+};
+
+// Initialize on mount
+onMounted(() => {
+  isMobile.value = checkMobile();
+  window.addEventListener('resize', updateMobileStatus);
+  // Cleanup on unmount
+  return () => {
+    window.removeEventListener('resize', updateMobileStatus);
+  };
+});
 </script>
 
 <style scoped>
