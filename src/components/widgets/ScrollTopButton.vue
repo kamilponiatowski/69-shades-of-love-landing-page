@@ -3,7 +3,7 @@
     @click="scrollToTop" 
     class="scroll-top-button" 
     :class="{ show: showButton }"
-    aria-label="Przewiń do góry strony">
+    aria-label="Scroll to top">
     <i class="fas fa-arrow-up"></i>
   </button>
 </template>
@@ -15,6 +15,9 @@ const showButton = ref(false);
 let lastScrollPosition = 0;
 let ticking = false;
 
+/**
+ * Scrolls to the top of the page smoothly
+ */
 const scrollToTop = () => {
   window.scrollTo({
     top: 0,
@@ -23,14 +26,12 @@ const scrollToTop = () => {
 };
 
 /**
- * Checks scroll position and direction to determine if the button should be visible
- * Shows the button when user is scrolling up and far enough from the top
+ * Checks scroll position and direction to determine button visibility
  */
 const handleScroll = () => {
   if (!ticking) {
     window.requestAnimationFrame(() => {
       const currentScrollPosition = window.scrollY || document.documentElement.scrollTop;
-      
       const isScrollingUp = currentScrollPosition < lastScrollPosition;
       
       showButton.value = currentScrollPosition > 300 && isScrollingUp;
@@ -52,12 +53,3 @@ onBeforeUnmount(() => {
   window.removeEventListener('scroll', handleScroll);
 });
 </script>
-
-<style scoped>
-@media (max-width: 480px) {
-  .scroll-top-button {
-    bottom: 15px;
-    right: 15px;
-  }
-}
-</style>

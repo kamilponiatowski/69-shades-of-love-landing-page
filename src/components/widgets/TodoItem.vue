@@ -28,79 +28,63 @@ import { useAnimation } from '@/composables/useAnimation';
 import { useI18n } from '@/composables/useI18n';
 import type { TaskChangeInfo } from '@/types';
 
-// Props
 const props = defineProps<{
   task: Task;
   categoryType: Category['type'];
   taskIndex: number;
 }>();
 
-// Emits
 const emit = defineEmits<{
   (e: 'change', changeInfo: TaskChangeInfo): void
 }>();
 
-// Store & Composables
 const taskStore = useTaskStore();
 const { showCompletionAnimation } = useAnimation(null);
 const { t } = useI18n();
 
-// Computed
 const checkboxId = computed(() => {
   return `${props.categoryType}-task-${props.taskIndex}`;
 });
 
-// Get translated task title and description
 const translatedTitle = computed(() => {
-  // Check if the task has a titleKey property
   if (props.task.titleKey) {
     return t(props.task.titleKey);
   }
   
-  // Generate a key based on category and task index if not provided
   const generatedKey = `task_${props.categoryType}_${props.taskIndex + 1}_title`;
   return t(generatedKey);
 });
 
 const translatedDescription = computed(() => {
-  // Check if the task has a descriptionKey property
   if (props.task.descriptionKey) {
     return t(props.task.descriptionKey);
   }
   
-  // Generate a key based on category and task index if not provided
   const generatedKey = `task_${props.categoryType}_${props.taskIndex + 1}_desc`;
   return t(generatedKey);
 });
 
-// Methods
 const toggleComplete = () => {
   const wasCompleted = props.task.completed;
   
-  // Update of task status in store
   taskStore.toggleTaskCompletion(props.categoryType, props.taskIndex);
   
-  // Show animation ONLY when task is selected (not when unselected)
   if (!wasCompleted) {
     showCompletionAnimation(props.categoryType);
   }
   
-  // Communicate the change with the previous and current state
   emit('change', { 
     wasCompleted, 
     isNowCompleted: !wasCompleted 
   });
 };
 
-// Handle click on the entire task item
-const handleItemClick = (event: MouseEvent) => {
-  // Call the same toggle function
+const handleItemClick = () => {
   toggleComplete();
 };
 </script>
 
 <style scoped>
-/* Używamy klasy todo-item zamiast modern-todo-item dla spójności */
 .todo-item {
   padding: var(--space-3) var(--space-4);
   margin-bottom: var(--space-3);
@@ -125,7 +109,6 @@ const handleItemClick = (event: MouseEvent) => {
   margin-bottom: 0;
 }
 
-/* Completed item styling */
 .todo-item.completed {
   background-color: rgba(240, 240, 240, 0.6);
   border-left-color: rgba(0, 0, 0, 0.05);
@@ -140,7 +123,6 @@ const handleItemClick = (event: MouseEvent) => {
   color: var(--color-gray-500);
 }
 
-/* Enhanced checkbox */
 .todo-checkbox {
   appearance: none;
   -webkit-appearance: none;
@@ -156,7 +138,6 @@ const handleItemClick = (event: MouseEvent) => {
   flex-shrink: 0;
 }
 
-/* Category specific checkbox colors */
 [class*="physical"] .todo-checkbox {
   border-color: var(--color-physical);
 }
@@ -189,7 +170,6 @@ const handleItemClick = (event: MouseEvent) => {
   box-shadow: var(--shadow-sm);
 }
 
-/* Category specific checkbox colors when checked */
 [class*="physical"] .todo-checkbox:checked {
   background-color: var(--color-physical);
   border-color: var(--color-physical);
@@ -210,7 +190,6 @@ const handleItemClick = (event: MouseEvent) => {
   border-color: var(--color-relationship);
 }
 
-/* Text content styling */
 .todo-text {
   flex: 1;
   display: flex;
@@ -232,7 +211,6 @@ const handleItemClick = (event: MouseEvent) => {
   line-height: var(--line-height-snug);
 }
 
-/* Shine effect on hover */
 .todo-shine {
   position: absolute;
   top: 0;
@@ -254,7 +232,6 @@ const handleItemClick = (event: MouseEvent) => {
   transform: translateX(100%);
 }
 
-/* Category border color indicators */
 [class*="physical"].todo-item {
   border-left-color: var(--color-physical);
 }
@@ -271,7 +248,6 @@ const handleItemClick = (event: MouseEvent) => {
   border-left-color: var(--color-relationship);
 }
 
-/* Responsive styles */
 @media (max-width: 768px) {
   .todo-item {
     padding: var(--space-2) var(--space-3);

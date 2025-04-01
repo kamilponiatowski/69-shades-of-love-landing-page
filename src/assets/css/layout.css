@@ -28,6 +28,7 @@
   @media (min-width: 1001px) {
     .page-layout {
       flex-direction: row !important;
+      justify-content: center;
       align-items: flex-start;
     }
     

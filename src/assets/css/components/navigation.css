@@ -1,0 +1,110 @@
+/* ============ NAVIGATION COMPONENTS ============ */
+
+/* Scroll buttons (up and down) */
+.scroll-top-button,
+.scroll-down-button {
+  position: fixed;
+  width: 50px;
+  height: 50px;
+  border-radius: var(--radius-circle);
+  background-color: var(--color-primary);
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  cursor: pointer;
+  box-shadow: var(--shadow-md);
+  z-index: var(--z-index-fixed);
+  transition: all var(--transition-normal) var(--transition-ease);
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(0);
+}
+
+.scroll-top-button.show,
+.scroll-down-button.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1);
+}
+
+.scroll-top-button:hover, 
+.scroll-top-button:focus,
+.scroll-down-button:hover,
+.scroll-down-button:focus {
+  transform: scale(1.1);
+  background-color: var(--color-primary-dark);
+  box-shadow: var(--shadow-lg);
+}
+
+.scroll-top-button {
+  bottom: var(--space-5);
+  right: var(--space-5);
+}
+
+.scroll-down-button {
+  top: var(--space-5);
+  right: var(--space-5);
+}
+
+/* Navigation links in different sections */
+.navigation-links {
+  text-align: center;
+  margin-top: var(--space-8);
+  margin-bottom: var(--space-10);
+}
+
+/* Skip to content link for accessibility */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: var(--color-primary);
+  color: white;
+  padding: 8px;
+  z-index: var(--z-index-sticky);
+  transition: top 0.3s ease;
+}
+
+.skip-link:focus {
+  top: 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .scroll-top-button,
+  .scroll-down-button {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .scroll-top-button i,
+  .scroll-down-button i {
+    font-size: 1.1rem;
+  }
+  
+  .navigation-links {
+    margin-top: var(--space-6);
+    margin-bottom: var(--space-8);
+  }
+}
+
+@media (max-width: 480px) {
+  .scroll-top-button,
+  .scroll-down-button {
+    width: 36px;
+    height: 36px;
+    border-radius: var(--radius-circle);
+  }
+  
+  .scroll-top-button {
+    bottom: var(--space-4);
+    right: var(--space-4);
+  }
+  
+  .scroll-down-button {
+    top: var(--space-4);
+    right: var(--space-4); 
+  }
+}

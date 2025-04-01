@@ -22,31 +22,6 @@ defineProps<{
 </script>
 
 <style scoped>
-.achievement-container {
-  position: fixed;
-  bottom: var(--space-5);
-  right: var(--space-5);
-  z-index: var(--z-index-toast);
-  transform: translateX(120%);
-  transition: transform var(--transition-normal) var(--transition-ease);
-  width: 300px;
-  max-width: calc(100% - var(--space-10));
-}
-
-.achievement-container.show {
-  transform: translateX(0);
-  animation: slideInRight var(--transition-normal) var(--transition-ease);
-}
-
-.achievement {
-  display: flex;
-  background-color: var(--color-achievement-background);
-  border-radius: var(--radius-lg);
-  padding: var(--space-4);
-  box-shadow: var(--shadow-lg);
-  border-left: 4px solid var(--color-primary);
-}
-
 .achievement-icon {
   width: 40px;
   height: 40px;
@@ -73,16 +48,6 @@ defineProps<{
 }
 
 @media (max-width: 480px) {
-  .achievement-container {
-    right: var(--space-3);
-    bottom: var(--space-3);
-    max-width: calc(100% - var(--space-6));
-  }
-  
-  .achievement {
-    padding: var(--space-3);
-  }
-  
   .achievement-icon {
     width: 32px;
     height: 32px;

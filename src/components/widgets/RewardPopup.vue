@@ -8,7 +8,7 @@
     aria-labelledby="reward-title"
   >
     <div class="reward-content">
-      <div class="reward-background"></div>
+      <div class="pattern-background"></div>
       <div class="reward-icon animate-pulse">
         <i class="fas" :class="iconClass" aria-hidden="true"></i>
       </div>
@@ -16,7 +16,7 @@
       <p class="reward-description">{{ rewardDescription }}</p>
       <button class="reward-button animate-float" @click="$emit('close')">
         <span class="button-shine"></span>
-        {{ isPdfUnlock ? pdfUnlockButtonText : continueButtonText }}
+        {{ isPdfUnlock ? t('downloadPdfNow') : t('continue') }}
       </button>
     </div>
   </div>
@@ -51,31 +51,25 @@ const emit = defineEmits<{
 
 const { t } = useI18n();
 
+/**
+ * Determines if this is a PDF unlock reward
+ */
 const isPdfUnlock = computed(() => {
   const title = props.rewardTitle || '';
   return title.includes('Mind Map') || title.includes('Mapa Myśli');
 });
 
-const isSpecialReward = computed(() => {
-  const title = props.rewardTitle || '';
-  return title.includes('Champion') || 
-         title.includes('Mistrz') ||
-         isPdfUnlock.value;
-});
-
+/**
+ * Chooses icon based on reward type or category
+ */
 const iconClass = computed(() => {
   if (props.category) {
     switch (props.category) {
-      case 'physical':
-        return 'fa-running';
-      case 'mental':
-        return 'fa-brain';
-      case 'personal':
-        return 'fa-smile-beam';
-      case 'relationship':
-        return 'fa-users';
-      default:
-        break;
+      case 'physical': return 'fa-running';
+      case 'mental': return 'fa-brain';
+      case 'personal': return 'fa-smile-beam';
+      case 'relationship': return 'fa-users';
+      default: break;
     }
   }
   
@@ -95,11 +89,13 @@ const iconClass = computed(() => {
   return 'fa-crown';
 });
 
-const continueButtonText = t('continue');
-const pdfUnlockButtonText = t('downloadPdfNow') || 'Download PDF Now';
-
+/**
+ * Close reward popup when clicking on backdrop
+ */
 const handleBackdropClick = (event: MouseEvent) => {
-  emit('close');
+  if (event.target === event.currentTarget) {
+    emit('close');
+  }
 };
 </script>
 
@@ -143,37 +139,6 @@ const handleBackdropClick = (event: MouseEvent) => {
   overflow-y: auto;
 }
 
-.reward-content::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-}
-
-.reward-content::-webkit-scrollbar-track {
-  background: rgba(0, 0, 0, 0.05);
-  border-radius: 10px;
-}
-
-.reward-content::-webkit-scrollbar-thumb {
-  background: rgba(0, 0, 0, 0.2);
-  border-radius: 10px;
-}
-
-.reward-content::-webkit-scrollbar-thumb:hover {
-  background: rgba(0, 0, 0, 0.3);
-}
-
-.reward-background {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23c41e3a' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
-  opacity: 0.5;
-  z-index: 0;
-}
-
 .reward-animation.show .reward-content {
   transform: scale(1);
   animation: rewardPulse 0.5s ease-in-out;
@@ -193,7 +158,6 @@ const handleBackdropClick = (event: MouseEvent) => {
   color: white;
   background: linear-gradient(135deg, var(--main-color), #a01a30);
   box-shadow: 0 10px 20px rgba(196, 30, 58, 0.3);
-  animation: pulse 1s infinite alternate;
 }
 
 .pdf-unlocked .reward-icon {
@@ -308,27 +272,6 @@ const handleBackdropClick = (event: MouseEvent) => {
   .reward-animation {
     align-items: flex-start;
     padding-top: 5vh;
-  }
-}
-
-@keyframes rewardPulse {
-  0% { transform: scale(0.8); }
-  50% { transform: scale(1.05); }
-  100% { transform: scale(1); }
-}
-
-@keyframes spin {
-  0% { transform: scale(0.5) rotate(0deg); }
-  80% { transform: scale(1.2) rotate(360deg); }
-  100% { transform: scale(1) rotate(360deg); }
-}
-
-@keyframes pulse {
-  0% {
-    transform: scale(1);
-  }
-  100% {
-    transform: scale(1.2);
   }
 }
 </style>

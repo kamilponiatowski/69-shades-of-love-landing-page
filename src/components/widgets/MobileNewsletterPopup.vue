@@ -22,22 +22,19 @@
       </div>
     </div>
   </template>
-  
+    
   <script setup lang="ts">
   import { useI18n } from '@/composables/useI18n';
-  
-  // Props
+    
   defineProps<{
     show: boolean;
   }>();
-  
-  // Emits
+    
   defineEmits(['close', 'navigate']);
-  
-  // Composables
+    
   const { t } = useI18n();
   </script>
-  
+    
   <style scoped>
   .mobile-newsletter-popup {
     position: fixed;
@@ -56,13 +53,13 @@
     max-width: 500px;
     margin: 0 auto;
   }
-  
+    
   .mobile-newsletter-popup.show {
     transform: translateY(-120px);
     opacity: 1;
     pointer-events: auto;
   }
-  
+    
   .mobile-popup-content {
     display: flex;
     align-items: center;
@@ -70,7 +67,7 @@
     position: relative;
     color: white;
   }
-  
+    
   .mobile-popup-close {
     position: absolute;
     top: -10px;
@@ -88,31 +85,31 @@
     font-size: 0.9rem;
     transition: all 0.2s ease;
   }
-  
+    
   .mobile-popup-close:hover,
   .mobile-popup-close:focus {
     background-color: rgba(255, 255, 255, 0.3);
     transform: rotate(90deg);
   }
-  
+    
   .mobile-popup-message {
     display: flex;
     align-items: center;
     gap: 12px;
     flex: 1;
   }
-  
+    
   .mobile-popup-message i {
     font-size: 1.5rem;
     color: white;
   }
-  
+    
   .mobile-popup-message p {
     margin: 0;
     font-weight: 600;
     font-size: 0.95rem;
   }
-  
+    
   .mobile-popup-button {
     background-color: rgba(255, 255, 255, 0.2);
     color: white;
@@ -126,17 +123,17 @@
     align-items: center;
     white-space: nowrap;
   }
-  
+    
   .mobile-popup-button:hover,
   .mobile-popup-button:focus {
     background-color: rgba(255, 255, 255, 0.3);
     transform: translateY(-2px);
   }
-  
+    
   .mobile-popup-button i {
     margin-right: 6px;
   }
-  
+    
   @media (max-width: 480px) {
     .mobile-newsletter-popup {
       left: 5px;

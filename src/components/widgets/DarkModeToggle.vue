@@ -38,6 +38,7 @@ const { t } = useI18n();
   width: 50px;
   height: 26px;
   margin: 0 5px;
+  display: inline-block;
 }
 
 .toggle-track {

@@ -1,199 +1,69 @@
 <template>
-  <div class="container">
-    <a href="#main-content" class="skip-link">{{ t("skipToContent") }}</a>
+  <PageContainer
+    :streak-days="streakDays"
+    :isHomePage="false"
+    :customTitle="t('quotesPageTitle')"
+    :customSubtitle="t('quotesPageSubtitle')"
+  >
+    <main id="main-content" ref="mainContent" class="quotes-content">
+      <!-- Introduction section -->
+      <ContentSection class="intro-section">
+        <h2 class="section-title">{{ t('quotesThankYouTitle') }}</h2>
+        <p class="section-description">
+          {{ t('quotesThankYouDescription') }}
+        </p>
+        <InfoNote :text="t('checkInboxMessage')" icon="fa-envelope" />
+        <InfoNote :text="t('membershipNote')" icon="fa-heart" class="easter-egg-note" />
+      </ContentSection>
 
-    <ScrollDownButton />
+      <!-- Quotes section with filtering -->
+      <ContentSection class="quotes-section" :title="t('quotesWisdomTitle')">
+        <QuotesFilter 
+          :categories="categories" 
+          :selectedCategory="selectedCategory"
+          @category-selected="selectedCategory = $event"
+        />
+        <QuotesGrid :quotes="filteredQuotes" :getCategoryIcon="getCategoryIcon" />
+      </ContentSection>
 
-    <Header @tell-duck-joke="tellDuckJoke" :streak-days="streakDays" :isHomePage="false"
-      :customTitle="t('quotesPageTitle')" :customSubtitle="t('quotesPageSubtitle')" />
+      <!-- Application section -->
+      <ContentSection 
+        class="application-section"
+        :title="t('applicationTitle')"
+        :description="t('applicationDescription')"
+      >
+        <ApplicationGrid :applications="applications" />
+      </ContentSection>
 
-    <DuckJoke :joke="currentDuckJoke" :show-duck-joke="showDuckJoke" />
-
-    <div class="page-layout">
-      <main id="main-content" ref="mainContent" class="quotes-content">
-        <!-- Introduction section -->
-        <div class="content-section intro-section">
-          <h2 class="section-title">{{ t('quotesThankYouTitle') }}</h2>
-          <p class="section-description">
-            {{ t('quotesThankYouDescription') }}
-          </p>
-          <div class="intro-note">
-            <i class="fas fa-envelope"></i>
-            <p v-html="t('checkInboxMessage')"></p>
-          </div>
-
-          <div class="intro-note easter-egg-note">
-            <i class="fas fa-heart purple-heart"></i>
-            <p>{{ t('membershipNote') }}</p>
-          </div>
-        </div>
-
-        <!-- Quotes section with filtering -->
-        <div class="content-section quotes-section">
-          <h2 class="section-title">{{ t('quotesWisdomTitle') }}</h2>
-
-          <div class="quotes-filter">
-            <button :class="['filter-button', { active: selectedCategory === 'all' }]"
-              @click="selectedCategory = 'all'">
-              {{ t('allCategories') }}
-            </button>
-            <button v-for="category in categories" :key="category"
-              :class="['filter-button', { active: selectedCategory === category }]"
-              @click="selectedCategory = (selectedCategory === category) ? 'all' : category">
-              {{ category }}
-            </button>
-          </div>
-
-          <!-- Quotes grid layout -->
-          <div class="quotes-container">
-            <div v-for="(quote, index) in filteredQuotes" :key="index"
-              :class="['quote-card', quote.category.toLowerCase()]">
-              <div class="quote-content">
-                <i class="fas fa-quote-left" aria-hidden="true"></i>
-                <blockquote>{{ quote.text }}</blockquote>
-                <i class="fas fa-quote-right" aria-hidden="true"></i>
-              </div>
-              <div class="quote-source">
-                <div class="source-name">{{ quote.source }}</div>
-                <div class="source-detail">
-                  <span class="character">{{ quote.character }}</span>
-                  <span class="universe">{{ quote.universe }}</span>
-                </div>
-              </div>
-              <div class="corner-icon">
-                <i :class="getCategoryIcon(quote.category)" aria-hidden="true"></i>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Application section -->
-        <div class="content-section application-section">
-          <h2 class="section-title">{{ t('applicationTitle') }}</h2>
-          <p class="section-description">
-            {{ t('applicationDescription') }}
-          </p>
-
-          <div class="application-grid">
-            <div class="application-card">
-              <div class="application-icon">
-                <i class="fas fa-bookmark"></i>
-              </div>
-              <h3>{{ t('dailyRemindersTitle') }}</h3>
-              <p>
-                {{ t('dailyRemindersDescription') }}
-              </p>
-            </div>
-
-            <div class="application-card">
-              <div class="application-icon">
-                <i class="fas fa-journal-whills"></i>
-              </div>
-              <h3>{{ t('reflectionJournalTitle') }}</h3>
-              <p>
-                {{ t('reflectionJournalDescription') }}
-              </p>
-            </div>
-
-            <div class="application-card">
-              <div class="application-icon">
-                <i class="fas fa-users"></i>
-              </div>
-              <h3>{{ t('shareWisdomTitle') }}</h3>
-              <p>
-                {{ t('shareWisdomDescription') }}
-              </p>
-            </div>
-
-            <div class="application-card">
-              <div class="application-icon">
-                <i class="fas fa-theater-masks"></i>
-              </div>
-              <h3>{{ t('characterInspirationTitle') }}</h3>
-              <p>
-                {{ t('characterInspirationDescription') }}
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Navigation links -->
-        <div class="navigation-links">
-          <router-link to="/journal" class="back-link">
-            <i class="fas fa-arrow-left"></i> {{ t('backToJourney') }}
-          </router-link>
-        </div>
-      </main>
-    </div>
-
-    <Footer />
-
-    <!-- Newsletter Components -->
-    <NewsletterFloatingButton @click="openNewsletterPopup" :isSubscribed="isSubscribed" />
-
-    <NewsletterPopup :show="showNewsletterPopup" :email="newsletterEmail" :name="newsletterName"
-      :show-success="showNewsletterSuccess" :show-error="showNewsletterError" :is-submitting="isSubmittingNewsletter"
-      @close="closeNewsletterPopup" @submit="submitNewsletterForm" @update:email="newsletterEmail = $event"
-      @update:name="newsletterName = $event" />
-
-    <NewsletterReward :show="showNewsletterReward" @close="closeNewsletterReward" />
-  </div>
+      <NavigationLinks backLink="/journal" :backText="t('backToJourney')" />
+    </main>
+  </PageContainer>
 </template>
 
 <script setup lang="ts">
 import { ref, computed } from 'vue';
-import { useRouter } from 'vue-router';
-import { useI18n, Language } from '@/composables/useI18n';
-import { useDuckJokes } from '@/composables/useDuckJokes';
-import { duckJokes } from '@/constants/duckJokes';
-import { useNewsletter } from '@/composables/useNewsletter';
+import { useI18n } from '@/composables/useI18n';
 
 // Components
-import Header from '@/components/layout/Header.vue';
-import Footer from '@/components/layout/Footer.vue';
-import ScrollDownButton from '@/components/widgets/ScrollDownButton.vue';
-import DuckJoke from '@/components/widgets/DuckJoke.vue';
-import NewsletterFloatingButton from '@/components/widgets/NewsletterFloatingButton.vue';
-import NewsletterPopup from '@/components/widgets/NewsletterPopup.vue';
-import NewsletterReward from '@/components/widgets/NewsletterReward.vue';
+import PageContainer from '@/components/layout/PageContainer.vue';
+import ContentSection from '@/components/sections/ContentSection.vue';
+import NavigationLinks from '@/components/layout/NavigationLinks.vue';
+import InfoNote from '@/components/widgets/InfoNote.vue';
+import QuotesFilter from '@/components/sections/QuotesFilter.vue';
+import QuotesGrid from '@/components/sections/QuotesGrid.vue';
+import ApplicationGrid from '@/components/sections/ApplicationGrid.vue';
 
-// Router instance
-const router = useRouter();
-
-// Reference to main content for scrolling functionality
-const mainContent = ref(null);
-
-// I18n composable instance
-const { t, currentLanguage, setLanguage } = useI18n();
-
-// Duck jokes functionality
-const { showDuckJoke, currentDuckJoke, tellDuckJoke } = useDuckJokes(duckJokes, currentLanguage);
-
-// For compatibility with Header component
+// Streak days for header
 const streakDays = ref<number>(0);
 
-// Newsletter functionality
-const {
-  showNewsletterPopup,
-  newsletterEmail,
-  newsletterName,
-  showNewsletterSuccess,
-  showNewsletterError,
-  showNewsletterReward,
-  isSubmittingNewsletter,
-  isSubscribed,
-  openNewsletterPopup,
-  closeNewsletterPopup,
-  submitNewsletterForm,
-  closeNewsletterReward
-} = useNewsletter();
+// I18n
+const { t } = useI18n();
 
 // Reactive state for category filtering
 const selectedCategory = ref('all');
 
 /**
 * Parse quotes from translations
-* Safely converts JSON string to array of Quote objects
 */
 const quotes = computed(() => {
   try {
@@ -253,426 +123,43 @@ const getCategoryIcon = (category: string) => {
   }
 };
 
-/**
-* Changes the application language
-*/
-const toggleLanguage = () => {
-  const newLang: Language = currentLanguage.value === 'pl' ? 'en' : 'pl';
-  setLanguage(newLang);
-};
+// Applications data
+const applications = computed(() => [
+  {
+    icon: 'fa-bookmark',
+    title: t('dailyRemindersTitle'),
+    description: t('dailyRemindersDescription')
+  },
+  {
+    icon: 'fa-journal-whills',
+    title: t('reflectionJournalTitle'),
+    description: t('reflectionJournalDescription')
+  },
+  {
+    icon: 'fa-users',
+    title: t('shareWisdomTitle'),
+    description: t('shareWisdomDescription')
+  },
+  {
+    icon: 'fa-theater-masks',
+    title: t('characterInspirationTitle'),
+    description: t('characterInspirationDescription')
+  }
+]);
 </script>
 
 <style scoped>
-/* Common layout styles */
-.container {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  background-color: var(--background-color);
-}
-
-@media (max-width: 768px) {
-    .container {
-        padding: 0;
-    }
-}
-
-.page-layout {
-  display: flex;
-  flex-direction: row;
-  max-width: 1200px;
-  margin: 0 auto;
-  width: 100%;
-  padding: 0 20px;
-}
-
 .quotes-content {
-  flex: 1;
   max-width: 1000px;
   margin: 0 auto;
   width: 100%;
 }
 
-/* Introduction section note styles */
-.intro-note {
-  display: flex;
-  align-items: center;
-  background-color: rgba(138, 43, 226, 0.1);
-  padding: 15px;
-  border-radius: 10px;
-  margin-top: 20px;
-  position: relative;
-  overflow: hidden;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
-  border-left: 4px solid var(--accent-color);
-}
-
-.intro-note i {
-  font-size: 2rem;
-  color: var(--accent-color);
-  margin-right: 15px;
-}
-
-.intro-note p {
-  color: var(--text-color);
-  line-height: 1.5;
-}
-
-.intro-note strong {
-  color: var(--accent-color);
-}
-
-/* Easter egg note with distinctive styling */
 .easter-egg-note {
   margin-top: 15px;
-  background-color: rgba(196, 30, 58, 0.1);
-  border-left: 4px solid var(--main-color);
 }
 
-.easter-egg-note i.purple-heart {
+.easter-egg-note :deep(i) {
   color: var(--main-color);
-  font-size: 1.5rem;
-  animation: heartbeat 1.5s infinite;
-}
-
-/* Quotes filter buttons */
-.quotes-filter {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-bottom: 25px;
-}
-
-.filter-button {
-  padding: 8px 15px;
-  border: none;
-  border-radius: 20px;
-  background-color: var(--btn-background);
-  color: var(--text-color);
-  cursor: pointer;
-  transition: all 0.3s ease;
-  font-size: 0.95rem;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-}
-
-.filter-button:hover {
-  background-color: rgba(0, 0, 0, 0.05);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.filter-button.active {
-  background-color: var(--accent-color);
-  color: white;
-  box-shadow: 0 4px 10px rgba(138, 43, 226, 0.2);
-}
-
-/* Quotes container - grid layout */
-.quotes-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 25px;
-}
-
-/* Quote card styling */
-.quote-card {
-  position: relative;
-  background-color: #f8f8f8;
-  border-radius: 12px;
-  padding: 25px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
-  overflow: hidden;
-  border-top: 5px solid #ccc;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-}
-
-.quote-card::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%238a2be2' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
-  opacity: 0.5;
-  z-index: 0;
-}
-
-.quote-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-}
-
-.quote-card:hover::after {
-  content: "";
-  position: absolute;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(circle, rgba(138, 43, 226, 0.1) 0%, rgba(255, 255, 255, 0) 70%);
-  top: -50%;
-  left: -50%;
-  opacity: 0.8;
-  z-index: 0;
-}
-
-.quote-card:hover::before {
-  opacity: 1;
-}
-
-/* Category-specific border colors */
-.quote-card.resilience {
-  border-top-color: var(--physical-color);
-}
-
-.quote-card.motivation {
-  border-top-color: var(--mental-color);
-}
-
-.quote-card.identity {
-  border-top-color: var(--relationship-color);
-}
-
-.quote-card.perspective {
-  border-top-color: var(--personal-color);
-}
-
-.quote-card.challenges {
-  border-top-color: var(--main-color);
-}
-
-.quote-card.growth {
-  border-top-color: #4CAF50;
-}
-
-.quote-card.humor {
-  border-top-color: #FF9800;
-}
-
-.quote-card.emotions {
-  border-top-color: #9C27B0;
-}
-
-/* Quote content styling */
-.quote-content {
-  position: relative;
-  margin-bottom: 20px;
-  flex-grow: 1;
-}
-
-.quote-content {
-  position: relative;
-  margin-bottom: 20px;
-  flex-grow: 1;
-  z-index: 1;
-}
-
-.quote-content i.fa-quote-left {
-  top: -10px;
-  left: -10px;
-}
-
-.quote-content i.fa-quote-right {
-  bottom: -10px;
-  right: -10px;
-}
-
-.quote-content blockquote {
-  padding: 15px 0;
-  margin: 0;
-  font-style: italic;
-  color: var(--text-color);
-  line-height: 1.6;
-  font-size: 1.1rem;
-  text-align: center;
-}
-
-/* Quote source styling */
-.quote-source {
-  text-align: right;
-  margin-top: 15px;
-  padding-top: 15px;
-  border-top: 1px dashed var(--border-color);
-  position: relative;
-  z-index: 1;
-}
-
-.source-name {
-  font-weight: bold;
-  color: var(--secondary-text-color);
-  font-size: 1rem;
-}
-
-.source-detail {
-  font-size: 0.9rem;
-  color: var(--secondary-text-color);
-  margin-top: 3px;
-}
-
-.source-detail .character {
-  font-style: italic;
-}
-
-.source-detail .universe {
-  margin-left: 5px;
-  opacity: 0.7;
-}
-
-.source-detail .universe::before {
-  content: "•";
-  margin-right: 5px;
-}
-
-/* Corner icon for category */
-.corner-icon {
-  position: absolute;
-  top: 15px;
-  right: 15px;
-  opacity: 0.2;
-  font-size: 1.2rem;
-  color: var(--secondary-text-color);
-}
-
-/* Application section */
-.application-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 25px;
-  margin-top: 25px;
-}
-
-.application-card {
-  background-color: var(--card-background);
-  border-radius: 12px;
-  padding: 25px;
-  text-align: center;
-  transition: all 0.3s ease, background-color 0.3s ease;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-  position: relative;
-  overflow: hidden;
-  height: 100%;
-}
-
-.application-card::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%238a2be2' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
-  opacity: 0.5;
-  z-index: 0;
-}
-
-.application-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-}
-
-.application-card:hover::after {
-  content: "";
-  position: absolute;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(circle, rgba(138, 43, 226, 0.1) 0%, rgba(255, 255, 255, 0) 70%);
-  top: -50%;
-  left: -50%;
-  opacity: 1;
-  transition: all 0.5s ease;
-  z-index: 0;
-}
-
-.application-icon {
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, var(--accent-color), #6a11cb);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0 auto 20px;
-  color: white;
-  font-size: 1.6rem;
-  box-shadow: 0 5px 15px rgba(138, 43, 226, 0.3);
-  position: relative;
-  z-index: 1;
-}
-
-.application-card h3 {
-  margin-bottom: 15px;
-  color: var(--text-color);
-  font-weight: 600;
-  position: relative;
-  z-index: 1;
-}
-
-.application-card p {
-  color: var(--secondary-text-color);
-  font-size: 0.95rem;
-  line-height: 1.6;
-  position: relative;
-  z-index: 1;
-}
-
-/* Heartbeat animation */
-@keyframes heartbeat {
-  0% {
-    transform: scale(1);
-  }
-
-  5% {
-    transform: scale(1.2);
-  }
-
-  10% {
-    transform: scale(1);
-  }
-
-  15% {
-    transform: scale(1.1);
-  }
-
-  20% {
-    transform: scale(1);
-  }
-
-  100% {
-    transform: scale(1);
-  }
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .page-layout {
-    padding: 0 15px;
-  }
-
-  .quotes-container {
-    grid-template-columns: 1fr;
-  }
-
-  .application-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .intro-note {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  .intro-note i {
-    margin-right: 0;
-    margin-bottom: 10px;
-  }
-}
-
-/* Smaller screens - additional adjustments */
-@media (max-width: 480px) {
-  .quotes-filter {
-    justify-content: center;
-  }
 }
 </style>

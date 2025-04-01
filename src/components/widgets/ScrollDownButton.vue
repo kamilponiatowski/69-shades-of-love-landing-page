@@ -3,8 +3,7 @@
     @click="scrollToBottom" 
     class="scroll-down-button" 
     :class="{ visible: showButton }"
-    aria-label="Przewiń do dołu strony"
-  >
+    aria-label="Scroll to bottom">
     <i class="fas fa-arrow-down"></i>
   </button>
 </template>
@@ -16,6 +15,9 @@ const showButton = ref(false);
 let lastScrollPosition = 0;
 let ticking = false;
 
+/**
+ * Scrolls to the bottom of the page smoothly
+ */
 const scrollToBottom = () => {
   window.scrollTo({
     top: document.body.scrollHeight,
@@ -24,8 +26,7 @@ const scrollToBottom = () => {
 };
 
 /**
- * Checks scroll position and updates button visibility
- * Shows the button when user is scrolling down and not near the bottom
+ * Checks scroll position to determine button visibility
  */
 const handleScroll = () => {
   if (!ticking) {
@@ -35,7 +36,6 @@ const handleScroll = () => {
       const clientHeight = document.documentElement.clientHeight;
       
       const isScrollingDown = currentScrollPosition > lastScrollPosition;
-      
       const nearBottom = currentScrollPosition + clientHeight > scrollHeight - 200;
       
       showButton.value = !nearBottom && isScrollingDown && currentScrollPosition > 300;
@@ -57,12 +57,3 @@ onBeforeUnmount(() => {
   window.removeEventListener('scroll', handleScroll);
 });
 </script>
-  
-<style scoped>
-@media (max-width: 768px) {
-  .scroll-down-button {
-    top: 15px;
-    right: 15px;
-  }
-}
-</style>

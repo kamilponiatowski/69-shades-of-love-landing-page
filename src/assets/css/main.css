@@ -7,6 +7,10 @@
 /* Component Styles */
 @import './components/buttons.css';
 @import './components/cards.css';
+@import './components/navigation.css';
+@import './components/tooltips.css';
+@import './components/forms.css';
+@import './components/sections.css';
 
 /* Layout */
 @import './layout.css';

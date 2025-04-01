@@ -1,0 +1,103 @@
+/* ============ TOOLTIPS, NOTIFICATIONS AND POPUPS ============ */
+
+/* Common tooltip styles */
+.tooltip,
+.duck-tooltip {
+  position: absolute;
+  background-color: var(--tooltip-background);
+  color: var(--tooltip-text-color);
+  padding: 8px 12px;
+  border-radius: 15px;
+  box-shadow: var(--shadow-md);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+  font-weight: bold;
+  pointer-events: none;
+  z-index: var(--z-index-tooltip);
+  font-size: var(--font-size-sm);
+}
+
+/* Duck joke style */
+.duck-joke-container {
+  position: fixed;
+  top: var(--space-5);
+  left: 50%;
+  transform: translateX(-50%) translateY(-100%);
+  background-color: white;
+  padding: var(--space-4);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  max-width: 400px;
+  width: 90%;
+  text-align: center;
+  transition: transform var(--transition-normal) var(--transition-bounce);
+  z-index: var(--z-index-toast);
+  border-top: 4px solid #FFD304;
+}
+
+.duck-joke-container.show {
+  transform: translateX(-50%) translateY(0);
+}
+
+/* Achievement notification */
+.achievement-container {
+  position: fixed;
+  bottom: var(--space-5);
+  right: var(--space-5);
+  z-index: var(--z-index-toast);
+  transform: translateX(120%);
+  transition: transform var(--transition-normal) var(--transition-ease);
+  width: 300px;
+  max-width: calc(100% - var(--space-10));
+}
+
+.achievement-container.show {
+  transform: translateX(0);
+  animation: slideInRight var(--transition-normal) var(--transition-ease);
+}
+
+.achievement {
+  display: flex;
+  background-color: var(--color-achievement-background);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4);
+  box-shadow: var(--shadow-lg);
+  border-left: 4px solid var(--color-primary);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .tooltip,
+  .duck-tooltip {
+    font-size: var(--font-size-xs);
+    padding: 6px 10px;
+  }
+  
+  .duck-joke-container {
+    max-width: 85%;
+  }
+  
+  .achievement-container {
+    width: 280px;
+  }
+}
+
+@media (max-width: 480px) {
+  .duck-joke-container {
+    max-width: 90%;
+    padding: var(--space-3);
+  }
+  
+  .achievement-container {
+    right: var(--space-3);
+    bottom: var(--space-3);
+    max-width: calc(100% - var(--space-6));
+    width: auto;
+  }
+  
+  .achievement {
+    padding: var(--space-3);
+  }
+}

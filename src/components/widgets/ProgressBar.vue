@@ -33,11 +33,11 @@
 <script setup lang="ts">
 import { useI18n } from '@/composables/useI18n';
 import { useTaskStore, type Category } from '@/stores/taskStore';
-import { computed } from 'vue';
 import { storeToRefs } from 'pinia';
 
 const { t } = useI18n();
 const taskStore = useTaskStore();
+
 const { categories, completedCount, totalTasks, progressPercentage } = storeToRefs(taskStore);
 
 const getCategoryProgress = (type: Category['type']) => {
@@ -123,7 +123,7 @@ const getCategoryProgress = (type: Category['type']) => {
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(
+  background-image: linear-gradient(
     45deg,
     rgba(255, 255, 255, 0) 25%,
     rgba(255, 255, 255, 0.2) 25%,
