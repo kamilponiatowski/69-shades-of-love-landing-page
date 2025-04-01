@@ -1,0 +1,146 @@
+/* For smaller screens */
+@media (max-width: var(--breakpoint-xs)) {
+    .category-header {
+      padding: var(--space-3);
+    }
+    
+    .category-header h2 {
+      font-size: var(--font-size-base);
+    }
+    
+    .category-counter {
+      padding: var(--space-1) var(--space-2);
+      font-size: var(--font-size-xs);
+    }
+    
+    .category-body {
+      padding: var(--space-3);
+    }
+  
+    .quote-card {
+      padding: var(--space-4);
+    }
+  
+    .quote-content blockquote {
+      font-size: var(--font-size-base);
+    }
+  
+    .achievement-container {
+      right: var(--space-3);
+      bottom: var(--space-3);
+      max-width: calc(100% - var(--space-6));
+    }
+  
+    .achievement {
+      padding: var(--space-3);
+    }
+  
+    .achievement-icon {
+      width: 32px;
+      height: 32px;
+      font-size: var(--font-size-base);
+      margin-right: var(--space-3);
+    }
+  
+    .info-card {
+      flex-direction: column;
+      text-align: center;
+      padding: var(--space-3);
+    }
+  
+    .info-card i {
+      margin-right: 0;
+      margin-bottom: var(--space-2);
+    }
+  
+    .reward-content {
+      padding: var(--space-4);
+      width: 95%;
+    }
+    
+    .reward-icon {
+      font-size: var(--font-size-2xl);
+      margin-bottom: var(--space-3);
+    }
+    
+    .reward-title {
+      font-size: var(--font-size-md);
+    }
+    
+    .reward-description {
+      font-size: var(--font-size-sm);
+    }
+    
+    .reward-button {
+      width: 100%;
+      padding: var(--space-2) var(--space-4);
+    }
+  }
+  
+  /* Dark mode specific adjustments */
+  .dark-mode .card,
+  .dark-mode .modern-category,
+  .dark-mode .achievement {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  }
+  
+  .dark-mode .card:hover,
+  .dark-mode .modern-category:hover {
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+  }
+  
+  .dark-mode .quote-card blockquote {
+    color: var(--color-text);
+  }
+  
+  .dark-mode .quote-card {
+    border-top-color: var(--color-gray-700);
+  }
+  
+  .dark-mode .info-card {
+    background-color: rgba(138, 43, 226, 0.05);
+    border-left-color: var(--color-accent-light);
+  }
+  
+  .dark-mode .info-card i {
+    color: var(--color-accent-light);
+  }
+  
+  .dark-mode .card-counter {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  .dark-mode .card-counter:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+  }
+  
+  /* Accessibility styles */
+  @media (prefers-reduced-motion: reduce) {
+    .card:hover,
+    .modern-category:hover,
+    .quote-card:hover,
+    .info-card:hover,
+    .card-counter:hover {
+      transform: none;
+    }
+  
+    .category-header {
+      animation: none;
+    }
+  
+    .achievement-container {
+      transition: none;
+    }
+  
+    .reward-animation.show .reward-content {
+      animation: none;
+    }
+  
+    .reward-icon {
+      animation: none;
+    }
+  
+    .pdf-unlocked .reward-icon {
+      animation: none;
+    }
+  }

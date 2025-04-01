@@ -1,0 +1,273 @@
+/* ============ VARIABLES ============ */
+:root {
+    /* Color Palette */
+    /* Primary Colors */
+    --color-primary: #C41E3A;
+    --color-primary-dark: #a01a30;
+    --color-primary-light: #e8586e;
+  
+    /* Accent Colors */
+    --color-accent: #8A2BE2;
+    --color-accent-dark: #6a11cb;
+    --color-accent-light: #9d55e9;
+  
+    /* Category Colors */
+    --color-physical: #FF9F29;
+    --color-physical-dark: #FF7F00;
+    --color-physical-light: #FFB04F;
+    
+    --color-mental: #7ED957;
+    --color-mental-dark: #5CB85C;
+    --color-mental-light: #8FE169;
+    
+    --color-personal: #FFD966;
+    --color-personal-dark: #FFB833;
+    --color-personal-light: #FFDF7F;
+    
+    --color-relationship: #FF97B7;
+    --color-relationship-dark: #FF6B98;
+    --color-relationship-light: #FFACC2;
+  
+    /* UI Colors */
+    --color-success: #4CAF50;
+    --color-warning: #FF9800;
+    --color-error: #F44336;
+    --color-info: #2196F3;
+  
+    /* Neutral Colors */
+    --color-white: #FFFFFF;
+    --color-black: #000000;
+    --color-gray-50: #FAFAFA;
+    --color-gray-100: #F5F5F5;
+    --color-gray-200: #EEEEEE;
+    --color-gray-300: #E0E0E0;
+    --color-gray-400: #BDBDBD;
+    --color-gray-500: #9E9E9E;
+    --color-gray-600: #757575;
+    --color-gray-700: #616161;
+    --color-gray-800: #424242;
+    --color-gray-900: #212121;
+  
+    /* Semantic Colors */
+    --color-text: #333333;
+    --color-text-light: #666666;
+    --color-text-lighter: #999999;
+    --color-text-dark: #212121;
+    
+    --color-background: #FFF0F5;
+    --color-card-background: #FFFFFF;
+    --color-section-background: linear-gradient(120deg, rgba(196, 30, 58, 0.1), rgba(138, 43, 226, 0.1));
+    --color-progress-background: rgba(255, 255, 255, 0.6);
+    --color-border: rgba(0, 0, 0, 0.1);
+    
+    /* Component-specific Colors */
+    --color-achievement-background: white;
+    --color-tooltip-background: white;
+    --color-tooltip-text: var(--color-accent);
+    --color-popup-background: white;
+    --color-popup-text: var(--color-text);
+    
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+    --gradient-accent: linear-gradient(135deg, var(--color-accent), var(--color-accent-dark));
+    --gradient-success: linear-gradient(135deg, var(--color-mental), var(--color-success));
+    --gradient-physical: linear-gradient(135deg, var(--color-physical), var(--color-physical-dark));
+    --gradient-mental: linear-gradient(135deg, var(--color-mental), var(--color-mental-dark));
+    --gradient-personal: linear-gradient(135deg, var(--color-personal), var(--color-personal-dark));
+    --gradient-relationship: linear-gradient(135deg, var(--color-relationship), var(--color-relationship-dark));
+    --gradient-newsletter: linear-gradient(135deg, var(--color-accent), var(--color-accent-dark));
+    --gradient-support: linear-gradient(135deg, #FFD304, #FFA500);
+  
+    /* Shadows */
+    --shadow-sm: 0 2px 5px rgba(0, 0, 0, 0.08);
+    --shadow-md: 0 5px 15px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.15);
+    --shadow-xl: 0 15px 40px rgba(0, 0, 0, 0.2);
+    --shadow-inset: inset 0 2px 5px rgba(0, 0, 0, 0.05);
+    
+    --shadow-primary: 0 5px 15px rgba(196, 30, 58, 0.25);
+    --shadow-primary-hover: 0 8px 20px rgba(196, 30, 58, 0.3);
+    --shadow-accent: 0 5px 15px rgba(138, 43, 226, 0.25);
+    --shadow-accent-hover: 0 8px 20px rgba(138, 43, 226, 0.3);
+    --shadow-physical: 0 5px 15px rgba(255, 159, 41, 0.25);
+    --shadow-mental: 0 5px 15px rgba(126, 217, 87, 0.25);
+    --shadow-personal: 0 5px 15px rgba(255, 217, 102, 0.25);
+    --shadow-relationship: 0 5px 15px rgba(255, 151, 183, 0.25);
+    --shadow-newsletter: 0 5px 15px rgba(138, 43, 226, 0.3);
+    --shadow-support: 0 5px 15px rgba(255, 211, 4, 0.3);
+  
+    /* Border Radius */
+    --radius-sm: 5px;
+    --radius-md: 10px;
+    --radius-lg: 15px;
+    --radius-xl: 20px;
+    --radius-full: 9999px;
+    --radius-circle: 50%;
+  
+    /* Spacing */
+    --space-1: 4px;
+    --space-2: 8px;
+    --space-3: 12px;
+    --space-4: 16px;
+    --space-5: 20px;
+    --space-6: 24px;
+    --space-8: 32px;
+    --space-10: 40px;
+    --space-12: 48px;
+    --space-16: 64px;
+    --space-20: 80px;
+    --space-24: 96px;
+    --space-32: 128px;
+  
+    /* Typography - Sizes */
+    --font-size-xs: 0.75rem;   /* 12px */
+    --font-size-sm: 0.875rem;  /* 14px */
+    --font-size-base: 1rem;    /* 16px */
+    --font-size-md: 1.125rem;  /* 18px */
+    --font-size-lg: 1.25rem;   /* 20px */
+    --font-size-xl: 1.5rem;    /* 24px */
+    --font-size-2xl: 1.75rem;  /* 28px */
+    --font-size-3xl: 2rem;     /* 32px */
+    --font-size-4xl: 2.5rem;   /* 40px */
+    --font-size-5xl: 3rem;     /* 48px */
+  
+    /* Typography - Weights */
+    --font-weight-light: 300;
+    --font-weight-normal: 400;
+    --font-weight-medium: 500;
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
+  
+    /* Typography - Line Heights */
+    --line-height-none: 1;
+    --line-height-tight: 1.25;
+    --line-height-snug: 1.375;
+    --line-height-normal: 1.5;
+    --line-height-relaxed: 1.625;
+    --line-height-loose: 2;
+  
+    /* Transitions */
+    --transition-fast: 0.2s;
+    --transition-normal: 0.3s;
+    --transition-slow: 0.5s;
+    --transition-slower: 0.7s;
+    
+    --transition-ease: cubic-bezier(0.25, 0.1, 0.25, 1);
+    --transition-ease-in: cubic-bezier(0.42, 0, 1, 1);
+    --transition-ease-out: cubic-bezier(0, 0, 0.58, 1);
+    --transition-ease-in-out: cubic-bezier(0.42, 0, 0.58, 1);
+    --transition-bounce: cubic-bezier(0.68, -0.55, 0.27, 1.55);
+  
+    /* Z-index Scale */
+    --z-index-hide: -1;
+    --z-index-base: 1;
+    --z-index-dropdown: 10;
+    --z-index-sticky: 20;
+    --z-index-fixed: 30;
+    --z-index-modal-backdrop: 40;
+    --z-index-modal: 50;
+    --z-index-tooltip: 60;
+    --z-index-popover: 70;
+    --z-index-toast: 80;
+  
+    /* Opacity Levels */
+    --opacity-0: 0;
+    --opacity-25: 0.25;
+    --opacity-50: 0.5;
+    --opacity-75: 0.75;
+    --opacity-100: 1;
+  
+    /* Container Max Widths */
+    --container-sm: 640px;
+    --container-md: 768px;
+    --container-lg: 1024px;
+    --container-xl: 1280px;
+    --container-2xl: 1536px;
+  
+    /* Media Query Breakpoints */
+    --breakpoint-xs: 480px;
+    --breakpoint-sm: 640px;
+    --breakpoint-md: 768px;
+    --breakpoint-lg: 1024px;
+    --breakpoint-xl: 1280px;
+    --breakpoint-2xl: 1536px;
+  
+    /* Focus State */
+    --focus-outline-width: 3px;
+    --focus-outline-color: #4070F4;
+    --focus-outline-style: solid;
+    --focus-outline: var(--focus-outline-width) var(--focus-outline-style) var(--focus-outline-color);
+    --focus-outline-offset: 2px;
+  }
+  
+  /* Dark mode theme variables */
+  .dark-mode {
+    /* Base Colors */
+    --color-text: #d0d0d0;
+    --color-text-light: #a0a0a0;
+    --color-text-lighter: #808080;
+    --color-text-dark: #e6e6e6;
+    
+    --color-background: #222236;
+    --color-card-background: #2a2a42;
+    --color-section-background: linear-gradient(120deg, rgba(196, 30, 58, 0.08), rgba(138, 43, 226, 0.08));
+    --color-progress-background: rgba(255, 255, 255, 0.08);
+    --color-border: rgba(255, 255, 255, 0.08);
+    
+    /* Component Backgrounds */
+    --color-achievement-background: #2a2a42;
+    --color-tooltip-background: #353550;
+    --color-tooltip-text: #d8d8d8;
+    --color-popup-background: #2a2a42;
+    --color-popup-text: #d0d0d0;
+    
+    /* UI Colors */
+    --color-success: #5CBA5C;  /* Brighter in dark mode */
+    --color-warning: #FFA726;  /* Brighter in dark mode */
+    --color-error: #F45B69;    /* Brighter in dark mode */
+    --color-info: #42A5F5;     /* Brighter in dark mode */
+  
+    /* Input & Form Elements */
+    --color-input-background: #2a2a45;
+    --color-input-border: #444464;
+    --color-btn-background: #353550;
+    --color-btn-text: #d0d0d0;
+    
+    /* Enhanced Shadows for Dark Mode */
+    --shadow-sm: 0 2px 5px rgba(0, 0, 0, 0.2);
+    --shadow-md: 0 5px 15px rgba(0, 0, 0, 0.25);
+    --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.3);
+    --shadow-xl: 0 15px 40px rgba(0, 0, 0, 0.4);
+    --shadow-inset: inset 0 2px 5px rgba(0, 0, 0, 0.15);
+    
+    /* Slightly Modified Category Colors for Dark Mode */
+    --color-physical: #FFB04F; /* Brighter in dark mode */
+    --color-mental: #8FE169;   /* Brighter in dark mode */
+    --color-personal: #FFDF7F; /* Brighter in dark mode */
+    --color-relationship: #FFACC2; /* Brighter in dark mode */
+  }
+  
+  /* High Contrast Mode (for accessibility) */
+  @media (prefers-contrast: high) {
+    :root {
+      --color-text: #000000;
+      --color-background: #FFFFFF;
+      --focus-outline-width: 4px;
+      --focus-outline-color: #000000;
+      
+      /* Higher contrast shadows */
+      --shadow-sm: 0 2px 5px rgba(0, 0, 0, 0.3);
+      --shadow-md: 0 5px 15px rgba(0, 0, 0, 0.4);
+      --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.5);
+    }
+  }
+  
+  /* Reduced Motion Preference */
+  @media (prefers-reduced-motion: reduce) {
+    :root {
+      --transition-fast: 0s;
+      --transition-normal: 0s;
+      --transition-slow: 0s;
+      --transition-slower: 0s;
+    }
+  }

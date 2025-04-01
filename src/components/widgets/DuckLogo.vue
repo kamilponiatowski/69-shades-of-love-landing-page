@@ -48,8 +48,8 @@ const { t } = useI18n();
     position: absolute;
     width: 95px;
     height: 95px;
-    top: 5px;
-    left: 4px;
+    top: -15px;
+    left: -13px;
     display: block;
     z-index: 1;
 }

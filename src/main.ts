@@ -1,17 +1,12 @@
+// Oto nowy plik src/main.ts - zastąp nim istniejący:
+
 import { createApp } from 'vue';
 import { createPinia } from 'pinia';
 import App from './App.vue';
 import router from './router';
 
-// Import CSS
-import './assets/css/variables.css';
+// Import zunifikowanego CSS
 import './assets/css/main.css';
-import './assets/css/animations.css';
-import './assets/css/layout.css';
-import './assets/css/responsive.css';
-import './assets/css/newsletter.css';
-import './assets/css/content-sections.css';
-import './assets/css/common-sections.css';
 
 // Create and configure Pinia store
 const pinia = createPinia();

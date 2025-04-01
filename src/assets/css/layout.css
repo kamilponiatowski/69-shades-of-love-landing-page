@@ -1,133 +1,126 @@
 /* ============ LAYOUT STYLES ============ */
 
 /* Main page layout with improved spacing and responsiveness */
-
-body .page-layout {
-    display: flex;
-    flex-direction: row;
-}
-
 .page-layout {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     width: 100%;
-    max-width: 1400px; /* Increased max-width for better layout */
+    max-width: var(--container-xl);
     margin: 0 auto;
-    padding: 0 20px; /* Added padding for edge spacing */
-    align-items: flex-start; /* Align items to the top */
-    gap: 30px; /* Space between aside and main */
-}
-
-aside {
+    padding: 0 var(--space-5);
+    align-items: flex-start;
+    gap: var(--space-6);
+  }
+  
+  aside {
     width: 350px;
-    flex-shrink: 0; /* Prevent aside from shrinking */
-}
-
-main {
-    flex-grow: 1; /* Allow main to take remaining space */
-    width: calc(100% - 380px); /* Adjust width to prevent overlap */
-    max-width: 900px; /* Limit main content width */
-}
-
-/* Responsive layout adjustments */
-@media (min-width: 1001px) {
+    flex-shrink: 0;
+  }
+  
+  main {
+    flex-grow: 1;
+    width: calc(100% - 380px);
+    max-width: 900px;
+  }
+  
+  /* Responsive layout adjustments */
+  @media (min-width: 1001px) {
     .page-layout {
-        flex-direction: row; /* Ensure row layout from 1001px */
-        align-items: flex-start;
+      flex-direction: row !important;
+      align-items: flex-start;
     }
     
     aside {
-        width: 350px;
-        order: 1;
+      width: 350px;
+      order: 1;
     }
     
     main {
-        width: calc(100% - 380px);
-        order: 2;
+      width: calc(100% - 380px);
+      order: 2;
     }
-}
-
-/* Tablet and mobile styles */
-@media (max-width: 1000px) {
+  }
+  
+  /* Tablet and mobile styles */
+  @media (max-width: 1000px) {
     .page-layout {
-        flex-direction: column;
-        gap: 20px;
+      flex-direction: column;
+      gap: var(--space-5);
     }
     
     aside {
-        width: 100%;
-        order: -1; /* Move aside to the top on tablets/mobile */
+      width: 100%;
+      order: -1; /* Move aside to the top on tablets/mobile */
     }
     
     main {
-        width: 100%;
-        max-width: none;
+      width: 100%;
+      max-width: none;
     }
-}
-
-/* Rest of the existing styles remain the same */
-.about-me-container,
-.download-pdf-section,
-.progress-container {
-    margin-bottom: 30px;
-}
-
-.category-container {
+  }
+  
+  /* Component containers */
+  .about-me-container,
+  .download-pdf-section,
+  .progress-container {
+    margin-bottom: var(--space-6);
+  }
+  
+  .category-container {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 30px;
-    margin-bottom: 40px;
-}
-
-/* Additional flexbox and component styles */
-.category-header {
+    gap: var(--space-6);
+    margin-bottom: var(--space-8);
+  }
+  
+  /* Layout header and footer */
+  header, footer {
+    width: 100%;
+  }
+  
+  /* Flexbox layouts */
+  .flex {
     display: flex;
+  }
+  
+  .flex-col {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .items-center {
+    align-items: center;
+  }
+  
+  .justify-center {
+    justify-content: center;
+  }
+  
+  .justify-between {
     justify-content: space-between;
-    align-items: center;
-}
-
-.progress-title {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.category-progress {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
-}
-
-.todo-item {
-    display: flex;
-    align-items: center;
-}
-
-/* Remaining component-specific styles */
-.logo-container, .streak-counter, .achievement, 
-.contact-link, .support-button, .download-button,
-.achievement-icon, .reward-animation {
-    display: flex;
-    align-items: center;
-}
-
-/* Z-index and specific positioning */
-.skip-link { z-index: 100; }
-.duck-logo { z-index: 10; }
-.duck-logo img {
-    margin-top: -15px;
-    margin-left: -15px;
-}
-.duck-tooltip { z-index: 10; }
-.duck-joke-container { z-index: 1000; }
-.heart-container { z-index: 9; }
-.achievement-container { z-index: 100; }
-.reward-animation { z-index: 999; }
-.confetti { z-index: -1; }
-
-@media (max-width: 768px) {
+  }
+  
+  .flex-wrap {
+    flex-wrap: wrap;
+  }
+  
+  .gap-1 { gap: var(--space-1); }
+  .gap-2 { gap: var(--space-2); }
+  .gap-3 { gap: var(--space-3); }
+  .gap-4 { gap: var(--space-4); }
+  .gap-5 { gap: var(--space-5); }
+  .gap-6 { gap: var(--space-6); }
+  
+  /* Responsive utilities */
+  @media (max-width: 768px) {
     .page-layout {
-        padding: 0 10px; /* Zmniejszony padding */
+      padding: 0 var(--space-3);
     }
-}
+  }
+  
+  @media (max-width: 480px) {
+    .page-layout {
+      padding: 0 var(--space-2);
+    }
+  }

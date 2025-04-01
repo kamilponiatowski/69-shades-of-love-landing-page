@@ -143,6 +143,11 @@ onBeforeUnmount(() => {
 
 <style scoped>
 /* Enhanced modern look for About Me container with pattern background */
+
+.about-title-text {
+  color: white;
+}
+
 .about-me-container {
   position: relative;
   background: linear-gradient(135deg, #8A2BE2 0%, #4B0082 100%);

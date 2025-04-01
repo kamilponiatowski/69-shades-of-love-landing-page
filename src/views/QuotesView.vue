@@ -279,7 +279,7 @@ const toggleLanguage = () => {
 
 .page-layout {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   max-width: 1200px;
   margin: 0 auto;
   width: 100%;

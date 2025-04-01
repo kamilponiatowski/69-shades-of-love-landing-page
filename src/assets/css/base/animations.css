@@ -1,0 +1,448 @@
+/* ============ ANIMATIONS & TRANSITIONS ============ */
+
+/* Basic Transitions & Transforms */
+.fade-in {
+  opacity: 0;
+  animation: fadeIn var(--transition-normal) var(--transition-ease) forwards;
+}
+
+.fade-out {
+  opacity: 1;
+  animation: fadeOut var(--transition-normal) var(--transition-ease) forwards;
+}
+
+.slide-up {
+  transform: translateY(20px);
+  animation: slideUp var(--transition-normal) var(--transition-ease) forwards;
+}
+
+.slide-down {
+  transform: translateY(-20px);
+  animation: slideDown var(--transition-normal) var(--transition-ease) forwards;
+}
+
+.slide-in-left {
+  transform: translateX(-100%);
+  animation: slideInLeft var(--transition-normal) var(--transition-ease) forwards;
+}
+
+.slide-in-right {
+  transform: translateX(100%);
+  animation: slideInRight var(--transition-normal) var(--transition-ease) forwards;
+}
+
+.scale-in {
+  transform: scale(0.8);
+  opacity: 0;
+  animation: scaleIn var(--transition-normal) var(--transition-ease) forwards;
+}
+
+.scale-out {
+  transform: scale(1);
+  opacity: 1;
+  animation: scaleOut var(--transition-normal) var(--transition-ease) forwards;
+}
+
+/* UI Element Animations */
+
+/* Button Shine Animation */
+@keyframes buttonShine {
+  0% {
+    left: -100%;
+  }
+  20% {
+    left: 100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+.button-shine {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg, 
+    rgba(255, 255, 255, 0) 0%, 
+    rgba(255, 255, 255, 0.4) 50%, 
+    rgba(255, 255, 255, 0) 100%
+  );
+  animation: buttonShine 3s infinite;
+  pointer-events: none;
+}
+
+/* Diagonal Shine Animation */
+@keyframes diagonalShine {
+  0% {
+    transform: translateX(-150%) translateY(-150%) rotate(35deg);
+  }
+  20% {
+    transform: translateX(150%) translateY(150%) rotate(35deg);
+  }
+  100% {
+    transform: translateX(150%) translateY(150%) rotate(35deg);
+  }
+}
+
+.diagonal-shine {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    135deg,
+    transparent 0%,
+    transparent 35%,
+    rgba(255, 255, 255, 0.9) 45%,
+    rgba(255, 255, 255, 0.9) 55%,
+    transparent 65%,
+    transparent 100%
+  );
+  animation: diagonalShine 6s infinite;
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* Achievement Notification Animation */
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOutRight {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+/* Floating Hearts Animation */
+@keyframes float {
+  0% {
+    transform: rotate(45deg) translateY(0) scale(0);
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    transform: rotate(45deg) translateY(-100vh) scale(1);
+    opacity: 0;
+  }
+}
+
+.heart.animate {
+  animation: float 4s ease-in-out forwards;
+}
+
+/* Reward Animations */
+@keyframes rewardPulse {
+  0% { transform: scale(0.8); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+/* Pulsing Effect for PDF Unlock */
+@keyframes spin {
+  0% { transform: scale(0.5) rotate(0deg); }
+  80% { transform: scale(1.2) rotate(360deg); }
+  100% { transform: scale(1) rotate(360deg); }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.2);
+  }
+}
+
+/* Confetti Animation */
+@keyframes fall {
+  0% {
+    transform: translateY(-100px) rotate(0deg) scale(0.7);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) rotate(360deg) scale(1);
+    opacity: 0;
+  }
+}
+
+.confetti {
+  position: fixed;
+  width: 12px;
+  height: 12px;
+  background-color: #f44336;
+  position: absolute;
+  top: 0;
+  border-radius: 2px;
+  animation: fall 3s ease-in-out;
+  z-index: 9000;
+}
+
+/* Pulse Animation for Glow Effects */
+@keyframes pulseGlow {
+  0% {
+    box-shadow: 0 0 5px rgba(138, 43, 226, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(138, 43, 226, 0.6);
+  }
+  100% {
+    box-shadow: 0 0 5px rgba(138, 43, 226, 0.3);
+  }
+}
+
+/* Button Float Animation on Hover */
+@keyframes floatHover {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+/* Gentle Shake Animation */
+@keyframes gentleShake {
+  0%, 100% { transform: rotate(0deg); }
+  10% { transform: rotate(-2deg); }
+  20% { transform: rotate(2deg); }
+  30% { transform: rotate(-2deg); }
+  40% { transform: rotate(2deg); }
+  50% { transform: rotate(-1deg); }
+  60% { transform: rotate(1deg); }
+  70% { transform: rotate(-0.5deg); }
+  80% { transform: rotate(0.5deg); }
+  90% { transform: rotate(-0.25deg); }
+}
+
+.shake-animation {
+  animation: gentleShake 1.5s cubic-bezier(.36,.07,.19,.97) both;
+  transform-origin: center bottom;
+}
+
+/* Fade In Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Fade Out Animation */
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+}
+
+/* Slide Up Animation */
+@keyframes slideUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Slide Down Animation */
+@keyframes slideDown {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Scale In Animation */
+@keyframes scaleIn {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Scale Out Animation */
+@keyframes scaleOut {
+  from {
+    transform: scale(1);
+    opacity: 1;
+  }
+  to {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+}
+
+/* Bouncing Animation */
+@keyframes bounce {
+  from {
+    transform: translateY(0) scale(1);
+  }
+  to {
+    transform: translateY(-10px) scale(1.05);
+  }
+}
+
+/* Heartbeat Animation */
+@keyframes heartbeat {
+  0% { transform: scale(1); }
+  5% { transform: scale(1.2); }
+  10% { transform: scale(1); }
+  15% { transform: scale(1.1); }
+  20% { transform: scale(1); }
+  100% { transform: scale(1); }
+}
+
+/* Pulse Glow Animation */
+@keyframes glow {
+  0% {
+    box-shadow: 0 0 5px rgba(138, 43, 226, 0.3);
+  }
+  100% {
+    box-shadow: 0 0 20px rgba(138, 43, 226, 0.6);
+  }
+}
+
+/* Moving Gradient Animation */
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Progress Bar Animation */
+@keyframes move {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 20px 0;
+  }
+}
+
+/* Floating Bubble Animation */
+@keyframes floatBubble {
+  0%, 100% {
+    transform: translateY(0) translateX(0);
+  }
+  25% {
+    transform: translateY(-15px) translateX(10px);
+  }
+  50% {
+    transform: translateY(-25px) translateX(0);
+  }
+  75% {
+    transform: translateY(-10px) translateX(-10px);
+  }
+}
+
+/* Utility Classes for Common Animations */
+.animate-pulse {
+  animation: pulse 1s infinite alternate;
+}
+
+.animate-bounce {
+  animation: bounce 1.2s infinite alternate cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.animate-heartbeat {
+  animation: heartbeat 1.5s infinite;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.5s ease forwards;
+}
+
+.animate-float:hover {
+  animation: floatHover 2s ease-in-out infinite;
+}
+
+.animate-glow {
+  animation: pulseGlow 3s infinite;
+}
+
+.animate-shine {
+  position: relative;
+  overflow: hidden;
+}
+
+.animate-shine::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.2) 50%,
+    transparent 100%
+  );
+  animation: buttonShine 3s infinite;
+}
+
+/* Accessibility - Respect Reduced Motion Preference */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  
+  .animate-pulse,
+  .animate-bounce,
+  .animate-heartbeat,
+  .animate-fade-in,
+  .animate-float:hover,
+  .animate-glow,
+  .animate-shine::after,
+  .confetti,
+  .button-shine,
+  .diagonal-shine {
+    animation: none !important;
+  }
+}

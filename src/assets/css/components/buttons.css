@@ -1,0 +1,480 @@
+/* ============ BUTTON COMPONENTS ============ */
+
+/* Base Button Styles */
+.btn,
+button.btn,
+a.btn,
+input[type="button"],
+input[type="submit"],
+button:not([class^="newsletter-"]):not([class*=" newsletter-"]):not([class^="reward-"]):not([class*=" reward-"]) {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-3) var(--space-5);
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
+  text-align: center;
+  cursor: pointer;
+  transition: all var(--transition-normal) var(--transition-ease);
+  border: none;
+  position: relative;
+  overflow: hidden;
+  text-decoration: none;
+  box-shadow: var(--shadow-md);
+  min-height: 44px; /* Accessibility - touch target size */
+}
+
+.btn:hover,
+.btn:focus,
+button:not([class^="newsletter-"]):not([class*=" newsletter-"]):not([class^="reward-"]):not([class*=" reward-"]):hover,
+button:not([class^="newsletter-"]):not([class*=" newsletter-"]):not([class^="reward-"]):not([class*=" reward-"]):focus {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lg);
+}
+
+.btn:focus,
+button:not([class^="newsletter-"]):not([class*=" newsletter-"]):not([class^="reward-"]):not([class*=" reward-"]):focus {
+  outline: var(--focus-outline);
+  outline-offset: var(--focus-outline-offset);
+}
+
+.btn:disabled,
+button:not([class^="newsletter-"]):not([class*=" newsletter-"]):not([class^="reward-"]):not([class*=" reward-"]):disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.btn i,
+button:not([class^="newsletter-"]):not([class*=" newsletter-"]):not([class^="reward-"]):not([class*=" reward-"]) i {
+  margin-right: var(--space-2);
+}
+
+/* Button Variants */
+
+/* Primary Button */
+.btn-primary {
+  background: var(--gradient-primary);
+  color: white;
+  box-shadow: var(--shadow-primary);
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+  box-shadow: var(--shadow-primary-hover);
+}
+
+/* Accent Button */
+.btn-accent {
+  background: var(--gradient-accent);
+  color: white;
+  box-shadow: var(--shadow-accent);
+}
+
+.btn-accent:hover,
+.btn-accent:focus {
+  box-shadow: var(--shadow-accent-hover);
+}
+
+/* Secondary Button */
+.btn-secondary {
+  background-color: var(--color-gray-200);
+  color: var(--color-text);
+}
+
+/* Outline Button */
+.btn-outline {
+  background: transparent;
+  border: 2px solid currentColor;
+  color: var(--color-primary);
+}
+
+.btn-outline:hover,
+.btn-outline:focus {
+  background-color: rgba(var(--color-primary), 0.1);
+}
+
+.btn-outline.btn-accent {
+  color: var(--color-accent);
+}
+
+.btn-outline.btn-accent:hover,
+.btn-outline.btn-accent:focus {
+  background-color: rgba(var(--color-accent), 0.1);
+}
+
+/* Text Button */
+.btn-text {
+  background: transparent;
+  color: var(--color-primary);
+  box-shadow: none;
+  padding: var(--space-2);
+}
+
+.btn-text:hover,
+.btn-text:focus {
+  background-color: rgba(var(--color-primary), 0.1);
+  box-shadow: none;
+}
+
+/* Icon Button */
+.btn-icon {
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border-radius: var(--radius-circle);
+  justify-content: center;
+}
+
+.btn-icon i {
+  margin: 0;
+}
+
+/* Action Buttons */
+
+/* Support Button */
+.support-button {
+  background: var(--gradient-support);
+  color: var(--color-text-dark);
+  border: none;
+  padding: var(--space-3) var(--space-5);
+  border-radius: var(--radius-full);
+  font-weight: var(--font-weight-bold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all var(--transition-normal) var(--transition-ease);
+  text-decoration: none;
+  box-shadow: var(--shadow-support);
+  width: 100%;
+  min-height: 44px;
+  overflow: hidden;
+}
+
+.support-button:hover, 
+.support-button:focus {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(255, 211, 4, 0.4);
+  background: linear-gradient(135deg, #FFE44D, #FFB700);
+}
+
+.support-button i {
+  margin-right: var(--space-2);
+}
+
+/* Back Link/Button */
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  background: var(--gradient-primary);
+  text-decoration: none;
+  padding: var(--space-3) var(--space-6);
+  border-radius: var(--radius-full);
+  transition: all var(--transition-normal) var(--transition-ease);
+  font-weight: var(--font-weight-bold);
+  box-shadow: var(--shadow-primary);
+  position: relative;
+  overflow: hidden;
+  min-width: 180px;
+}
+
+.back-link:hover, 
+.back-link:focus {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-primary-hover);
+}
+
+.back-link::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -50%;
+  width: 150%;
+  height: 100%;
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.3) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: translateX(-100%) skewX(-15deg);
+  transition: transform 0.6s ease;
+}
+
+.back-link:hover::after {
+  transform: translateX(100%) skewX(-15deg);
+}
+
+.back-link i {
+  margin-right: var(--space-2);
+}
+
+/* Accent Back Link */
+.accent-back-link {
+  background: var(--gradient-accent);
+  box-shadow: var(--shadow-accent);
+}
+
+.accent-back-link:hover,
+.accent-back-link:focus {
+  box-shadow: var(--shadow-accent-hover);
+}
+
+/* Download Button */
+.download-button {
+  background: var(--gradient-primary);
+  color: white;
+  border: none;
+  padding: var(--space-3) var(--space-6);
+  border-radius: var(--radius-full);
+  font-weight: var(--font-weight-bold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  cursor: pointer;
+  transition: all var(--transition-normal) var(--transition-ease);
+  text-decoration: none;
+  box-shadow: var(--shadow-primary);
+  margin-bottom: var(--space-5);
+  position: relative;
+  overflow: hidden;
+}
+
+.download-button::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -50%;
+  width: 150%;
+  height: 100%;
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.3) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: translateX(-100%) skewX(-15deg);
+  transition: transform 0.6s ease;
+}
+
+.download-button:hover::after {
+  transform: translateX(100%) skewX(-15deg);
+}
+
+.download-button:hover, 
+.download-button:focus {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-primary-hover);
+}
+
+.download-button.locked {
+  background: linear-gradient(135deg, #888, #666);
+  cursor: not-allowed;
+}
+
+.download-button.locked:hover {
+  transform: none;
+  box-shadow: var(--shadow-md);
+}
+
+.download-button.locked::after {
+  display: none;
+}
+
+.download-button i {
+  margin-right: var(--space-2);
+}
+
+/* Contact Link */
+.contact-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.9);
+  text-decoration: none;
+  font-weight: var(--font-weight-medium);
+  padding: var(--space-2) var(--space-3);
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-full);
+  transition: all var(--transition-fast) var(--transition-ease);
+  text-align: center;
+  width: 100%;
+  min-height: 38px;
+  box-shadow: var(--shadow-sm);
+}
+
+.contact-link:hover, 
+.contact-link:focus {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.contact-link i {
+  margin-right: var(--space-2);
+}
+
+/* Reset Button */
+.reset-button {
+  background-color: transparent;
+  color: var(--color-text-light);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-full);
+  padding: var(--space-1) var(--space-4);
+  font-size: var(--font-size-sm);
+  cursor: pointer;
+  transition: all var(--transition-normal) var(--transition-ease);
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.reset-button:hover {
+  background-color: rgba(196, 30, 58, 0.1);
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+  transform: translateY(-2px);
+  box-shadow: 0 3px 8px rgba(196, 30, 58, 0.1);
+}
+
+.reset-button i {
+  font-size: 0.9rem;
+}
+
+/* Reward Button */
+.reward-button {
+  background: var(--gradient-primary);
+  color: white;
+  border: none;
+  padding: var(--space-3) var(--space-6);
+  border-radius: var(--radius-full);
+  font-weight: var(--font-weight-bold);
+  cursor: pointer;
+  transition: all var(--transition-normal) var(--transition-ease);
+  font-size: var(--font-size-base);
+  display: inline-flex;
+  align-items: center;
+  box-shadow: var(--shadow-primary);
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.reward-button:hover, 
+.reward-button:focus {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-primary-hover);
+}
+
+/* Floating Buttons */
+.scroll-top-button,
+.scroll-down-button {
+  position: fixed;
+  width: 50px;
+  height: 50px;
+  border-radius: var(--radius-circle);
+  background-color: var(--color-primary);
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  cursor: pointer;
+  box-shadow: var(--shadow-md);
+  z-index: var(--z-index-fixed);
+  transition: all var(--transition-normal) var(--transition-ease);
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(0);
+}
+
+.scroll-top-button.show,
+.scroll-down-button.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1);
+}
+
+.scroll-top-button:hover, 
+.scroll-top-button:focus,
+.scroll-down-button:hover,
+.scroll-down-button:focus {
+  transform: scale(1.1);
+  background-color: var(--color-primary-dark);
+  box-shadow: var(--shadow-lg);
+}
+
+.scroll-top-button {
+  bottom: var(--space-5);
+  right: var(--space-5);
+}
+
+.scroll-down-button {
+  top: var(--space-5);
+  right: var(--space-5);
+}
+
+/* Button Layout Groups */
+.btn-group {
+  display: flex;
+  gap: var(--space-3);
+}
+
+.btn-group-stacked {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .back-link {
+    min-width: 160px;
+    padding: var(--space-2) var(--space-5);
+  }
+  
+  .scroll-top-button,
+  .scroll-down-button {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .scroll-top-button i,
+  .scroll-down-button i {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .btn,
+  .btn-primary,
+  .btn-accent,
+  .btn-secondary,
+  .btn-outline,
+  .support-button,
+  .back-link,
+  .download-button,
+  .contact-link,
+  .reward-button {
+    font-size: var(--font-size-sm);
+    padding: var(--space-2) var(--space-4);
+  }
+  
+  .back-link {
+    min-width: 140px;
+  }
+  
+  .scroll-top-button,
+  .scroll-down-button {
+    width: 36px;
+    height: 36px;
+    bottom: var(--space-4);
+    right: var(--space-4);
+  }
+}
