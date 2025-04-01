@@ -48,7 +48,7 @@ import { useI18n } from '@/composables/useI18n';
 import PageContainer from '@/components/layout/PageContainer.vue';
 import ContentSection from '@/components/sections/ContentSection.vue';
 import NavigationLinks from '@/components/layout/NavigationLinks.vue';
-import InfoNote from '@/components/widgets/InfoNote.vue';
+import InfoNote from '@/components/common/InfoNote.vue';
 import QuotesFilter from '@/components/sections/QuotesFilter.vue';
 import QuotesGrid from '@/components/sections/QuotesGrid.vue';
 import ApplicationGrid from '@/components/sections/ApplicationGrid.vue';

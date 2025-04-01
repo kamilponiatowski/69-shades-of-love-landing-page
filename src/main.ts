@@ -1,22 +1,19 @@
-// Oto nowy plik src/main.ts - zastąp nim istniejący:
-
 import { createApp } from 'vue';
 import { createPinia } from 'pinia';
 import App from './App.vue';
-import router from './router';
+import router from './router'; 
 
-// Import zunifikowanego CSS
 import './assets/css/main.css';
 
-// Create and configure Pinia store
-const pinia = createPinia();
-
-// Create app
 const app = createApp(App);
 
-// Register plugins
-app.use(pinia);
+app.config.errorHandler = (err, instance, info) => {
+  console.error('Global Error:', err);
+  console.error('Component:', instance);
+  console.error('Info:', info);
+};
+
+app.use(createPinia());
 app.use(router);
 
-// Mount app
 app.mount('#app');

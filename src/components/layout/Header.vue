@@ -75,8 +75,8 @@
 
 <script setup lang="ts">
 import { useI18n, Language } from '@/composables/useI18n';
-import DuckLogo from '@/components/widgets/DuckLogo.vue';
-import DarkModeToggle from '@/components/widgets/DarkModeToggle.vue';
+import DuckLogo from '@/components/common/DuckLogo.vue';
+import DarkModeToggle from '@/components/ui/DarkModeToggle.vue';
 
 // Props
 defineProps({

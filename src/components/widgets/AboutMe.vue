@@ -36,7 +36,7 @@
 <script setup lang="ts">
 import { computed, ref, onMounted, onBeforeUnmount } from 'vue';
 import { useI18n } from '@/composables/useI18n';
-import NewsletterButton from './NewsletterButton.vue';
+import NewsletterButton from '../ui/NewsletterButton.vue';
 import { useRouter } from 'vue-router';
 
 // Props

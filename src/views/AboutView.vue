@@ -36,7 +36,7 @@ import { useI18n } from '@/composables/useI18n';
 import { useNewsletter } from '@/composables/useNewsletter';
 import PageContainer from '@/components/layout/PageContainer.vue';
 import AboutMe from '@/components/widgets/AboutMe.vue';
-import InsightGrid from '@/components/widgets/InsightGrid.vue';
+import InsightGrid from '@/components/sections/InsightGrid.vue';
 import WellbeingAreas from '@/components/widgets/WellbeingAreas.vue';
 import FeaturesList from '@/components/widgets/FeaturesList.vue';
 import ContentSection from '@/components/sections/ContentSection.vue';

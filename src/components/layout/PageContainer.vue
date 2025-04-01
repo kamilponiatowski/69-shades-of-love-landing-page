@@ -67,11 +67,11 @@
   import Header from '@/components/layout/Header.vue';
   import Footer from '@/components/layout/Footer.vue';
   import DuckJoke from '@/components/widgets/DuckJoke.vue';
-  import ScrollDownButton from '@/components/widgets/ScrollDownButton.vue';
+  import ScrollDownButton from '@/components/common/ScrollDownButton.vue';
   import NewsletterFloatingButton from '@/components/widgets/NewsletterFloatingButton.vue';
-  import NewsletterPopup from '@/components/widgets/NewsletterPopup.vue';
+  import NewsletterPopup from '@/components/ui/NewsletterPopup.vue';
   import NewsletterReward from '@/components/widgets/NewsletterReward.vue';
-  import MobileNewsletterPopup from '@/components/widgets/MobileNewsletterPopup.vue';
+  import MobileNewsletterPopup from '@/components/ui/MobileNewsletterPopup.vue';
   
   const props = defineProps({
     isHomePage: {
