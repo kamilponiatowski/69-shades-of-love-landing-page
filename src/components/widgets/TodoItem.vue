@@ -1,6 +1,6 @@
 <template>
   <div 
-    :class="['modern-todo-item', {completed: task.completed}]" 
+    :class="['todo-item', {completed: task.completed}]" 
     @click="handleItemClick"
   >
     <input 
@@ -100,44 +100,44 @@ const handleItemClick = (event: MouseEvent) => {
 </script>
 
 <style scoped>
-/* Modern todo item with enhanced design */
-.modern-todo-item {
-  padding: 14px 16px;
-  margin-bottom: 12px;
+/* Używamy klasy todo-item zamiast modern-todo-item dla spójności */
+.todo-item {
+  padding: var(--space-3) var(--space-4);
+  margin-bottom: var(--space-3);
   background: linear-gradient(to right, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.95));
-  border-radius: 12px;
+  border-radius: var(--radius-md);
   display: flex;
   align-items: center;
-  transition: all 0.3s ease;
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
+  transition: all var(--transition-normal) var(--transition-ease);
+  box-shadow: var(--shadow-sm);
   position: relative;
   overflow: hidden;
   cursor: pointer;
   border-left: 4px solid rgba(0, 0, 0, 0.1);
 }
 
-.modern-todo-item:hover {
+.todo-item:hover {
   transform: translateY(-3px);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+  box-shadow: var(--shadow-md);
 }
 
-.modern-todo-item:last-child {
+.todo-item:last-child {
   margin-bottom: 0;
 }
 
 /* Completed item styling */
-.modern-todo-item.completed {
+.todo-item.completed {
   background-color: rgba(240, 240, 240, 0.6);
   border-left-color: rgba(0, 0, 0, 0.05);
 }
 
-.modern-todo-item.completed .todo-title {
+.todo-item.completed .todo-title {
   text-decoration: line-through;
-  color: #888;
+  color: var(--color-gray-600);
 }
 
-.modern-todo-item.completed .todo-description {
-  color: #aaa;
+.todo-item.completed .todo-description {
+  color: var(--color-gray-500);
 }
 
 /* Enhanced checkbox */
@@ -147,30 +147,30 @@ const handleItemClick = (event: MouseEvent) => {
   height: 22px;
   width: 22px;
   border-radius: 6px;
-  border: 2px solid #ddd;
-  margin-right: 15px;
+  border: 2px solid var(--color-gray-300);
+  margin-right: var(--space-3);
   position: relative;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all var(--transition-fast) var(--transition-ease);
   background-color: rgba(255, 255, 255, 0.5);
   flex-shrink: 0;
 }
 
 /* Category specific checkbox colors */
-.modern-todo-item:has(.physical) .todo-checkbox {
-  border-color: var(--physical-color);
+[class*="physical"] .todo-checkbox {
+  border-color: var(--color-physical);
 }
 
-.modern-todo-item:has(.mental) .todo-checkbox {
-  border-color: var(--mental-color);
+[class*="mental"] .todo-checkbox {
+  border-color: var(--color-mental);
 }
 
-.modern-todo-item:has(.personal) .todo-checkbox {
-  border-color: var(--personal-color);
+[class*="personal"] .todo-checkbox {
+  border-color: var(--color-personal);
 }
 
-.modern-todo-item:has(.relationship) .todo-checkbox {
-  border-color: var(--relationship-color);
+[class*="relationship"] .todo-checkbox {
+  border-color: var(--color-relationship);
 }
 
 .todo-checkbox:checked::before {
@@ -186,28 +186,28 @@ const handleItemClick = (event: MouseEvent) => {
 
 .todo-checkbox:hover {
   transform: scale(1.1);
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--shadow-sm);
 }
 
 /* Category specific checkbox colors when checked */
 [class*="physical"] .todo-checkbox:checked {
-  background-color: var(--physical-color);
-  border-color: var(--physical-color);
+  background-color: var(--color-physical);
+  border-color: var(--color-physical);
 }
 
 [class*="mental"] .todo-checkbox:checked {
-  background-color: var(--mental-color);
-  border-color: var(--mental-color);
+  background-color: var(--color-mental);
+  border-color: var(--color-mental);
 }
 
 [class*="personal"] .todo-checkbox:checked {
-  background-color: var(--personal-color);
-  border-color: var(--personal-color);
+  background-color: var(--color-personal);
+  border-color: var(--color-personal);
 }
 
 [class*="relationship"] .todo-checkbox:checked {
-  background-color: var(--relationship-color);
-  border-color: var(--relationship-color);
+  background-color: var(--color-relationship);
+  border-color: var(--color-relationship);
 }
 
 /* Text content styling */
@@ -218,18 +218,18 @@ const handleItemClick = (event: MouseEvent) => {
 }
 
 .todo-title {
-  font-size: 1rem;
-  color: #333;
-  font-weight: 600;
-  margin-bottom: 4px;
+  font-size: var(--font-size-base);
+  color: var(--color-text-dark);
+  font-weight: var(--font-weight-medium);
+  margin-bottom: var(--space-1);
   cursor: pointer;
-  transition: color 0.2s ease;
+  transition: color var(--transition-fast) var(--transition-ease);
 }
 
 .todo-description {
-  font-size: 0.85rem;
-  color: #777;
-  line-height: 1.4;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-light);
+  line-height: var(--line-height-snug);
 }
 
 /* Shine effect on hover */
@@ -250,65 +250,51 @@ const handleItemClick = (event: MouseEvent) => {
   pointer-events: none;
 }
 
-.modern-todo-item:hover .todo-shine {
+.todo-item:hover .todo-shine {
   transform: translateX(100%);
 }
 
 /* Category border color indicators */
-[class*="physical"].modern-todo-item {
-  border-left-color: var(--physical-color);
+[class*="physical"].todo-item {
+  border-left-color: var(--color-physical);
 }
 
-[class*="mental"].modern-todo-item {
-  border-left-color: var(--mental-color);
+[class*="mental"].todo-item {
+  border-left-color: var(--color-mental);
 }
 
-[class*="personal"].modern-todo-item {
-  border-left-color: var(--personal-color);
+[class*="personal"].todo-item {
+  border-left-color: var(--color-personal);
 }
 
-[class*="relationship"].modern-todo-item {
-  border-left-color: var(--relationship-color);
+[class*="relationship"].todo-item {
+  border-left-color: var(--color-relationship);
 }
 
 /* Responsive styles */
 @media (max-width: 768px) {
-  .modern-todo-item {
-    padding: 12px 14px;
+  .todo-item {
+    padding: var(--space-2) var(--space-3);
   }
   
   .todo-title {
-    font-size: 0.95rem;
+    font-size: var(--font-size-sm);
   }
   
   .todo-description {
-    font-size: 0.8rem;
+    font-size: var(--font-size-xs);
   }
 }
 
 @media (max-width: 480px) {
-  .modern-todo-item {
-    padding: 10px 12px;
+  .todo-item {
+    padding: var(--space-2);
   }
   
   .todo-checkbox {
     width: 20px;
     height: 20px;
-    margin-right: 12px;
+    margin-right: var(--space-2);
   }
-  
-  .todo-title {
-    font-size: 0.9rem;
-  }
-  
-  .todo-description {
-    font-size: 0.75rem;
-  }
-}
-
-@media (max-width: 480px) {
-    .modern-todo-item {
-        padding: 10px 12px;
-    }
 }
 </style>

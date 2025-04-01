@@ -1,6 +1,6 @@
 <template>
-  <div class="modern-pdf-section">
-    <div class="pdf-background"></div>
+  <div class="pdf-section">
+    <div class="pattern-background"></div>
     
     <div class="pdf-content">
       <div class="pdf-header">
@@ -25,7 +25,7 @@
         </button>
       </div>
       
-      <a :href="isUnlocked ? pdfLinkDirect : '#'" 
+      <a :href="isUnlocked ? pdfLink : '#'" 
         :class="['download-button', !isUnlocked ? 'locked' : '']"
         :download="isUnlocked"
         target="_blank"
@@ -41,7 +41,6 @@
         <div class="download-info" v-if="!isUnlocked">
           <span class="download-info-text">{{ t('downloadInfoLocked', tasksToUnlock) }}</span>
           
-          <!-- Progress bar - now outside of p tag -->
           <div class="unlock-progress-container">
             <div class="progress-stats">{{ progressPercentage }}%</div>
             <div class="unlock-progress-bar" 
@@ -72,7 +71,6 @@
 import { useI18n } from '@/composables/useI18n';
 import { watch, ref, computed } from 'vue';
 
-// Props
 const props = defineProps<{
   progressPercentage: number;
   tasksToUnlock: number;
@@ -80,27 +78,18 @@ const props = defineProps<{
   pdfSectionCollapsed: boolean;
 }>();
 
-// Emits
 const emit = defineEmits(['update:pdfSectionCollapsed', 'pdf-unlocked']);
 
-// Constants
-const pdfLink = "https://drive.google.com/file/d/1S3CJpPErS32TricQWptR04D7eRDSHyyS/view?usp=sharing";
-// Direct link to download PDF instead of link to Google Drive
-const pdfLinkDirect = "https://drive.google.com/uc?export=download&id=1S3CJpPErS32TricQWptR04D7eRDSHyyS";
+const pdfLink = "/assets/files/poc-of_69-Shades-of-Self-Love.pdf";
 
-// State
 const wasLocked = ref(true);
 
-// Computed value for progress bar width, specifically for unlocking progress
 const unlockPercentage = computed(() => {
-  // PDF is unlocked at 20%, so we scale the progress to 0-100% based on 0-20%
   return Math.min(100, (props.progressPercentage / 20) * 100);
 });
 
-// Composables
 const { t } = useI18n();
 
-// Methods
 const toggleSection = (collapsed: boolean) => {
   emit('update:pdfSectionCollapsed', collapsed);
 };
@@ -108,17 +97,12 @@ const toggleSection = (collapsed: boolean) => {
 const handleDownloadClick = (event: Event) => {
   if (!props.isUnlocked) {
     event.preventDefault();
-    // Optionally: display a message about the tasks to be unblocked
     return;
   }
   
-  // If PDF is unlocked, allow default browser action (download)
-  // Do not stop the event
 };
 
-// Watch for PDF unlock moment
 watch(() => props.isUnlocked, (newValue, oldValue) => {
-  // Only emit when changed from locked to unlocked
   if (newValue && !oldValue && wasLocked.value) {
     emit('pdf-unlocked');
     wasLocked.value = false;
@@ -127,53 +111,37 @@ watch(() => props.isUnlocked, (newValue, oldValue) => {
 </script>
 
 <style scoped>
-/* Modern PDF section with pattern and gradient, matching Header/Footer style */
-.modern-pdf-section {
+.pdf-section {
   position: relative;
-  margin-bottom: 30px;
-  padding: 30px;
+  margin-bottom: var(--space-6);
+  padding: var(--space-6);
   background: linear-gradient(120deg, rgba(196, 30, 58, 0.1), rgba(138, 43, 226, 0.1));
-  border-radius: 15px;
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
   overflow: hidden;
-  transition: transform 0.3s ease;
+  transition: transform var(--transition-normal) var(--transition-ease);
 }
 
-.modern-pdf-section:hover {
+.pdf-section:hover {
   transform: translateY(-5px);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  box-shadow: var(--shadow-lg);
 }
 
-/* Background pattern matching header and footer */
-.pdf-background {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23c41e3a' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
-  opacity: 0.5;
-  z-index: 0;
-}
-
-/* Content positioning */
 .pdf-content {
   position: relative;
   z-index: 1;
 }
 
-/* Header styling with flexbox instead of float */
 .pdf-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: var(--space-5);
 }
 
 .pdf-title {
   color: var(--main-color);
-  font-size: 1.5rem;
+  font-size: var(--font-size-xl);
   margin: 0;
   position: relative;
 }
@@ -189,7 +157,6 @@ watch(() => props.isUnlocked, (newValue, oldValue) => {
   border-radius: 2px;
 }
 
-/* Toggle button styling */
 .pdf-section-toggle {
   width: 36px;
   height: 36px;
@@ -199,9 +166,9 @@ watch(() => props.isUnlocked, (newValue, oldValue) => {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #666;
+  color: var(--color-text-light);
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all var(--transition-normal) var(--transition-ease);
 }
 
 .pdf-section-toggle:hover, 
@@ -211,127 +178,53 @@ watch(() => props.isUnlocked, (newValue, oldValue) => {
   transform: rotate(90deg);
 }
 
-/* Download button styling */
-.download-button {
-  background: linear-gradient(135deg, var(--main-color), #a01a30);
-  color: white;
-  border: none;
-  padding: 14px 25px;
-  border-radius: 30px;
-  font-weight: bold;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  text-decoration: none;
-  box-shadow: 0 4px 15px rgba(196, 30, 58, 0.2);
-  margin-bottom: 20px;
-  position: relative;
-  overflow: hidden;
-}
-
-/* Button shine effect */
-.download-button::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -50%;
-  width: 150%;
-  height: 100%;
-  background: linear-gradient(
-    to right,
-    rgba(255, 255, 255, 0) 0%,
-    rgba(255, 255, 255, 0.3) 50%,
-    rgba(255, 255, 255, 0) 100%
-  );
-  transform: translateX(-100%) skewX(-15deg);
-  transition: transform 0.6s ease;
-}
-
-.download-button:hover::after {
-  transform: translateX(100%) skewX(-15deg);
-}
-
-.download-button:hover, 
-.download-button:focus {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 20px rgba(196, 30, 58, 0.3);
-}
-
-.download-button.locked {
-  background: linear-gradient(135deg, #888, #666);
-  cursor: not-allowed;
-}
-
-.download-button.locked:hover {
-  transform: none;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-}
-
-.download-button.locked::after {
-  display: none;
-}
-
-.download-button i {
-  margin-right: 10px;
-  font-size: 1.1rem;
-}
-
-/* PDF details section */
 .pdf-details {
   background-color: rgba(255, 255, 255, 0.7);
-  border-radius: 12px;
-  padding: 20px;
-  transition: all 0.4s ease;
+  border-radius: var(--radius-md);
+  padding: var(--space-5);
+  transition: all var(--transition-normal) var(--transition-ease);
   max-height: 500px;
   overflow: hidden;
 }
 
-/* Collapsed state */
 .pdf-details-collapsed {
   height: 0;
   padding: 0;
   margin: 0;
   opacity: 0;
   overflow: hidden;
-  transition: all 0.4s ease;
+  transition: all var(--transition-normal) var(--transition-ease);
 }
 
-/* Download info styling */
 .download-info {
-  color: #555;
-  line-height: 1.6;
-  margin-bottom: 15px;
+  color: var(--color-text-light);
+  line-height: var(--line-height-normal);
+  margin-bottom: var(--space-4);
 }
 
-/* Unlock progress bar container - similar to main progress bar */
 .unlock-progress-container {
-  margin-top: 15px;
+  margin-top: var(--space-4);
 }
 
 .progress-stats {
   text-align: right;
-  color: #555;
-  font-weight: bold;
-  margin-bottom: 5px;
-  font-size: 0.9rem;
+  color: var(--color-text-light);
+  font-weight: var(--font-weight-bold);
+  margin-bottom: var(--space-1);
+  font-size: var(--font-size-sm);
   background-color: rgba(255, 255, 255, 0.5);
-  padding: 3px 10px;
-  border-radius: 15px;
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-full);
   display: inline-block;
-  /* Removed float: right and added flexbox in container */
 }
 
-/* Progress bar styling - modeled after main progress bar */
 .unlock-progress-bar {
   height: 14px;
   background-color: rgba(255, 255, 255, 0.6);
   border-radius: 7px;
   overflow: hidden;
   margin: 5px 0 10px;
-  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.05);
+  box-shadow: var(--shadow-inset);
   position: relative;
   clear: both;
 }
@@ -345,7 +238,6 @@ watch(() => props.isUnlocked, (newValue, oldValue) => {
   overflow: hidden;
 }
 
-/* Animation like in the main progress bar */
 .unlock-progress-fill::after {
   content: "";
   position: absolute;
@@ -366,63 +258,43 @@ watch(() => props.isUnlocked, (newValue, oldValue) => {
   animation: move 1s linear infinite;
 }
 
-@keyframes move {
-  0% {
-    background-position: 0 0;
-  }
-  100% {
-    background-position: 20px 0;
-  }
-}
-
-/* QR code styling */
 .qr-code {
   display: block;
   width: 150px;
   height: 150px;
-  margin: 20px auto 10px;
-  border-radius: 10px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  margin: var(--space-5) auto var(--space-2);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
   border: 5px solid white;
-  transition: transform 0.3s ease;
+  transition: transform var(--transition-normal) var(--transition-ease);
 }
 
 .qr-code:hover {
   transform: scale(1.05);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  box-shadow: var(--shadow-lg);
 }
 
-/* Responsive adjustments */
 @media (max-width: 768px) {
-  .modern-pdf-section {
-    padding: 20px;
+  .pdf-section {
+    padding: var(--space-5);
   }
   
   .pdf-title {
-    font-size: 1.3rem;
-  }
-  
-  .download-button {
-    padding: 12px 20px;
+    font-size: var(--font-size-lg);
   }
   
   .pdf-details {
-    padding: 15px;
-  }
-  
-  .unlock-progress-bar {
-    height: 12px;
+    padding: var(--space-4);
   }
 }
 
-/* For smaller screens */
 @media (max-width: 480px) {
-  .modern-pdf-section {
-    padding: 15px;
+  .pdf-section {
+    padding: var(--space-4);
   }
   
   .pdf-title {
-    font-size: 1.2rem;
+    font-size: var(--font-size-base);
   }
   
   .pdf-section-toggle {
@@ -430,16 +302,8 @@ watch(() => props.isUnlocked, (newValue, oldValue) => {
     height: 32px;
   }
   
-  .download-button {
-    padding: 10px 15px;
-  }
-  
-  .download-button i {
-    margin-right: 8px;
-  }
-  
   .pdf-details {
-    padding: 12px;
+    padding: var(--space-3);
   }
   
   .unlock-progress-bar {

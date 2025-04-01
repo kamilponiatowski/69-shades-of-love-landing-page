@@ -79,7 +79,6 @@ export const translations: TranslationObject = {
     newsletterBenefitsTitle: "What you'll get:",
     newsletterBenefitsList: [
       "Free gift: '7 Quick Habits That Transform Your Day' guide (after e-mail confirmation / in BETA version available under the gift collection button)",
-      "Pop Culture Wisdom - Quotes from geek productions to help you see the world from a new perspective (available immediately upon joining the flock)",
       "Ducktastic habit-building advice",
       "Early access to new features",
       "Special discounts on premium content"
@@ -613,7 +612,7 @@ export const translations: TranslationObject = {
     darkModeTooltip: "Switch to dark mode",
     lightModeTooltip: "Switch to light mode",
     popCultureTitle: "Pop Culture Wisdom Collection",
-    popCultureDescription: "Subscribe to unlock our exclusive collection of inspiring quotes from your favorite movies, TV shows, comics, and books!",
+    popCultureDescription: "Subscribe to unlock our exclusive collection of inspiring quotes from your favorite movies, TV shows, comics, and books! (immediately access after joining the flock)",
     goToJournal: "Go to Journal",
     subscribe: "Subscribe Now"
   },
@@ -689,7 +688,6 @@ export const translations: TranslationObject = {
     newsletterBenefitsTitle: "Co otrzymasz:",
     newsletterBenefitsList: [
       "Darmowy prezent: poradnik '7 szybkich nawyków, które transformują Twój dzień' (tuż po potwierdzeniu e-mail'a / w wersji BETA dostępny pod przyciskiem odebrania prezentu)",
-      "Mądrość z Pop-Kultury - Cycacy z geekowych produkcji, które pomogą Ci zobaczyć świat z nowej perspektywy (dostępne od razu po dołączeniu do stada)",
       "Kaczastyczne porady budowania nawyków",
       "Wczesny dostęp do nowych funkcji",
       "Specjalne zniżki na treści premium"
@@ -1221,7 +1219,7 @@ export const translations: TranslationObject = {
     darkModeTooltip: "Przełącz na tryb ciemny",
     lightModeTooltip: "Przełącz na tryb jasny",
     popCultureTitle: "Kolekcja Mądrości Popkultury",
-    popCultureDescription: "Zapisz się, aby odblokować naszą ekskluzywną kolekcję inspirujących cytatów z Twoich ulubionych filmów, seriali, komiksów i książek!",
+    popCultureDescription: "Zapisz się, aby odblokować naszą ekskluzywną kolekcję inspirujących cytatów z Twoich ulubionych filmów, seriali, komiksów i książek! (natychmiastowy dostęp po dołączeniu do stada)",
     goToJournal: "Przejdź do Dziennika",
     subscribe: "Zapisz się teraz"
   },

@@ -26,7 +26,6 @@
 import { useI18n } from '@/composables/useI18n';
 import { computed } from 'vue';
 
-// Props with proper TypeScript definitions and defaults
 const props = defineProps({
   showReward: {
     type: Boolean,
@@ -46,15 +45,12 @@ const props = defineProps({
   }
 });
 
-// Emits
 const emit = defineEmits<{
   (e: 'close'): void;
 }>();
 
-// Composables
 const { t } = useI18n();
 
-// Computed
 const isPdfUnlock = computed(() => {
   const title = props.rewardTitle || '';
   return title.includes('Mind Map') || title.includes('Mapa Myśli');
@@ -68,7 +64,6 @@ const isSpecialReward = computed(() => {
 });
 
 const iconClass = computed(() => {
-  // Category-specific icons - check if category is provided
   if (props.category) {
     switch (props.category) {
       case 'physical':
@@ -80,38 +75,30 @@ const iconClass = computed(() => {
       case 'relationship':
         return 'fa-users';
       default:
-        // No match, continue with other checks
         break;
     }
   }
   
-  // PDF unlocked icon
   if (isPdfUnlock.value) {
     return 'fa-file-pdf';
   }
   
-  // Special achievement icon
   const title = props.rewardTitle || '';
   if (title.includes('Champion') || title.includes('Mistrz')) {
     return 'fa-trophy';
   }
   
-  // Regular tip/insight icon
   if (title.includes('Insight') || title.includes('Wskazówka')) {
     return 'fa-lightbulb';
   }
   
-  // Default icon for other rewards
   return 'fa-crown';
 });
 
-// Constants
 const continueButtonText = t('continue');
 const pdfUnlockButtonText = t('downloadPdfNow') || 'Download PDF Now';
 
-// Methods
 const handleBackdropClick = (event: MouseEvent) => {
-  // User can close all popups by clicking outside, as all now require explicit interaction
   emit('close');
 };
 </script>
@@ -131,8 +118,8 @@ const handleBackdropClick = (event: MouseEvent) => {
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.3s ease;
-  padding: 20px; /* Add padding to make room for scrolling */
-  overflow-y: auto; /* Enable vertical scrolling */
+  padding: 20px;
+  overflow-y: auto;
 }
 
 .reward-animation.show {
@@ -152,11 +139,10 @@ const handleBackdropClick = (event: MouseEvent) => {
   transform: scale(0.8);
   transition: transform 0.3s ease;
   overflow: hidden;
-  max-height: 90vh; /* Limit height to 90% of viewport height */
-  overflow-y: auto; /* Enable scrolling for content */
+  max-height: 90vh;
+  overflow-y: auto;
 }
 
-/* Customize scrollbar */
 .reward-content::-webkit-scrollbar {
   width: 8px;
   height: 8px;
@@ -210,7 +196,6 @@ const handleBackdropClick = (event: MouseEvent) => {
   animation: pulse 1s infinite alternate;
 }
 
-/* Enhanced animation for PDF unlock */
 .pdf-unlocked .reward-icon {
   background: linear-gradient(135deg, var(--accent-color), #6a11cb);
   animation: spin 1.5s ease-out, pulse 1s infinite alternate;
@@ -270,12 +255,11 @@ const handleBackdropClick = (event: MouseEvent) => {
   box-shadow: 0 8px 20px rgba(138, 43, 226, 0.3);
 }
 
-/* Responsive styles */
 @media (max-width: 768px) {
   .reward-content {
     padding: 25px;
     width: 90%;
-    max-height: 85vh; /* Smaller max height on mobile */
+    max-height: 85vh;
   }
   
   .reward-icon {
@@ -288,14 +272,13 @@ const handleBackdropClick = (event: MouseEvent) => {
     font-size: 1.6rem;
   }
 
-  /* Adjust alignment for scrollable content */
   .reward-animation {
     align-items: flex-start;
-    padding-top: 10vh; /* Add space at top of popup */
+    padding-top: 10vh;
   }
 
   .reward-content {
-    margin: 0 auto; /* Center in scrollable area */
+    margin: 0 auto;
   }
 }
 
@@ -303,7 +286,7 @@ const handleBackdropClick = (event: MouseEvent) => {
   .reward-content {
     padding: 20px;
     width: 95%;
-    max-height: 80vh; /* Even smaller max-height for very small screens */
+    max-height: 80vh;
   }
   
   .reward-icon {
@@ -322,14 +305,12 @@ const handleBackdropClick = (event: MouseEvent) => {
     padding: 10px 20px;
   }
 
-  /* Further adjust for very small screens */
   .reward-animation {
     align-items: flex-start;
-    padding-top: 5vh; /* Smaller top space on very small screens */
+    padding-top: 5vh;
   }
 }
 
-/* Pulse animation for rewards */
 @keyframes rewardPulse {
   0% { transform: scale(0.8); }
   50% { transform: scale(1.05); }

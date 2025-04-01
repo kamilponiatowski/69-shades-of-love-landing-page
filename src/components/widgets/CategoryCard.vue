@@ -1,5 +1,5 @@
 <template>
-  <div :class="['modern-category', category.type]">
+  <div :class="['category-card', category.type]">
     <div class="category-background"></div>
     
     <div class="category-content">
@@ -55,21 +55,22 @@ const onTaskUpdated = (changeInfo: TaskChangeInfo) => {
 </script>
 
 <style scoped>
-/* Modern category card with pattern and gradient, matching Header/Footer style */
-.modern-category {
+/* Używamy klasy category-card zamiast modern-category */
+.category-card {
   position: relative;
-  border-radius: 15px;
+  border-radius: var(--radius-lg);
   overflow: hidden;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: var(--shadow-md);
+  transition: transform var(--transition-normal) var(--transition-ease), 
+              box-shadow var(--transition-normal) var(--transition-ease);
   background: linear-gradient(120deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.8));
   backdrop-filter: blur(5px);
-  margin-bottom: 30px;
+  margin-bottom: var(--space-6);
 }
 
-.modern-category:hover {
+.category-card:hover {
   transform: translateY(-8px);
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+  box-shadow: var(--shadow-lg);
 }
 
 /* Background pattern matching header and footer */
@@ -80,7 +81,7 @@ const onTaskUpdated = (changeInfo: TaskChangeInfo) => {
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23c41e3a' fill-opacity='0.03' fill-rule='evenodd'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23c41e3a' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
   opacity: 0.5;
   z-index: 0;
 }
@@ -93,7 +94,7 @@ const onTaskUpdated = (changeInfo: TaskChangeInfo) => {
 
 /* Enhanced header styling with gradient based on category type */
 .category-header {
-  padding: 20px;
+  padding: var(--space-5);
   color: white;
   font-weight: bold;
   display: flex;
@@ -105,17 +106,12 @@ const onTaskUpdated = (changeInfo: TaskChangeInfo) => {
   position: relative;
 }
 
-@keyframes gradientShift {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
 .category-header h2 {
-  font-size: 1.4rem;
+  font-size: var(--font-size-lg);
   margin: 0;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   position: relative;
+  color: white;
 }
 
 .category-header h2::after {
@@ -131,11 +127,11 @@ const onTaskUpdated = (changeInfo: TaskChangeInfo) => {
 
 .category-counter {
   background-color: rgba(255, 255, 255, 0.2);
-  padding: 5px 12px;
-  border-radius: 20px;
-  font-size: 0.95rem;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-sm);
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-normal) var(--transition-ease);
 }
 
 .category-counter:hover {
@@ -145,80 +141,79 @@ const onTaskUpdated = (changeInfo: TaskChangeInfo) => {
 
 /* Category body with improved spacing */
 .category-body {
-  padding: 20px;
+  padding: var(--space-5);
   background-color: rgba(255, 255, 255, 0.95);
 }
 
 /* Category-specific styling */
 .physical .category-header {
-  background: linear-gradient(135deg, var(--physical-color), #FF7F00);
+  background: linear-gradient(135deg, var(--color-physical), var(--color-physical-dark));
 }
 
 .mental .category-header {
-  background: linear-gradient(135deg, var(--mental-color), #5CB85C);
+  background: linear-gradient(135deg, var(--color-mental), var(--color-mental-dark));
 }
 
 .personal .category-header {
-  background: linear-gradient(135deg, var(--personal-color), #FFB833);
+  background: linear-gradient(135deg, var(--color-personal), var(--color-personal-dark));
 }
 
 .relationship .category-header {
-  background: linear-gradient(135deg, var(--relationship-color), #FF6B98);
+  background: linear-gradient(135deg, var(--color-relationship), var(--color-relationship-dark));
 }
 
 /* Enhanced hover states */
 .physical:hover .category-header {
-  background: linear-gradient(135deg, #FF7F00, var(--physical-color));
+  background: linear-gradient(135deg, var(--color-physical-dark), var(--color-physical));
 }
 
 .mental:hover .category-header {
-  background: linear-gradient(135deg, #5CB85C, var(--mental-color));
+  background: linear-gradient(135deg, var(--color-mental-dark), var(--color-mental));
 }
 
 .personal:hover .category-header {
-  background: linear-gradient(135deg, #FFB833, var(--personal-color));
+  background: linear-gradient(135deg, var(--color-personal-dark), var(--color-personal));
 }
 
 .relationship:hover .category-header {
-  background: linear-gradient(135deg, #FF6B98, var(--relationship-color));
+  background: linear-gradient(135deg, var(--color-relationship-dark), var(--color-relationship));
 }
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
-  .modern-category {
-    margin-bottom: 20px;
+  .category-card {
+    margin-bottom: var(--space-5);
   }
   
   .category-header {
-    padding: 15px;
+    padding: var(--space-4);
   }
   
   .category-header h2 {
-    font-size: 1.2rem;
+    font-size: var(--font-size-base);
   }
   
   .category-body {
-    padding: 15px;
+    padding: var(--space-4);
   }
 }
 
-/* For smaller screens */
 @media (max-width: 480px) {
   .category-header {
-    padding: 12px 15px;
+    padding: var(--space-3);
   }
   
   .category-header h2 {
-    font-size: 1.1rem;
+    font-size: var(--font-size-base);
   }
   
   .category-counter {
-    padding: 4px 10px;
-    font-size: 0.9rem;
+    padding: var(--space-1) var(--space-2);
+    font-size: var(--font-size-xs);
   }
   
   .category-body {
-    padding: 12px;
+    padding: var(--space-3);
   }
 }
 </style>

@@ -73,7 +73,7 @@ const { t } = useI18n();
 
 .toggle-moon {
   right: 4px;
-  color: var(--color-accent);
+  color: var(--accent-color);
   opacity: 0.3;
   transform: translateX(0);
 }
@@ -97,7 +97,7 @@ const { t } = useI18n();
 
 :global(.dark-mode) .toggle-thumb {
   transform: translateX(24px);
-  background-color: var(--color-accent);
+  background-color: var(--accent-color);
 }
 
 :global(.dark-mode) .toggle-sun {

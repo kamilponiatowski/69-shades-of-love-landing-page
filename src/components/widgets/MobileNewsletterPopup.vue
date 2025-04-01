@@ -137,7 +137,6 @@
     margin-right: 6px;
   }
   
-  /* Responsive adjustments */
   @media (max-width: 480px) {
     .mobile-newsletter-popup {
       left: 5px;

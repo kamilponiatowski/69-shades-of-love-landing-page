@@ -1,6 +1,6 @@
 <template>
-  <div class="modern-progress-container">
-    <div class="progress-background"></div>
+  <div class="progress-container">
+    <div class="pattern-background"></div>
     
     <div class="progress-content">
       <div class="progress-title">
@@ -36,56 +36,42 @@ import { useTaskStore, type Category } from '@/stores/taskStore';
 import { computed } from 'vue';
 import { storeToRefs } from 'pinia';
 
-// Composables
 const { t } = useI18n();
 const taskStore = useTaskStore();
 const { categories, completedCount, totalTasks, progressPercentage } = storeToRefs(taskStore);
 
-// Methods
 const getCategoryProgress = (type: Category['type']) => {
   return taskStore.getCategoryProgress(type);
 };
 </script>
 
 <style scoped>
-/* Modern progress container with enhanced responsiveness */
-.modern-progress-container {
+.progress-container {
   position: relative;
   background: linear-gradient(120deg, rgba(196, 30, 58, 0.1), rgba(138, 43, 226, 0.1));
-  border-radius: 15px;
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
   overflow: hidden;
-  margin-bottom: 30px;
-  width: 100%; /* Ensure full width */
-}
-
-.progress-background {
-  position: absolute;
-  top: 0;
-  left: 0;
+  margin-bottom: var(--space-6);
   width: 100%;
-  height: 100%;
-  background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23c41e3a' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
-  opacity: 0.5;
-  z-index: 0;
 }
 
 .progress-content {
   position: relative;
   z-index: 1;
-  padding: 25px;
+  padding: var(--space-6);
 }
 
 .progress-title {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: var(--space-5);
 }
 
 .progress-title h2 {
   color: var(--main-color);
-  font-size: 1.5rem;
+  font-size: var(--font-size-xl);
   margin: 0;
   position: relative;
 }
@@ -102,22 +88,22 @@ const getCategoryProgress = (type: Category['type']) => {
 }
 
 .progress-stats {
-  color: #555;
-  font-weight: bold;
-  font-size: 1.1rem;
+  color: var(--color-text-dark);
+  font-weight: var(--font-weight-bold);
+  font-size: var(--font-size-base);
   background-color: rgba(255, 255, 255, 0.5);
-  padding: 5px 12px;
-  border-radius: 20px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-full);
+  box-shadow: var(--shadow-sm);
 }
 
 .progress-bar {
   height: 14px;
-  background-color: rgba(255, 255, 255, 0.6);
+  background-color: var(--progress-background);
   border-radius: 7px;
   overflow: hidden;
-  margin-bottom: 20px;
-  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.05);
+  margin-bottom: var(--space-5);
+  box-shadow: var(--shadow-inset);
   position: relative;
 }
 
@@ -150,22 +136,13 @@ const getCategoryProgress = (type: Category['type']) => {
   animation: move 1s linear infinite;
 }
 
-@keyframes move {
-  0% {
-    background-position: 0 0;
-  }
-  100% {
-    background-position: 20px 0;
-  }
-}
-
 .category-progress {
   display: flex;
   justify-content: space-between;
-  padding: 15px;
+  padding: var(--space-4);
   background-color: rgba(255, 255, 255, 0.5);
-  border-radius: 10px;
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
 }
 
 .category-progress-item {
@@ -186,15 +163,15 @@ const getCategoryProgress = (type: Category['type']) => {
 }
 
 .category-label {
-  font-size: 0.9rem;
-  color: #666;
-  margin-bottom: 5px;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-light);
+  margin-bottom: var(--space-1);
 }
 
 .category-percentage {
-  font-weight: bold;
-  font-size: 1.2rem;
-  transition: transform 0.3s ease;
+  font-weight: var(--font-weight-bold);
+  font-size: var(--font-size-md);
+  transition: transform var(--transition-fast) var(--transition-ease);
 }
 
 .category-percentage:hover {
@@ -207,35 +184,34 @@ const getCategoryProgress = (type: Category['type']) => {
 .personal-text { color: var(--personal-color); }
 .relationship-text { color: var(--relationship-color); }
 
-/* Responsive adjustments */
 @media (max-width: 768px) {
   .progress-content {
-    padding: 20px 15px;
+    padding: var(--space-4);
   }
   
   .progress-title {
     flex-direction: column;
     align-items: flex-start;
-    margin-bottom: 15px;
+    margin-bottom: var(--space-4);
   }
   
   .progress-title h2 {
-    margin-bottom: 10px;
+    margin-bottom: var(--space-2);
   }
   
   .progress-stats {
     align-self: flex-start;
-    margin-top: 5px;
+    margin-top: var(--space-1);
   }
   
   .category-progress {
     flex-wrap: wrap;
-    padding: 10px;
+    padding: var(--space-2);
   }
   
   .category-progress-item {
     width: 50%;
-    margin-bottom: 10px;
+    margin-bottom: var(--space-2);
   }
   
   .category-progress-item:nth-child(odd)::after {
@@ -245,15 +221,15 @@ const getCategoryProgress = (type: Category['type']) => {
 
 @media (max-width: 480px) {
   .progress-content {
-    padding: 15px 10px;
+    padding: var(--space-3);
   }
   
   .progress-title h2 {
-    font-size: 1.3rem;
+    font-size: var(--font-size-lg);
   }
   
   .progress-stats {
-    font-size: 0.95rem;
+    font-size: var(--font-size-sm);
   }
   
   .category-progress-item {
