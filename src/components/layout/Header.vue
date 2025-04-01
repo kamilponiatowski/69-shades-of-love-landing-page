@@ -8,7 +8,7 @@
       
       <!-- Controls in the top right corner: language switch, with dark mode underneath -->
       <div class="top-right-controls">
-        <!-- Language switch -->
+        <!-- Language switcher -->
         <div class="language-switcher" @click="toggleLanguage">
           <button 
             class="lang-btn" 
@@ -128,7 +128,7 @@ const toggleLanguage = () => {
   border-radius: 15px;
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
   overflow: hidden;
-  min-height: 240px; /* Zapewnia minimalną wysokość dla layoutu */
+  min-height: 240px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -174,7 +174,7 @@ const toggleLanguage = () => {
   z-index: 5;
 }
 
-/* New top right controls container for dark mode toggle and language switcher */
+/* Top right controls container for dark mode toggle and language switcher */
 .top-right-controls {
   display: flex;
   flex-direction: column;
@@ -349,6 +349,25 @@ const toggleLanguage = () => {
   color: #ddd;
 }
 
+.streak-redirect {
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.streak-redirect:hover {
+  transform: translateX(5px);
+}
+
+.streak-redirect .streak-flame i {
+  transition: transform 0.3s ease;
+}
+
+.streak-redirect:hover .streak-flame i {
+  transform: translateX(3px);
+}
+
 /* Responsive styles */
 @media (max-width: 768px) {
   .modern-header {
@@ -388,7 +407,6 @@ const toggleLanguage = () => {
   }
 }
 
-/* For smaller screens */
 @media (max-width: 480px) {
   .modern-header {
     padding: 15px 10px;
@@ -433,24 +451,5 @@ const toggleLanguage = () => {
     gap: 8px;
     align-items: flex-end;
   }
-}
-
-.streak-redirect {
-  text-decoration: none;
-  color: inherit;
-  cursor: pointer;
-  transition: transform 0.3s ease;
-}
-
-.streak-redirect:hover {
-  transform: translateX(5px);
-}
-
-.streak-redirect .streak-flame i {
-  transition: transform 0.3s ease;
-}
-
-.streak-redirect:hover .streak-flame i {
-  transform: translateX(3px);
 }
 </style>

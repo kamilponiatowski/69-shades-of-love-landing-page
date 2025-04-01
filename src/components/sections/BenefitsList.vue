@@ -4,19 +4,21 @@
         v-for="(benefit, index) in benefits" 
         :key="index"
         :class="{ 
-          'highlight-benefit': index === 0, 
-          'highlight-benefit pop-culture': index === 1 
+          'highlight-benefit': benefit.highlight, 
+          'highlight-benefit pop-culture': benefit.popCulture 
         }"
       >
-        {{ benefit }}
+        {{ benefit.text }}
       </li>
     </ul>
   </template>
   
   <script setup lang="ts">
+  import { Benefit } from '@/types';
+  
   defineProps({
     benefits: {
-      type: Array,
+      type: Array as () => Benefit[],
       required: true
     }
   });
@@ -74,7 +76,7 @@
     color: var(--accent-color);
   }
   
-  @media (max-width: a 768px) {
+  @media (max-width: 768px) {
     .newsletter-page-benefits li {
       font-size: 0.95rem;
       padding-left: 25px;

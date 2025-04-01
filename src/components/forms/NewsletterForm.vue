@@ -74,12 +74,12 @@ const emit = defineEmits(['submit', 'update:email', 'update:name']);
 
 const { t } = useI18n();
 
-// Zdefiniowanie placeholder dla pola imienia
+// Name field placeholder text
 const nameField = computed(() => {
   return "Your Name (optional, but nice to meet you 💜)";
 });
 
-// Internal model values
+// Internal model values with two-way binding
 const emailModel = ref(props.newsletterEmail);
 const nameModel = ref(props.newsletterName);
 
@@ -201,22 +201,7 @@ const updateName = () => {
   display: block;
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.animate-fade-in {
-  animation: fadeIn 0.5s ease forwards;
-}
-
+/* Media queries */
 @media (max-width: 768px) {
   .newsletter-embedded-form {
     padding: 20px;

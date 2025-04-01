@@ -13,18 +13,13 @@
   </template>
   
   <script setup lang="ts">
+  import { Application, isApplication } from '@/types';
+  
   defineProps({
     applications: {
-      type: Array,
+      type: Array as () => Application[],
       required: true,
-      validator: (value: any[]) => {
-        return value.every(
-          item => 
-            typeof item.title === 'string' && 
-            typeof item.description === 'string' && 
-            typeof item.icon === 'string'
-        );
-      }
+      validator: (value: any[]) => value.every(isApplication)
     }
   });
   </script>

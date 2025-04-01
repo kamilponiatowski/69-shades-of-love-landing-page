@@ -11,9 +11,16 @@
   </template>
   
   <script setup lang="ts">
+  interface WellbeingArea {
+    type: string;
+    emoji: string;
+    title: string;
+    description: string;
+  }
+  
   defineProps({
     areas: {
-      type: Array,
+      type: Array as () => WellbeingArea[],
       required: true,
       validator: (value: any[]) => {
         return value.every(

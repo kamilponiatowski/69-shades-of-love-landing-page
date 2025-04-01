@@ -13,6 +13,7 @@
     gap: var(--space-6);
   }
   
+  /* Sidebar and main content */
   aside {
     width: 350px;
     flex-shrink: 0;
@@ -80,7 +81,7 @@
     width: 100%;
   }
   
-  /* Flexbox layouts */
+  /* Flexbox layout utilities */
   .flex {
     display: flex;
   }
@@ -124,4 +125,23 @@
     .page-layout {
       padding: 0 var(--space-2);
     }
+  }
+  
+  /* Common content area layout */
+  .content-section {
+    position: relative;
+    margin-bottom: var(--space-6);
+    padding: var(--space-6);
+    background: var(--section-background);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    overflow: hidden;
+    transition: transform var(--transition-normal) var(--transition-ease), 
+                box-shadow var(--transition-normal) var(--transition-ease),
+                background var(--transition-normal) var(--transition-ease);
+  }
+  
+  .content-section:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
   }

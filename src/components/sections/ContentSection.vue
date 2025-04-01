@@ -1,7 +1,6 @@
-<!-- src/components/sections/ContentSection.vue -->
 <template>
     <section class="content-section" :class="customClass">
-      <div class="pattern-background" v-if="showPattern"></div>
+      <div class="pattern-background" v-if="showPattern" :class="{'pattern-background-accent': accentPattern}"></div>
       <h2 class="section-title" v-if="title">{{ title }}</h2>
       <p class="section-description" v-if="description">{{ description }}</p>
       <slot></slot>
@@ -25,6 +24,10 @@
     showPattern: {
       type: Boolean,
       default: true
+    },
+    accentPattern: {
+      type: Boolean,
+      default: false
     }
   });
   </script>

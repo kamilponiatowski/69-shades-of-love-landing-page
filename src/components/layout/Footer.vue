@@ -189,7 +189,7 @@ const resetAppData = () => {
       'preferredLanguage',
       'pdfUnlockedBefore',
       'pdfUnlockShown',
-      'darkMode' // Add darkMode to keys to be removed
+      'darkMode'
     ];
     
     // Delete all data from localStorage
@@ -236,7 +236,7 @@ const closeModal = () => {
 </script>
   
 <style scoped>
-/* Modern footer design with pattern and gradient, matching the Header style */
+/* Modern footer design with pattern and gradient */
 .modern-footer {
   position: relative;
   margin-top: 40px;
@@ -245,7 +245,7 @@ const closeModal = () => {
   border-radius: 15px;
   box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.05);
   overflow: hidden;
-  min-height: 150px; /* Ensure minimum height for the layout */
+  min-height: 150px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -368,16 +368,6 @@ const closeModal = () => {
 
 .reset-button i {
   font-size: 0.9rem;
-}
-
-/* Animation for heartbeat */
-@keyframes heartbeat {
-  0% { transform: scale(1); }
-  5% { transform: scale(1.2); }
-  10% { transform: scale(1); }
-  15% { transform: scale(1.1); }
-  20% { transform: scale(1); }
-  100% { transform: scale(1); }
 }
 
 /* Legal footer section */
@@ -546,7 +536,6 @@ const closeModal = () => {
   }
 }
 
-/* For smaller screens */
 @media (max-width: 480px) {
   .modern-footer {
     padding: 15px 10px;

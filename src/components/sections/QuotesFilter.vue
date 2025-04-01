@@ -24,7 +24,7 @@
   
   defineProps({
     categories: {
-      type: Array,
+      type: Array as () => string[],
       required: true
     },
     selectedCategory: {

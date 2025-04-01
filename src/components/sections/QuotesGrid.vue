@@ -21,10 +21,13 @@
   </template>
   
   <script setup lang="ts">
+  import { Quote, isQuote } from '@/types';
+  
   defineProps({
     quotes: {
-      type: Array,
-      required: true
+      type: Array as () => Quote[],
+      required: true,
+      validator: (value: any[]) => value.every(isQuote)
     },
     getCategoryIcon: {
       type: Function,
