@@ -74,18 +74,18 @@ import { duckJokes } from '@/constants/duckJokes';
 // Components
 import Header from '@/components/layout/Header.vue';
 import Footer from '@/components/layout/Footer.vue';
+import PdfDownload from '@/components/category/PdfDownload.vue';
+import CategoryCard from '@/components/category/CategoryCard.vue';
 import AboutMe from '@/components/widgets/AboutMe.vue';
-import PdfDownload from '@/components/widgets/PdfDownload.vue';
-import ProgressBar from '@/components/widgets/ProgressBar.vue';
-import CategoryCard from '@/components/widgets/CategoryCard.vue';
 import DuckJoke from '@/components/widgets/DuckJoke.vue';
-import Achievement from '@/components/widgets/Achievement.vue';
-import RewardPopup from '@/components/widgets/RewardPopup.vue';
-import NewsletterFloatingButton from '@/components/widgets/NewsletterFloatingButton.vue';
-import NewsletterPopup from '@/components/widgets/NewsletterPopup.vue';
-import MobileNewsletterPopup from '@/components/widgets/MobileNewsletterPopup.vue';
-import NewsletterReward from '@/components/widgets/NewsletterReward.vue';
-import ScrollDownButton from '@/components/widgets/ScrollDownButton.vue';
+import ProgressBar from '@/components/widgets/ProgressBar.vue';
+import NewsletterReward from '@/components/ui/newsletter/NewsletterReward.vue';
+import RewardPopup from '@/components/ui/RewardPopup.vue';
+import NewsletterFloatingButton from '@/components/ui/newsletter/NewsletterFloatingButton.vue';
+import NewsletterPopup from '@/components/ui/newsletter/NewsletterPopup.vue';
+import MobileNewsletterPopup from '@/components/ui/newsletter/MobileNewsletterPopup.vue';
+import Achievement from '@/components/common/Achievement.vue';
+import ScrollDownButton from '@/components/common/ScrollDownButton.vue';
 
 import type { TaskChangeInfo } from '@/types';
 

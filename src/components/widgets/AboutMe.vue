@@ -35,9 +35,9 @@
 
 <script setup lang="ts">
 import { computed, ref, onMounted, onBeforeUnmount } from 'vue';
-import { useI18n } from '@/composables/useI18n';
-import NewsletterButton from '../ui/NewsletterButton.vue';
 import { useRouter } from 'vue-router';
+import { useI18n } from '@/composables/useI18n';
+import NewsletterButton from '../ui/newsletter/NewsletterButton.vue';
 
 // Props
 const props = defineProps({

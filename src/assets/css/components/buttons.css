@@ -184,6 +184,7 @@ button:not([class^="newsletter-"]):not([class*=" newsletter-"]):not([class^="rew
 
 .back-link:hover, 
 .back-link:focus {
+  color: white;
   transform: translateY(-3px);
   box-shadow: var(--shadow-primary-hover);
 }

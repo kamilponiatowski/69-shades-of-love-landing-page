@@ -1,30 +1,30 @@
 <template>
-  <PageContainer 
-    :streak-days="streakDays" 
-    :isHomePage="false" 
-    :customTitle="t('projectPhilosophyTitle')" 
+  <PageContainer
+    :streak-days="streakDays"
+    :isHomePage="false"
+    :customTitle="t('projectPhilosophyTitle')"
     :customSubtitle="t('projectPhilosophyDescription')"
   >
     <main id="main-content" class="about-content">
       <ContentSection>
         <WellbeingAreas :areas="wellbeingAreas" />
       </ContentSection>
-
-      <ContentSection 
+      
+      <ContentSection
         :title="t('featuresTitle')"
       >
         <FeaturesList :features="features" />
       </ContentSection>
-
-      <ContentSection 
+      
+      <ContentSection
         :title="t('insightsFeatureTitle')"
         :description="t('insightsFeatureDescription')"
       >
         <InsightGrid :insights="insights" />
       </ContentSection>
-
+      
       <AboutMe @open-newsletter="openNewsletterPopup" :isSubscribed="isSubscribed" />
-
+      
       <NavigationLinks backLink="/journal" />
     </main>
   </PageContainer>
@@ -47,34 +47,52 @@ const { isSubscribed, openNewsletterPopup } = useNewsletter();
 
 const streakDays = ref<number>(0);
 
-const wellbeingAreas = computed(() => [
-  { 
-    type: 'physical', 
-    emoji: '💪', 
+type WellbeingArea = {
+  type: 'physical' | 'mental' | 'personal' | 'relationship';
+  emoji: string;
+  title: string;
+  description: string;
+};
+
+type Feature = {
+  icon: string;
+  text: string;
+};
+
+type Insight = {
+  category: 'physical' | 'mental' | 'personal' | 'relationship';
+  icon: string;
+  text: string;
+};
+
+const wellbeingAreas = computed<WellbeingArea[]>(() => [
+  {
+    type: 'physical',
+    emoji: '💪',
     title: t('physical'),
     description: t('physicalDescription')
   },
-  { 
-    type: 'mental', 
-    emoji: '🧠', 
+  {
+    type: 'mental',
+    emoji: '🧠',
     title: t('mental'),
     description: t('mentalDescription')
   },
-  { 
-    type: 'personal', 
-    emoji: '🌈', 
+  {
+    type: 'personal',
+    emoji: '🌈',
     title: t('personal'),
     description: t('personalDescription')
   },
-  { 
-    type: 'relationship', 
-    emoji: '❤️', 
+  {
+    type: 'relationship',
+    emoji: '❤️',
     title: t('relationship'),
     description: t('relationshipDescription')
   }
 ]);
 
-const features = computed(() => [
+const features = computed<Feature[]>(() => [
   { icon: 'fa-chart-line', text: t('feature1') },
   { icon: 'fa-list-alt', text: t('feature2') },
   { icon: 'fa-fire', text: t('feature3') },
@@ -83,7 +101,7 @@ const features = computed(() => [
   { icon: 'fa-lightbulb', text: t('feature6') }
 ]);
 
-const insights = computed(() => [
+const insights = computed<Insight[]>(() => [
   { category: 'physical', icon: 'fa-running', text: t('insightsPoint1') },
   { category: 'mental', icon: 'fa-brain', text: t('insightsPoint2') },
   { category: 'personal', icon: 'fa-smile-beam', text: t('insightsPoint3') },

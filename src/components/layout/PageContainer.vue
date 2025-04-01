@@ -68,10 +68,10 @@
   import Footer from '@/components/layout/Footer.vue';
   import DuckJoke from '@/components/widgets/DuckJoke.vue';
   import ScrollDownButton from '@/components/common/ScrollDownButton.vue';
-  import NewsletterFloatingButton from '@/components/widgets/NewsletterFloatingButton.vue';
-  import NewsletterPopup from '@/components/ui/NewsletterPopup.vue';
-  import NewsletterReward from '@/components/widgets/NewsletterReward.vue';
-  import MobileNewsletterPopup from '@/components/ui/MobileNewsletterPopup.vue';
+  import NewsletterPopup from '@/components/ui/newsletter/NewsletterPopup.vue';
+  import NewsletterReward from '@/components/ui/newsletter/NewsletterReward.vue';
+  import MobileNewsletterPopup from '@/components/ui/newsletter/MobileNewsletterPopup.vue';
+  import NewsletterFloatingButton from '@/components/ui/newsletter/NewsletterFloatingButton.vue';
   
   const props = defineProps({
     isHomePage: {

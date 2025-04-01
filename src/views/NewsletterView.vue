@@ -96,7 +96,7 @@ import { subscribeToNewsletter } from '@/utils/getResponseApi';
 import Header from '@/components/layout/Header.vue';
 import Footer from '@/components/layout/Footer.vue';
 import DuckJoke from '@/components/widgets/DuckJoke.vue';
-import NewsletterReward from '@/components/widgets/NewsletterReward.vue';
+import NewsletterReward from '@/components/ui/newsletter/NewsletterReward.vue';
 
 // Router instance
 const router = useRouter();

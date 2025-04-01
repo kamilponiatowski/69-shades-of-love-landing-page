@@ -166,7 +166,7 @@
 import { useI18n } from '../../composables/useI18n';
 import { useRouter } from 'vue-router';
 import { ref } from 'vue';
-import ScrollTopButton from '../widgets/ScrollTopButton.vue';
+import ScrollTopButton from '../common/ScrollTopButton.vue';
 
 // Composables
 const { t } = useI18n();
