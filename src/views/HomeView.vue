@@ -197,12 +197,12 @@ const handlePdfUnlocked = (): void => {
     // Show popup only on first unlock
     showPdfUnlockedReward();
 
-    // Invoke heart animation every 1 second for a ‘wow’ effect
+    // Invoke heart animation every 1 second for a 'wow' effect
     triggerHeartAnimation('personal');
     setTimeout(() => triggerHeartAnimation('mental'), 1000);
     setTimeout(() => triggerHeartAnimation('physical'), 2000);
 
-    createConfetti(); // Add a confetti effect for more ‘wow’
+    createConfetti(); // Add a confetti effect for more 'wow'
 
     // Delay the second confetti for a longer effect
     setTimeout(() => createConfetti(), 1500);
@@ -267,8 +267,13 @@ onMounted(async () => {
   // Set container for animation
   nextTick(() => {
     if (heartContainer.value) {
+      // Make duck logo tell jokes on click and keypress
       const duckLogo = document.querySelector('.duck-logo');
       if (duckLogo) {
+        duckLogo.addEventListener('click', () => {
+          tellDuckJoke();
+        });
+        
         duckLogo.addEventListener('keydown', (e: Event) => {
           const keyEvent = e as KeyboardEvent;
           if (keyEvent.key === 'Enter' || keyEvent.key === ' ') {

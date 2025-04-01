@@ -164,6 +164,8 @@ const updateName = (event: Event) => {
   opacity: 0;
   visibility: hidden;
   transition: all 0.3s ease;
+  padding: 20px; /* Add padding to make room for scrolling */
+  overflow-y: auto; /* Enable vertical scrolling */
 }
 
 .newsletter-popup.show {
@@ -183,6 +185,28 @@ const updateName = (event: Event) => {
   transform: scale(0.9);
   transition: transform 0.3s ease;
   overflow: hidden;
+  max-height: 90vh; /* Limit height to 90% of viewport height */
+  overflow-y: auto; /* Enable scrolling for content */
+}
+
+/* Customize scrollbar */
+.newsletter-container::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.newsletter-container::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+}
+
+.newsletter-container::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
+}
+
+.newsletter-container::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.5);
 }
 
 .newsletter-background {
@@ -458,77 +482,89 @@ const updateName = (event: Event) => {
   content: "🎁" !important;
 }
 
-/* Pop Culture benefit with rocket icon */
+/* Pop Culture benefit
+with rocket icon */
 .highlight-benefit.pop-culture::before {
-  content: "🚀" !important;
+content: "🚀" !important;
 }
-
-/* Responsive adjustments */
+/* Responsive styles */
 @media (max-width: 768px) {
-  .newsletter-container {
-    padding: 25px;
-    width: 90%;
-  }
-
-  .newsletter-title {
-    font-size: 1.6rem;
-  }
-
-  .newsletter-subtitle {
-    font-size: 1rem;
-  }
-
-  .pop-culture-section {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
-
-  .pop-culture-section i {
-    margin-bottom: 10px;
-  }
+.newsletter-container {
+padding: 25px;
+width: 90%;
+max-height: 85vh; /* Smaller max height on mobile */
 }
-
+.newsletter-title {
+font-size: 1.6rem;
+}
+.newsletter-subtitle {
+font-size: 1rem;
+}
+.pop-culture-section {
+flex-direction: column;
+align-items: center;
+text-align: center;
+}
+.pop-culture-section i {
+margin-bottom: 10px;
+}
+/* Further ensure scrollability on smaller devices /
+.newsletter-popup {
+align-items: flex-start;
+padding-top: 10vh; / Add space at top of popup */
+}
+.newsletter-container {
+margin: 0 auto; /* Center in scrollable area */
+}
 @media (max-width: 480px) {
-  .newsletter-container {
-    padding: 20px;
-    max-width: 95%;
-  }
-
-  .newsletter-title {
-    font-size: 1.4rem;
-  }
-
-  .newsletter-submit {
-    padding: 12px 15px;
-  }
-
-  .newsletter-benefits-list li {
-    padding-left: 22px;
-    font-size: 0.9rem;
-  }
-
-  .newsletter-benefits {
-    padding: 15px;
-  }
-
-  .pop-culture-text h3 {
-    font-size: 1rem;
-  }
-
-  .pop-culture-text p {
-    font-size: 0.9rem;
-  }
-
-  /* Ensure the close button is clearly visible on small screens */
-  .newsletter-close {
-    top: 10px;
-    right: 10px;
-    width: 36px;
-    height: 36px;
-    font-size: 1.4rem;
-    background: rgba(255, 255, 255, 0.3);
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-  }
+.newsletter-container {
+padding: 20px;
+max-width: 95%;
+max-height: 80vh; /* Even smaller for very small screens */
+}
+.newsletter-title {
+font-size: 1.4rem;
+}
+.newsletter-submit {
+padding: 12px 15px;
+}
+.newsletter-benefits-list li {
+padding-left: 22px;
+font-size: 0.9rem;
+}
+.newsletter-benefits {
+padding: 15px;
+}
+.pop-culture-text h3 {
+font-size: 1rem;
+}
+.pop-culture-text p {
+font-size: 0.9rem;
+}
+/* Ensure the close button is clearly visible on small screens */
+.newsletter-close {
+top: 10px;
+right: 10px;
+width: 36px;
+height: 36px;
+font-size: 1.4rem;
+background: rgba(255, 255, 255, 0.3);
+box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+/* Adjust scrolling behavior for very small screens /
+.newsletter-popup {
+align-items: flex-start;
+padding-top: 5vh; / Smaller top space on very small screens */
+}
+/* Fade-in animation for success/error messages */
+@keyframes fadeIn {
+from {
+opacity: 0;
+transform: translateY(10px);
+}
+to {
+opacity: 1;
+transform: translateY(0);
+}
 }
 </style>

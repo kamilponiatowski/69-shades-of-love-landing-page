@@ -131,6 +131,8 @@ const handleBackdropClick = (event: MouseEvent) => {
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.3s ease;
+  padding: 20px; /* Add padding to make room for scrolling */
+  overflow-y: auto; /* Enable vertical scrolling */
 }
 
 .reward-animation.show {
@@ -150,6 +152,28 @@ const handleBackdropClick = (event: MouseEvent) => {
   transform: scale(0.8);
   transition: transform 0.3s ease;
   overflow: hidden;
+  max-height: 90vh; /* Limit height to 90% of viewport height */
+  overflow-y: auto; /* Enable scrolling for content */
+}
+
+/* Customize scrollbar */
+.reward-content::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.reward-content::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 10px;
+}
+
+.reward-content::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+}
+
+.reward-content::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.3);
 }
 
 .reward-background {
@@ -251,6 +275,7 @@ const handleBackdropClick = (event: MouseEvent) => {
   .reward-content {
     padding: 25px;
     width: 90%;
+    max-height: 85vh; /* Smaller max height on mobile */
   }
   
   .reward-icon {
@@ -262,11 +287,23 @@ const handleBackdropClick = (event: MouseEvent) => {
   .reward-title {
     font-size: 1.6rem;
   }
+
+  /* Adjust alignment for scrollable content */
+  .reward-animation {
+    align-items: flex-start;
+    padding-top: 10vh; /* Add space at top of popup */
+  }
+
+  .reward-content {
+    margin: 0 auto; /* Center in scrollable area */
+  }
 }
 
 @media (max-width: 480px) {
   .reward-content {
     padding: 20px;
+    width: 95%;
+    max-height: 80vh; /* Even smaller max-height for very small screens */
   }
   
   .reward-icon {
@@ -283,6 +320,34 @@ const handleBackdropClick = (event: MouseEvent) => {
   .reward-button {
     width: 100%;
     padding: 10px 20px;
+  }
+
+  /* Further adjust for very small screens */
+  .reward-animation {
+    align-items: flex-start;
+    padding-top: 5vh; /* Smaller top space on very small screens */
+  }
+}
+
+/* Pulse animation for rewards */
+@keyframes rewardPulse {
+  0% { transform: scale(0.8); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+@keyframes spin {
+  0% { transform: scale(0.5) rotate(0deg); }
+  80% { transform: scale(1.2) rotate(360deg); }
+  100% { transform: scale(1) rotate(360deg); }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.2);
   }
 }
 </style>

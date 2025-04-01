@@ -68,6 +68,8 @@ const handleClose = () => {
   opacity: 0;
   visibility: hidden;
   transition: all 0.3s ease;
+  padding: 20px; /* Add padding for scrollable area */
+  overflow-y: auto; /* Enable vertical scrolling */
 }
 
 .newsletter-reward.show {
@@ -87,6 +89,28 @@ const handleClose = () => {
   transform: scale(0.9);
   transition: transform 0.3s ease;
   overflow: hidden;
+  max-height: 90vh; /* Limit height to 90% of viewport height */
+  overflow-y: auto; /* Enable scrolling for content */
+}
+
+/* Customize scrollbar */
+.newsletter-reward-container::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.newsletter-reward-container::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 10px;
+}
+
+.newsletter-reward-container::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+}
+
+.newsletter-reward-container::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.3);
 }
 
 .reward-background {
@@ -227,6 +251,7 @@ const handleClose = () => {
   .newsletter-reward-container {
     padding: 25px;
     width: 95%;
+    max-height: 85vh; /* Smaller max height on mobile */
   }
   
   .newsletter-reward-icon {
@@ -248,11 +273,22 @@ const handleClose = () => {
     margin-right: 0;
     margin-bottom: 10px;
   }
+
+  /* Adjust alignment for scrollable content */
+  .newsletter-reward {
+    align-items: flex-start;
+    padding-top: 10vh; /* Add space at top of popup */
+  }
+
+  .newsletter-reward-container {
+    margin: 0 auto; /* Center in scrollable area */
+  }
 }
 
 @media (max-width: 480px) {
   .newsletter-reward-container {
     padding: 20px;
+    max-height: 80vh; /* Even smaller for very small screens */
   }
   
   .newsletter-reward-icon {
@@ -260,15 +296,34 @@ const handleClose = () => {
     height: 70px;
     font-size: 2.5rem;
     margin-bottom: 15px;
-  }
-  
-  .newsletter-reward-title {
-    font-size: 1.4rem;
-  }
-  
-  .newsletter-reward-button {
-    width: 100%;
-    padding: 10px 20px;
-  }
+    height: 70px;
+font-size: 2.5rem;
+margin-bottom: 15px;
+}
+.newsletter-reward-title {
+font-size: 1.4rem;
+}
+.newsletter-reward-button {
+width: 100%;
+padding: 10px 20px;
+}
+/* Further adjust for very small screens /
+.newsletter-reward {
+align-items: flex-start;
+padding-top: 5vh; / Smaller top space on very small screens */
+}
+/* Animation for rewards */
+@keyframes rewardPulse {
+0% { transform: scale(0.8); }
+50% { transform: scale(1.05); }
+100% { transform: scale(1); }
+}
+@keyframes bounce {
+from {
+transform: translateY(0) scale(1);
+}
+to {
+transform: translateY(-10px) scale(1.05);
+}
 }
 </style>
